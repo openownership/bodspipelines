@@ -53,7 +53,7 @@ class Stage:
 
 class Pipeline:
     """Pipeline definition class"""
-    def __init__(self, name=None, origin=None, datatype=None):
+    def __init__(self, name=None, stages=None):
         """Initial setup"""
         self.name = name
         self.stages = stages
