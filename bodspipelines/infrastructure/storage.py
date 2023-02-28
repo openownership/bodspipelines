@@ -55,5 +55,5 @@ class ElasticStorage:
 
     def query(self, index_name, query):
         self.storage.set_index(index_name)
-        return self.storage.search({"match" : query})
+        return self.storage.search(query)
 
