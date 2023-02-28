@@ -33,7 +33,7 @@ class ElasticStorage:
         self.current_index = index_name
         self.storage.set_index(index_name)
         self.storage.delete_index()
-        self.storage.create_index(index_name, self.indexes[index_name])
+        self.storage.create_index(index_name, self.indexes[index_name]['properties'])
 
     def add_item(self, item, item_type):
         print(item_type, self.indexes[item_type])
