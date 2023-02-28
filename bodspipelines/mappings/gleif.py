@@ -1,3 +1,4 @@
+# GLEIF LEI Elasticsearch Properties
 lei_properties = {'LEI': {'type': 'text'},
               'Entity': {'type': 'object',
                          'properties': {'LegalName': {'type': 'text'},
@@ -67,11 +68,17 @@ def match_lei(item):
     return {"match": {"LEI": item["LEI"]}}
 
 def match_rr(item):
-    return {"bool": {"must": [{"term": {'Relationship.StartNode.NodeID': item['Relationship']['StartNode']['NodeID']}},
-                              {"term": {'Relationship.EndNode.NodeID': item['Relationship']['EndNode']['NodeID']}},
-                              {"term": {'Relationship.RelationshipType': item['Relationship']['RelationshipType']}}]}}
+    return {'bool': {'must': [{"match": {'Relationship.StartNode.NodeID': item['Relationship']['StartNode']['NodeID']}}, 
+                              {"match": {'Relationship.EndNode.NodeID': item['Relationship']['EndNode']['NodeID']}}, 
+                              {"match": {'Relationship.RelationshipType': item['Relationship']['RelationshipType']}}]}}
+#{"bool": {"must": [{"term": {'Relationship.StartNode.NodeID': item['Relationship']['StartNode']['NodeID']}},
+#                              {"term": {'Relationship.EndNode.NodeID': item['Relationship']['EndNode']['NodeID']}},
+#                              {"term": {'Relationship.RelationshipType': item['Relationship']['RelationshipType']}}]}}
 
 def match_repex(item):
-    return {"bool": {"must": [{"term": {'ExceptionCategory': item["ExceptionCategory"]}}, 
-                              {"term": {'ExceptionReason': item["ExceptionReason"]}}, 
-                              {"term": {'LEI': item["LEI"]}}]}}
+    return {'bool': {'must': [{"match": {'LEI': item["LEI"]}},
+                              {"match": {'ExceptionCategory': item["ExceptionCategory"]}}, 
+                              {"match": {'ExceptionReason': item["ExceptionReason"]}}]}}
+#{"bool": {"must": [{"term": {'ExceptionCategory': item["ExceptionCategory"]}}, 
+#                              {"term": {'ExceptionReason': item["ExceptionReason"]}}, 
+#                              {"term": {'LEI': item["LEI"]}}]}}
