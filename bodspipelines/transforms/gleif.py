@@ -4,7 +4,6 @@ import uuid
 import datetime
 import pytz
 from typing import List, Union
-from dataclasses import dataclass
 
 def format_address(address_type, address):
     """Format address structure"""
@@ -227,10 +226,8 @@ def transform_repex(data):
         for statement in transform_repex_non_public(data):
             yield statement
 
-@dataclass
 class Gleif2Bods:
     """Data processor definition class"""
-    #name: str
 
     def process(self, item, item_type):
         if item_type == 'lei2':

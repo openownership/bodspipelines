@@ -4,15 +4,9 @@ import requests
 from progress.bar import Bar
 import json
 import zipfile
-#from dataclasses import dataclass
 
-@dataclass
 class BulkData:
     """Bulk data definition class"""
-    #display: str
-    #url: str
-    #size: int
-    #directory: str
 
     def __init__(self, display, url, size, directory):
         """Initial setup"""

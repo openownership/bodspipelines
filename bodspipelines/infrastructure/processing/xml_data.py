@@ -1,7 +1,5 @@
 from lxml import etree
-#from dataclasses import dataclass
 
-@dataclass
 class XMLData:
     """XML data definition class"""
 
