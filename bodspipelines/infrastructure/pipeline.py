@@ -9,7 +9,7 @@ from bodspipelines.infrastructure.storage import ElasticStorage
 
 class Source:
     """Data source definition class"""
-    def __init__(self, name, origin, datatype):
+    def __init__(self, name=None, origin=None, datatype=None):
         """Initial setup"""
         self.name = name
         self.origin = origin
@@ -24,7 +24,7 @@ class Source:
 class Stage:
     """Pipeline stage definition class"""
 
-    def __init__(self, name, sources, processors, outputs):
+    def __init__(self, name=None, sources=None, processors=None, outputs=None):
         """Initial setup"""
         self.name = name
         self.sources = sources
@@ -53,7 +53,7 @@ class Stage:
 
 class Pipeline:
     """Pipeline definition class"""
-    def __init__(self, name, origin, datatype):
+    def __init__(self, name=None, origin=None, datatype=None):
         """Initial setup"""
         self.name = name
         self.stages = stages

@@ -4,7 +4,7 @@ from bodspipelines.infrastructure.clients.kinesis_client import KinesisStream
 
 class OutputConsole:
     """Output to console definition class"""
-    def __init__(self, name):
+    def __init__(self, name=None):
         """Initial setup"""
         self.name = name
 
@@ -15,7 +15,7 @@ class OutputConsole:
 
 class Output:
     """Data output definition class"""
-    def __init__(self, name, target):
+    def __init__(self, name=None, target=None):
         """Initial setup"""
         self.name = name
         self.target = target
@@ -27,7 +27,7 @@ class Output:
 
 class NewOutput:
     """Storage data and output if new definition class"""
-    def __init__(self, storage, output):
+    def __init__(self, storage=None, output=None):
         self.storage = storage
         self.output = output
 
@@ -39,7 +39,7 @@ class NewOutput:
 
 class KinesisOutput:
     """Output to Kinesis Stream"""
-    def __init__(self, stream_name):
+    def __init__(self, stream_name=None):
         self.stream_name = stream_name
         self.stream = KinesisStream(self.stream_name)
 

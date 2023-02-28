@@ -3,7 +3,7 @@ from lxml import etree
 class XMLData:
     """XML data definition class"""
 
-    def __init__(item_tag, namespace):
+    def __init__(self, item_tag=None, namespace=None):
         """Initial setup"""
         self.item_tag = item_tag
         self.namespace = namespace

@@ -8,7 +8,7 @@ import zipfile
 class BulkData:
     """Bulk data definition class"""
 
-    def __init__(self, display, url, size, directory):
+    def __init__(self, display=None, url=None, size=None, directory=None):
         """Initial setup"""
         self.display = display
         self.url = url
