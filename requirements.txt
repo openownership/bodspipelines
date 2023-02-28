@@ -1,5 +1,5 @@
 boto3==1.26.66
-elasticsearch==8.6.2
+elasticsearch==7.17.9
 httpx==0.23.3
 lxml==4.9.2
 parsel==1.7.0
