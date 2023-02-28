@@ -38,11 +38,11 @@ output_console = Output(name="console", target=OutputConsole(name="gleif-ingest"
 output_new = NewOutput(storage=ElasticStorage(indexes={"lei2": {"properties": lei_properties, "match": match_lei},
                                                        "rr": {"properties": rr_properties, "match": match_rr},
                                                        "repex": {"properties": repex_properties, "match": match_repex}}), 
-                       output=output_console) # KinesisOutput(stream_name="gleif_injest_stream"))
+                       output=KinesisOutput(stream_name="gleif_ingest_stream"))
 
 # Definition of GLEIF data pipeline injest stage
 ingest_stage = Stage(name="ingest",
-              sources=[rr_source], #[lei2_source, rr_source, repex_source],
+              sources=[lei2_source, rr_source, repex_source],
               processors=[],
               outputs=[output_console]
 )
