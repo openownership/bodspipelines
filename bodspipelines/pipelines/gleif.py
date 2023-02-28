@@ -4,7 +4,7 @@ from bodspipelines.infrastructure.outputs import Output, OutputConsole, NewOutpu
 from bodspipelines.infrastructure.processing.bulk_data import BulkData
 from bodspipelines.infrastructure.processing.xml_data import XMLData
 from bodspipelines.transforms.gleif import Gleif2Bods
-from bodspipelines.mappings.gleif import lei_properties, rr_propertties, repex_properties, match_lei, match_rr, match_repex
+from bodspipelines.mappings.gleif import lei_properties, rr_properties, repex_properties, match_lei, match_rr, match_repex
 
 # Defintion of LEI-CDF v3.1 XML date source
 lei2_source = Source(name="lei2",
