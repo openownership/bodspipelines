@@ -44,7 +44,7 @@ output_new = NewOutput(storage=ElasticStorage(indexes={"lei2": {"properties": le
 ingest_stage = Stage(name="ingest",
               sources=[lei2_source, rr_source, repex_source],
               processors=[],
-              outputs=[output_console]
+              outputs=[output_new]
 )
 
 # Definition of GLEIF data pipeline transform stage
