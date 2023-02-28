@@ -72,4 +72,6 @@ def match_rr(item):
                               {"match": {'Relationship.RelationshipType': item['Relationship']['RelationshipType']}}]}}
 
 def match_repex(item):
-    return {"match": {'LEI': item["LEI"], 'ExceptionCategory': item["ExceptionCategory"], 'ExceptionReason': item["ExceptionReason"]}}
+    return {"bool": {"must": [{"match": {'ExceptionCategory': item["ExceptionCategory"]}}, 
+                              {"match": {'ExceptionReason': item["ExceptionReason"]}}, 
+                              {"match": {'LEI': item["LEI"]}}]}}
