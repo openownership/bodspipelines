@@ -57,3 +57,6 @@ class ElasticStorage:
         self.storage.set_index(index_name)
         return self.storage.search(query)
 
+    def get_all(self, index_name):
+        self.storage.set_index(index_name)
+        return self.storage.search({'match_all': {}})
