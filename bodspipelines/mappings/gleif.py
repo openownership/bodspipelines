@@ -74,7 +74,12 @@ rr_properties = {'Relationship': {'type': 'object',
                                                   'ManagingLOU': {'type': 'text'}, 
                                                   'ValidationSources': {'type': 'text'}, 
                                                   'ValidationDocuments': {'type': 'text'}, 
-                                                  'ValidationReference': {'type': 'text'}}}}
+                                                  'ValidationReference': {'type': 'text'},
+                                                  'ValidationAuthority': {'type': 'object',
+                                                                          'properties': {'ValidationAuthorityID': {'type': 'text'}, 
+                                                                                         'OtherValidationAuthorityID': {'type': 'text'}, 
+                                                                                         'ValidationAuthorityEntityID': {'type': 'text'}}}
+                                                  }}}
 
 repex_properties = {'LEI': {'type': 'text'}, 
                     'ExceptionCategory': {'type': 'text'}, 
