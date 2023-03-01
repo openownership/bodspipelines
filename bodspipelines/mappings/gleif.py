@@ -2,6 +2,7 @@
 lei_properties = {'LEI': {'type': 'text'},
               'Entity': {'type': 'object',
                          'properties': {'LegalName': {'type': 'text'},
+                                        'OtherEntityNames': {'type': 'text'},
 #                                        'TransliteratedOtherEntityNames': {'type': 'object',
 #                                                                           'properties': {'TransliteratedOtherEntityName': {'type': 'text'}}},
                                         'TransliteratedOtherEntityNames': {'type': 'text'},
