@@ -76,3 +76,24 @@ class KinesisStream:
                 shard_iterator = record_response['NextShardIterator']
             else:
                 break
+
+    def read_stream(self):
+        """Read records from stream"""
+        stream = self.client.describe_stream(StreamName=self.stream_name)
+        shard_id = stream["StreamDescription"]["Shards"][0]["ShardId"]
+        print(f"Got {shard_id=}")
+        iterator = client.get_shard_iterator(
+            StreamName=self.stream_name,
+            ShardId=shard_id,
+            ShardIteratorType="TRIM_HORIZON"
+            )["ShardIterator"]
+        print(f"Reading data...")
+        response = client.get_records(ShardIterator=iterator, Limit=1)
+        while "NextShardIterator" in response:
+            data = response["Records"]
+            if len(data) < 1:
+                print("No data received")
+            else:
+                data = data[0]["Data"]
+                print(f"Received {data=}")
+            response = client.get_records(ShardIterator=response["NextShardIterator"], Limit=1)
