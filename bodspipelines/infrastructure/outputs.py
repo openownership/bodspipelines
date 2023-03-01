@@ -33,10 +33,10 @@ class NewOutput:
 
     def process(self, item, item_type):
         print(f"{item_type}: {item}")
-        item = self.storage.process(item, item_type)
-        print(f"NewOutput: {item}")
-        if item:
-            self.storage.process(item, item_type)
+        stored = self.storage.process(item, item_type)
+        print(f"NewOutput: {stored}")
+        if stored:
+            self.output.process(item, item_type)
 
 
 class KinesisOutput:
