@@ -19,7 +19,7 @@ class XMLData:
         """Check if is array """
         child_tag = etree.QName(child[0]).localname
         if tag == child_tag + "s":
-            print("Array!!!!")
+            #print("Array!!!!")
             return True
         else:
             return False
