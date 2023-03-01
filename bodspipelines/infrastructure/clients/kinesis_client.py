@@ -37,11 +37,14 @@ class KinesisStream:
         if response['FailedRecordCount'] > 0:
             batch = self.records
             self.records = []
+            self.waiting_bytes = 0
             for i, record in enumerate(response['Records']):
                 if 'ErrorCode' in record:
                     self.records.append(batch[i])
+                    self.waiting_bytes += len(batch[i]["Data"])
         else:
             self.records = []
+            self.waiting_bytes = 0
 
     def add_record(self, record):
         """Add record to stream"""
@@ -53,7 +56,7 @@ class KinesisStream:
         self.waiting_bytes += num_bytes
         print(f"Added {num_bytes} byte record ...")
         print(f"Batched records {len(self.records)}")
-        if self.waiting_bytes > 50000 or len(self.records) == 500: self.send_records()
+        if self.waiting_bytes > 50000 or len(self.records) > 499: self.send_records()
 
     def finish_write(self):
         """Write any remaining records"""
