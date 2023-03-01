@@ -35,13 +35,13 @@ class NewOutput:
 
     def process(self, item, item_type):
         self.processed_count += 1
-        print(f"{item_type}: {item}")
+        #print(f"{item_type}: {item}")
         stored = self.storage.process(item, item_type)
-        print(f"NewOutput: {stored}")
+        #print(f"NewOutput: {stored}")
         if stored:
             self.output.process(item, item_type)
             self.new_count += 1
-        print(f"Processed: {self.processed_count}, New: {self.new_count}")
+        #print(f"Processed: {self.processed_count}, New: {self.new_count}")
 
 class KinesisOutput:
     """Output to Kinesis Stream"""

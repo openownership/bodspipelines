@@ -36,14 +36,14 @@ class ElasticStorage:
         self.storage.create_index(index_name, self.indexes[index_name]['properties'])
 
     def add_item(self, item, item_type):
-        print(item_type, self.indexes[item_type])
+        #print(item_type, self.indexes[item_type])
         query = self.indexes[item_type]['match'](item)
-        print("Query:", query)
+        #print("Query:", query)
         match = self.storage.search(query)
-        print(match)
+        #print(match)
         if not match['hits']['hits']:
             out = self.storage.store_data(item)
-            print(out)
+            #print(out)
             return item
         else:
             return False
