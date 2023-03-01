@@ -48,6 +48,7 @@ lei_properties = {'LEI': {'type': 'text'},
                                               'ValidationSources': {'type': 'text'},
                                               'ValidationAuthority': {'type': 'object',
                                                                       'properties': {'ValidationAuthorityID': {'type': 'text'},
+                                                                                     'OtherValidationAuthorityID': {'type': 'text'},
                                                                                      'ValidationAuthorityEntityID': {'type': 'text'}}}}}}
 
 rr_properties = {'Relationship': {'type': 'object', 
