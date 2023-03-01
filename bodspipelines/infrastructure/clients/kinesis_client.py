@@ -31,6 +31,18 @@ class KinesisStream:
         self.records = []
         self.waiting_bytes = 0
 
+    def send_records(self):
+        """Send accumulated records"""
+        response = self.client.put_records(Records=self.records, StreamName=self.stream_name) #, StreamARN='string')
+        if response['FailedRecordCount'] > 0:
+            batch = self.records
+            self.records = []
+            for i, record in enumerate(response['Records']):
+                if 'ErrorCode' in record:
+                    self.records.append(batch[i])
+        else:
+            self.records = []
+
     def add_record(self, record):
         """Add record to stream"""
         json_data = json.dumps(record)
