@@ -34,7 +34,7 @@ class NewOutput:
     def process(self, item, item_type):
         item = self.storage.process(item, item_type)
         if item:
-            self.storage.process(item)
+            self.storage.process(item, item_type)
 
 
 class KinesisOutput:
