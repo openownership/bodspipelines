@@ -17,9 +17,13 @@ class Source:
 
     def process(self, stage_dir):
         """Iterate over source items"""
-        data = self.origin.prepare(stage_dir)
-        for item in self.datatype.process(data):
-            yield item
+        if hasattr(self.origin, "prepare"):
+            data = self.origin.prepare(stage_dir)
+            for item in self.datatype.process(data):
+                yield item
+        else:
+            for item in self.origin.process():
+                yield self.datatype.process(item)
 
 class Stage:
     """Pipeline stage definition class"""
