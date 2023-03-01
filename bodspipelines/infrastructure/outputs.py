@@ -32,6 +32,7 @@ class NewOutput:
         self.output = output
 
     def process(self, item, item_type):
+        print(f"{item_type}: {item}")
         item = self.storage.process(item, item_type)
         if item:
             self.storage.process(item, item_type)
