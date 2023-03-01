@@ -8,5 +8,5 @@ class KinesisInput:
 
     def process(self):
         for records in self.stream.read_stream():
-            print("Records:", records)
-            yield
+            for record in records
+                yield record
