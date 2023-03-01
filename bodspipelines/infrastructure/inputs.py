@@ -6,6 +6,9 @@ class KinesisInput:
         self.stream_name = stream_name
         self.stream = KinesisStream(self.stream_name)
 
+    def prepare(self, stage_dir):
+        pass
+
     def process(self):
         for records in self.stream.read_stream():
             for record in records
