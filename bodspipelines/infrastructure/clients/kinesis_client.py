@@ -8,9 +8,9 @@ def create_client(service):
      return boto3.client(service, region_name=os.getenv('BODS_AWS_REGION'), aws_access_key_id=os.environ.get('BODS_AWS_ACCESS_KEY_ID'),
                              aws_secret_access_key=os.environ.get('BODS_AWS_SECRET_ACCESS_KEY'))
 
-def shard_id(client, stream_name):
+def shard_id(client, stream_arn):
      """Generate shard id"""
-     response = client.describe_stream(StreamName=stream_name)
+     response = client.describe_stream(StreamARN=stream_arn)
      return response['StreamDescription']['Shards'][0]['ShardId']
 
 def unpack_records(record_response):
@@ -22,18 +22,18 @@ def unpack_records(record_response):
 
 class KinesisStream:
     """Kinesis Stream class"""
-    def __init__(self, stream_name=None, shard_count=1):
+    def __init__(self, stream_arn=None, shard_count=1):
         """Initial setup"""
         self.client = create_client('kinesis')
-        self.stream_name = stream_name
-        self.shard_id = shard_id(self.client, self.stream_name)
+        self.stream_arn = stream_arn
+        self.shard_id = shard_id(self.client, self.stream_arn)
         self.shard_count = shard_count
         self.records = []
         self.waiting_bytes = 0
 
     def send_records(self):
         """Send accumulated records"""
-        response = self.client.put_records(Records=self.records, StreamName=self.stream_name) #, StreamARN='string')
+        response = self.client.put_records(Records=self.records, StreamARN=self.stream_arn) #, StreamARN='string')
         if response['FailedRecordCount'] > 0:
             batch = self.records
             self.records = []
@@ -64,7 +64,7 @@ class KinesisStream:
 
     def read_stream(self):
         """Read records from stream"""
-        shard_iterator = self.client.get_shard_iterator(StreamName=self.stream_name,
+        shard_iterator = self.client.get_shard_iterator(StreamARN=self.stream_arn,
 	                                                ShardId=self.shard_id,
                                                         ShardIteratorType='TRIM_HORIZON')
 	                                                #ShardIteratorType='LATEST')
