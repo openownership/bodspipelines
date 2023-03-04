@@ -35,9 +35,11 @@ repex_source = Source(name="repex",
 
 output_console = Output(name="console", target=OutputConsole(name="gleif-ingest"))
 
-output_new = NewOutput(storage=ElasticStorage(indexes={"lei2": {"properties": lei_properties, "match": match_lei},
-                                                       "rr": {"properties": rr_properties, "match": match_rr},
-                                                       "repex": {"properties": repex_properties, "match": match_repex}}), 
+index_properties = {"lei2": {"properties": lei_properties, "match": match_lei},
+                    "rr": {"properties": rr_properties, "match": match_rr},
+                    "repex": {"properties": repex_properties, "match": match_repex}}
+
+output_new = NewOutput(storage=ElasticStorage(indexes=index_properties),
                        output=KinesisOutput(stream_arn="arn:aws:kinesis:eu-west-1:696709126511:stream/gleif-dev"))
 
 # Definition of GLEIF data pipeline injest stage
@@ -56,3 +58,5 @@ ingest_stage = Stage(name="ingest",
 
 # Definition of GLEIF data pipeline
 pipeline = Pipeline(name="gleif", stages=[ingest_stage]) #, transform_stage])
+
+setup = ElasticStorage(indexes=index_properties).setup_indexes
