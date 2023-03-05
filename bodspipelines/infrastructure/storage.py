@@ -14,6 +14,13 @@ class ElasticStorage:
         for index_name in self.indexes:
             self.storage.create_index(index_name, self.indexes[index_name]['properties'])
 
+    def add_id(self, index_name, item):
+        return item | {"_id": self.indexes[index_name]["id"](item)}
+
+    def action_stream(self, stream, index_name):
+        for item in stream:
+            yield self.add_id(index_name, item)
+
     def list_indexes(self):
         return self.storage.list_indexes()
 
@@ -52,6 +59,10 @@ class ElasticStorage:
         if item_type != self.current_index:
             self.set_index(item_type)
         return self.add_item(item, item_type)
+
+    def process_stream(self, stream, item_type):
+        for item in self.storage.bulk_store_data(self.action_stream(stream, index_type)):
+            yield item
 
     def query(self, index_name, query):
         self.storage.set_index(index_name)

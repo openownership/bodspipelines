@@ -113,3 +113,12 @@ def match_repex(item):
 #{"bool": {"must": [{"term": {'ExceptionCategory': item["ExceptionCategory"]}}, 
 #                              {"term": {'ExceptionReason': item["ExceptionReason"]}}, 
 #                              {"term": {'LEI': item["LEI"]}}]}}
+
+def id_lei(item):
+    return item["LEI"]
+
+def id_rr(item):
+    return f"{item['Relationship']['StartNode']['NodeID']}_{item['Relationship']['EndNode']['NodeID']}_{item['Relationship']['RelationshipType']}"
+
+def id_repex(item):
+    return f"{item['LEI']}_{item['ExceptionCategory']}_{item['ExceptionReason']}"

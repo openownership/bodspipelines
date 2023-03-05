@@ -4,7 +4,9 @@ from bodspipelines.infrastructure.outputs import Output, OutputConsole, NewOutpu
 from bodspipelines.infrastructure.processing.bulk_data import BulkData
 from bodspipelines.infrastructure.processing.xml_data import XMLData
 from bodspipelines.transforms.gleif import Gleif2Bods
-from bodspipelines.mappings.gleif import lei_properties, rr_properties, repex_properties, match_lei, match_rr, match_repex
+from bodspipelines.mappings.gleif import (lei_properties, rr_properties, repex_properties, 
+                                          match_lei, match_rr, match_repex,
+                                          id_lei, id_rr, id_repex)
 
 # Defintion of LEI-CDF v3.1 XML date source
 lei2_source = Source(name="lei2",
@@ -35,9 +37,9 @@ repex_source = Source(name="repex",
 
 output_console = Output(name="console", target=OutputConsole(name="gleif-ingest"))
 
-index_properties = {"lei2": {"properties": lei_properties, "match": match_lei},
-                    "rr": {"properties": rr_properties, "match": match_rr},
-                    "repex": {"properties": repex_properties, "match": match_repex}}
+index_properties = {"lei2": {"properties": lei_properties, "match": match_lei, "id": id_lei},
+                    "rr": {"properties": rr_properties, "match": match_rr, "id": id_rr},
+                    "repex": {"properties": repex_properties, "match": match_repex, "id": id_repex}}
 
 output_new = NewOutput(storage=ElasticStorage(indexes=index_properties),
                        output=KinesisOutput(stream_arn="arn:aws:kinesis:eu-west-1:696709126511:stream/gleif-dev"))

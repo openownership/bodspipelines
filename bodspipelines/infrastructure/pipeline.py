@@ -41,13 +41,27 @@ class Stage:
         path.mkdir(exist_ok=True)
         return path
 
-    def process_source(self, source, stage_dir):
-        """Iterate over items from source, with processing and output"""
+    def source_processing(self, source, stage_dir):
+        """Iterate over items from source, with processing"""
         for item in source.process(stage_dir):
             for processor in self.processors:
                 item = processor.process(item, source.name)
-            for output in self.outputs:
-                output.process(item, source.name)
+            yield item
+
+    #def process_source(self, source, stage_dir):
+    #    """Iterate over items from source, with processing and output"""
+    #    for item in source.process(stage_dir):
+    #        for processor in self.processors:
+    #            item = processor.process(item, source.name)
+
+    def process_source(self, source, stage_dir):
+        """Iterate over items from source, and output"""
+        if len(self.outputs) > 1 or not self.outputs[0].streaming:
+            for item in self.source_processing(source, stage_dir):
+                for output in self.outputs:
+                    output.process(item, source.name)
+        else:
+            self.outputs[0].process_stream(self.source_processing(source, stage_dir), source.name)
 
     def process(self, pipeline_dir):
         """Process all sources for stage"""

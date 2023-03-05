@@ -1,6 +1,7 @@
 import os
 import json
 from elasticsearch import Elasticsearch
+from elasticsearch.helpers import streaming_bulk
 
 def create_client():
     """Create Elasticsearch client"""
@@ -58,6 +59,14 @@ class ElasticsearchClient:
                 self.client.index(index=self.index_name, document=d)
         else:
             self.client.index(index=self.index_name, document=data)
+
+    def bulk_store_data(self, actions):
+        """Store bulk data in index"""
+        for ok, item in streaming_bulk(client, actions):
+            if not ok:
+                yield False
+            else:
+                yield item
 
     def search(self, search):
         """Search index"""

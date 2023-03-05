@@ -6,6 +6,7 @@ class OutputConsole:
     """Output to console definition class"""
     def __init__(self, name=None):
         """Initial setup"""
+        self.streaming = False
         self.name = name
 
     def process(self, item, item_type):
@@ -17,6 +18,7 @@ class Output:
     """Data output definition class"""
     def __init__(self, name=None, target=None):
         """Initial setup"""
+        self.streaming = False
         self.name = name
         self.target = target
 
@@ -28,6 +30,7 @@ class Output:
 class NewOutput:
     """Storage data and output if new definition class"""
     def __init__(self, storage=None, output=None):
+        self.streaming = True
         self.storage = storage
         self.output = output
         self.processed_count = 0
@@ -43,9 +46,15 @@ class NewOutput:
             self.new_count += 1
         #print(f"Processed: {self.processed_count}, New: {self.new_count}")
 
+    def process_stream(self, stream, item_type):
+        for item in self.storage.process_stream(stream, item_type):
+            if item:
+                self.output.process(item, item_type)
+
 class KinesisOutput:
     """Output to Kinesis Stream"""
     def __init__(self, stream_arn=None):
+        self.streaming = False
         self.stream_arn = stream_arn
         self.stream = KinesisStream(self.stream_arn)
 
