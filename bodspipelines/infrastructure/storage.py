@@ -61,7 +61,7 @@ class ElasticStorage:
         return self.add_item(item, item_type)
 
     def process_stream(self, stream, item_type):
-        for item in self.storage.bulk_store_data(self.action_stream(stream, index_type)):
+        for item in self.storage.bulk_store_data(self.action_stream(stream, item_type)):
             yield item
 
     def query(self, index_name, query):
