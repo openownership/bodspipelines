@@ -62,3 +62,5 @@ ingest_stage = Stage(name="ingest",
 pipeline = Pipeline(name="gleif", stages=[ingest_stage]) #, transform_stage])
 
 setup = ElasticStorage(indexes=index_properties).setup_indexes
+
+stats = ElasticStorage(indexes=index_properties).stats
