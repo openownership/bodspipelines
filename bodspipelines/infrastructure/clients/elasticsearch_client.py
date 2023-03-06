@@ -73,6 +73,7 @@ class ElasticsearchClient:
         """Store bulk data in index"""
         ok, errors = bulk(client=self.client, index=index_name, actions=actions)
         print("Bulk:", ok, errors)
+        return errors
 
     def search(self, search):
         """Search index"""
