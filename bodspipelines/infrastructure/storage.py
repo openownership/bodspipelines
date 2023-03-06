@@ -14,12 +14,12 @@ class ElasticStorage:
         for index_name in self.indexes:
             self.storage.create_index(index_name, self.indexes[index_name]['properties'])
 
-    def add_id(self, index_name, item):
-        return item | {"_id": self.indexes[index_name]["id"](item)}
+    def create_action(self, index_name, item):
+        return {"_id": self.indexes[index_name]["id"](item), '_index': index_name, '_type': '_doc', "_source": item}
 
     def action_stream(self, stream, index_name):
         for item in stream:
-            yield self.add_id(index_name, item)
+            yield self.create_action(index_name, item)
 
     def list_indexes(self):
         return self.storage.list_indexes()
