@@ -80,6 +80,7 @@ class ElasticStorage:
             if len(batch) > 499:
                 for item in self.storage.batch_store_data(batch, item_type):
                     yield item
+                batch = []
 
     def query(self, index_name, query):
         self.storage.set_index(index_name)
