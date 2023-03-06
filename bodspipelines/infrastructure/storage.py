@@ -33,7 +33,7 @@ class ElasticStorage:
 
     def stats(self):
         for index_name in self.indexes:
-            print(f"Index {index_name}:", self.storage.indices.stats(index=index_name))
+            print(f"Index {index_name}:", self.storage.stats(index_name))
 
     def set_index(self, index_name):
         self.current_index = index_name

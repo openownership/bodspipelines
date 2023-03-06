@@ -52,6 +52,10 @@ class ElasticsearchClient:
         """Delete index"""
         self.client.options(ignore_status=[400, 404]).indices.delete(index=self.index_name)
 
+    def stats(self, index_name)
+        """Get index statistics"""
+        return self.client.indices.stats(index=index_name)
+
     def store_data(self, data):
         """Store data in index"""
         if isinstance(data, list):
