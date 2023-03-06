@@ -63,6 +63,7 @@ class ElasticsearchClient:
     def bulk_store_data(self, actions, index_name):
         """Store bulk data in index"""
         for ok, item in streaming_bulk(client=self.client, index=index_name, actions=actions):
+            print(ok, item)
             if not ok:
                 yield False
             else:
