@@ -47,7 +47,7 @@ class NewOutput:
         #print(f"Processed: {self.processed_count}, New: {self.new_count}")
 
     def process_stream(self, stream, item_type):
-        for item in self.storage.process_stream(stream, item_type):
+        for item in self.storage.process_batch(stream, item_type):
             if item:
                 self.output.process(item, item_type)
 
