@@ -15,7 +15,7 @@ class ElasticStorage:
             self.storage.create_index(index_name, self.indexes[index_name]['properties'])
 
     def create_action(self, index_name, item):
-        return {"_id": self.indexes[index_name]["id"](item), '_index': index_name, '_type': '_doc', "_source": item}
+        return {"index": {"_id": self.indexes[index_name]["id"](item), '_index': index_name, '_type': '_doc'}, "doc": item}
 
     def action_stream(self, stream, index_name):
         for item in stream:
