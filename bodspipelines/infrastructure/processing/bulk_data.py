@@ -61,10 +61,15 @@ class BulkData:
         with zipfile.ZipFile(filename, 'r') as zip_ref:
             zip_ref.extractall(directory)
 
+    def delete_old_data(self, directory):
+        for file in directory.glob('*'):
+            file.unlink()
+
     def download_extract_data(self, path):
         """Download and extract data"""
         directory = self.data_dir(path)
         directory.mkdir(exist_ok=True)
+        self.delete_old_data(directory)
         zip = self.download_large(directory)
         self.unzip_data(zip, directory)
 
