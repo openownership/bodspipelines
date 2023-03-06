@@ -76,8 +76,8 @@ class ElasticsearchClient:
     def batch_store_data(self, actions, index_name):
         """Store bulk data in index"""
         #ok, errors = bulk(client=self.client, index=index_name, actions=actions)
-        ok, errors = self.client.bulk(index=index_name, operations=actions)
-        print("Bulk:", ok, errors)
+        errors = self.client.bulk(index=index_name, operations=actions)
+        print("Bulk:", errors)
         return errors
 
     def search(self, search):
