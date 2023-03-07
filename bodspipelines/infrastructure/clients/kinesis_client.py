@@ -17,7 +17,8 @@ def unpack_records(record_response):
     """Unpack records"""
     records = []
     for record in record_response['Records']:
-        records.append(json.loads(gzip.decompress(record['Data']).decode('utf-8')))
+        #records.append(json.loads(gzip.decompress(record['Data']).decode('utf-8')))
+        records.append(json.loads(record['Data']))
     return records
 
 class KinesisStream:
@@ -51,9 +52,9 @@ class KinesisStream:
         """Add record to stream"""
         json_data = json.dumps(record)
         #encoded_data = bytes(json_data, 'utf-8')
-        compressed_data = gzip.compress(json_data.encode('utf-8'))
-        self.records.append({"Data": compressed_data, "PartitionKey": str(self.shard_count)})
-        num_bytes = len(compressed_data)
+        #compressed_data = gzip.compress(json_data.encode('utf-8'))
+        self.records.append({"Data": json_data, "PartitionKey": str(self.shard_count)})
+        num_bytes = len(json_data)
         self.waiting_bytes += num_bytes
         #print(f"Added {num_bytes} byte record ...")
         #print(f"Batched records {len(self.records)}")
