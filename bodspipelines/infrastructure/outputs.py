@@ -29,10 +29,11 @@ class Output:
 
 class NewOutput:
     """Storage data and output if new definition class"""
-    def __init__(self, storage=None, output=None):
+    def __init__(self, storage=None, output=None, identify=None):
         self.streaming = True
         self.storage = storage
         self.output = output
+        self.identify = identify
         self.processed_count = 0
         self.new_count = 0
 
@@ -47,6 +48,7 @@ class NewOutput:
         #print(f"Processed: {self.processed_count}, New: {self.new_count}")
 
     def process_stream(self, stream, item_type):
+        if self.identify: item_type = self.identify
         for item in self.storage.process_batch(stream, item_type):
             if item:
                 self.output.process(item, item_type)
