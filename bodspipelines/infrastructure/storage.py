@@ -15,6 +15,7 @@ class ElasticStorage:
             self.storage.create_index(index_name, self.indexes[index_name]['properties'])
 
     def create_action(self, index_name, item):
+        print(index_name, item)
         if callable(index_name): index_name = index_name(item)
         #return {"create": { "_index" : index_name, "_id" : self.indexes[index_name]["id"](item)}}
         return {"_id": self.indexes[index_name]["id"](item), '_index': index_name, '_op_type': 'create', "_source": item}
