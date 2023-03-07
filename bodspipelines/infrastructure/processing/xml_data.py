@@ -53,5 +53,6 @@ class XMLData:
     def process(self, filename):
         """Iterate over processed items from file"""
         for element in self.data_stream(filename):
-            yield self.process_item(element, {})
+            item = self.process_item(element, {})
+            yield item
             #break # Remove
