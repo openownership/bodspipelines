@@ -10,6 +10,7 @@ class XMLData:
 
     def data_stream(self, filename):
         """Stream parsed XML elements from file"""
+        print(f"Parsing {filename}")
         ns = self.namespace[next(iter(self.namespace))]
         tag_name = f"{{{ns}}}{self.item_tag}"
         for event, element in etree.iterparse(filename, events=('end',), tag=tag_name):
