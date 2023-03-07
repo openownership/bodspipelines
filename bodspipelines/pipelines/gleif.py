@@ -4,6 +4,7 @@ from bodspipelines.infrastructure.storage import ElasticStorage
 from bodspipelines.infrastructure.outputs import Output, OutputConsole, NewOutput, KinesisOutput
 from bodspipelines.infrastructure.processing.bulk_data import BulkData
 from bodspipelines.infrastructure.processing.xml_data import XMLData
+from bodspipelines.infrastructure.processing.json_data import JSONData
 from bodspipelines.transforms.gleif import Gleif2Bods
 from bodspipelines.mappings.gleif import (lei_properties, rr_properties, repex_properties,
                                           match_lei, match_rr, match_repex,
@@ -55,7 +56,9 @@ ingest_stage = Stage(name="ingest",
               outputs=[output_new]
 )
 
-gleif_stream = KinesisInput(stream_arn="arn:aws:kinesis:eu-west-1:696709126511:stream/gleif-dev")
+gleif_source = Source(name="gleif",
+                      origin=KinesisInput(stream_arn="arn:aws:kinesis:eu-west-1:696709126511:stream/gleif-dev"),
+                      datatype=JSONData())
 
 bods_index_properties = {"entity": {"properties": entity_statement_properties, "match": match_entity, "id": id_entity},
                          "person": {"properties": person_statement_properties, "match": match_person, "id": id_person},
@@ -66,7 +69,7 @@ bods_output_new = NewOutput(storage=ElasticStorage(indexes=bods_index_properties
 
 # Definition of GLEIF data pipeline transform stage
 transform_stage = Stage(name="transform",
-              sources=[gleif_stream],
+              sources=[gleif_source],
               processors=[Gleif2Bods()],
               outputs=[bods_output_new]
 )
