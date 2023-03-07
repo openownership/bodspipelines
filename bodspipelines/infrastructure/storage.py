@@ -35,7 +35,7 @@ class ElasticStorage:
     def batch_stream(self, stream, index_name):
         batch = []
         for item in stream:
-            batch.append(item)
+            batch.append(self.create_action(index_name, item))
             if len(batch) > 499:
                 yield self.create_batch(batch)
                 batch = []
