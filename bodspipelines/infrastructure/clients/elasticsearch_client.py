@@ -84,10 +84,10 @@ class ElasticsearchClient:
         """Store bulk data in index"""
         for ok, result in streaming_bulk(client=self.client, index=index_name, actions=actions, raise_on_error=False):
             print(ok, result)
-            print(batch[0])
+            #print(batch[0])
             if ok:
-                item = [i for i in batch if i._id == result['create']['_id']][0]
-                yield item
+                match = [i for i in batch if i['_id'] == result['create']['_id']]
+                yield match[0]['_source']
             #
             #if not ok:
             #    yield False
