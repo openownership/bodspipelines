@@ -65,9 +65,9 @@ bods_index_properties = {"entity": {"properties": entity_statement_properties, "
                          "ownership": {"properties": ownership_statement_properties, "match": match_ownership, "id": id_ownership}}
 
 def identify_bods(item):
-    if item['statementType'] == 'entityStatement'
+    if item['statementType'] == 'entityStatement':
         return 'entity'
-    elif item['statementType'] == 'personStatement'
+    elif item['statementType'] == 'personStatement':
         return 'person'
     elif item['statementType'] == 'ownershipOrControlStatement':
         return 'ownership'
