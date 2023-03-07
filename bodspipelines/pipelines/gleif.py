@@ -62,7 +62,7 @@ bods_index_properties = {"entity": {"properties": entity_statement_properties, "
                          "ownership": {"properties": ownership_statement_properties, "match": match_ownership, "id": id_ownership}}
 
 bods_output_new = NewOutput(storage=ElasticStorage(indexes=bods_index_properties),
-                            output=KinesisOutput(stream_arn="arn:aws:kinesis:eu-west-1:696709126511:stream/gleif-dev"))
+                            output=KinesisOutput(stream_arn="arn:aws:kinesis:eu-west-1:696709126511:stream/bods-gleif-dev"))
 
 # Definition of GLEIF data pipeline transform stage
 transform_stage = Stage(name="transform",
