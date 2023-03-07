@@ -65,6 +65,7 @@ class Stage:
 
     def process(self, pipeline_dir):
         """Process all sources for stage"""
+        print(f"Running {self.name} pipeline stage")
         stage_dir = self.directory(pipeline_dir)
         for source in self.sources:
             self.process_source(source, stage_dir)
