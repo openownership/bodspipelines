@@ -33,6 +33,7 @@ class KinesisStream:
 
     def send_records(self):
         """Send accumulated records"""
+        print(f"Sending {len(self.records)} records to {self.stream_arn}")
         response = self.client.put_records(Records=self.records, StreamARN=self.stream_arn) #, StreamARN='string')
         if response['FailedRecordCount'] > 0:
             batch = self.records
