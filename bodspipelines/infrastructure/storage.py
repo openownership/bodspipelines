@@ -30,7 +30,7 @@ class ElasticStorage:
         def func():
             for i in batch:
                 yield i
-        return func, batch
+        return func(), batch
 
     def batch_stream(self, stream, index_name):
         batch = []
