@@ -45,8 +45,8 @@ class Stage:
         """Iterate over items from source, with processing"""
         for item in source.process(stage_dir):
             for processor in self.processors:
-                item = processor.process(item, source.name)
-            yield item
+                for out in processor.process(item, source.name):
+                    yield out
 
     #def process_source(self, source, stage_dir):
     #    """Iterate over items from source, with processing and output"""
