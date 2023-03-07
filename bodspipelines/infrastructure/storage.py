@@ -26,6 +26,22 @@ class ElasticStorage:
         for item in stream:
             yield self.create_action(index_name, item), item
 
+    def create_batch(self, batch):
+        def func():
+            for i in batch:
+                yield i
+        return func, batch
+
+    def batch_stream(self, stream, index_name):
+        batch = []
+        for item in stream:
+            batch.append(item)
+            if len(batch) > 499:
+                yield self.create_batch(batch)
+                batch = []
+        if len(batch) > 0:
+            yield self.create_batch(batch)
+
     def list_indexes(self):
         return self.storage.list_indexes()
 
@@ -82,6 +98,11 @@ class ElasticStorage:
                 for item in self.storage.batch_store_data(batch, item_type):
                     yield item
                 batch = []
+
+    def process_batch(self, stream, item_type):
+        for actions, items in self.batch_stream(stream, item_type):
+            for item in self.storage.batch_store_data(actions, items, item_type):
+                yield item
 
     def query(self, index_name, query):
         self.storage.set_index(index_name)
