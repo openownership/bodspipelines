@@ -55,6 +55,6 @@ class XMLData:
         """Iterate over processed items from file"""
         for element in self.data_stream(filename):
             item = self.process_item(element, {})
-            print(item)
+            #print(item)
             yield item
             #break # Remove
