@@ -58,7 +58,7 @@ class KinesisStream:
         self.waiting_bytes += num_bytes
         #print(f"Added {num_bytes} byte record ...")
         #print(f"Batched records {len(self.records)}")
-        if self.waiting_bytes > 50000 or len(self.records) > 499: self.send_records()
+        if self.waiting_bytes > 500000 or len(self.records) > 499: self.send_records()
 
     def finish_write(self):
         """Write any remaining records"""
