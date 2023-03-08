@@ -2,6 +2,7 @@ from typing import List, Union, Optional
 from dataclasses import dataclass
 
 from bodspipelines.infrastructure.clients.elasticsearch_client import ElasticsearchClient
+from bodspipelines.infrastructure.trace_memory import top_mem
 
 class ElasticStorage:
     """Elasticsearch storage definition class"""
@@ -100,6 +101,7 @@ class ElasticStorage:
                 for item in self.storage.batch_store_data(batch, item_type):
                     yield item
                 batch = []
+                top_mem()
 
     def process_batch(self, stream, item_type):
         for actions, items in self.batch_stream(stream, item_type):
