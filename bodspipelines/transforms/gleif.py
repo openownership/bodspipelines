@@ -48,7 +48,7 @@ def transform_lei(data):
     name = data['Entity']['LegalName']
     jurisdiction = data['Entity']['LegalJurisdiction']
     identifiers = [{'id': data['LEI'], 'scheme':'XI-LEI', 'schemeName':'Global Legal Entity Identifier Index'}]
-    foundingDate = data['Entity']['EntityCreationDate']
+    #foundingDate = data['Entity']['EntityCreationDate']
     registeredAddress = format_address('registered', data['Entity']['LegalAddress'])
     businessAddress = format_address('business', data['Entity']['HeadquartersAddress'])
     sourceType = ['officialRegister'] if not data['Registration']['ValidationSources'] == 'FULLY_CORROBORATED' else ['officialRegister', 'verified']
@@ -64,6 +64,7 @@ def transform_lei(data):
     'addresses': [registeredAddress,businessAddress],
     'publicationDetails': publication_details(),
     'source': {'type':sourceType,'description':sourceDescription}}
+    if 'EntityCreationDate' in data['Entity']: out['foundingDate'] = data['Entity']['EntityCreationDate']
     return out
 
 def interest_level(relationship_type, default):
