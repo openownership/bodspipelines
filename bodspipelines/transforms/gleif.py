@@ -60,7 +60,7 @@ def transform_lei(data):
     'name': name,
     'jurisdiction': jurisdiction,
     'identifiers': identifiers,
-    'foundingDate': foundingDate,
+    #'foundingDate': foundingDate,
     'addresses': [registeredAddress,businessAddress],
     'publicationDetails': publication_details(),
     'source': {'type':sourceType,'description':sourceDescription}}
