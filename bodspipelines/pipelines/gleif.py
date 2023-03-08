@@ -64,6 +64,14 @@ bods_index_properties = {"entity": {"properties": entity_statement_properties, "
                          "person": {"properties": person_statement_properties, "match": match_person, "id": id_person},
                          "ownership": {"properties": ownership_statement_properties, "match": match_ownership, "id": id_ownership}}
 
+def identify_gleif(item):
+    if 'Entity' in item:
+        return 'lei2'
+    elif 'Relationship' in item:
+        return 'rr'
+    elif 'ExceptionCategory' in item:
+        return 'repex'
+
 def identify_bods(item):
     if item['statementType'] == 'entityStatement':
         return 'entity'
@@ -79,7 +87,7 @@ bods_output_new = NewOutput(storage=ElasticStorage(indexes=bods_index_properties
 # Definition of GLEIF data pipeline transform stage
 transform_stage = Stage(name="transform",
               sources=[gleif_source],
-              processors=[Gleif2Bods()],
+              processors=[Gleif2Bods(identify=identify_gleif)],
               outputs=[bods_output_new]
 )
 

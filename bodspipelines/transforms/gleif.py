@@ -228,8 +228,12 @@ def transform_repex(data):
 
 class Gleif2Bods:
     """Data processor definition class"""
+    def __init__(self, identify=None):
+        """Initial setup"""
+        self.identify = identify
 
     def process(self, item, item_type):
+        if self.identify: item_type = self.identify(item)
         if item_type == 'lei2':
             yield transform_lei(item)
         elif item_type == 'rr':
