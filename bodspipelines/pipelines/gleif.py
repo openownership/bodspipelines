@@ -47,7 +47,7 @@ index_properties = {"lei2": {"properties": lei_properties, "match": match_lei, "
                     "repex": {"properties": repex_properties, "match": match_repex, "id": id_repex}}
 
 output_new = NewOutput(storage=ElasticStorage(indexes=index_properties),
-                       output=KinesisOutput(stream_arn="arn:aws:kinesis:eu-west-1:696709126511:stream/new-gleif-dev"))
+                       output=KinesisOutput(stream_arn="arn:aws:kinesis:eu-west-1:685764181618:stream/gleif-dev"))
 
 # Definition of GLEIF data pipeline injest stage
 ingest_stage = Stage(name="ingest",
