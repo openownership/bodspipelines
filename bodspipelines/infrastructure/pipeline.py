@@ -47,6 +47,7 @@ class Stage:
             if self.processors:
                 for processor in self.processors:
                     for out in processor.process(item, source.name):
+                        print(out)
                         yield out
             else:
                 yield item
