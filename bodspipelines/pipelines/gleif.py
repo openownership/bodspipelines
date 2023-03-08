@@ -57,7 +57,7 @@ ingest_stage = Stage(name="ingest",
 )
 
 gleif_source = Source(name="gleif",
-                      origin=KinesisInput(stream_arn="arn:aws:kinesis:eu-west-1:696709126511:stream/new-gleif-dev"),
+                      origin=KinesisInput(stream_arn="arn:aws:kinesis:eu-west-1:685764181618:stream/gleif-dev"),
                       datatype=JSONData())
 
 bods_index_properties = {"entity": {"properties": entity_statement_properties, "match": match_entity, "id": id_entity},
@@ -81,7 +81,7 @@ def identify_bods(item):
         return 'ownership'
 
 bods_output_new = NewOutput(storage=ElasticStorage(indexes=bods_index_properties),
-                            output=KinesisOutput(stream_arn="arn:aws:kinesis:eu-west-1:696709126511:stream/bods-gleif-dev"),
+                            output=KinesisOutput(stream_arn="arn:aws:kinesis:eu-west-1:685764181618:stream/gleif-dev-bods"),
                             identify=identify_bods)
 
 # Definition of GLEIF data pipeline transform stage
