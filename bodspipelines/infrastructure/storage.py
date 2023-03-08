@@ -101,12 +101,12 @@ class ElasticStorage:
                 for item in self.storage.batch_store_data(batch, item_type):
                     yield item
                 batch = []
-                top_mem()
 
     def process_batch(self, stream, item_type):
         for actions, items in self.batch_stream(stream, item_type):
             for item in self.storage.batch_store_data(actions, items, item_type):
                 yield item
+            top_mem()
 
     def query(self, index_name, query):
         self.storage.set_index(index_name)
