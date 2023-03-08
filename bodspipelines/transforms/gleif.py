@@ -8,8 +8,9 @@ from typing import List, Union
 def format_address(address_type, address):
     """Format address structure"""
     address_string = ", ".join([address['FirstAddressLine'], address['City']])
-    return {'type': address_type,'address': address_string, 'postCode': address['PostalCode'], 'country': address['Country']}
-
+    out = {'type': address_type,'address': address_string, 'country': address['Country']}
+    if 'PostalCode' in address: out['postCode'] = address['PostalCode']
+    return out
 def generate_statement_id(name, role, version=None):
     """Generate statement ID deterministically"""
     if version:
