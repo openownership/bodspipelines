@@ -3,5 +3,5 @@ class JSONData:
 
     def process(self, item):
         """Return item"""
-        print(item)
+        #print(item)
         return item
