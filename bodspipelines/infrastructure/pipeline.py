@@ -1,7 +1,5 @@
 from typing import List, Union
-#from dataclasses import dataclass
 from pathlib import Path
-import tracemalloc
 
 from bodspipelines.infrastructure.processing.bulk_data import BulkData
 from bodspipelines.infrastructure.processing.xml_data import XMLData
@@ -71,7 +69,6 @@ class Stage:
     def process(self, pipeline_dir):
         """Process all sources for stage"""
         print(f"Running {self.name} pipeline stage")
-        tracemalloc.start(10)
         stage_dir = self.directory(pipeline_dir)
         for source in self.sources:
             self.process_source(source, stage_dir)
