@@ -50,7 +50,7 @@ class KinesisStream:
 
     def add_record(self, record):
         """Add record to stream"""
-        json_data = json.dumps(record)
+        json_data = json.dumps(record) + "\n"
         #encoded_data = bytes(json_data, 'utf-8')
         #compressed_data = gzip.compress(json_data.encode('utf-8'))
         self.records.append({"Data": json_data, "PartitionKey": str(self.shard_count)})
@@ -58,7 +58,7 @@ class KinesisStream:
         self.waiting_bytes += num_bytes
         #print(f"Added {num_bytes} byte record ...")
         #print(f"Batched records {len(self.records)}")
-        if self.waiting_bytes > 500000 or len(self.records) > 499: self.send_records()
+        if self.waiting_bytes > 500000 or len(self.records) > 485: self.send_records()
 
     def finish_write(self):
         """Write any remaining records"""
