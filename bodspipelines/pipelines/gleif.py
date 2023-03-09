@@ -50,7 +50,7 @@ index_properties = {"lei2": {"properties": lei_properties, "match": match_lei, "
 
 # GLEIF data: Store in Easticsearch and output new to Kinesis stream
 output_new = NewOutput(storage=ElasticStorage(indexes=index_properties),
-                       output=KinesisOutput(stream_arn="arn:aws:kinesis:eu-west-1:685764181618:stream/gleif-dev3"))
+                       output=KinesisOutput(stream_arn="arn:aws:kinesis:eu-west-1:685764181618:stream/gleif-raw-dev"))
 
 # Definition of GLEIF data pipeline ingest stage
 ingest_stage = Stage(name="ingest",
@@ -61,7 +61,7 @@ ingest_stage = Stage(name="ingest",
 
 # Kinesis stream of GLEIF data from ingest stage
 gleif_source = Source(name="gleif",
-                      origin=KinesisInput(stream_arn="arn:aws:kinesis:eu-west-1:685764181618:stream/gleif-dev3"),
+                      origin=KinesisInput(stream_arn="arn:aws:kinesis:eu-west-1:685764181618:stream/gleif-raw-dev"),
                       datatype=JSONData())
 
 # Elasticsearch indexes for BODS data
@@ -89,7 +89,7 @@ def identify_bods(item):
 
 # BODS data: Store in Easticsearch and output new to Kinesis stream
 bods_output_new = NewOutput(storage=ElasticStorage(indexes=bods_index_properties),
-                            output=KinesisOutput(stream_arn="arn:aws:kinesis:eu-west-1:685764181618:stream/gleif-dev-bods"),
+                            output=KinesisOutput(stream_arn="arn:aws:kinesis:eu-west-1:685764181618:stream/gleif-bods-dev"),
                             identify=identify_bods)
 
 # Definition of GLEIF data pipeline transform stage
