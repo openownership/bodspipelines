@@ -54,7 +54,10 @@ def transform_lei(data):
     #foundingDate = data['Entity']['EntityCreationDate']
     registeredAddress = format_address('registered', data['Entity']['LegalAddress'])
     businessAddress = format_address('business', data['Entity']['HeadquartersAddress'])
-    sourceType = ['officialRegister'] if not data['Registration']['ValidationSources'] == 'FULLY_CORROBORATED' else ['officialRegister', 'verified']
+    if 'ValidationSources' in data['Registration']:
+        sourceType = ['officialRegister'] if not data['Registration']['ValidationSources'] == 'FULLY_CORROBORATED' else ['officialRegister', 'verified']
+    else:
+        sourceType = ['officialRegister']
     sourceDescription = 'GLEIF'
     out = {'statementID': statementID,
     'statementType': statementType,
