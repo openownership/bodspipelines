@@ -2,6 +2,7 @@ import random
 import hashlib
 import uuid
 import datetime
+import dateutil.parser
 import pytz
 from typing import List, Union
 
@@ -23,10 +24,11 @@ def generate_statement_id(name, role, version=None):
 
 def format_datetime(d):
     """Format datetime in ISO 8601"""
-    if d[-1] == "Z":
-        return datetime.datetime.fromisoformat(d[:-1]).isoformat(timespec='seconds') + "+00:00"
-    else:
-        return datetime.datetime.fromisoformat(d).isoformat(timespec='seconds')
+    #if d[-1] == "Z":
+    #    return datetime.datetime.fromisoformat(d[:-1]).isoformat(timespec='seconds') + "+00:00"
+    #else:
+    #    return datetime.datetime.fromisoformat(d).isoformat(timespec='seconds')
+    return dateutil.parser.isoparse(d).isoformat(timespec='seconds')
 
 def current_datetime_iso():
     """Generate current datetime in ISO 8601"""
@@ -72,7 +74,7 @@ def interest_level(relationship_type, default):
     """Calculate interest level"""
     if relationship_type == "IS_ULTIMATELY_CONSOLIDATED_BY":
         return "indirect"
-    elif relationship_type == "IS_DIRECTLY_CONSOLIDATED_BY":
+    elif relationship_type in ("IS_DIRECTLY_CONSOLIDATED_BY", "IS_INTERNATIONAL_BRANCH_OF", "IS_FUND-MANAGED_BY", "IS_SUBFUND_OF", "IS_FEEDER_TO"):
         return "direct"
     else:
         return default # Other options in data
