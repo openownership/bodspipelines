@@ -82,10 +82,14 @@ class ElasticsearchClient:
 
     def batch_store_data(self, actions, batch, index_name):
         """Store bulk data in index"""
+        record_count = 0
+        new_records = 0
         for ok, result in streaming_bulk(client=self.client, index=index_name, actions=actions, raise_on_error=False):
-            print(ok, result)
+            record_count += 1
+            #print(ok, result)
             #print(batch[0])
             if ok:
+                new_records += 1
                 match = [i for i in batch if i['_id'] == result['create']['_id']]
                 yield match[0]['_source']
             #
@@ -93,6 +97,7 @@ class ElasticsearchClient:
             #    yield False
             #else:
             #    yield item
+        print(f"Storing {record_count} records; {new_records} new records")
 
     def search(self, search):
         """Search index"""
