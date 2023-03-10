@@ -87,7 +87,7 @@ class ElasticsearchClient:
         for ok, result in streaming_bulk(client=self.client, actions=actions, raise_on_error=False): #index=index_name,
             record_count += 1
             #print(ok, result)
-            #print(batch[0])
+            print(batch[0])
             if ok:
                 new_records += 1
                 match = [i for i in batch if i['_id'] == result['create']['_id']]
