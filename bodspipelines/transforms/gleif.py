@@ -138,13 +138,14 @@ def transform_repex_entity(data, description, person=False):
     sourceDescription = 'GLEIF'
     out = {'statementID': statementID,
            'statementType': statementType,
-           'unspecifiedPersonDetails': {'reason': unspecified_reason, 'description': unspecified_description},
            'publicationDetails': publication_details(),
            'source':{'type':sourceType,'description':sourceDescription}}
     if person:
         out['personType'] = personType
+        out['unspecifiedPersonDetails'] = {'reason': unspecified_reason, 'description': unspecified_description}
     else:
         out['entityType'] = entityType
+        out['unspecifiedEntityDetails'] = {'reason': unspecified_reason, 'description': unspecified_description}
     return out, statementID
 
 def transform_repex_ooc(data, interested=None, person=False):
