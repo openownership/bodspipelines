@@ -166,6 +166,8 @@ person_statement_properties = {'statementID': {'type': 'text'},
 
 # BODS Ownership Or Control Statement 
 ownership_statement_properties = {'statementID': {'type': 'text'},
+                                  'statementType': {'type': 'text'},
+                                  'statementDate': {'type': 'text'},
                                   'subject': {'type': 'object',
                                               'properties': {'describedByEntityStatement': {'type': 'text'}}},
                                   'interestedParty': {'type': 'object',
