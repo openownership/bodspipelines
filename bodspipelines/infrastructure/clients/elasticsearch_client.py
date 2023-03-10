@@ -92,6 +92,8 @@ class ElasticsearchClient:
                 new_records += 1
                 match = [i for i in batch if i['_id'] == result['create']['_id']]
                 yield match[0]['_source']
+            else:
+                print(ok, result)
             #
             #if not ok:
             #    yield False
