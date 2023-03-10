@@ -99,7 +99,7 @@ class ElasticsearchClient:
             #    yield False
             #else:
             #    yield item
-        print(f"Storing {record_count} records; {new_records} new records")
+        print(f"Storing in {index_name}: {record_count} records; {new_records} new records")
 
     def search(self, search):
         """Search index"""
