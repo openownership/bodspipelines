@@ -95,12 +95,17 @@ def transform_rr(data):
     interestLevel = interest_level(data['Relationship']['RelationshipType'], 'unknown')
     periods = data['Relationship']['RelationshipPeriods']
     interestStartDate = False
+    start_date = False
     for period in periods:
-        if period['PeriodType'] == "RELATIONSHIP_PERIOD":
-            interestStartDate = period['StartDate']
-        else:
-            start_date = period['StartDate']
-    if not interestStartDate: interestStartDate = start_date
+        if 'StartDate' in period and 'PeriodType' in period:
+            if period['PeriodType'] == "RELATIONSHIP_PERIOD":
+                interestStartDate = period['StartDate']
+            else:
+                start_date = period['StartDate']
+    if not start_date: 
+        if not interestStartDate: interestStartDate = ""
+    else:
+        if not interestStartDate: interestStartDate = start_date
     beneficialOwnershipOrControl = False
     sourceType = ['officialRegister'] if not data['Registration']['ValidationSources'] == 'FULLY_CORROBORATED' else ['officialRegister', 'verified']
     sourceDescription = 'GLEIF'
