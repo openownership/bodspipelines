@@ -1,5 +1,14 @@
 from lxml import etree
 
+def is_plural(tag, child_tag):
+    if tag == child_tag + "s":
+        return True
+    elif tag == child_tag + "es":
+        return True
+    elif tag == child_tag[:-1] + 'ies':
+        return True
+    return False
+
 class XMLData:
     """XML data definition class"""
 
@@ -20,7 +29,7 @@ class XMLData:
     def is_array(self, tag, child):
         """Check if is array """
         child_tag = etree.QName(child[0]).localname
-        if tag == child_tag + "s":
+        if is_plural(tag, child_tag):
             #print("Array!!!!")
             return True
         else:
