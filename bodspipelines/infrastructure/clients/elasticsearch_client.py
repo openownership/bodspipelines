@@ -99,7 +99,10 @@ class ElasticsearchClient:
             #    yield False
             #else:
             #    yield item
-        print(f"Storing in {index_name(batch[0]['_source'])}: {record_count} records; {new_records} new records")
+        if callable(index_name):
+            print(f"Storing in {index_name(batch[0]['_source'])}: {record_count} records; {new_records} new records")
+        else:
+            print(f"Storing in {index_name}: {record_count} records; {new_records} new records")
 
     def search(self, search):
         """Search index"""
