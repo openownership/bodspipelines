@@ -3,10 +3,11 @@ from lxml import etree
 class XMLData:
     """XML data definition class"""
 
-    def __init__(self, item_tag=None, namespace=None):
+    def __init__(self, item_tag=None, namespace=None, filter=[]):
         """Initial setup"""
         self.item_tag = item_tag
         self.namespace = namespace
+        self.filter = filter
 
     def data_stream(self, filename):
         """Stream parsed XML elements from file"""
@@ -25,6 +26,10 @@ class XMLData:
         else:
             return False
 
+    def add_element(self, out, tag, value):
+        if not tag in self.filter and value:
+            out[tag] = value
+
     def process_item(self, item, out):
         """Process XML item to dict"""
         for child in item:
@@ -39,16 +44,18 @@ class XMLData:
                 if isinstance(out, list):
                     out.append(child_data)
                 else:
-                    out[tag] = child_data
+                    self.add_element(out, tag, child_data)
+                    #out[tag] = child_data
             else:
                 try:
                     child_value = child.xpath("./text()", namespaces=self.namespace)[0]
                 except IndexError:
-                    child_value = ""
+                    child_value = False
                 if isinstance(out, list):
                     out.append(child_value)
                 else:
-                    out[tag] = child_value
+                    self.add_element(out, tag, child_value)
+                    #out[tag] = child_value
         return out
 
     def process(self, filename):
