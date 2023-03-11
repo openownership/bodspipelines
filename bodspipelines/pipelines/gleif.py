@@ -1,3 +1,5 @@
+import elastic_transport
+
 from bodspipelines.infrastructure.pipeline import Source, Stage, Pipeline
 from bodspipelines.infrastructure.inputs import KinesisInput
 from bodspipelines.infrastructure.storage import ElasticStorage
