@@ -1,3 +1,4 @@
+import time
 import elastic_transport
 
 from bodspipelines.infrastructure.pipeline import Source, Stage, Pipeline
