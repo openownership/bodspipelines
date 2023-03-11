@@ -172,11 +172,11 @@ def transform_repex_ooc(data, interested=None, person=False):
         else:
             interestedParty = {'describedByEntityStatement': interestedParty}
     else:
-        interestedParty = {'unspecified': interestedParty}
+        interestedParty = {'unspecified': {'reason': interestedParty}}
     out = {'statementID': statementID,
            'statementType':statementType,
            'subject': {'describedByEntityStatement': subjectDescribedByEntityStatement},
-           'interestedParty': {'unspecified': interestedParty},
+           'interestedParty': interestedParty,
            'interests':[{'type': interestType,
                          'interestLevel': interestLevel,
                          'beneficialOwnershipOrControl': False,
