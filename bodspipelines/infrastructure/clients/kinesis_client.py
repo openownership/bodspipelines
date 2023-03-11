@@ -9,6 +9,9 @@ def create_client(service):
      return boto3.client(service, region_name=os.getenv('BODS_AWS_REGION'), aws_access_key_id=os.environ.get('BODS_AWS_ACCESS_KEY_ID'),
                              aws_secret_access_key=os.environ.get('BODS_AWS_SECRET_ACCESS_KEY'))
 
+def get_stream_arn(client, stream_name):
+    return client.describe_stream(StreamName=stream_name)["StreamDescription"]["StreamARN"]
+
 def shard_id(client, stream_arn):
      """Generate shard id"""
      response = client.describe_stream(StreamARN=stream_arn)
@@ -24,10 +27,10 @@ def unpack_records(record_response):
 
 class KinesisStream:
     """Kinesis Stream class"""
-    def __init__(self, stream_arn=None, shard_count=1):
+    def __init__(self, stream_name=None, shard_count=1):
         """Initial setup"""
         self.client = create_client('kinesis')
-        self.stream_arn = stream_arn
+        self.stream_arn = get_stream_arn(self.client, stream_name)
         self.shard_id = shard_id(self.client, self.stream_arn)
         self.shard_count = shard_count
         self.records = []

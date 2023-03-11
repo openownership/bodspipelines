@@ -55,10 +55,10 @@ class NewOutput:
 
 class KinesisOutput:
     """Output to Kinesis Stream"""
-    def __init__(self, stream_arn=None):
+    def __init__(self, stream_name=None):
         self.streaming = False
-        self.stream_arn = stream_arn
-        self.stream = KinesisStream(self.stream_arn)
+        self.stream_name = stream_name
+        self.stream = KinesisStream(self.stream_name)
 
     def process(self, item, item_type):
         self.stream.add_record(item)
