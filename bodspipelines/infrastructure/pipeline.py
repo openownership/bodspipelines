@@ -71,7 +71,9 @@ class Stage:
         print(f"Running {self.name} pipeline stage")
         stage_dir = self.directory(pipeline_dir)
         for source in self.sources:
+            print(f"Processing {source.name} source")
             self.process_source(source, stage_dir)
+        print(f"Finished {self.name} pipeline stage")
 
 class Pipeline:
     """Pipeline definition class"""

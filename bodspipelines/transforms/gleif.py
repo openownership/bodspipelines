@@ -223,9 +223,9 @@ def transform_repex_non_public(data):
 
 def transform_repex(data):
     """Transform Reporting Exceptions to BODS statements"""
-    print(data['ExceptionReason'])
+    #print(data['ExceptionReason'])
     if data['ExceptionReason'] == "NO_LEI":
-        print("Got here!")
+        #print("Got here!")
         for statement in transform_repex_no_lei(data):
             yield statement
     elif data['ExceptionReason'] == "NATURAL_PERSONS":
