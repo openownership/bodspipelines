@@ -98,7 +98,7 @@ rr_properties = {'Relationship': {'type': 'object',
                                                   'RelationshipStatus': {'type': 'text'}, 
                                                   'RelationshipQualifiers': {'type': 'object',
                                                                              'properties': {'QualifierDimension': {'type': 'text'}, 
-                                                                                            'QualifierCategory': {'type': 'text'}}}
+                                                                                            'QualifierCategory': {'type': 'text'}}},
                                                   'RelationshipQuantifiers': {'type': 'object',
                                                                               'properties': {'MeasurementMethod': {'type': 'text'},
                                                                                              'QuantifierAmount': {'type': 'text'},
