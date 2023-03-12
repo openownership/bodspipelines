@@ -95,7 +95,7 @@ def identify_bods(item):
 
 # BODS data: Store in Easticsearch and output new to Kinesis stream
 bods_output_new = NewOutput(storage=ElasticStorage(indexes=bods_index_properties),
-                            output=KinesisOutput(stream_name="bods-gleif-prod-alt5"),
+                            output=KinesisOutput(stream_name="bods-gleif-prod-alt6"),
                             identify=identify_bods)
 
 # Definition of GLEIF data pipeline transform stage
