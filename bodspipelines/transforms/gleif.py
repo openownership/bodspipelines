@@ -93,15 +93,17 @@ def transform_rr(data):
     interestedPartyDescribedByEntityStatement = generate_statement_id(data['Relationship']['StartNode']['NodeID'], 'entityStatement')
     interestType = 'otherInfluenceOrControl'
     interestLevel = interest_level(data['Relationship']['RelationshipType'], 'unknown')
-    periods = data['Relationship']['RelationshipPeriods']
+    #periods = data['Relationship']['RelationshipPeriods']
     interestStartDate = False
     start_date = False
-    for period in periods:
-        if 'StartDate' in period and 'PeriodType' in period:
-            if period['PeriodType'] == "RELATIONSHIP_PERIOD":
-                interestStartDate = period['StartDate']
-            else:
-                start_date = period['StartDate']
+    if 'RelationshipPeriods' in data['Relationship']:
+        periods = data['Relationship']['RelationshipPeriods']
+        for period in periods:
+            if 'StartDate' in period and 'PeriodType' in period:
+                if period['PeriodType'] == "RELATIONSHIP_PERIOD":
+                    interestStartDate = period['StartDate']
+                else:
+                    start_date = period['StartDate']
     if not start_date: 
         if not interestStartDate: interestStartDate = ""
     else:
