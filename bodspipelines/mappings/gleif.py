@@ -121,7 +121,8 @@ rr_properties = {'Relationship': {'type': 'object',
 
 repex_properties = {'LEI': {'type': 'text'}, 
                     'ExceptionCategory': {'type': 'text'}, 
-                    'ExceptionReason': {'type': 'text'}}
+                    'ExceptionReason': {'type': 'text'},
+                    'ExceptionReference': {'type': 'text'}}
 
 def match_lei(item):
     return {"match": {"LEI": item["LEI"]}}
