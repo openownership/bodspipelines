@@ -8,13 +8,15 @@ from bodspipelines.infrastructure.outputs import Output, OutputConsole, NewOutpu
 from bodspipelines.infrastructure.processing.bulk_data import BulkData
 from bodspipelines.infrastructure.processing.xml_data import XMLData
 from bodspipelines.infrastructure.processing.json_data import JSONData
-from bodspipelines.transforms.gleif import Gleif2Bods
-from bodspipelines.mappings.gleif import (lei_properties, rr_properties, repex_properties,
-                                          match_lei, match_rr, match_repex,
-                                          id_lei, id_rr, id_repex)
+
 from bodspipelines.infrastructure.indexes import (entity_statement_properties, person_statement_properties, ownership_statement_properties,
                                           match_entity, match_person, match_ownership,
                                           id_entity, id_person, id_ownership)
+
+from bodspipelines.pipelines.gleif.transforms import Gleif2Bods
+from bodspipelines.pipelines.gleif.indexes import (lei_properties, rr_properties, repex_properties,
+                                          match_lei, match_rr, match_repex,
+                                          id_lei, id_rr, id_repex)
 
 # Defintion of LEI-CDF v3.1 XML date source
 lei_source = Source(name="lei",
