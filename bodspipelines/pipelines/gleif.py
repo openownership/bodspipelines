@@ -67,7 +67,7 @@ ingest_stage = Stage(name="ingest",
 
 # Kinesis stream of GLEIF data from ingest stage
 gleif_source = Source(name="gleif",
-                      origin=KinesisInput(stream_name="gleif-raw-dev")) #gleif-prod-alt4"),
+                      origin=KinesisInput(stream_name="gleif-raw-dev"), #gleif-prod-alt4"),
                       datatype=JSONData())
 
 # Elasticsearch indexes for BODS data
