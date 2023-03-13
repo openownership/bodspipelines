@@ -249,7 +249,7 @@ class Gleif2Bods:
 
     def process(self, item, item_type):
         if self.identify: item_type = self.identify(item)
-        if item_type == 'lei2':
+        if item_type == 'lei':
             yield transform_lei(item)
         elif item_type == 'rr':
             yield transform_rr(item)

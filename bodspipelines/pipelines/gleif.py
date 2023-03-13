@@ -17,7 +17,7 @@ from bodspipelines.mappings.gleif import (entity_statement_properties, person_st
                                           id_entity, id_person, id_ownership)
 
 # Defintion of LEI-CDF v3.1 XML date source
-lei2_source = Source(name="lei2",
+lei_source = Source(name="lei",
                      origin=BulkData(display="LEI-CDF v3.1",
                                      url='https://leidata.gleif.org/api/v1/concatenated-files/lei2/get/30447/zip',
                                      size=41491,
@@ -50,7 +50,7 @@ repex_source = Source(name="repex",
 #output_console = Output(name="console", target=OutputConsole(name="gleif-ingest"))
 
 # Elasticsearch indexes for GLEIF data
-index_properties = {"lei2": {"properties": lei_properties, "match": match_lei, "id": id_lei},
+index_properties = {"lei": {"properties": lei_properties, "match": match_lei, "id": id_lei},
                     "rr": {"properties": rr_properties, "match": match_rr, "id": id_rr},
                     "repex": {"properties": repex_properties, "match": match_repex, "id": id_repex}}
 
@@ -60,7 +60,7 @@ output_new = NewOutput(storage=ElasticStorage(indexes=index_properties),
 
 # Definition of GLEIF data pipeline ingest stage
 ingest_stage = Stage(name="ingest",
-              sources=[lei2_source, rr_source, repex_source],
+              sources=[lei_source, rr_source, repex_source],
               processors=[],
               outputs=[output_new]
 )
@@ -78,7 +78,7 @@ bods_index_properties = {"entity": {"properties": entity_statement_properties, "
 # Identify type of GLEIF data
 def identify_gleif(item):
     if 'Entity' in item:
-        return 'lei2'
+        return 'lei'
     elif 'Relationship' in item:
         return 'rr'
     elif 'ExceptionCategory' in item:
