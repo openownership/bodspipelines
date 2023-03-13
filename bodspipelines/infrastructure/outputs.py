@@ -52,6 +52,7 @@ class NewOutput:
         for item in self.storage.process_batch(stream, item_type):
             if item:
                 self.output.process(item, item_type)
+        self.output.finish()
 
 class KinesisOutput:
     """Output to Kinesis Stream"""
@@ -63,5 +64,5 @@ class KinesisOutput:
     def process(self, item, item_type):
         self.stream.add_record(item)
 
-    def __del__(self):
+    def finish(self):
         self.stream.finish_write()
