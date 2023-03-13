@@ -12,7 +12,7 @@ from bodspipelines.transforms.gleif import Gleif2Bods
 from bodspipelines.mappings.gleif import (lei_properties, rr_properties, repex_properties,
                                           match_lei, match_rr, match_repex,
                                           id_lei, id_rr, id_repex)
-from bodspipelines.mappings.gleif import (entity_statement_properties, person_statement_properties, ownership_statement_properties,
+from bodspipelines.infrastructure.indexes import (entity_statement_properties, person_statement_properties, ownership_statement_properties,
                                           match_entity, match_person, match_ownership,
                                           id_entity, id_person, id_ownership)
 
