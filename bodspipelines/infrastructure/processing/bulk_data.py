@@ -51,7 +51,7 @@ class BulkData:
             url = self.url[name]
         else:
             url = self.url
-        with requests.get(self.url, stream=True) as r:
+        with requests.get(url, stream=True) as r:
             r.raise_for_status()
             if 'content-disposition' in r.headers:
                 local_filename = r.headers['content-disposition'].split("filename=")[-1].strip('"')
