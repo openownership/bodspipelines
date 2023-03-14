@@ -17,16 +17,7 @@ from bodspipelines.pipelines.gleif.transforms import Gleif2Bods
 from bodspipelines.pipelines.gleif.indexes import (lei_properties, rr_properties, repex_properties,
                                           match_lei, match_rr, match_repex,
                                           id_lei, id_rr, id_repex)
-
-def gleif_download_links(url):
-    out = {}
-    with requests.get(url) as r:
-        r.raise_for_status()
-        data = r.json()
-        out['lei'] = data['data']['lei2']['full_file']['xml']['url']
-        out['rr'] = data['data']['rr']['full_file']['xml']['url']
-        out['repex'] = data['data']['repex']['full_file']['xml']['url']
-    return out
+from bodspipelines.pipelines.gleif.utils import gleif_download_links
 
 # Defintion of LEI-CDF v3.1 XML date source
 lei_source = Source(name="lei",
