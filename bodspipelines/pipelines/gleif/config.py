@@ -50,7 +50,7 @@ repex_source = Source(name="repex",
                                       directory="rep-ex"),
                       datatype=XMLData(item_tag="Exception",
                                        namespace={"repex": "http://www.gleif.org/data/schema/repex/2016"},
-                                       filter=['NextVersion']))
+                                       filter=['NextVersion', 'Extension']))
 
 # Console Output
 #output_console = Output(name="console", target=OutputConsole(name="gleif-ingest"))
