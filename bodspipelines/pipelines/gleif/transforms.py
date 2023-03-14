@@ -63,7 +63,7 @@ def transform_lei(data):
     'statementDate': statementDate,
     'entityType': entityType,
     'name': name,
-    'jurisdiction': jurisdiction,
+    'incorporatedInJurisdiction': jurisdiction,
     'identifiers': identifiers,
     #'foundingDate': foundingDate,
     'addresses': [registeredAddress,businessAddress],
