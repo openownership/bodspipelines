@@ -22,21 +22,17 @@ def generate_statement_id(name, role, version=None):
     m.update(seed.encode('utf-8'))
     return str(uuid.UUID(m.hexdigest()))
 
-def format_datetime(d):
-    """Format datetime in ISO 8601"""
-    #if d[-1] == "Z":
-    #    return datetime.datetime.fromisoformat(d[:-1]).isoformat(timespec='seconds') + "+00:00"
-    #else:
-    #    return datetime.datetime.fromisoformat(d).isoformat(timespec='seconds')
-    return dateutil.parser.isoparse(d).isoformat(timespec='seconds')
+def format_date(d):
+    """Format date in ISO 8601"""
+    return dateutil.parser.isoparse(d).strftime("%Y-%m-%d") #.isoformat(timespec='seconds')
 
-def current_datetime_iso():
-    """Generate current datetime in ISO 8601"""
-    return datetime.datetime.now(pytz.timezone('Europe/London')).isoformat(timespec='seconds')
+def current_date_iso():
+    """Generate current date in ISO 8601"""
+    return datetime.datetime.now(pytz.timezone('Europe/London')).strftime("%Y-%m-%d") #.isoformat(timespec='seconds')
 
 def publication_details():
     """Generate publication details"""
-    return {'publicationDate': current_datetime_iso(), # TODO: fix publication date
+    return {'publicationDate': current_date_iso(), # TODO: fix publication date
             'bodsVersion': "0.2",
             'license': "https://register.openownership.org/terms-and-conditions",
             'publisher': {"name": "OpenOwnership Register",
@@ -46,7 +42,7 @@ def transform_lei(data):
     """Transform LEI-CDF v3.1 data to BODS statement"""
     statementID = generate_statement_id(data['LEI'], 'entityStatement')
     statementType = 'entityStatement'
-    statementDate = format_datetime(data['Registration']['LastUpdateDate'])
+    statementDate = format_date(data['Registration']['LastUpdateDate'])
     entityType = 'registeredEntity'
     name = data['Entity']['LegalName']
     jurisdiction = data['Entity']['LegalJurisdiction']
@@ -88,7 +84,7 @@ def transform_rr(data):
                                         data['Relationship']['EndNode']['NodeID'] +
                                         data['Relationship']['RelationshipType'], 'ownershipOrControlStatement')
     statementType = 'ownershipOrControlStatement'
-    statementDate = format_datetime(data['Registration']['LastUpdateDate'])
+    statementDate = format_date(data['Registration']['LastUpdateDate'])
     subjectDescribedByEntityStatement = generate_statement_id(data['Relationship']['EndNode']['NodeID'], 'entityStatement')
     interestedPartyDescribedByEntityStatement = generate_statement_id(data['Relationship']['StartNode']['NodeID'], 'entityStatement')
     interestType = 'otherInfluenceOrControl'
@@ -104,7 +100,7 @@ def transform_rr(data):
                     interestStartDate = period['StartDate']
                 else:
                     start_date = period['StartDate']
-    if not start_date: 
+    if not start_date:
         if not interestStartDate: interestStartDate = ""
     else:
         if not interestStartDate: interestStartDate = start_date
