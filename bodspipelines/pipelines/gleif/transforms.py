@@ -47,6 +47,9 @@ def transform_lei(data):
     name = data['Entity']['LegalName']
     jurisdiction = data['Entity']['LegalJurisdiction']
     identifiers = [{'id': data['LEI'], 'scheme':'XI-LEI', 'schemeName':'Global Legal Entity Identifier Index'}]
+    if 'RegistrationAuthority' in data['Entity']:
+        identifiers.append({'id': data['Entity']['RegistrationAuthority']['RegistrationAuthorityEntityID'],
+                            'schemeName': data['Entity']['RegistrationAuthority']['RegistrationAuthorityID']})
     #foundingDate = data['Entity']['EntityCreationDate']
     registeredAddress = format_address('registered', data['Entity']['LegalAddress'])
     businessAddress = format_address('business', data['Entity']['HeadquartersAddress'])
