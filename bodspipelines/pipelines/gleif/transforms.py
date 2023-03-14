@@ -158,7 +158,14 @@ def transform_repex_ooc(data, interested=None, person=False):
         interestedParty = interested
     else:
         interestedParty = data['ExceptionReason']
-    interestType = 'unknownInterest'
+    #interestType = 'unknownInterest'
+    interestType = 'other-influence-or-control'
+    annotation = {'motivation': 'commenting',
+                  'description': "The nature of this interest is unknown",
+                  'statementPointerTarget': "/interests/0/type",
+                  'creationDate': current_date_iso(),
+                  'createdBy': {'name': 'Open Ownership',
+                                'uri': "https://www.openownership.org"}}
     if data['ExceptionCategory'] == "ULTIMATE_ACCOUNTING_CONSOLIDATION_PARENT":
         interestLevel = 'indirect'
     elif data['ExceptionCategory'] == "DIRECT_ACCOUNTING_CONSOLIDATION_PARENT":
@@ -183,7 +190,8 @@ def transform_repex_ooc(data, interested=None, person=False):
                          'beneficialOwnershipOrControl': False,
                          'details': "A controlling interest."}],
            'publicationDetails': publication_details(),
-           'source':{'type': sourceType, 'description': sourceDescription}}
+           'source':{'type': sourceType, 'description': sourceDescription},
+           'annotations': [annotation]}
     return out, statementID
 
 def transform_repex_no_lei(data):
