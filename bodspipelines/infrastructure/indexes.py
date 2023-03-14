@@ -4,7 +4,7 @@ entity_statement_properties = {'statementID': {'type': 'text'},
                                'statementDate': {'type': 'text'},
                                'entityType': {'type': 'text'},
                                'name': {'type': 'text'},
-                               'jurisdiction': {'type': 'text'},
+                               'incorporatedInJurisdiction': {'type': 'text'},
                                'identifiers': {'type': 'object',
                                                'properties': {'id': {'type': 'text'},
                                                               'scheme':  {'type': 'text'},
@@ -75,7 +75,15 @@ ownership_statement_properties = {'statementID': {'type': 'text'},
                                                                                                   'url': {'type': 'text'}}}}},
                                   'source': {'type': 'object',
                                           'properties': {'type': {'type': 'text'},
-                                                         'description': {'type': 'text'}}}}
+                                                         'description': {'type': 'text'}}},
+                                  'annotations': {'type': 'object',
+                                                  'properties': {'motivation': {'type': 'text'},
+                                                                 'description': {'type': 'text'},
+                                                                 'statementPointerTarget': {'type': 'text'},
+                                                                 'creationDate': {'type': 'text'},
+                                                                 'createdBy': {'type': 'object',
+                                                                               'properties': {'name': {'type': 'text'},
+                                                                                              'uri': {'type': 'text'}}}}}}
 
 
 def match_entity(item):
