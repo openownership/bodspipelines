@@ -17,7 +17,7 @@ class Source:
     def process(self, stage_dir):
         """Iterate over source items"""
         if hasattr(self.origin, "prepare"):
-            data = self.origin.prepare(stage_dir)
+            data = self.origin.prepare(stage_dir, self.name)
             for item in self.datatype.process(data):
                 yield item
         else:

@@ -18,10 +18,21 @@ from bodspipelines.pipelines.gleif.indexes import (lei_properties, rr_properties
                                           match_lei, match_rr, match_repex,
                                           id_lei, id_rr, id_repex)
 
+def gleif_download_links(url):
+    out = {}
+    with requests.get(url) as r:
+        r.raise_for_status()
+        data = r.json()
+        out['lei'] = data['data']['lei2']['full_file']['xml']['url']
+        out['rr'] = data['data']['rr']['full_file']['xml']['url']
+        out['repex'] = data['data']['repex']['full_file']['xml']['url']
+    return out
+
 # Defintion of LEI-CDF v3.1 XML date source
 lei_source = Source(name="lei",
                      origin=BulkData(display="LEI-CDF v3.1",
-                                     url='https://leidata.gleif.org/api/v1/concatenated-files/lei2/get/30447/zip',
+                                     #url='https://leidata.gleif.org/api/v1/concatenated-files/lei2/get/30447/zip',
+                                     url=gleif_download_links("https://goldencopy.gleif.org/api/v2/golden-copies/publishes/latest"),
                                      size=41491,
                                      directory="lei-cdf"),
                      datatype=XMLData(item_tag="LEIRecord",
@@ -31,7 +42,8 @@ lei_source = Source(name="lei",
 # Defintion of RR-CDF v2.1 XML date source
 rr_source = Source(name="rr",
                    origin=BulkData(display="RR-CDF v2.1",
-                                   url='https://leidata.gleif.org/api/v1/concatenated-files/rr/get/30450/zip',
+                                   #url='https://leidata.gleif.org/api/v1/concatenated-files/rr/get/30450/zip',
+                                   url=gleif_download_links("https://goldencopy.gleif.org/api/v2/golden-copies/publishes/latest"),
                                    size=2823,
                                    directory="rr-cdf"),
                    datatype=XMLData(item_tag="RelationshipRecord",
@@ -41,7 +53,8 @@ rr_source = Source(name="rr",
 # Defintion of Reporting Exceptions v2.1 XML date source
 repex_source = Source(name="repex",
                       origin=BulkData(display="Reporting Exceptions v2.1",
-                                      url='https://leidata.gleif.org/api/v1/concatenated-files/repex/get/30453/zip',
+                                      #url='https://leidata.gleif.org/api/v1/concatenated-files/repex/get/30453/zip',
+                                      url=gleif_download_links("https://goldencopy.gleif.org/api/v2/golden-copies/publishes/latest"),
                                       size=3954,
                                       directory="rep-ex"),
                       datatype=XMLData(item_tag="Exception",

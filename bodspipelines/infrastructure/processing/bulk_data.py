@@ -45,14 +45,25 @@ class BulkData:
         else:
             return False
 
-    def download_large(self, directory):
+    def download_large(self, directory, name):
         """Download file to specified directory"""
+        if isinstance(self.url, dict):
+            url = self.url[name]
+        else:
+            url = self.url
         with requests.get(self.url, stream=True) as r:
             r.raise_for_status()
-            local_filename = r.headers['content-disposition'].split("filename=")[-1].strip('"')
+            if 'content-disposition' in r.headers:
+                local_filename = r.headers['content-disposition'].split("filename=")[-1].strip('"')
+            else:
+                local_filename = url.rsplit('/')[-1]
+            if 'content-length' in r.headers:
+                size = r.headers['content-length']
+            else:
+                size = self.size
             if directory: local_filename = directory / local_filename
             with open(local_filename, 'wb') as f:
-                for chunk in Bar(f"Downloading {self.display}", max=self.size).iter(r.iter_content(chunk_size=8192)):
+                for chunk in Bar(f"Downloading {self.display}", max=size).iter(r.iter_content(chunk_size=8192)):
                     f.write(chunk)
         return local_filename
 
@@ -65,18 +76,18 @@ class BulkData:
         for file in directory.glob('*'):
             file.unlink()
 
-    def download_extract_data(self, path):
+    def download_extract_data(self, path, name):
         """Download and extract data"""
         directory = self.data_dir(path)
         directory.mkdir(exist_ok=True)
         self.delete_old_data(directory)
-        zip = self.download_large(directory)
+        zip = self.download_large(directory, name)
         self.unzip_data(zip, directory)
 
-    def prepare(self, path) -> Path:
+    def prepare(self, path, name) -> Path:
         """Prepare data for use"""
         if not self.check_manifest(path):
-            self.download_extract_data(path)
+            self.download_extract_data(path, name)
             self.create_manifest(path)
         else:
             print(f"{self.display} data up-to-date ...")
