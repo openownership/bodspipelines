@@ -84,6 +84,7 @@ class KinesisStream:
         shard_iterator = shard_iterator['ShardIterator']
         while True:
             record_response = self.client.get_records(ShardIterator=shard_iterator, Limit=100)
+            print(record_response)
             yield unpack_records(record_response)
             if 'NextShardIterator' in record_response:
                 shard_iterator = record_response['NextShardIterator']
