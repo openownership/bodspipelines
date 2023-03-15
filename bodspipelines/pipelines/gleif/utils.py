@@ -6,7 +6,7 @@ def get_source(r, name):
         return data['data']['lei2']['full_file']['xml']['url']
     elif name == 'rr':
         return data['data']['rr']['full_file']['xml']['url']
-    elif name == 'repex'
+    elif name == 'repex':
         return data['data']['repex']['full_file']['xml']['url']
     return None
 
