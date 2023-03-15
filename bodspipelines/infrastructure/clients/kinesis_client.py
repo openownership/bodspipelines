@@ -85,13 +85,14 @@ class KinesisStream:
         empty = 0
         while True:
             record_response = self.client.get_records(ShardIterator=shard_iterator, Limit=100)
-            print(record_response)
+            #print(record_response)
             if len(record_response['Records']) == 0 and record_response['MillisBehindLatest'] == 0:
                 empty += 1
             else:
                 if len(record_response['Records']) > 0: empty = 0
                 yield unpack_records(record_response)
             if empty > 250:
+                print(f"No records found in {self.stream_arn} after {empty} retries")
                 break
             elif 'NextShardIterator' in record_response:
                 shard_iterator = record_response['NextShardIterator']
