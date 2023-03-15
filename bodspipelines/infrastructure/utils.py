@@ -25,7 +25,7 @@ def requests_retry_session(
 
 
 def download_delayed(url, func):
-    def download(url, func, param)
+    def download(url, func, param):
         with requests_retry_session().get(url) as r:
             r.raise_for_status()
             out = func(r, param)
