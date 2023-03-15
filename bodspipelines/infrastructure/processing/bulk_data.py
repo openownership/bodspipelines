@@ -82,6 +82,7 @@ class BulkData:
 
     def delete_old_data(self, directory):
         for file in directory.glob('*'):
+            print(f"Deleting {file.name} ...")
             file.unlink()
 
     def download_extract_data(self, path, name):
