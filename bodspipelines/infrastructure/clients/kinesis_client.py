@@ -82,11 +82,17 @@ class KinesisStream:
                                                         ShardIteratorType='TRIM_HORIZON')
 	                                                #ShardIteratorType='LATEST')
         shard_iterator = shard_iterator['ShardIterator']
+        empty = 0
         while True:
             record_response = self.client.get_records(ShardIterator=shard_iterator, Limit=100)
             print(record_response)
-            yield unpack_records(record_response)
-            if 'NextShardIterator' in record_response:
+            if len(record_response['Records']) == 0 and record_response['Records']['MillisBehindLatest'] == 0:
+                empty += 1
+            else:
+                yield unpack_records(record_response)
+            if empty > 250:
+                break
+            elif 'NextShardIterator' in record_response:
                 shard_iterator = record_response['NextShardIterator']
             else:
                 break
