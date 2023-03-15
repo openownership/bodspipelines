@@ -1,11 +1,14 @@
-import requests
+from bodspipelines.infrastructure.utils import download_delayed
 
-def gleif_download_links(url):
-    out = {}
-    with requests.get(url) as r:
-        r.raise_for_status()
-        data = r.json()
-        out['lei'] = data['data']['lei2']['full_file']['xml']['url']
-        out['rr'] = data['data']['rr']['full_file']['xml']['url']
-        out['repex'] = data['data']['repex']['full_file']['xml']['url']
-    return out
+def get_source(r, name):
+    data = r.json()
+    if name = 'lei':
+        return data['data']['lei2']['full_file']['xml']['url']
+    elif name = 'rr':
+        return data['data']['rr']['full_file']['xml']['url']
+    elif name = 'repex'
+        return data['data']['repex']['full_file']['xml']['url']
+    return None
+
+def gleif_download_link(url):
+    return download_delayed(url, get_source)

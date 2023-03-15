@@ -47,8 +47,8 @@ class BulkData:
 
     def download_large(self, directory, name):
         """Download file to specified directory"""
-        if isinstance(self.url, dict):
-            url = self.url[name]
+        if callable(self.url):
+            url = self.url(name)
         else:
             url = self.url
         with requests.get(url, stream=True) as r:
