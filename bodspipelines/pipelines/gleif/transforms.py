@@ -101,7 +101,8 @@ def transform_rr(data):
     statementDate = format_date(data['Registration']['LastUpdateDate'])
     subjectDescribedByEntityStatement = generate_statement_id(data['Relationship']['EndNode']['NodeID'], 'entityStatement')
     interestedPartyDescribedByEntityStatement = generate_statement_id(data['Relationship']['StartNode']['NodeID'], 'entityStatement')
-    interestType = 'otherInfluenceOrControl'
+    #interestType = 'otherInfluenceOrControl'
+    interestType = 'other-influence-or-control'
     interestLevel = interest_level(data['Relationship']['RelationshipType'], 'unknown')
     #periods = data['Relationship']['RelationshipPeriods']
     interestStartDate = False
