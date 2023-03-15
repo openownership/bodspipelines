@@ -5,6 +5,7 @@ import datetime
 import dateutil.parser
 import pytz
 from typing import List, Union
+import pycountry
 
 def format_address(address_type, address):
     """Format address structure"""
@@ -45,7 +46,11 @@ def transform_lei(data):
     statementDate = format_date(data['Registration']['LastUpdateDate'])
     entityType = 'registeredEntity'
     name = data['Entity']['LegalName']
-    jurisdiction = data['Entity']['LegalJurisdiction']
+    try:
+        country = pycountry.countries.get(alpha_2=data['Entity']['LegalJurisdiction']).name
+    except AttributeError:
+        country = data['Entity']['LegalJurisdiction']
+    jurisdiction = {'name': country, 'code': data['Entity']['LegalJurisdiction']}
     identifiers = [{'id': data['LEI'], 'scheme':'XI-LEI', 'schemeName':'Global Legal Entity Identifier Index'}]
     if 'RegistrationAuthority' in data['Entity']:
         authority = {}
