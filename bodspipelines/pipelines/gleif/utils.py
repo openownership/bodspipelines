@@ -2,11 +2,11 @@ from bodspipelines.infrastructure.utils import download_delayed
 
 def get_source(r, name):
     data = r.json()
-    if name = 'lei':
+    if name == 'lei':
         return data['data']['lei2']['full_file']['xml']['url']
-    elif name = 'rr':
+    elif name == 'rr':
         return data['data']['rr']['full_file']['xml']['url']
-    elif name = 'repex'
+    elif name == 'repex'
         return data['data']['repex']['full_file']['xml']['url']
     return None
 
