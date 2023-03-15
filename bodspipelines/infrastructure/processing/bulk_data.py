@@ -23,13 +23,17 @@ class BulkData:
         """Return manifest file path"""
         return self.data_dir(path) / "manifest.json"
 
-    def create_manifest(self, path):
+    def create_manifest(self, path, name):
         """Create manifest file"""
         manifest_file = self.manifest_file(path)
+        if callable(self.url):
+            url = self.url(name)
+        else:
+            url = self.url
         with open(manifest_file, "w") as outfile:
-            json.dump({"url": self.url, "timestamp": time.time()}, outfile)
+            json.dump({"url": url, "timestamp": time.time()}, outfile)
 
-    def check_manifest(self, path):
+    def check_manifest(self, path, name):
         """Check manifest file exists and up-to-date"""
         manifest_file = self.manifest_file(path)
         if manifest_file.exists():
@@ -38,7 +42,11 @@ class BulkData:
                     manifest = json.load(openfile)
                 except json.decoder.JSONDecodeError:
                     return False
-            if manifest["url"] == self.url and abs(manifest["timestamp"] - time.time()) < 24*60*60:
+            if callable(self.url):
+                url = self.url(name)
+            else:
+                url = self.url
+            if manifest["url"] == url and abs(manifest["timestamp"] - time.time()) < 24*60*60:
                 return True
             else:
                 return False
@@ -86,9 +94,9 @@ class BulkData:
 
     def prepare(self, path, name) -> Path:
         """Prepare data for use"""
-        if not self.check_manifest(path):
+        if not self.check_manifest(path, name):
             self.download_extract_data(path, name)
-            self.create_manifest(path)
+            self.create_manifest(path, name)
         else:
             print(f"{self.display} data up-to-date ...")
         for file in self.data_dir(path).glob('*.xml'):
