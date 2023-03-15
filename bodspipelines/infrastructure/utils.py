@@ -30,4 +30,4 @@ def download_delayed(url, func):
             r.raise_for_status()
             out = func(r, param)
         return out
-    return partial(download, url=url, func=func)
+    return partial(download, url, func)
