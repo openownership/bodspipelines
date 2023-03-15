@@ -17,7 +17,7 @@ from bodspipelines.pipelines.gleif.transforms import Gleif2Bods
 from bodspipelines.pipelines.gleif.indexes import (lei_properties, rr_properties, repex_properties,
                                           match_lei, match_rr, match_repex,
                                           id_lei, id_rr, id_repex)
-from bodspipelines.pipelines.gleif.utils import gleif_download_links
+from bodspipelines.pipelines.gleif.utils import gleif_download_link
 
 # Defintion of LEI-CDF v3.1 XML date source
 lei_source = Source(name="lei",
