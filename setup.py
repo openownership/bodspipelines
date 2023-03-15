@@ -13,7 +13,8 @@ install_requires = [
     "python-dateutil",
     "requests",
     "tqdm",
-    "pytz"
+    "pytz",
+    "pycountry"
 ]
 
 setup(
