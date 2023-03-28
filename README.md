@@ -9,10 +9,19 @@ stream (to transmit to a later pipeline stage or as final ouput). Often the fina
 stage will have a Firehose delivery stream attached to the Kinesis stream, to
 to write the BODS statements to a S3 bucket as JSON lines. 
 
+## Usage
+
+An example of a pipeline using the bodspipelines library is the 
+[BODS GLEIF Pipeline](https://github.com/openownership/bods-gleif-pipeline). 
+The basic logic for the pipeline is contained within the bodspipelines/pipelines 
+directory of the library, whereas the more system specfic details (Docker 
+configuration, scripts to control pipeline etc.) are in the specific pipeline's 
+repository.
+
 ## Development
 
 ### Implimenting a new pipeline
 
 The bodspipelines/pipelines directory contains a directory for each pipeline the 
 library supports (e.g. GLEIF). Adding a new pipeline to the library requires adding
-a new directory, with the pipeline name, in the the bodspipelines/pipelines directory
+a new directory, with the pipeline name, in the the bodspipelines/pipelines directory.
