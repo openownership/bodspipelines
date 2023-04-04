@@ -99,8 +99,8 @@ def transform_rr(data):
                                         data['Relationship']['RelationshipType'], 'ownershipOrControlStatement')
     statementType = 'ownershipOrControlStatement'
     statementDate = format_date(data['Registration']['LastUpdateDate'])
-    subjectDescribedByEntityStatement = generate_statement_id(data['Relationship']['EndNode']['NodeID'], 'entityStatement')
-    interestedPartyDescribedByEntityStatement = generate_statement_id(data['Relationship']['StartNode']['NodeID'], 'entityStatement')
+    subjectDescribedByEntityStatement = generate_statement_id(data['Relationship']['StartNode']['NodeID'], 'entityStatement')
+    interestedPartyDescribedByEntityStatement = generate_statement_id(data['Relationship']['EndNode']['NodeID'], 'entityStatement')
     #interestType = 'otherInfluenceOrControl'
     interestType = 'other-influence-or-control'
     interestLevel = interest_level(data['Relationship']['RelationshipType'], 'unknown')
