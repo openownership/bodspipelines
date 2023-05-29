@@ -24,4 +24,4 @@ repository.
 
 The bodspipelines/pipelines directory contains a directory for each pipeline the 
 library supports (e.g. GLEIF). Adding a new pipeline to the library requires adding
-a new directory, with the pipeline name, in the the bodspipelines/pipelines directory.
+a new directory, with the pipeline name, in the bodspipelines/pipelines directory.
