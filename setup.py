@@ -5,7 +5,7 @@ from setuptools.command.install import install
 install_requires = [
     "boto3",
     "elasticsearch",
-    "httpx",
+    "elastic_transport",
     "lxml",
     "parsel",
     "progress",
