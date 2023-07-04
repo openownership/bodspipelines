@@ -80,7 +80,7 @@ class ElasticsearchClient:
         print("Bulk:", errors)
         return errors
 
-    def batch_store_data(self, actions, batch, index_name):
+    def batch_store_data(self, actions, batch, index_name, output_new=True):
         """Store bulk data in index"""
         record_count = 0
         new_records = 0
@@ -88,7 +88,7 @@ class ElasticsearchClient:
             record_count += 1
             #print(ok, result)
             #print(batch[0])
-            if ok:
+            if ok and output_new:
                 new_records += 1
                 match = [i for i in batch if i['_id'] == result['create']['_id']]
                 yield match[0]['_source']
