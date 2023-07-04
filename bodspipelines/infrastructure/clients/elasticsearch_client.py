@@ -48,6 +48,11 @@ class ElasticsearchClient:
             self.client.options(ignore_status=400).indices.create(index=self.index_name, settings=settings, mappings=mappings)
             print('Elasticserach created Index')
 
+    def index_settings(self, index_name, properties):
+        self.set_index(index_name)
+        if self.client.indices.exists(index=self.index_name):
+            self.client.indices.put_settings(index=self.index_name, body=properties)
+
     def delete_index(self):
         """Delete index"""
         self.client.options(ignore_status=[400, 404]).indices.delete(index=self.index_name)
@@ -118,4 +123,5 @@ class ElasticsearchClient:
 
     def check_new(self, data):
         pass
+
 
