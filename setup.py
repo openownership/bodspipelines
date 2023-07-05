@@ -14,7 +14,8 @@ install_requires = [
     "requests",
     "tqdm",
     "pytz",
-    "pycountry"
+    "pycountry",
+    "redis"
 ]
 
 setup(
