@@ -26,11 +26,8 @@ class RedisClient:
         with self.client.pipeline() as pipe:
             for item in actions:
                 key = get_key(index_name, item['_id'])
-                pipe.setnx('OUR-SEQUENCE-KEY', json.dumps(item))
+                pipe.setnx(key, json.dumps(item['_source']))
             results = pipe.execute()
             for result in results:
                 if result is True:
                     new_records += 1
-
-        for ok, result in streaming_bulk(client=self.client, actions=actions, raise_on_error=False): #index=index_name,
-            record_count += 1
