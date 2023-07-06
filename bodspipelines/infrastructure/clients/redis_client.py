@@ -28,6 +28,9 @@ class RedisClient:
                 key = get_key(index_name, item['_id'])
                 pipe.setnx(key, json.dumps(item['_source']))
             results = pipe.execute()
-            for result in results:
-                if result is True:
+            for i, result in enumerate(results):
+                if result is True and output_new:
                     new_records += 1
+                    yield batch[i]['_source']
+                else:
+                    print(result, batch[i]['_if'])
