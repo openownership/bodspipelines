@@ -1,6 +1,6 @@
 import os
 import json
-from elasticsearch import Elasticsearch
+from elasticsearch import Elasticsearch, NotFoundError
 from elasticsearch.helpers import bulk, streaming_bulk
 
 def create_client():
@@ -10,9 +10,9 @@ def create_client():
     port = os.getenv('ELASTICSEARCH_PORT')
     password = os.getenv('ELASTICSEARCH_PASSWORD')
     if password:
-        return Elasticsearch(f"{protocol}://{host}:{port}", basic_auth=('elastic', password), timeout=30, max_retries=10, retry_on_timeout=True)
+        return Elasticsearch(f"{protocol}://{host}:{port}", basic_auth=('elastic', password), request_timeout=30, max_retries=10, retry_on_timeout=True)
     else:
-        return Elasticsearch(f"{protocol}://{host}:{port}", timeout=30, max_retries=10, retry_on_timeout=True) #, basic_auth=('elastic', password))
+        return Elasticsearch(f"{protocol}://{host}:{port}", request_timeout=30, max_retries=10, retry_on_timeout=True) #, basic_auth=('elastic', password))
 
 def index_definition(record, out):
     """Create index definition from record"""
@@ -26,9 +26,10 @@ def index_definition(record, out):
 
 class ElasticsearchClient:
     """ElasticsearchClient class"""
-    def __init__(self):
+    def __init__(self, indexes):
         """Initial setup"""
         self.client = create_client()
+        self.indexes = indexes
         self.index_name = None
 
     def set_index(self, index_name):
@@ -57,6 +58,15 @@ class ElasticsearchClient:
         """Delete index"""
         self.client.options(ignore_status=[400, 404]).indices.delete(index=self.index_name)
 
+    def setup_indexes(self):
+        """Moved from storage"""
+        for index_name in self.indexes:
+            self.create_index(index_name, self.indexes[index_name]['properties'])
+
+    def setup(self):
+        """Setup storage"""
+        self.setup_indexes(self)
+
     def stats(self, index_name):
         """Get index statistics"""
         return self.client.indices.stats(index=index_name)
@@ -65,9 +75,9 @@ class ElasticsearchClient:
         """Store data in index"""
         if isinstance(data, list):
             for d in data:
-                self.client.index(index=self.index_name, document=d)
+                self.client.index(index=self.index_name, id=d['_id'], document=d['_source'])
         else:
-            self.client.index(index=self.index_name, document=data)
+            self.client.index(index=self.index_name, id=data['_id'], document=data['_source'])
 
     def bulk_store_data(self, actions, index_name):
         """Store bulk data in index"""
@@ -108,6 +118,14 @@ class ElasticsearchClient:
             print(f"Storing in {index_name(batch[0]['_source'])}: {record_count} records; {new_records} new records")
         else:
             print(f"Storing in {index_name}: {record_count} records; {new_records} new records")
+
+    def get(self, id):
+        """Get by id"""
+        try:
+            result = self.client.get(index=self.index_name,  id=id)
+        except NotFoundError:
+            return None
+        return result['_source']
 
     def search(self, search):
         """Search index"""

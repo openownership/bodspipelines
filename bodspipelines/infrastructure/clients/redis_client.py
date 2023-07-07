@@ -1,23 +1,28 @@
 import os
 import json
 
-import redis
+from redis import Redis, RedisError
 
 def create_client():
     """Create redis client"""
     host = os.getenv('REDIS_HOST')
     port = os.getenv('REDIS_PORT')
-    return redis.Redis(host=host, port=port)
+    return Redis(host=host, port=port)
 
 def get_key(index, id):
     return f"{index}-{id}"
 
 class RedisClient:
     """RedisClient class"""
-    def __init__(self):
+    def __init__(self, indexes):
         """Initial setup"""
         self.client = create_client()
+        self.indexes = indexes
         self.index_name = None
+
+    def set_index(self, index_name):
+        """Set index name"""
+        self.index_name = index_name
 
     def batch_store_data(self, actions, batch, index_name, output_new=True):
         """Store bulk data in index"""
@@ -34,3 +39,22 @@ class RedisClient:
                     yield batch[i]['_source']
                 else:
                     print(result, batch[i]['_if'])
+
+    def get(self, id):
+        """Search index"""
+        key = get_key(self.index_name, id)
+        try:
+            value = self.client.get(key)
+        except RedisError:
+            return None
+        return json.loads(value)
+
+    def store_data(self, data):
+        """Store data in index"""
+        if isinstance(data, list):
+            for d in data:
+                key = get_key(self.index_name, d['_id'])
+                self.client.set(key, d['_source'])
+        else:
+            key = get_key(self.index_name, data['_id'])
+            self.client.set(key, data['_source'])

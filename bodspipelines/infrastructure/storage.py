@@ -3,46 +3,13 @@ from dataclasses import dataclass
 
 from bodspipelines.infrastructure.clients.elasticsearch_client import ElasticsearchClient
 
-class ElasticStorage:
-    """Elasticsearch storage definition class"""
-    def __init__(self, indexes):
-        self.indexes = indexes
-        self.storage = ElasticsearchClient()
-        self.current_index = None
+class Storage:
+    """Storage definition class"""
+    def __init__(self, storage):
+        self.storage = storage
 
-    def setup_indexes(self):
-        for index_name in self.indexes:
-            self.storage.create_index(index_name, self.indexes[index_name]['properties'])
-
-    def create_action(self, index_name, item):
-        #print(index_name, item)
-        if callable(index_name): index_name = index_name(item)
-        #return {"create": { "_index" : index_name, "_id" : self.indexes[index_name]["id"](item)}}
-        return {"_id": self.indexes[index_name]["id"](item), '_index': index_name, '_op_type': 'create', "_source": item}
-
-    def action_stream(self, stream, index_name):
-        for item in stream:
-            yield self.create_action(index_name, item)
-
-    def batch_stream(self, stream, index_name):
-        for item in stream:
-            yield self.create_action(index_name, item), item
-
-    def create_batch(self, batch):
-        def func():
-            for i in batch:
-                yield i
-        return func(), batch
-
-    def batch_stream(self, stream, index_name):
-        batch = []
-        for item in stream:
-            batch.append(self.create_action(index_name, item))
-            if len(batch) > 485:
-                yield self.create_batch(batch)
-                batch = []
-        if len(batch) > 0:
-            yield self.create_batch(batch)
+    def setup(self):
+        self.storage.setup()
 
     def list_indexes(self):
         return self.storage.list_indexes()
@@ -69,48 +36,56 @@ class ElasticStorage:
         self.storage.delete_index()
         self.storage.create_index(index_name, self.indexes[index_name]['properties'])
 
+    def create_action(self, index_name, item):
+        if callable(index_name): index_name = index_name(item)
+        return {"_id": self.storage.indexes[index_name]["id"](item), '_index': index_name, '_op_type': 'create', "_source": item}
+
+    def get(self, id):
+        return self.storage.get(id)
+
+    #def add_item(self, item, item_type):
+    #    query = self.storage.indexes[item_type]['match'](item)
+    #    match = self.storage.search(query)
+    #    if not match['hits']['hits']:
+    #        out = self.storage.store_data(item)
+    #        return item
+    #    else:
+    #        return False
+
     def add_item(self, item, item_type):
-        #print(item_type, self.indexes[item_type])
-        query = self.indexes[item_type]['match'](item)
-        #print("Query:", query)
-        match = self.storage.search(query)
-        #print(match)
-        if not match['hits']['hits']:
-            out = self.storage.store_data(item)
-            #print(out)
+        id = self.storage.indexes[item_type]['id'](item)
+        result = self.storage.get(id)
+        if not result:
+            action = self.create_action(item_type, item)
+            out = self.storage.store_data(action)
             return item
         else:
             return False
 
+
     def process(self, item, item_type):
-        if item_type != self.current_index:
-            self.set_index(item_type)
+        if item_type != self.storage.index_name:
+            self.storage.set_index(item_type)
         return self.add_item(item, item_type)
 
-    def process_stream(self, stream, item_type):
-        for item in self.storage.bulk_store_data(self.action_stream(stream, item_type), item_type):
-            yield item
+    def create_batch(self, batch):
+        def func():
+            for i in batch:
+                yield i
+        return func(), batch
 
-    def process_batch(self, stream, item_type):
+    def batch_stream(self, stream, index_name):
         batch = []
-        for action, item in self.batch_stream(stream, item_type):
-            batch.append(action)
-            batch.append(item)
-            if len(batch) > 499:
-                for item in self.storage.batch_store_data(batch, item_type):
-                    yield item
+        for item in stream:
+            batch.append(self.create_action(index_name, item))
+            if len(batch) > 485:
+                yield self.create_batch(batch)
                 batch = []
+        if len(batch) > 0:
+            yield self.create_batch(batch)
 
     def process_batch(self, stream, item_type):
         for actions, items in self.batch_stream(stream, item_type):
             for item in self.storage.batch_store_data(actions, items, item_type):
                 yield item
-            #top_mem()
 
-    def query(self, index_name, query):
-        self.storage.set_index(index_name)
-        return self.storage.search(query)
-
-    def get_all(self, index_name):
-        self.storage.set_index(index_name)
-        return self.storage.search({'match_all': {}})
