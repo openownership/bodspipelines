@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><repex:ReportingExceptionData xmlns:repex="http://www.gleif.org/data/schema/repex/2016" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <repex:Header>
+    <repex:ContentDate>2023-06-09T09:03:29Z</repex:ContentDate>
+    <repex:FileContent>GLEIF_FULL_PUBLISHED</repex:FileContent>
+    <repex:RecordCount>4244309</repex:RecordCount>
+  </repex:Header>
+  <repex:ReportingExceptions>
+<repex:Exception xmlns:repex="http://www.gleif.org/data/schema/repex/2016">
+   <repex:LEI>001GPB6A9XPE8XJICC14</repex:LEI>
+   <repex:ExceptionCategory>DIRECT_ACCOUNTING_CONSOLIDATION_PARENT</repex:ExceptionCategory>
+   <repex:ExceptionReason>NO_KNOWN_PERSON</repex:ExceptionReason>
+</repex:Exception>
+<repex:Exception xmlns:repex="http://www.gleif.org/data/schema/repex/2016">
+   <repex:LEI>004L5FPTUREIWK9T2N63</repex:LEI>
+   <repex:ExceptionCategory>DIRECT_ACCOUNTING_CONSOLIDATION_PARENT</repex:ExceptionCategory>
+   <repex:ExceptionReason>NON_CONSOLIDATING</repex:ExceptionReason>
+</repex:Exception>
+<repex:Exception xmlns:repex="http://www.gleif.org/data/schema/repex/2016">
+   <repex:LEI>00EHHQ2ZHDCFXJCPCL46</repex:LEI>
+   <repex:ExceptionCategory>DIRECT_ACCOUNTING_CONSOLIDATION_PARENT</repex:ExceptionCategory>
+   <repex:ExceptionReason>NON_CONSOLIDATING</repex:ExceptionReason>
+</repex:Exception>
+<repex:Exception xmlns:repex="http://www.gleif.org/data/schema/repex/2016">
+   <repex:LEI>00GBW0Z2GYIER7DHDS71</repex:LEI>
+   <repex:ExceptionCategory>DIRECT_ACCOUNTING_CONSOLIDATION_PARENT</repex:ExceptionCategory>
+   <repex:ExceptionReason>NON_CONSOLIDATING</repex:ExceptionReason>
+</repex:Exception>
+<repex:Exception xmlns:repex="http://www.gleif.org/data/schema/repex/2016">
+   <repex:LEI>00KLB2PFTM3060S2N216</repex:LEI>
+   <repex:ExceptionCategory>DIRECT_ACCOUNTING_CONSOLIDATION_PARENT</repex:ExceptionCategory>
+   <repex:ExceptionReason>NO_KNOWN_PERSON</repex:ExceptionReason>
+</repex:Exception>
+<repex:Exception xmlns:repex="http://www.gleif.org/data/schema/repex/2016">
+   <repex:LEI>00QDBXDXLLF3W3JJJO36</repex:LEI>
+   <repex:ExceptionCategory>DIRECT_ACCOUNTING_CONSOLIDATION_PARENT</repex:ExceptionCategory>
+   <repex:ExceptionReason>NO_KNOWN_PERSON</repex:ExceptionReason>
+</repex:Exception>
+<repex:Exception xmlns:repex="http://www.gleif.org/data/schema/repex/2016">
+   <repex:LEI>00TV1D5YIV5IDUGWBW29</repex:LEI>
+   <repex:ExceptionCategory>DIRECT_ACCOUNTING_CONSOLIDATION_PARENT</repex:ExceptionCategory>
+   <repex:ExceptionReason>NON_CONSOLIDATING</repex:ExceptionReason>
+</repex:Exception>
+<repex:Exception xmlns:repex="http://www.gleif.org/data/schema/repex/2016">
+   <repex:LEI>00X8DSV26QKJPKUT5B34</repex:LEI>
+   <repex:ExceptionCategory>DIRECT_ACCOUNTING_CONSOLIDATION_PARENT</repex:ExceptionCategory>
+   <repex:ExceptionReason>NON_CONSOLIDATING</repex:ExceptionReason>
+</repex:Exception>
+<repex:Exception xmlns:repex="http://www.gleif.org/data/schema/repex/2016">
+   <repex:LEI>010G7UHBHEI87EKP0Q97</repex:LEI>
+   <repex:ExceptionCategory>DIRECT_ACCOUNTING_CONSOLIDATION_PARENT</repex:ExceptionCategory>
+   <repex:ExceptionReason>NON_CONSOLIDATING</repex:ExceptionReason>
+</repex:Exception>
+<repex:Exception xmlns:repex="http://www.gleif.org/data/schema/repex/2016">
+   <repex:LEI>01370W6ZIY66KQ4J3570</repex:LEI>
+   <repex:ExceptionCategory>DIRECT_ACCOUNTING_CONSOLIDATION_PARENT</repex:ExceptionCategory>
+   <repex:ExceptionReason>NON_PUBLIC</repex:ExceptionReason>
+</repex:Exception>
+  </repex:ReportingExceptions>
+</repex:ReportingExceptionData>
