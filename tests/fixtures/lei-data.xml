@@ -1,0 +1,767 @@
+<?xml version="1.0" encoding="UTF-8"?><lei:LEIData xmlns:lei="http://www.gleif.org/data/schema/leidata/2016" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <lei:LEIHeader>
+    <lei:ContentDate>2023-06-05T08:20:51Z</lei:ContentDate>
+    <lei:FileContent>GLEIF_FULL_PUBLISHED</lei:FileContent>
+    <lei:RecordCount>2394586</lei:RecordCount>
+  </lei:LEIHeader>
+  <lei:LEIRecords>
+
+<lei:LEIRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:lei="http://www.gleif.org/data/schema/leidata/2016"
+               xmlns:gleif="http://www.gleif.org/data/schema/golden-copy/extensions/1.0">
+   <lei:LEI>001GPB6A9XPE8XJICC14</lei:LEI>
+   <lei:Entity>
+      <lei:LegalName xml:lang="en">Fidelity Advisor Leveraged Company Stock Fund</lei:LegalName>
+      <lei:OtherEntityNames>
+         <lei:OtherEntityName xml:lang="en" type="PREVIOUS_LEGAL_NAME">FIDELITY ADVISOR SERIES I - Fidelity Advisor Leveraged Company Stock Fund</lei:OtherEntityName>
+      </lei:OtherEntityNames>
+      <lei:LegalAddress xml:lang="en">
+         <lei:FirstAddressLine>245 SUMMER STREET</lei:FirstAddressLine>
+         <lei:City>BOSTON</lei:City>
+         <lei:Region>US-MA</lei:Region>
+         <lei:Country>US</lei:Country>
+         <lei:PostalCode>02210</lei:PostalCode>
+      </lei:LegalAddress>
+      <lei:HeadquartersAddress xml:lang="en">
+         <lei:FirstAddressLine>C/O Fidelity Management &amp; Research Company LLC</lei:FirstAddressLine>
+         <lei:City>Boston</lei:City>
+         <lei:Region>US-MA</lei:Region>
+         <lei:Country>US</lei:Country>
+         <lei:PostalCode>02210</lei:PostalCode>
+      </lei:HeadquartersAddress>
+      <lei:RegistrationAuthority>
+         <lei:RegistrationAuthorityID>RA000665</lei:RegistrationAuthorityID>
+         <lei:RegistrationAuthorityEntityID>S000005113</lei:RegistrationAuthorityEntityID>
+      </lei:RegistrationAuthority>
+      <lei:LegalJurisdiction>US-MA</lei:LegalJurisdiction>
+      <lei:EntityCategory>FUND</lei:EntityCategory>
+      <lei:LegalForm>
+         <lei:EntityLegalFormCode>8888</lei:EntityLegalFormCode>
+         <lei:OtherLegalForm>FUND</lei:OtherLegalForm>
+      </lei:LegalForm>
+      <lei:EntityStatus>ACTIVE</lei:EntityStatus>
+      <lei:EntityCreationDate>2012-11-29T00:00:00.000Z</lei:EntityCreationDate>
+   </lei:Entity>
+   <lei:Registration>
+      <lei:InitialRegistrationDate>2012-11-29T16:33:00.000Z</lei:InitialRegistrationDate>
+      <lei:LastUpdateDate>2023-05-18T15:41:20.212Z</lei:LastUpdateDate>
+      <lei:RegistrationStatus>ISSUED</lei:RegistrationStatus>
+      <lei:NextRenewalDate>2024-05-18T15:48:53.604Z</lei:NextRenewalDate>
+      <lei:ManagingLOU>EVK05KS7XY1DEII3R011</lei:ManagingLOU>
+      <lei:ValidationSources>FULLY_CORROBORATED</lei:ValidationSources>
+      <lei:ValidationAuthority>
+         <lei:ValidationAuthorityID>RA000665</lei:ValidationAuthorityID>
+         <lei:ValidationAuthorityEntityID>S000005113</lei:ValidationAuthorityEntityID>
+      </lei:ValidationAuthority>
+   </lei:Registration>
+   <lei:Extension>
+      <gleif:Geocoding>
+         <gleif:original_address>02210, Boston, US-MA, US</gleif:original_address>
+         <gleif:relevance>0.86</gleif:relevance>
+         <gleif:lat>42.34944</gleif:lat>
+         <gleif:lng>-71.04614</gleif:lng>
+         <gleif:geocoding_date>2019-01-03T01:07:47</gleif:geocoding_date>
+         <gleif:bounding_box>TopLeft.Latitude: 42.3552, TopLeft.Longitude: -71.05686, BottomRight.Latitude: 42.33898, BottomRight.Longitude: -71.02185</gleif:bounding_box>
+         <gleif:match_level>postalCode</gleif:match_level>
+         <gleif:formatted_address>02210, Boston, MA, United States</gleif:formatted_address>
+         <gleif:mapped_location_id>NT_IkQCFrnUDOVzs3IIdVf1EA</gleif:mapped_location_id>
+         <gleif:mapped_postalcode>02210</gleif:mapped_postalcode>
+         <gleif:mapped_city>Boston</gleif:mapped_city>
+         <gleif:mapped_state>MA</gleif:mapped_state>
+         <gleif:mapped_country>USA</gleif:mapped_country>
+      </gleif:Geocoding>
+   </lei:Extension>
+</lei:LEIRecord>
+<lei:LEIRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:lei="http://www.gleif.org/data/schema/leidata/2016"
+               xmlns:gleif="http://www.gleif.org/data/schema/golden-copy/extensions/1.0">
+   <lei:LEI>004L5FPTUREIWK9T2N63</lei:LEI>
+   <lei:Entity>
+      <lei:LegalName xml:lang="en">Hutchin Hill Capital, LP</lei:LegalName>
+      <lei:LegalAddress xml:lang="en">
+         <lei:FirstAddressLine>C/O Corporation Service Company</lei:FirstAddressLine>
+         <lei:AdditionalAddressLine>2711 Centerville Road</lei:AdditionalAddressLine>
+         <lei:AdditionalAddressLine>Suite 400</lei:AdditionalAddressLine>
+         <lei:City>Wilmington</lei:City>
+         <lei:Region>US-DE</lei:Region>
+         <lei:Country>US</lei:Country>
+         <lei:PostalCode>19808</lei:PostalCode>
+      </lei:LegalAddress>
+      <lei:HeadquartersAddress xml:lang="en">
+         <lei:FirstAddressLine>22nd Floor</lei:FirstAddressLine>
+         <lei:AdditionalAddressLine>888 7th Avenue</lei:AdditionalAddressLine>
+         <lei:City>New York</lei:City>
+         <lei:Region>US-NY</lei:Region>
+         <lei:Country>US</lei:Country>
+         <lei:PostalCode>10106</lei:PostalCode>
+      </lei:HeadquartersAddress>
+      <lei:RegistrationAuthority>
+         <lei:RegistrationAuthorityID>RA000602</lei:RegistrationAuthorityID>
+         <lei:RegistrationAuthorityEntityID>4386463</lei:RegistrationAuthorityEntityID>
+      </lei:RegistrationAuthority>
+      <lei:LegalJurisdiction>US-DE</lei:LegalJurisdiction>
+      <lei:EntityCategory>GENERAL</lei:EntityCategory>
+      <lei:LegalForm>
+         <lei:EntityLegalFormCode>T91T</lei:EntityLegalFormCode>
+      </lei:LegalForm>
+      <lei:EntityStatus>ACTIVE</lei:EntityStatus>
+   </lei:Entity>
+   <lei:Registration>
+      <lei:InitialRegistrationDate>2012-06-06T15:56:00.000Z</lei:InitialRegistrationDate>
+      <lei:LastUpdateDate>2020-07-17T12:40:00.000Z</lei:LastUpdateDate>
+      <lei:RegistrationStatus>LAPSED</lei:RegistrationStatus>
+      <lei:NextRenewalDate>2018-05-08T13:46:00.000Z</lei:NextRenewalDate>
+      <lei:ManagingLOU>EVK05KS7XY1DEII3R011</lei:ManagingLOU>
+      <lei:ValidationSources>FULLY_CORROBORATED</lei:ValidationSources>
+      <lei:ValidationAuthority>
+         <lei:ValidationAuthorityID>RA000602</lei:ValidationAuthorityID>
+         <lei:ValidationAuthorityEntityID>4386463</lei:ValidationAuthorityEntityID>
+      </lei:ValidationAuthority>
+   </lei:Registration>
+   <lei:Extension>
+      <gleif:Geocoding>
+         <gleif:original_address>C/O Corporation Service Company, 2711 Centerville Road, Suite 400, null, US, US-DE, 19808, Wilmington</gleif:original_address>
+         <gleif:relevance>0.93</gleif:relevance>
+         <gleif:match_type>pointAddress</gleif:match_type>
+         <gleif:lat>39.75411</gleif:lat>
+         <gleif:lng>-75.62652</gleif:lng>
+         <gleif:geocoding_date>2016-08-16T03:54:45</gleif:geocoding_date>
+         <gleif:bounding_box>TopLeft.Latitude: 39.7552342, TopLeft.Longitude: -75.6279822, BottomRight.Latitude: 39.7529858, BottomRight.Longitude: -75.6250578</gleif:bounding_box>
+         <gleif:match_level>houseNumber</gleif:match_level>
+         <gleif:formatted_address>2711 Centerville Rd, Wilmington, DE 19808, United States</gleif:formatted_address>
+         <gleif:mapped_location_id>NT_8wi0yH62lxXql.LtXORq-C_ycTMxA</gleif:mapped_location_id>
+         <gleif:mapped_street>Centerville Rd</gleif:mapped_street>
+         <gleif:mapped_housenumber>2711</gleif:mapped_housenumber>
+         <gleif:mapped_postalcode>19808</gleif:mapped_postalcode>
+         <gleif:mapped_city>Wilmington</gleif:mapped_city>
+         <gleif:mapped_state>DE</gleif:mapped_state>
+         <gleif:mapped_country>USA</gleif:mapped_country>
+      </gleif:Geocoding>
+      <gleif:Geocoding>
+         <gleif:original_address>22nd Floor, 888 7th Avenue, 10106, New York, US-NY, US</gleif:original_address>
+         <gleif:relevance>0.94</gleif:relevance>
+         <gleif:match_type>pointAddress</gleif:match_type>
+         <gleif:lat>40.76537</gleif:lat>
+         <gleif:lng>-73.98088</gleif:lng>
+         <gleif:geocoding_date>2017-10-25T06:53:52</gleif:geocoding_date>
+         <gleif:bounding_box>TopLeft.Latitude: 40.7664942, TopLeft.Longitude: -73.9823642, BottomRight.Latitude: 40.7642458, BottomRight.Longitude: -73.9793958</gleif:bounding_box>
+         <gleif:match_level>houseNumber</gleif:match_level>
+         <gleif:formatted_address>888 7th Ave, New York, NY 10106, United States</gleif:formatted_address>
+         <gleif:mapped_location_id>NT_42almrnte4m8ALt9ONHN2C_4gDO</gleif:mapped_location_id>
+         <gleif:mapped_street>7th Ave</gleif:mapped_street>
+         <gleif:mapped_housenumber>888</gleif:mapped_housenumber>
+         <gleif:mapped_postalcode>10106</gleif:mapped_postalcode>
+         <gleif:mapped_city>New York</gleif:mapped_city>
+         <gleif:mapped_district>Clinton</gleif:mapped_district>
+         <gleif:mapped_state>NY</gleif:mapped_state>
+         <gleif:mapped_country>USA</gleif:mapped_country>
+      </gleif:Geocoding>
+   </lei:Extension>
+</lei:LEIRecord>
+<lei:LEIRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:lei="http://www.gleif.org/data/schema/leidata/2016"
+               xmlns:gleif="http://www.gleif.org/data/schema/golden-copy/extensions/1.0">
+   <lei:LEI>00EHHQ2ZHDCFXJCPCL46</lei:LEI>
+   <lei:Entity>
+      <lei:LegalName xml:lang="en">Vanguard Russell 1000 Growth Index Trust</lei:LegalName>
+      <lei:LegalAddress xml:lang="en">
+         <lei:FirstAddressLine>C/O VANGUARD FIDUCIARY TRUST COMPANY</lei:FirstAddressLine>
+         <lei:AdditionalAddressLine>VANGUARD FINANCIAL CENTER</lei:AdditionalAddressLine>
+         <lei:AdditionalAddressLine>100 VANGUARD BLVD</lei:AdditionalAddressLine>
+         <lei:City>MALVERN</lei:City>
+         <lei:Region>US-PA</lei:Region>
+         <lei:Country>US</lei:Country>
+         <lei:PostalCode>19355</lei:PostalCode>
+      </lei:LegalAddress>
+      <lei:HeadquartersAddress xml:lang="en">
+         <lei:FirstAddressLine>C/O Vanguard Fiduciary Trust Company</lei:FirstAddressLine>
+         <lei:AdditionalAddressLine>PO Box 2600</lei:AdditionalAddressLine>
+         <lei:City>Valley Forge</lei:City>
+         <lei:Region>US-PA</lei:Region>
+         <lei:Country>US</lei:Country>
+         <lei:PostalCode>19482</lei:PostalCode>
+      </lei:HeadquartersAddress>
+      <lei:RegistrationAuthority>
+         <lei:RegistrationAuthorityID>RA999999</lei:RegistrationAuthorityID>
+      </lei:RegistrationAuthority>
+      <lei:LegalJurisdiction>US-PA</lei:LegalJurisdiction>
+      <lei:EntityCategory>FUND</lei:EntityCategory>
+      <lei:LegalForm>
+         <lei:EntityLegalFormCode>8888</lei:EntityLegalFormCode>
+         <lei:OtherLegalForm>FUND</lei:OtherLegalForm>
+      </lei:LegalForm>
+      <lei:EntityStatus>ACTIVE</lei:EntityStatus>
+      <lei:EntityCreationDate>2012-10-05T00:00:00.000Z</lei:EntityCreationDate>
+   </lei:Entity>
+   <lei:Registration>
+      <lei:InitialRegistrationDate>2012-10-05T20:30:00.000Z</lei:InitialRegistrationDate>
+      <lei:LastUpdateDate>2022-07-22T09:32:00.000Z</lei:LastUpdateDate>
+      <lei:RegistrationStatus>ISSUED</lei:RegistrationStatus>
+      <lei:NextRenewalDate>2023-07-22T07:35:00.000Z</lei:NextRenewalDate>
+      <lei:ManagingLOU>EVK05KS7XY1DEII3R011</lei:ManagingLOU>
+      <lei:ValidationSources>ENTITY_SUPPLIED_ONLY</lei:ValidationSources>
+      <lei:ValidationAuthority>
+         <lei:ValidationAuthorityID>RA999999</lei:ValidationAuthorityID>
+      </lei:ValidationAuthority>
+   </lei:Registration>
+   <lei:Extension>
+      <gleif:Geocoding>
+         <gleif:original_address>VANGUARD FINANCIAL CENTER, 100 VANGUARD BLVD, 19355, MALVERN, US-PA, US</gleif:original_address>
+         <gleif:relevance>0.58</gleif:relevance>
+         <gleif:match_type>pointAddress</gleif:match_type>
+         <gleif:lat>40.05151</gleif:lat>
+         <gleif:lng>-75.50483</gleif:lng>
+         <gleif:geocoding_date>2019-11-02T03:20:38</gleif:geocoding_date>
+         <gleif:bounding_box>TopLeft.Latitude: 40.0526342, TopLeft.Longitude: -75.5062986, BottomRight.Latitude: 40.0503858, BottomRight.Longitude: -75.5033614</gleif:bounding_box>
+         <gleif:match_level>houseNumber</gleif:match_level>
+         <gleif:formatted_address>100 Vanguard Blvd, Malvern, PA 19355, United States</gleif:formatted_address>
+         <gleif:mapped_location_id>NT_mtJLOsFlDywv0-hWQgV2-D_xADM</gleif:mapped_location_id>
+         <gleif:mapped_street>Vanguard Blvd</gleif:mapped_street>
+         <gleif:mapped_housenumber>100</gleif:mapped_housenumber>
+         <gleif:mapped_postalcode>19355</gleif:mapped_postalcode>
+         <gleif:mapped_city>Malvern</gleif:mapped_city>
+         <gleif:mapped_state>PA</gleif:mapped_state>
+         <gleif:mapped_country>USA</gleif:mapped_country>
+      </gleif:Geocoding>
+      <gleif:Geocoding>
+         <gleif:original_address>19482, Valley Forge, US-PA, US</gleif:original_address>
+         <gleif:relevance>0.82</gleif:relevance>
+         <gleif:lat>40.09967</gleif:lat>
+         <gleif:lng>-75.4568199</gleif:lng>
+         <gleif:geocoding_date>2017-10-23T19:31:35</gleif:geocoding_date>
+         <gleif:bounding_box>TopLeft.Latitude: 40.11316, TopLeft.Longitude: -75.4744599, BottomRight.Latitude: 40.08618, BottomRight.Longitude: -75.4391799</gleif:bounding_box>
+         <gleif:match_level>city</gleif:match_level>
+         <gleif:formatted_address>Valley Forge, PA, United States</gleif:formatted_address>
+         <gleif:mapped_location_id>NT_jJZfRisu-cuuKGo62gAneD</gleif:mapped_location_id>
+         <gleif:mapped_postalcode>19481</gleif:mapped_postalcode>
+         <gleif:mapped_city>Valley Forge</gleif:mapped_city>
+         <gleif:mapped_state>PA</gleif:mapped_state>
+         <gleif:mapped_country>USA</gleif:mapped_country>
+      </gleif:Geocoding>
+   </lei:Extension>
+</lei:LEIRecord>
+<lei:LEIRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:lei="http://www.gleif.org/data/schema/leidata/2016"
+               xmlns:gleif="http://www.gleif.org/data/schema/golden-copy/extensions/1.0">
+   <lei:LEI>00GBW0Z2GYIER7DHDS71</lei:LEI>
+   <lei:Entity>
+      <lei:LegalName xml:lang="en">ARISTEIA CAPITAL, L.L.C.</lei:LegalName>
+      <lei:LegalAddress xml:lang="en">
+         <lei:FirstAddressLine>C/O THE CORPORATION TRUST COMPANY</lei:FirstAddressLine>
+         <lei:AdditionalAddressLine>CORPORATION TRUST CENTER 1209 ORANGE ST</lei:AdditionalAddressLine>
+         <lei:City>WILMINGTON</lei:City>
+         <lei:Region>US-DE</lei:Region>
+         <lei:Country>US</lei:Country>
+         <lei:PostalCode>19801</lei:PostalCode>
+      </lei:LegalAddress>
+      <lei:HeadquartersAddress xml:lang="en">
+         <lei:FirstAddressLine>3rd Floor</lei:FirstAddressLine>
+         <lei:AdditionalAddressLine>One Greenwich Plaza</lei:AdditionalAddressLine>
+         <lei:City>Greenwich</lei:City>
+         <lei:Region>US-CT</lei:Region>
+         <lei:Country>US</lei:Country>
+         <lei:PostalCode>06830</lei:PostalCode>
+      </lei:HeadquartersAddress>
+      <lei:RegistrationAuthority>
+         <lei:RegistrationAuthorityID>RA000602</lei:RegistrationAuthorityID>
+         <lei:RegistrationAuthorityEntityID>2758229</lei:RegistrationAuthorityEntityID>
+      </lei:RegistrationAuthority>
+      <lei:LegalJurisdiction>US-DE</lei:LegalJurisdiction>
+      <lei:EntityCategory>GENERAL</lei:EntityCategory>
+      <lei:LegalForm>
+         <lei:EntityLegalFormCode>HZEH</lei:EntityLegalFormCode>
+      </lei:LegalForm>
+      <lei:EntityStatus>ACTIVE</lei:EntityStatus>
+      <lei:EntityCreationDate>1997-06-03T00:00:00.000Z</lei:EntityCreationDate>
+   </lei:Entity>
+   <lei:Registration>
+      <lei:InitialRegistrationDate>2012-06-06T15:55:00.000Z</lei:InitialRegistrationDate>
+      <lei:LastUpdateDate>2022-10-24T21:31:00.000Z</lei:LastUpdateDate>
+      <lei:RegistrationStatus>ISSUED</lei:RegistrationStatus>
+      <lei:NextRenewalDate>2023-09-23T19:58:00.000Z</lei:NextRenewalDate>
+      <lei:ManagingLOU>EVK05KS7XY1DEII3R011</lei:ManagingLOU>
+      <lei:ValidationSources>FULLY_CORROBORATED</lei:ValidationSources>
+      <lei:ValidationAuthority>
+         <lei:ValidationAuthorityID>RA000602</lei:ValidationAuthorityID>
+         <lei:ValidationAuthorityEntityID>2758229</lei:ValidationAuthorityEntityID>
+      </lei:ValidationAuthority>
+   </lei:Registration>
+   <lei:Extension>
+      <gleif:Geocoding>
+         <gleif:original_address>CORPORATION TRUST CENTER 1209 ORANGE ST, 19801, WILMINGTON, US-DE, US</gleif:original_address>
+         <gleif:relevance>0.68</gleif:relevance>
+         <gleif:match_type>pointAddress</gleif:match_type>
+         <gleif:lat>39.74853</gleif:lat>
+         <gleif:lng>-75.54767</gleif:lng>
+         <gleif:geocoding_date>2017-10-23T01:22:27</gleif:geocoding_date>
+         <gleif:bounding_box>TopLeft.Latitude: 39.7496542, TopLeft.Longitude: -75.5491321, BottomRight.Latitude: 39.7474058, BottomRight.Longitude: -75.5462079</gleif:bounding_box>
+         <gleif:match_level>houseNumber</gleif:match_level>
+         <gleif:formatted_address>1209 N Orange St, Wilmington, DE 19801, United States</gleif:formatted_address>
+         <gleif:mapped_location_id>NT_LPfaq.yQ2Q.fbclRMDlaYC_xIDM5A</gleif:mapped_location_id>
+         <gleif:mapped_street>N Orange St</gleif:mapped_street>
+         <gleif:mapped_housenumber>1209</gleif:mapped_housenumber>
+         <gleif:mapped_postalcode>19801</gleif:mapped_postalcode>
+         <gleif:mapped_city>Wilmington</gleif:mapped_city>
+         <gleif:mapped_district>Mid-Town Brandywine</gleif:mapped_district>
+         <gleif:mapped_state>DE</gleif:mapped_state>
+         <gleif:mapped_country>USA</gleif:mapped_country>
+      </gleif:Geocoding>
+      <gleif:Geocoding>
+         <gleif:original_address>3rd Floor, One Greenwich Plaza, 06830, Greenwich, US-CT, US</gleif:original_address>
+         <gleif:relevance>0.94</gleif:relevance>
+         <gleif:match_type>interpolated</gleif:match_type>
+         <gleif:lat>41.0212442</gleif:lat>
+         <gleif:lng>-73.6243504</gleif:lng>
+         <gleif:geocoding_date>2017-10-23T23:28:56</gleif:geocoding_date>
+         <gleif:bounding_box>TopLeft.Latitude: 41.0223683, TopLeft.Longitude: -73.6258404, BottomRight.Latitude: 41.02012, BottomRight.Longitude: -73.6228604</gleif:bounding_box>
+         <gleif:match_level>houseNumber</gleif:match_level>
+         <gleif:formatted_address>1 Greenwich Plz, Greenwich, CT 06830, United States</gleif:formatted_address>
+         <gleif:mapped_location_id>NT_YEJiXdXj0CafBTQwFdspZB_xA</gleif:mapped_location_id>
+         <gleif:mapped_street>Greenwich Plz</gleif:mapped_street>
+         <gleif:mapped_housenumber>1</gleif:mapped_housenumber>
+         <gleif:mapped_postalcode>06830</gleif:mapped_postalcode>
+         <gleif:mapped_city>Greenwich</gleif:mapped_city>
+         <gleif:mapped_state>CT</gleif:mapped_state>
+         <gleif:mapped_country>USA</gleif:mapped_country>
+      </gleif:Geocoding>
+   </lei:Extension>
+</lei:LEIRecord>
+<lei:LEIRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:lei="http://www.gleif.org/data/schema/leidata/2016"
+               xmlns:gleif="http://www.gleif.org/data/schema/golden-copy/extensions/1.0">
+   <lei:LEI>00KLB2PFTM3060S2N216</lei:LEI>
+   <lei:Entity>
+      <lei:LegalName xml:lang="en">Oakmark International Fund</lei:LegalName>
+      <lei:OtherEntityNames>
+         <lei:OtherEntityName xml:lang="en" type="PREVIOUS_LEGAL_NAME">HARRIS ASSOCIATES INVESTMENT TRUST - Oakmark International Fund</lei:OtherEntityName>
+      </lei:OtherEntityNames>
+      <lei:LegalAddress xml:lang="en">
+         <lei:FirstAddressLine>155 FEDERAL ST., SUITE 700</lei:FirstAddressLine>
+         <lei:City>BOSTON</lei:City>
+         <lei:Region>US-MA</lei:Region>
+         <lei:Country>US</lei:Country>
+         <lei:PostalCode>02110</lei:PostalCode>
+      </lei:LegalAddress>
+      <lei:HeadquartersAddress xml:lang="en">
+         <lei:FirstAddressLine>111 South Wacker Drive</lei:FirstAddressLine>
+         <lei:City>Chicago</lei:City>
+         <lei:Region>US-IL</lei:Region>
+         <lei:Country>US</lei:Country>
+         <lei:PostalCode>60606-4319</lei:PostalCode>
+      </lei:HeadquartersAddress>
+      <lei:RegistrationAuthority>
+         <lei:RegistrationAuthorityID>RA000665</lei:RegistrationAuthorityID>
+         <lei:RegistrationAuthorityEntityID>S000002762</lei:RegistrationAuthorityEntityID>
+      </lei:RegistrationAuthority>
+      <lei:LegalJurisdiction>US-MA</lei:LegalJurisdiction>
+      <lei:EntityCategory>FUND</lei:EntityCategory>
+      <lei:LegalForm>
+         <lei:EntityLegalFormCode>8888</lei:EntityLegalFormCode>
+         <lei:OtherLegalForm>FUND</lei:OtherLegalForm>
+      </lei:LegalForm>
+      <lei:EntityStatus>ACTIVE</lei:EntityStatus>
+      <lei:EntityCreationDate>2012-11-04T05:00:00.000Z</lei:EntityCreationDate>
+   </lei:Entity>
+   <lei:Registration>
+      <lei:InitialRegistrationDate>2012-11-05T18:17:00.000Z</lei:InitialRegistrationDate>
+      <lei:LastUpdateDate>2023-05-18T17:24:00.540Z</lei:LastUpdateDate>
+      <lei:RegistrationStatus>ISSUED</lei:RegistrationStatus>
+      <lei:NextRenewalDate>2024-05-11T18:37:00.000Z</lei:NextRenewalDate>
+      <lei:ManagingLOU>EVK05KS7XY1DEII3R011</lei:ManagingLOU>
+      <lei:ValidationSources>FULLY_CORROBORATED</lei:ValidationSources>
+      <lei:ValidationAuthority>
+         <lei:ValidationAuthorityID>RA000665</lei:ValidationAuthorityID>
+         <lei:ValidationAuthorityEntityID>S000002762</lei:ValidationAuthorityEntityID>
+      </lei:ValidationAuthority>
+   </lei:Registration>
+   <lei:Extension>
+      <gleif:Geocoding>
+         <gleif:original_address>155 FEDERAL ST., SUITE 700, 02110, BOSTON, US-MA, US</gleif:original_address>
+         <gleif:relevance>0.93</gleif:relevance>
+         <gleif:match_type>pointAddress</gleif:match_type>
+         <gleif:lat>42.35387</gleif:lat>
+         <gleif:lng>-71.05649</gleif:lng>
+         <gleif:geocoding_date>2018-11-28T02:54:59</gleif:geocoding_date>
+         <gleif:bounding_box>TopLeft.Latitude: 42.3549942, TopLeft.Longitude: -71.0580112, BottomRight.Latitude: 42.3527458, BottomRight.Longitude: -71.0549688</gleif:bounding_box>
+         <gleif:match_level>houseNumber</gleif:match_level>
+         <gleif:formatted_address>155 Federal St, Boston, MA 02110, United States</gleif:formatted_address>
+         <gleif:mapped_location_id>NT_zdjYzYBEpt1AkSLZEPJ01C_xUTN</gleif:mapped_location_id>
+         <gleif:mapped_street>Federal St</gleif:mapped_street>
+         <gleif:mapped_housenumber>155</gleif:mapped_housenumber>
+         <gleif:mapped_postalcode>02110</gleif:mapped_postalcode>
+         <gleif:mapped_city>Boston</gleif:mapped_city>
+         <gleif:mapped_district>Downtown Boston</gleif:mapped_district>
+         <gleif:mapped_state>MA</gleif:mapped_state>
+         <gleif:mapped_country>USA</gleif:mapped_country>
+      </gleif:Geocoding>
+      <gleif:Geocoding>
+         <gleif:original_address>111 South Wacker Drive, 60606-4319, Chicago, US-IL, US</gleif:original_address>
+         <gleif:relevance>0.93</gleif:relevance>
+         <gleif:match_type>pointAddress</gleif:match_type>
+         <gleif:lat>41.88028</gleif:lat>
+         <gleif:lng>-87.63643</gleif:lng>
+         <gleif:geocoding_date>2023-05-18T19:12:15</gleif:geocoding_date>
+         <gleif:bounding_box>TopLeft.Latitude: 41.8814042, TopLeft.Longitude: -87.6379399, BottomRight.Latitude: 41.8791558, BottomRight.Longitude: -87.6349201</gleif:bounding_box>
+         <gleif:match_level>houseNumber</gleif:match_level>
+         <gleif:formatted_address>111 S Wacker Dr, Chicago, IL 60606, United States</gleif:formatted_address>
+         <gleif:mapped_location_id>NT_IOdVnXaBAG4Y7kYIc4j8oD_xETM</gleif:mapped_location_id>
+         <gleif:mapped_street>S Wacker Dr</gleif:mapped_street>
+         <gleif:mapped_housenumber>111</gleif:mapped_housenumber>
+         <gleif:mapped_postalcode>60606</gleif:mapped_postalcode>
+         <gleif:mapped_city>Chicago</gleif:mapped_city>
+         <gleif:mapped_district>Loop</gleif:mapped_district>
+         <gleif:mapped_state>IL</gleif:mapped_state>
+         <gleif:mapped_country>USA</gleif:mapped_country>
+      </gleif:Geocoding>
+   </lei:Extension>
+</lei:LEIRecord>
+<lei:LEIRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:lei="http://www.gleif.org/data/schema/leidata/2016"
+               xmlns:gleif="http://www.gleif.org/data/schema/golden-copy/extensions/1.0">
+   <lei:LEI>00QDBXDXLLF3W3JJJO36</lei:LEI>
+   <lei:Entity>
+      <lei:LegalName xml:lang="en">PRUDENTIAL INVESTMENT PORTFOLIOS 18</lei:LegalName>
+      <lei:OtherEntityNames>
+         <lei:OtherEntityName xml:lang="en" type="PREVIOUS_LEGAL_NAME">Jennison 20/20 Focus Fund</lei:OtherEntityName>
+         <lei:OtherEntityName xml:lang="en" type="PREVIOUS_LEGAL_NAME">Prudential 20/20 Focus Fund</lei:OtherEntityName>
+         <lei:OtherEntityName xml:lang="en" type="PREVIOUS_LEGAL_NAME">Prudential 20/20 Fund</lei:OtherEntityName>
+         <lei:OtherEntityName xml:lang="en" type="PREVIOUS_LEGAL_NAME">Prudential Jennison 20/20 Focus Fund</lei:OtherEntityName>
+      </lei:OtherEntityNames>
+      <lei:LegalAddress xml:lang="en">
+         <lei:FirstAddressLine>CORPORATION TRUST CENTER 1209 ORANGE ST</lei:FirstAddressLine>
+         <lei:City>WILMINGTON</lei:City>
+         <lei:Region>US-DE</lei:Region>
+         <lei:Country>US</lei:Country>
+         <lei:PostalCode>19801</lei:PostalCode>
+      </lei:LegalAddress>
+      <lei:HeadquartersAddress xml:lang="en">
+         <lei:FirstAddressLine>655 Broad Street</lei:FirstAddressLine>
+         <lei:City>Newark</lei:City>
+         <lei:Region>US-NJ</lei:Region>
+         <lei:Country>US</lei:Country>
+         <lei:PostalCode>07102</lei:PostalCode>
+      </lei:HeadquartersAddress>
+      <lei:RegistrationAuthority>
+         <lei:RegistrationAuthorityID>RA000602</lei:RegistrationAuthorityID>
+         <lei:RegistrationAuthorityEntityID>2835527</lei:RegistrationAuthorityEntityID>
+      </lei:RegistrationAuthority>
+      <lei:LegalJurisdiction>US-DE</lei:LegalJurisdiction>
+      <lei:EntityCategory>FUND</lei:EntityCategory>
+      <lei:LegalForm>
+         <lei:EntityLegalFormCode>4FSX</lei:EntityLegalFormCode>
+      </lei:LegalForm>
+      <lei:EntityStatus>ACTIVE</lei:EntityStatus>
+      <lei:EntityCreationDate>1997-12-18T05:00:00.000Z</lei:EntityCreationDate>
+   </lei:Entity>
+   <lei:Registration>
+      <lei:InitialRegistrationDate>2012-06-06T15:58:00.000Z</lei:InitialRegistrationDate>
+      <lei:LastUpdateDate>2023-05-03T07:03:05.620Z</lei:LastUpdateDate>
+      <lei:RegistrationStatus>ISSUED</lei:RegistrationStatus>
+      <lei:NextRenewalDate>2024-04-21T15:23:48.020Z</lei:NextRenewalDate>
+      <lei:ManagingLOU>EVK05KS7XY1DEII3R011</lei:ManagingLOU>
+      <lei:ValidationSources>FULLY_CORROBORATED</lei:ValidationSources>
+      <lei:ValidationAuthority>
+         <lei:ValidationAuthorityID>RA000665</lei:ValidationAuthorityID>
+         <lei:ValidationAuthorityEntityID>0001052118</lei:ValidationAuthorityEntityID>
+      </lei:ValidationAuthority>
+   </lei:Registration>
+   <lei:Extension>
+      <gleif:Geocoding>
+         <gleif:original_address>CORPORATION TRUST CENTER 1209 ORANGE ST, 19801, WILMINGTON, US-DE, US</gleif:original_address>
+         <gleif:relevance>0.68</gleif:relevance>
+         <gleif:match_type>pointAddress</gleif:match_type>
+         <gleif:lat>39.74853</gleif:lat>
+         <gleif:lng>-75.54767</gleif:lng>
+         <gleif:geocoding_date>2017-10-23T01:22:27</gleif:geocoding_date>
+         <gleif:bounding_box>TopLeft.Latitude: 39.7496542, TopLeft.Longitude: -75.5491321, BottomRight.Latitude: 39.7474058, BottomRight.Longitude: -75.5462079</gleif:bounding_box>
+         <gleif:match_level>houseNumber</gleif:match_level>
+         <gleif:formatted_address>1209 N Orange St, Wilmington, DE 19801, United States</gleif:formatted_address>
+         <gleif:mapped_location_id>NT_LPfaq.yQ2Q.fbclRMDlaYC_xIDM5A</gleif:mapped_location_id>
+         <gleif:mapped_street>N Orange St</gleif:mapped_street>
+         <gleif:mapped_housenumber>1209</gleif:mapped_housenumber>
+         <gleif:mapped_postalcode>19801</gleif:mapped_postalcode>
+         <gleif:mapped_city>Wilmington</gleif:mapped_city>
+         <gleif:mapped_district>Mid-Town Brandywine</gleif:mapped_district>
+         <gleif:mapped_state>DE</gleif:mapped_state>
+         <gleif:mapped_country>USA</gleif:mapped_country>
+      </gleif:Geocoding>
+      <gleif:Geocoding>
+         <gleif:original_address>655 Broad Street, 07102, Newark, US-NJ, US</gleif:original_address>
+         <gleif:relevance>0.92</gleif:relevance>
+         <gleif:match_type>pointAddress</gleif:match_type>
+         <gleif:lat>40.73949</gleif:lat>
+         <gleif:lng>-74.17054</gleif:lng>
+         <gleif:geocoding_date>2017-10-25T00:25:02</gleif:geocoding_date>
+         <gleif:bounding_box>TopLeft.Latitude: 40.7406142, TopLeft.Longitude: -74.1720237, BottomRight.Latitude: 40.7383658, BottomRight.Longitude: -74.1690563</gleif:bounding_box>
+         <gleif:match_level>houseNumber</gleif:match_level>
+         <gleif:formatted_address>655 Broad St, Newark, NJ 07102, United States</gleif:formatted_address>
+         <gleif:mapped_location_id>NT_5BWSPRy6JZfuJo7Xvnp5ID_2UTN</gleif:mapped_location_id>
+         <gleif:mapped_street>Broad St</gleif:mapped_street>
+         <gleif:mapped_housenumber>655</gleif:mapped_housenumber>
+         <gleif:mapped_postalcode>07102</gleif:mapped_postalcode>
+         <gleif:mapped_city>Newark</gleif:mapped_city>
+         <gleif:mapped_district>Newark Central Business District</gleif:mapped_district>
+         <gleif:mapped_state>NJ</gleif:mapped_state>
+         <gleif:mapped_country>USA</gleif:mapped_country>
+      </gleif:Geocoding>
+   </lei:Extension>
+</lei:LEIRecord>
+<lei:LEIRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:lei="http://www.gleif.org/data/schema/leidata/2016"
+               xmlns:gleif="http://www.gleif.org/data/schema/golden-copy/extensions/1.0">
+   <lei:LEI>00TR8NKAEL48RGTZEW89</lei:LEI>
+   <lei:Entity>
+      <lei:LegalName xml:lang="en">ESG DOMESTIC OPPORTUNITY OFFSHORE FUND LTD.</lei:LegalName>
+      <lei:LegalAddress xml:lang="en">
+         <lei:FirstAddressLine>89 Nexus Way</lei:FirstAddressLine>
+         <lei:City>Camana Bay</lei:City>
+         <lei:Country>KY</lei:Country>
+         <lei:PostalCode>KY1-9009</lei:PostalCode>
+      </lei:LegalAddress>
+      <lei:HeadquartersAddress xml:lang="en">
+         <lei:FirstAddressLine>C/O Citco Fund Services (Curacao) B.V.</lei:FirstAddressLine>
+         <lei:AdditionalAddressLine>Kaya Flamboyan 9</lei:AdditionalAddressLine>
+         <lei:City>Willemstad</lei:City>
+         <lei:Country>CW</lei:Country>
+      </lei:HeadquartersAddress>
+      <lei:RegistrationAuthority>
+         <lei:RegistrationAuthorityID>RA000087</lei:RegistrationAuthorityID>
+         <lei:RegistrationAuthorityEntityID>574206</lei:RegistrationAuthorityEntityID>
+      </lei:RegistrationAuthority>
+      <lei:LegalJurisdiction>KY</lei:LegalJurisdiction>
+      <lei:EntityCategory>GENERAL</lei:EntityCategory>
+      <lei:LegalForm>
+         <lei:EntityLegalFormCode>9999</lei:EntityLegalFormCode>
+         <lei:OtherLegalForm>CAYMAN ISLANDS ORDINARY NON-RESIDENT COMPANY</lei:OtherLegalForm>
+      </lei:LegalForm>
+      <lei:EntityStatus>INACTIVE</lei:EntityStatus>
+      <lei:LegalEntityEvents>
+         <lei:LegalEntityEvent group_type="STANDALONE" event_status="COMPLETED">
+            <lei:LegalEntityEventType>DISSOLUTION</lei:LegalEntityEventType>
+            <lei:LegalEntityEventEffectiveDate>2018-11-09T00:00:00.000Z</lei:LegalEntityEventEffectiveDate>
+            <lei:LegalEntityEventRecordedDate>2022-03-24T19:41:39.000Z</lei:LegalEntityEventRecordedDate>
+            <lei:ValidationDocuments>SUPPORTING_DOCUMENTS</lei:ValidationDocuments>
+         </lei:LegalEntityEvent>
+      </lei:LegalEntityEvents>
+   </lei:Entity>
+   <lei:Registration>
+      <lei:InitialRegistrationDate>2012-08-24T18:53:00.000Z</lei:InitialRegistrationDate>
+      <lei:LastUpdateDate>2019-04-22T21:31:00.000Z</lei:LastUpdateDate>
+      <lei:RegistrationStatus>RETIRED</lei:RegistrationStatus>
+      <lei:NextRenewalDate>2019-02-14T00:32:00.000Z</lei:NextRenewalDate>
+      <lei:ManagingLOU>EVK05KS7XY1DEII3R011</lei:ManagingLOU>
+      <lei:ValidationSources>FULLY_CORROBORATED</lei:ValidationSources>
+      <lei:ValidationAuthority>
+         <lei:ValidationAuthorityID>RA000087</lei:ValidationAuthorityID>
+         <lei:ValidationAuthorityEntityID>574206</lei:ValidationAuthorityEntityID>
+      </lei:ValidationAuthority>
+   </lei:Registration>
+   <lei:Extension>
+      <gleif:Geocoding>
+         <gleif:original_address>C/O Ogier Fiduciary Services (Cayman) Limited, 89 Nexus Way, null, null, KY, null, KY1-9009, Camana Bay</gleif:original_address>
+         <gleif:geocoding_failed>No geocoding results</gleif:geocoding_failed>
+         <gleif:relevance>0.0</gleif:relevance>
+         <gleif:lat>0.0</gleif:lat>
+         <gleif:lng>0.0</gleif:lng>
+         <gleif:geocoding_date>2016-05-17T18:52:31</gleif:geocoding_date>
+      </gleif:Geocoding>
+      <gleif:Geocoding>
+         <gleif:original_address>C/O Citco Fund Services (Curacao) B.V., Kaya Flamboyan 9, null, null, CW, null, null, Willemstad</gleif:original_address>
+         <gleif:relevance>0.45</gleif:relevance>
+         <gleif:lat>12.11308</gleif:lat>
+         <gleif:lng>-68.93566</gleif:lng>
+         <gleif:geocoding_date>2016-05-17T13:05:20</gleif:geocoding_date>
+         <gleif:bounding_box>TopLeft.Latitude: 12.11477, TopLeft.Longitude: -68.95031, BottomRight.Latitude: 12.10135, BottomRight.Longitude: -68.9218</gleif:bounding_box>
+         <gleif:match_level>district</gleif:match_level>
+         <gleif:formatted_address>Willemstad, Curacao</gleif:formatted_address>
+         <gleif:mapped_location_id>NT_QiIbLJFXDuOPXNcvQVKFtC</gleif:mapped_location_id>
+         <gleif:mapped_city>Curacao</gleif:mapped_city>
+         <gleif:mapped_district>Willemstad</gleif:mapped_district>
+         <gleif:mapped_country>CUW</gleif:mapped_country>
+      </gleif:Geocoding>
+   </lei:Extension>
+</lei:LEIRecord>
+<lei:LEIRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:lei="http://www.gleif.org/data/schema/leidata/2016"
+               xmlns:gleif="http://www.gleif.org/data/schema/golden-copy/extensions/1.0">
+   <lei:LEI>00TV1D5YIV5IDUGWBW29</lei:LEI>
+   <lei:Entity>
+      <lei:LegalName xml:lang="en">Ceridian Corporation Retirement Plan Trust</lei:LegalName>
+      <lei:LegalAddress xml:lang="en">
+         <lei:FirstAddressLine>RL&amp;F Service Corp.</lei:FirstAddressLine>
+         <lei:City>Wilmington</lei:City>
+         <lei:Region>US-DE</lei:Region>
+         <lei:Country>US</lei:Country>
+         <lei:PostalCode>19801</lei:PostalCode>
+      </lei:LegalAddress>
+      <lei:HeadquartersAddress xml:lang="en">
+         <lei:FirstAddressLine>RL&amp;F Service Corp.</lei:FirstAddressLine>
+         <lei:City>Wilmington</lei:City>
+         <lei:Region>US-DE</lei:Region>
+         <lei:Country>US</lei:Country>
+         <lei:PostalCode>19801</lei:PostalCode>
+      </lei:HeadquartersAddress>
+      <lei:RegistrationAuthority>
+         <lei:RegistrationAuthorityID>RA999999</lei:RegistrationAuthorityID>
+      </lei:RegistrationAuthority>
+      <lei:LegalJurisdiction>US-DE</lei:LegalJurisdiction>
+      <lei:EntityCategory>GENERAL</lei:EntityCategory>
+      <lei:LegalForm>
+         <lei:EntityLegalFormCode>8888</lei:EntityLegalFormCode>
+         <lei:OtherLegalForm>TRUST</lei:OtherLegalForm>
+      </lei:LegalForm>
+      <lei:EntityStatus>ACTIVE</lei:EntityStatus>
+      <lei:EntityCreationDate>2012-11-13T05:00:00.000Z</lei:EntityCreationDate>
+   </lei:Entity>
+   <lei:Registration>
+      <lei:InitialRegistrationDate>2012-11-14T19:43:00.000Z</lei:InitialRegistrationDate>
+      <lei:LastUpdateDate>2023-05-10T04:42:18.790Z</lei:LastUpdateDate>
+      <lei:RegistrationStatus>ISSUED</lei:RegistrationStatus>
+      <lei:NextRenewalDate>2024-01-20T00:00:00.000Z</lei:NextRenewalDate>
+      <lei:ManagingLOU>EVK05KS7XY1DEII3R011</lei:ManagingLOU>
+      <lei:ValidationSources>ENTITY_SUPPLIED_ONLY</lei:ValidationSources>
+      <lei:ValidationAuthority>
+         <lei:ValidationAuthorityID>RA999999</lei:ValidationAuthorityID>
+      </lei:ValidationAuthority>
+   </lei:Registration>
+   <lei:Extension>
+      <gleif:Geocoding>
+         <gleif:original_address>RL&amp;F Service Corp., 19801, Wilmington, US-DE, US</gleif:original_address>
+         <gleif:relevance>0.58</gleif:relevance>
+         <gleif:lat>39.74331</gleif:lat>
+         <gleif:lng>-75.54704</gleif:lng>
+         <gleif:geocoding_date>2023-05-10T18:58:08</gleif:geocoding_date>
+         <gleif:bounding_box>TopLeft.Latitude: 39.75312, TopLeft.Longitude: -75.57644, BottomRight.Latitude: 39.69908, BottomRight.Longitude: -75.51457</gleif:bounding_box>
+         <gleif:match_level>postalCode</gleif:match_level>
+         <gleif:formatted_address>19801, Wilmington, DE, United States</gleif:formatted_address>
+         <gleif:mapped_location_id>NT_EY.bv9047mr4P.vBHAvwRB</gleif:mapped_location_id>
+         <gleif:mapped_postalcode>19801</gleif:mapped_postalcode>
+         <gleif:mapped_city>Wilmington</gleif:mapped_city>
+         <gleif:mapped_state>DE</gleif:mapped_state>
+         <gleif:mapped_country>USA</gleif:mapped_country>
+      </gleif:Geocoding>
+   </lei:Extension>
+</lei:LEIRecord>
+<lei:LEIRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:lei="http://www.gleif.org/data/schema/leidata/2016"
+               xmlns:gleif="http://www.gleif.org/data/schema/golden-copy/extensions/1.0">
+   <lei:LEI>00W0SLGGVF0QQ5Q36N03</lei:LEI>
+   <lei:Entity>
+      <lei:LegalName xml:lang="en">GE Pacific-3 Holdings, Inc.</lei:LegalName>
+      <lei:LegalAddress xml:lang="en">
+         <lei:FirstAddressLine>C/O The Corporation Trust Company</lei:FirstAddressLine>
+         <lei:AdditionalAddressLine>Corporation Trust Center</lei:AdditionalAddressLine>
+         <lei:AdditionalAddressLine>1209 Orange Street</lei:AdditionalAddressLine>
+         <lei:City>Wilmington</lei:City>
+         <lei:Region>US-DE</lei:Region>
+         <lei:Country>US</lei:Country>
+         <lei:PostalCode>19801</lei:PostalCode>
+      </lei:LegalAddress>
+      <lei:HeadquartersAddress xml:lang="en">
+         <lei:FirstAddressLine>C/O The Corporation Trust Company</lei:FirstAddressLine>
+         <lei:AdditionalAddressLine>Corporation Trust Center</lei:AdditionalAddressLine>
+         <lei:AdditionalAddressLine>1209 Orange Street</lei:AdditionalAddressLine>
+         <lei:City>Wilmington</lei:City>
+         <lei:Region>US-DE</lei:Region>
+         <lei:Country>US</lei:Country>
+         <lei:PostalCode>19801</lei:PostalCode>
+      </lei:HeadquartersAddress>
+      <lei:RegistrationAuthority>
+         <lei:RegistrationAuthorityID>RA999999</lei:RegistrationAuthorityID>
+      </lei:RegistrationAuthority>
+      <lei:LegalJurisdiction>US-DE</lei:LegalJurisdiction>
+      <lei:EntityCategory>GENERAL</lei:EntityCategory>
+      <lei:LegalForm>
+         <lei:EntityLegalFormCode>XTIQ</lei:EntityLegalFormCode>
+      </lei:LegalForm>
+      <lei:EntityStatus>ACTIVE</lei:EntityStatus>
+   </lei:Entity>
+   <lei:Registration>
+      <lei:InitialRegistrationDate>2012-06-06T15:56:00.000Z</lei:InitialRegistrationDate>
+      <lei:LastUpdateDate>2020-07-17T12:40:00.000Z</lei:LastUpdateDate>
+      <lei:RegistrationStatus>LAPSED</lei:RegistrationStatus>
+      <lei:NextRenewalDate>2016-01-12T15:45:00.000Z</lei:NextRenewalDate>
+      <lei:ManagingLOU>EVK05KS7XY1DEII3R011</lei:ManagingLOU>
+      <lei:ValidationSources>ENTITY_SUPPLIED_ONLY</lei:ValidationSources>
+      <lei:ValidationAuthority>
+         <lei:ValidationAuthorityID>RA999999</lei:ValidationAuthorityID>
+      </lei:ValidationAuthority>
+   </lei:Registration>
+   <lei:Extension>
+      <gleif:Geocoding>
+         <gleif:original_address>C/O The Corporation Trust Company, Corporation Trust Center, 1209 Orange Street, null, US, US-DE, 19801, Wilmington</gleif:original_address>
+         <gleif:geocoding_failed>Ambigous geocoding results</gleif:geocoding_failed>
+         <gleif:relevance>0.0</gleif:relevance>
+         <gleif:lat>0.0</gleif:lat>
+         <gleif:lng>0.0</gleif:lng>
+         <gleif:geocoding_date>2016-08-16T03:55:02</gleif:geocoding_date>
+      </gleif:Geocoding>
+   </lei:Extension>
+</lei:LEIRecord>
+<lei:LEIRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:lei="http://www.gleif.org/data/schema/leidata/2016"
+               xmlns:gleif="http://www.gleif.org/data/schema/golden-copy/extensions/1.0">
+   <lei:LEI>00X5RQKJQQJFFX0WPA53</lei:LEI>
+   <lei:Entity>
+      <lei:LegalName xml:lang="en">The Greater Morristown Young Men's Christian Association, Inc.</lei:LegalName>
+      <lei:OtherEntityNames>
+         <lei:OtherEntityName xml:lang="en" type="PREVIOUS_LEGAL_NAME">The Greater Morristown YMCA Inc</lei:OtherEntityName>
+      </lei:OtherEntityNames>
+      <lei:LegalAddress xml:lang="en">
+         <lei:FirstAddressLine>79 Horsehill Road</lei:FirstAddressLine>
+         <lei:City>Cedar Knolls</lei:City>
+         <lei:Region>US-NJ</lei:Region>
+         <lei:Country>US</lei:Country>
+         <lei:PostalCode>07927-2003</lei:PostalCode>
+      </lei:LegalAddress>
+      <lei:HeadquartersAddress xml:lang="en">
+         <lei:FirstAddressLine>79 Horsehill Road</lei:FirstAddressLine>
+         <lei:City>Cedar Knolls</lei:City>
+         <lei:Region>US-NJ</lei:Region>
+         <lei:Country>US</lei:Country>
+         <lei:PostalCode>07927-2003</lei:PostalCode>
+      </lei:HeadquartersAddress>
+      <lei:RegistrationAuthority>
+         <lei:RegistrationAuthorityID>RA999999</lei:RegistrationAuthorityID>
+      </lei:RegistrationAuthority>
+      <lei:LegalJurisdiction>US-NJ</lei:LegalJurisdiction>
+      <lei:EntityCategory>GENERAL</lei:EntityCategory>
+      <lei:LegalForm>
+         <lei:EntityLegalFormCode>XSNP</lei:EntityLegalFormCode>
+      </lei:LegalForm>
+      <lei:EntityStatus>ACTIVE</lei:EntityStatus>
+   </lei:Entity>
+   <lei:Registration>
+      <lei:InitialRegistrationDate>2012-11-22T10:55:00.000Z</lei:InitialRegistrationDate>
+      <lei:LastUpdateDate>2020-07-24T19:29:00.000Z</lei:LastUpdateDate>
+      <lei:RegistrationStatus>LAPSED</lei:RegistrationStatus>
+      <lei:NextRenewalDate>2013-11-22T10:38:00.000Z</lei:NextRenewalDate>
+      <lei:ManagingLOU>EVK05KS7XY1DEII3R011</lei:ManagingLOU>
+      <lei:ValidationSources>ENTITY_SUPPLIED_ONLY</lei:ValidationSources>
+      <lei:ValidationAuthority>
+         <lei:ValidationAuthorityID>RA999999</lei:ValidationAuthorityID>
+      </lei:ValidationAuthority>
+   </lei:Registration>
+   <lei:Extension>
+      <gleif:Geocoding>
+         <gleif:original_address>79 Horsehill Road, 07927-2003, Cedar Knolls, US-NJ, US</gleif:original_address>
+         <gleif:relevance>0.94</gleif:relevance>
+         <gleif:match_type>pointAddress</gleif:match_type>
+         <gleif:lat>40.81283</gleif:lat>
+         <gleif:lng>-74.46615</gleif:lng>
+         <gleif:geocoding_date>2017-10-25T06:48:26</gleif:geocoding_date>
+         <gleif:bounding_box>TopLeft.Latitude: 40.8139542, TopLeft.Longitude: -74.4676353, BottomRight.Latitude: 40.8117058, BottomRight.Longitude: -74.4646647</gleif:bounding_box>
+         <gleif:match_level>houseNumber</gleif:match_level>
+         <gleif:formatted_address>79 Horsehill Rd, Cedar Knolls, NJ 07927, United States</gleif:formatted_address>
+         <gleif:mapped_location_id>NT_BROCSkt87GJvUxcNzCdgaC_3kD</gleif:mapped_location_id>
+         <gleif:mapped_street>Horsehill Rd</gleif:mapped_street>
+         <gleif:mapped_housenumber>79</gleif:mapped_housenumber>
+         <gleif:mapped_postalcode>07927</gleif:mapped_postalcode>
+         <gleif:mapped_city>Cedar Knolls</gleif:mapped_city>
+         <gleif:mapped_state>NJ</gleif:mapped_state>
+         <gleif:mapped_country>USA</gleif:mapped_country>
+      </gleif:Geocoding>
+   </lei:Extension>
+</lei:LEIRecord>
+  </lei:LEIRecords>
+</lei:LEIData>
