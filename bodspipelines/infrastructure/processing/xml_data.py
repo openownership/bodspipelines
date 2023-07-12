@@ -90,8 +90,8 @@ class XMLData:
         self.namespace = namespace
         self.filter = filter
 
-    async def process(self, filename):
+    def process(self, filename):
         """Iterate over processed items from file"""
         tag_name = f"{{{self.namespace[next(iter(self.namespace))]}}}{self.item_tag}"
-        async for item in data_stream(filename, tag_name, self.namespace, filter=self.filter):
+        for item in data_stream(filename, tag_name, self.namespace, filter=self.filter):
             yield item
