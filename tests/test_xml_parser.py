@@ -5,6 +5,7 @@ import datetime
 from pathlib import Path
 import json
 from unittest.mock import patch, Mock
+import asyncio
 import pytest
 
 from bodspipelines.infrastructure.processing.xml_data import XMLData
@@ -42,13 +43,14 @@ def repex_xml_data_file():
     return Path("tests/fixtures/repex-data.xml")
 
 
-def test_lei_xml_parser(lei_xml_data_file):
+@pytest.mark.asyncio
+async def test_lei_xml_parser(lei_xml_data_file):
     xml_parser = XMLData(item_tag="LEIRecord",
                          namespace={"lei": "http://www.gleif.org/data/schema/leidata/2016"},
                          filter=['NextVersion', 'Extension'])
     data = xml_parser.process(lei_xml_data_file)
     count = 0
-    for item in data:
+    async for item in data:
         if count == 0:
             assert item['LEI'] == '001GPB6A9XPE8XJICC14'
             assert item['Entity']['LegalName'] == 'Fidelity Advisor Leveraged Company Stock Fund'
@@ -72,17 +74,60 @@ def test_lei_xml_parser(lei_xml_data_file):
             assert item['Registration']['ManagingLOU'] == 'EVK05KS7XY1DEII3R011'
             assert item['Registration']['ValidationSources'] == 'FULLY_CORROBORATED'
             assert item['Registration']['ValidationAuthority'] == {'ValidationAuthorityID': 'RA000665', 'ValidationAuthorityEntityID': 'S000005113'}
+        elif count == 10:
+            assert item['LEI'] == '1595D0QCK7Y15293JK84'
+            assert item['Entity']['LegalName'] == 'GALAPAGOS CONSERVATION TRUST'
+            assert item['Entity']['LegalAddress'] == {'FirstAddressLine': '7-14 Great Dover Street', 'City': 'London', 'Country': 'GB', 'PostalCode': 'SE1 4YR'}
+            assert item['Entity']['HeadquartersAddress'] == {'FirstAddressLine': '7-14 Great Dover Street', 'City': 'London', 'Country': 'GB', 
+                                                             'PostalCode': 'SE1 4YR'}
+            assert item['Entity']['RegistrationAuthority'] == {'RegistrationAuthorityID': 'RA000585', 'RegistrationAuthorityEntityID': '03004112'}
+            assert item['Entity']['LegalJurisdiction'] == 'GB'
+            assert item['Entity']['EntityCategory'] == 'GENERAL'
+            assert item['Entity']['LegalForm'] == {'EntityLegalFormCode': 'G12F'}
+            assert item['Entity']['EntityStatus'] == 'ACTIVE'
+            assert item['Entity']['EntityCreationDate'] == '1994-12-21T00:00:00+01:00'
+            assert item['Registration']['InitialRegistrationDate'] == '2023-02-13T22:13:11+01:00'
+            assert item['Registration']['LastUpdateDate'] == '2023-03-10T13:08:56+01:00'
+            assert item['Registration']['RegistrationStatus'] == 'ISSUED'
+            assert item['Registration']['NextRenewalDate'] == '2024-02-13T22:13:11+01:00'
+            assert item['Registration']['ManagingLOU'] == '98450045AN5EB5FDC780'
+            assert item['Registration']['ValidationSources'] == 'FULLY_CORROBORATED'
+            assert item['Registration']['ValidationAuthority'] == {'ValidationAuthorityID': 'RA000585', 'ValidationAuthorityEntityID': '03004112'}
+            assert item['Registration']['OtherValidationAuthorities'] == [{'ValidationAuthorityID': 'RA000589', 'ValidationAuthorityEntityID': '1043470'}]
+        elif count == 11:
+            assert item['LEI'] == '213800FERQ5LE3H7WJ58' 
+            assert item['Entity']['LegalName'] == 'DENTSU INTERNATIONAL LIMITED'
+            assert item['Entity']['OtherEntityNames'] == [{'type': 'PREVIOUS_LEGAL_NAME', 'OtherEntityName': 'DENTSU AEGIS NETWORK LTD.'}, 
+                                                          {'type': 'PREVIOUS_LEGAL_NAME', 'OtherEntityName': 'AEGIS GROUP PLC'}]
+            assert item['Entity']['LegalAddress'] == {'FirstAddressLine': '10 TRITON STREET', 'AdditionalAddressLine': "REGENT'S PLACE", 
+                                                      'City': 'LONDON', 'Region': 'GB-LND', 'Country': 'GB', 'PostalCode': 'NW1 3BF'} 
+            assert item['Entity']['HeadquartersAddress'] == {'FirstAddressLine': '10 TRITON STREET', 'AdditionalAddressLine': "REGENT'S PLACE", 
+                                                             'City': 'LONDON', 'Region': 'GB-LND', 'Country': 'GB', 'PostalCode': 'NW1 3BF'}
+            assert item['Entity']['RegistrationAuthority'] == {'RegistrationAuthorityID': 'RA000585', 'RegistrationAuthorityEntityID': '01403668'}
+            assert item['Entity']['LegalJurisdiction'] == 'GB'
+            assert item['Entity']['EntityCategory'] == 'GENERAL'
+            assert item['Entity']['LegalForm'] == {'EntityLegalFormCode': 'H0PO'}
+            assert item['Entity']['EntityStatus'] == 'ACTIVE'
+            assert item['Entity']['EntityCreationDate'] == '1978-12-05T00:00:00Z'
+            assert item['Registration']['InitialRegistrationDate'] == '2014-02-10T00:00:00Z'
+            assert item['Registration']['LastUpdateDate'] == '2023-02-02T09:07:52.390Z'
+            assert item['Registration']['RegistrationStatus'] == 'ISSUED'
+            assert item['Registration']['NextRenewalDate'] == '2024-02-17T00:00:00Z'
+            assert item['Registration']['ManagingLOU'] == '213800WAVVOPS85N2205'
+            assert item['Registration']['ValidationSources'] == 'FULLY_CORROBORATED'
+            assert item['Registration']['ValidationAuthority'] == {'ValidationAuthorityID': 'RA000585', 'ValidationAuthorityEntityID': '01403668'}
         count += 1
-    assert count == 10
+    assert count == 12
 
 
-def test_rr_xml_parser(rr_xml_data_file):
+@pytest.mark.asyncio
+async def test_rr_xml_parser(rr_xml_data_file):
     xml_parser = XMLData(item_tag="RelationshipRecord",
                                     namespace={"rr": "http://www.gleif.org/data/schema/rr/2016"},
                                     filter=['Extension'])
     data = xml_parser.process(rr_xml_data_file)
     count = 0
-    for item in data:
+    async for item in data:
         if count == 0:
             print(item)
             assert item['Relationship']['StartNode'] == {'NodeID': '001GPB6A9XPE8XJICC14', 'NodeIDType': 'LEI'}
@@ -102,13 +147,14 @@ def test_rr_xml_parser(rr_xml_data_file):
     assert count == 10
 
 
-def test_repex_xml_parser(repex_xml_data_file):
+@pytest.mark.asyncio
+async def test_repex_xml_parser(repex_xml_data_file):
     xml_parser = XMLData(item_tag="Exception",
                          namespace={"repex": "http://www.gleif.org/data/schema/repex/2016"},
                          filter=['NextVersion', 'Extension'])
     data = xml_parser.process(repex_xml_data_file)
     count = 0
-    for item in data:
+    async for item in data:
         if count == 0:
             print(item)
             assert item['LEI'] == '001GPB6A9XPE8XJICC14'
