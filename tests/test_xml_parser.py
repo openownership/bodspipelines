@@ -52,7 +52,9 @@ def test_lei_xml_parser(lei_xml_data_file):
         if count == 0:
             assert item['LEI'] == '001GPB6A9XPE8XJICC14'
             assert item['Entity']['LegalName'] == 'Fidelity Advisor Leveraged Company Stock Fund'
-            assert item['Entity']['OtherEntityNames'] == ['FIDELITY ADVISOR SERIES I - Fidelity Advisor Leveraged Company Stock Fund']
+            assert item['Entity']['OtherEntityNames'] == [{'type': 'PREVIOUS_LEGAL_NAME', 
+                'OtherEntityName': 'FIDELITY ADVISOR SERIES I - Fidelity Advisor Leveraged Company Stock Fund'}]
+                #'FIDELITY ADVISOR SERIES I - Fidelity Advisor Leveraged Company Stock Fund']
             assert item['Entity']['LegalAddress'] == {'FirstAddressLine': '245 SUMMER STREET', 'City': 'BOSTON', 'Region': 'US-MA',
                                                   'Country': 'US', 'PostalCode': '02210'}
             assert item['Entity']['HeadquartersAddress'] == {'FirstAddressLine': 'C/O Fidelity Management & Research Company LLC',

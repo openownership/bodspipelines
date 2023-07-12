@@ -131,7 +131,9 @@ def test_lei_ingest_stage(lei_list, xml_data_file):
         item = json.loads(mock_kn.return_value.put_records.call_args.kwargs['Records'][0]['Data'])
         assert item["LEI"] == "001GPB6A9XPE8XJICC14"
         assert item["Entity"]["LegalName"] == "Fidelity Advisor Leveraged Company Stock Fund"
-        assert item["Entity"]["OtherEntityNames"] == ["FIDELITY ADVISOR SERIES I - Fidelity Advisor Leveraged Company Stock Fund"]
+        assert item["Entity"]["OtherEntityNames"] == [{'type': 'PREVIOUS_LEGAL_NAME', 
+             'OtherEntityName': 'FIDELITY ADVISOR SERIES I - Fidelity Advisor Leveraged Company Stock Fund'}]
+             #"FIDELITY ADVISOR SERIES I - Fidelity Advisor Leveraged Company Stock Fund"]
         assert item["Entity"]["LegalAddress"] == {"FirstAddressLine": "245 SUMMER STREET", "City": "BOSTON", "Region": "US-MA", "Country": "US", "PostalCode": "02210"}
         assert item["Entity"]["HeadquartersAddress"] == {"FirstAddressLine": "C/O Fidelity Management & Research Company LLC", 
                                                          "City": "Boston", "Region": "US-MA", "Country": "US", "PostalCode": "02210"}
