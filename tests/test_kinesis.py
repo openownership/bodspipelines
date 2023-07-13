@@ -51,7 +51,7 @@ def test_kinesis_output(json_data_file):
         for item in mock_kn.return_value.put_records.call_args.kwargs['Records']:
             assert json.loads(item['Data']) == json_data_file[count]
             count += 1
-        assert count == 10
+        assert count == 13
 
 
 def test_kinesis_input(json_data_file):
@@ -65,5 +65,5 @@ def test_kinesis_input(json_data_file):
         for item in kinesis_input.process():
             assert item == json_data_file[count]
             count += 1
-        assert count == 10
+        assert count == 13
 
