@@ -114,8 +114,36 @@ def test_lei_xml_parser(lei_xml_data_file):
             assert item['Registration']['ManagingLOU'] == '213800WAVVOPS85N2205'
             assert item['Registration']['ValidationSources'] == 'FULLY_CORROBORATED'
             assert item['Registration']['ValidationAuthority'] == {'ValidationAuthorityID': 'RA000585', 'ValidationAuthorityEntityID': '01403668'}
+        elif count == 12:
+            assert item['LEI'] == '213800BJPX8V9HVY1Y11'
+            assert item['Entity']['LegalName'] == 'Swedeit Italian Aktiebolag'
+            assert item['Entity']['LegalAddress'] == {'FirstAddressLine': 'C/O Anita Lindberg', 'MailRouting': 'C/O Anita Lindberg', 
+                                                      'AdditionalAddressLine': 'Fortgatan 11', 'City': 'Västra Frölunda', 'Region': 'SE-O', 
+                                                      'Country': 'SE', 'PostalCode': '426 76'}
+            assert item['Entity']['HeadquartersAddress'] == {'FirstAddressLine': 'C/O Anita Lindberg', 'MailRouting': 'C/O Anita Lindberg', 
+                                                             'AdditionalAddressLine': 'Fortgatan 11', 'City': 'Västra Frölunda', 'Region': 'SE-O', 
+                                                             'Country': 'SE', 'PostalCode': '426 76'}
+            assert {'FirstAddressLine': 'C/O Anita Lindberg', 'MailRouting': 'C/O Anita Lindberg', 'AdditionalAddressLine': 'Fortgatan 11', 
+                    'City': 'Vastra Frolunda', 'Region': 'SE-O', 'Country': 'SE', 'PostalCode': '426 76', 
+                    'type': 'AUTO_ASCII_TRANSLITERATED_LEGAL_ADDRESS'} in item['Entity']['TransliteratedOtherAddresses']
+            assert {'FirstAddressLine': 'C/O Anita Lindberg', 'MailRouting': 'C/O Anita Lindberg', 'AdditionalAddressLine': 'Fortgatan 11', 
+                    'City': 'Vastra Frolunda', 'Region': 'SE-O', 'Country': 'SE', 'PostalCode': '426 76', 
+                    'type': 'AUTO_ASCII_TRANSLITERATED_HEADQUARTERS_ADDRESS'} in item['Entity']['TransliteratedOtherAddresses'] 
+            assert item['Entity']['RegistrationAuthority'] == {'RegistrationAuthorityID': 'RA000544', 'RegistrationAuthorityEntityID': '556543-1193'}
+            assert item['Entity']['LegalJurisdiction'] == 'SE'
+            assert item['Entity']['EntityCategory'] == 'GENERAL'
+            assert item['Entity']['LegalForm'] == {'EntityLegalFormCode': 'XJHM'}
+            assert item['Entity']['EntityStatus'] == 'ACTIVE'
+            assert item['Entity']['EntityCreationDate'] == '1997-06-05T02:00:00+02:00'
+            assert item['Registration']['InitialRegistrationDate'] == '2014-04-09T00:00:00Z'
+            assert item['Registration']['LastUpdateDate'] == '2023-04-25T13:18:00Z'
+            assert item['Registration']['RegistrationStatus'] == 'ISSUED'
+            assert item['Registration']['NextRenewalDate'] == '2024-05-12T06:59:39Z'
+            assert item['Registration']['ManagingLOU'] == '549300O897ZC5H7CY412'
+            assert item['Registration']['ValidationSources'] == 'FULLY_CORROBORATED'
+            assert item['Registration']['ValidationAuthority'] == {'ValidationAuthorityID': 'RA000544', 'ValidationAuthorityEntityID': '556543-1193'}
         count += 1
-    assert count == 12
+    assert count == 13
 
 
 def test_rr_xml_parser(rr_xml_data_file):

@@ -59,7 +59,11 @@ def data_stream(filename, tag_name, namespaces, filter=[]):
                 if stack[-1][1]:
                     if isinstance(stack[-1][1], list):
                         if 'type' in element.attrib:
-                            stack[-1][1].append({'type': element.attrib['type'], tag: val})
+                            if isinstance(val, dict):
+                                val['type'] = element.attrib['type']
+                                stack[-1][1].append(val)
+                            else:
+                                stack[-1][1].append({'type': element.attrib['type'], tag: val})
                         else:
                             stack[-1][1].append(val)
                     else:
@@ -67,11 +71,16 @@ def data_stream(filename, tag_name, namespaces, filter=[]):
                 else:
                     if is_plural(stack[-1][0], tag):
                         if 'type' in element.attrib:
-                            if isinstance(stack[-1][1], list):
-                                stack[-1][1].append({'type': element.attrib['type'], tag: val})
+                            if isinstance(val, dict):
+                                val['type'] = element.attrib['type']
+                                stack[-1][1] = [val]
                             else:
                                 stack[-1][1] = [{'type': element.attrib['type'], tag: val}]
-                            #stack[-1][1][element.attrib['type']] = val
+                            #if isinstance(stack[-1][1], list):
+                            #    stack[-1][1].append({'type': element.attrib['type'], tag: val})
+                            #else:
+                            #    stack[-1][1] = [{'type': element.attrib['type'], tag: val}]
+                            ##stack[-1][1][element.attrib['type']] = val
                         else:
                             if isinstance(stack[-1][1], list):
                                 stack[-1][1].append(val)

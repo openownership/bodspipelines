@@ -864,5 +864,75 @@
    </lei:Registration>
    <lei:Extension/>
 </lei:LEIRecord>
+<lei:LEIRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:lei="http://www.gleif.org/data/schema/leidata/2016"
+               xmlns:gleif="http://www.gleif.org/data/schema/golden-copy/extensions/1.0">
+   <lei:LEI>213800BJPX8V9HVY1Y11</lei:LEI>
+   <lei:Entity>
+      <lei:LegalName xml:lang="sv">Swedeit Italian Aktiebolag</lei:LegalName>
+      <lei:LegalAddress xml:lang="sv">
+         <lei:FirstAddressLine>C/O Anita Lindberg</lei:FirstAddressLine>
+         <lei:MailRouting>C/O Anita Lindberg</lei:MailRouting>
+         <lei:AdditionalAddressLine>Fortgatan 11</lei:AdditionalAddressLine>
+         <lei:City>Västra Frölunda</lei:City>
+         <lei:Region>SE-O</lei:Region>
+         <lei:Country>SE</lei:Country>
+         <lei:PostalCode>426 76</lei:PostalCode>
+      </lei:LegalAddress>
+      <lei:HeadquartersAddress xml:lang="sv">
+         <lei:FirstAddressLine>C/O Anita Lindberg</lei:FirstAddressLine>
+         <lei:MailRouting>C/O Anita Lindberg</lei:MailRouting>
+         <lei:AdditionalAddressLine>Fortgatan 11</lei:AdditionalAddressLine>
+         <lei:City>Västra Frölunda</lei:City>
+         <lei:Region>SE-O</lei:Region>
+         <lei:Country>SE</lei:Country>
+         <lei:PostalCode>426 76</lei:PostalCode>
+      </lei:HeadquartersAddress>
+      <lei:TransliteratedOtherAddresses>
+         <lei:TransliteratedOtherAddress type="AUTO_ASCII_TRANSLITERATED_LEGAL_ADDRESS" xml:lang="sv">
+            <lei:FirstAddressLine>C/O Anita Lindberg</lei:FirstAddressLine>
+            <lei:MailRouting>C/O Anita Lindberg</lei:MailRouting>
+            <lei:AdditionalAddressLine>Fortgatan 11</lei:AdditionalAddressLine>
+            <lei:City>Vastra Frolunda</lei:City>
+            <lei:Region>SE-O</lei:Region>
+            <lei:Country>SE</lei:Country>
+            <lei:PostalCode>426 76</lei:PostalCode>
+         </lei:TransliteratedOtherAddress>
+         <lei:TransliteratedOtherAddress type="AUTO_ASCII_TRANSLITERATED_HEADQUARTERS_ADDRESS" xml:lang="sv">
+            <lei:FirstAddressLine>C/O Anita Lindberg</lei:FirstAddressLine>
+            <lei:MailRouting>C/O Anita Lindberg</lei:MailRouting>
+            <lei:AdditionalAddressLine>Fortgatan 11</lei:AdditionalAddressLine>
+            <lei:City>Vastra Frolunda</lei:City>
+            <lei:Region>SE-O</lei:Region>
+            <lei:Country>SE</lei:Country>
+            <lei:PostalCode>426 76</lei:PostalCode>
+         </lei:TransliteratedOtherAddress>
+      </lei:TransliteratedOtherAddresses>
+      <lei:RegistrationAuthority>
+         <lei:RegistrationAuthorityID>RA000544</lei:RegistrationAuthorityID>
+         <lei:RegistrationAuthorityEntityID>556543-1193</lei:RegistrationAuthorityEntityID>
+      </lei:RegistrationAuthority>
+      <lei:LegalJurisdiction>SE</lei:LegalJurisdiction>
+      <lei:EntityCategory>GENERAL</lei:EntityCategory>
+      <lei:LegalForm>
+         <lei:EntityLegalFormCode>XJHM</lei:EntityLegalFormCode>
+      </lei:LegalForm>
+      <lei:EntityStatus>ACTIVE</lei:EntityStatus>
+      <lei:EntityCreationDate>1997-06-05T02:00:00+02:00</lei:EntityCreationDate>
+   </lei:Entity>
+   <lei:Registration>
+      <lei:InitialRegistrationDate>2014-04-09T00:00:00Z</lei:InitialRegistrationDate>
+      <lei:LastUpdateDate>2023-04-25T13:18:00Z</lei:LastUpdateDate>
+      <lei:RegistrationStatus>ISSUED</lei:RegistrationStatus>
+      <lei:NextRenewalDate>2024-05-12T06:59:39Z</lei:NextRenewalDate>
+      <lei:ManagingLOU>549300O897ZC5H7CY412</lei:ManagingLOU>
+      <lei:ValidationSources>FULLY_CORROBORATED</lei:ValidationSources>
+      <lei:ValidationAuthority>
+         <lei:ValidationAuthorityID>RA000544</lei:ValidationAuthorityID>
+         <lei:ValidationAuthorityEntityID>556543-1193</lei:ValidationAuthorityEntityID>
+      </lei:ValidationAuthority>
+   </lei:Registration>
+   <lei:Extension/>
+</lei:LEIRecord>
   </lei:LEIRecords>
 </lei:LEIData>
