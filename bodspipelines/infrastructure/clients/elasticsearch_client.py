@@ -49,7 +49,7 @@ class ElasticsearchClient:
                     "number_of_replicas": 0}
         mappings = {"dynamic": "strict",
                     "properties": properties}
-        if not self.client.indices.exists(index=self.index_name):
+        if not await self.client.indices.exists(index=self.index_name):
             # Ignore 400 means to ignore "Index Already Exist" error.
             await self.client.options(ignore_status=400).indices.create(index=self.index_name, settings=settings, mappings=mappings)
             print('Elasticserach created Index')
