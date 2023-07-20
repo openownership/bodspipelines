@@ -41,7 +41,7 @@ class ElasticsearchClient:
         """Set index name"""
         self.index_name = index_name
 
-    def create_index(self, index_name, properties):
+    async def create_index(self, index_name, properties):
         """Create index"""
         self.set_index(index_name)
         # index settings
@@ -51,14 +51,14 @@ class ElasticsearchClient:
                     "properties": properties}
         if not self.client.indices.exists(index=self.index_name):
             # Ignore 400 means to ignore "Index Already Exist" error.
-            self.client.options(ignore_status=400).indices.create(index=self.index_name, settings=settings, mappings=mappings)
+            await self.client.options(ignore_status=400).indices.create(index=self.index_name, settings=settings, mappings=mappings)
             print('Elasticserach created Index')
 
     def delete_index(self):
         """Delete index"""
         self.client.options(ignore_status=[400, 404]).indices.delete(index=self.index_name)
 
-    def create_indexes(self):
+    async def create_indexes(self):
         """Moved from storage"""
         for index_name in self.indexes:
             self.create_index(index_name, self.indexes[index_name]['properties'])

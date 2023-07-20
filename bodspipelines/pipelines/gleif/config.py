@@ -116,15 +116,21 @@ transform_stage = Stage(name="transform",
 pipeline = Pipeline(name="gleif", stages=[ingest_stage, transform_stage])
 
 # Setup Elasticsearch indexes
-def setup():
+async def setup_indexes():
     done = False
     while not done:
         try:
-            ElasticStorage(indexes=index_properties).setup_indexes()
-            ElasticStorage(indexes=bods_index_properties).setup_indexes()
+            await ElasticsearchClient(indexes=index_properties).create_indexes()
+            await ElasticsearchClient(indexes=bods_index_properties).create_indexes()
             done = True
         except elastic_transport.ConnectionError:
             print("Waiting for Elasticsearch to start ...")
             time.sleep(5)
+
+# Setup pipeline storage
+def setup():
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    loop.run_until_complete(setup_indexes())
 
 #stats = ElasticStorage(indexes=index_properties).stats
