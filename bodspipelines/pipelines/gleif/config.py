@@ -3,7 +3,8 @@ import elastic_transport
 
 from bodspipelines.infrastructure.pipeline import Source, Stage, Pipeline
 from bodspipelines.infrastructure.inputs import KinesisInput
-from bodspipelines.infrastructure.storage import ElasticStorage
+from bodspipelines.infrastructure.storage import Storage
+from bodspipelines.infrastructure.clients.elasticsearch_client import ElasticsearchClient
 from bodspipelines.infrastructure.outputs import Output, OutputConsole, NewOutput, KinesisOutput
 from bodspipelines.infrastructure.processing.bulk_data import BulkData
 from bodspipelines.infrastructure.processing.xml_data import XMLData
@@ -61,7 +62,7 @@ index_properties = {"lei": {"properties": lei_properties, "match": match_lei, "i
                     "repex": {"properties": repex_properties, "match": match_repex, "id": id_repex}}
 
 # GLEIF data: Store in Easticsearch and output new to Kinesis stream
-output_new = NewOutput(storage=ElasticStorage(indexes=index_properties),
+output_new = NewOutput(storage=Storage(storage=ElasticsearchClient(indexes=index_properties)),
                        output=KinesisOutput(stream_name="gleif-dev"))
 
 # Definition of GLEIF data pipeline ingest stage
@@ -100,7 +101,7 @@ def identify_bods(item):
         return 'ownership'
 
 # BODS data: Store in Easticsearch and output new to Kinesis stream
-bods_output_new = NewOutput(storage=ElasticStorage(indexes=bods_index_properties),
+bods_output_new = NewOutput(storage=Storage(storage=ElasticsearchClient(indexes=bods_index_properties)),
                             output=KinesisOutput(stream_name="bods-gleif-dev"),
                             identify=identify_bods)
 
