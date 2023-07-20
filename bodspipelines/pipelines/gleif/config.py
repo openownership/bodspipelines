@@ -1,5 +1,6 @@
 import time
 import elastic_transport
+import asyncio
 
 from bodspipelines.infrastructure.pipeline import Source, Stage, Pipeline
 from bodspipelines.infrastructure.inputs import KinesisInput
