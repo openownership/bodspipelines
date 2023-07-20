@@ -5,6 +5,7 @@ import datetime
 from pathlib import Path
 import json
 from unittest.mock import patch, Mock
+import asyncio
 import pytest
 
 from bodspipelines.infrastructure.processing.xml_data import XMLData
@@ -42,13 +43,14 @@ def repex_xml_data_file():
     return Path("tests/fixtures/repex-data.xml")
 
 
-def test_lei_xml_parser(lei_xml_data_file):
+@pytest.mark.asyncio
+async def test_lei_xml_parser(lei_xml_data_file):
     xml_parser = XMLData(item_tag="LEIRecord",
                          namespace={"lei": "http://www.gleif.org/data/schema/leidata/2016"},
                          filter=['NextVersion', 'Extension'])
     data = xml_parser.process(lei_xml_data_file)
     count = 0
-    for item in data:
+    async for item in data:
         if count == 0:
             assert item['LEI'] == '001GPB6A9XPE8XJICC14'
             assert item['Entity']['LegalName'] == 'Fidelity Advisor Leveraged Company Stock Fund'
@@ -146,13 +148,14 @@ def test_lei_xml_parser(lei_xml_data_file):
     assert count == 13
 
 
-def test_rr_xml_parser(rr_xml_data_file):
+@pytest.mark.asyncio
+async def test_rr_xml_parser(rr_xml_data_file):
     xml_parser = XMLData(item_tag="RelationshipRecord",
                                     namespace={"rr": "http://www.gleif.org/data/schema/rr/2016"},
                                     filter=['Extension'])
     data = xml_parser.process(rr_xml_data_file)
     count = 0
-    for item in data:
+    async for item in data:
         if count == 0:
             print(item)
             assert item['Relationship']['StartNode'] == {'NodeID': '001GPB6A9XPE8XJICC14', 'NodeIDType': 'LEI'}
@@ -172,13 +175,14 @@ def test_rr_xml_parser(rr_xml_data_file):
     assert count == 10
 
 
-def test_repex_xml_parser(repex_xml_data_file):
+@pytest.mark.asyncio
+async def test_repex_xml_parser(repex_xml_data_file):
     xml_parser = XMLData(item_tag="Exception",
                          namespace={"repex": "http://www.gleif.org/data/schema/repex/2016"},
                          filter=['NextVersion', 'Extension'])
     data = xml_parser.process(repex_xml_data_file)
     count = 0
-    for item in data:
+    async for item in data:
         if count == 0:
             print(item)
             assert item['LEI'] == '001GPB6A9XPE8XJICC14'

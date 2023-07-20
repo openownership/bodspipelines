@@ -47,12 +47,18 @@ class NewOutput:
             self.new_count += 1
         #print(f"Processed: {self.processed_count}, New: {self.new_count}")
 
-    def process_stream(self, stream, item_type):
+    async def process_stream(self, stream, item_type):
         if self.identify: item_type = self.identify
-        for item in self.storage.process_batch(stream, item_type):
+        async for item in self.storage.process_batch(stream, item_type):
             if item:
-                self.output.process(item, item_type)
-        self.output.finish()
+                await self.output.process(item, item_type)
+        await self.output.finish()
+
+    async def setup(self):
+        if hasattr(self.storage, 'setup'):
+            await self.storage.setup()
+        if hasattr(self.output, 'setup'):
+            await self.output.setup()
 
 class KinesisOutput:
     """Output to Kinesis Stream"""
@@ -61,8 +67,12 @@ class KinesisOutput:
         self.stream_name = stream_name
         self.stream = KinesisStream(self.stream_name)
 
-    def process(self, item, item_type):
-        self.stream.add_record(item)
+    async def process(self, item, item_type):
+        await self.stream.add_record(item)
 
-    def finish(self):
-        self.stream.finish_write()
+    async def finish(self):
+        await self.stream.finish_write()
+
+    async def setup(self):
+        if hasattr(self.stream, 'setup'):
+            await self.stream.setup()

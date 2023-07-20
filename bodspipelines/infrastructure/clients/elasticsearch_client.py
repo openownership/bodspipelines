@@ -1,18 +1,20 @@
 import os
 import json
-from elasticsearch import Elasticsearch
-from elasticsearch.helpers import bulk, streaming_bulk
+#from elasticsearch import Elasticsearch
+#from elasticsearch.helpers import bulk, streaming_bulk
+from elasticsearch import AsyncElasticsearch
+from elasticsearch.helpers import async_streaming_bulk
 
-def create_client():
+async def create_client():
     """Create Elasticsearch client"""
     protocol = os.getenv('ELASTICSEARCH_PROTOCOL')
     host = os.getenv('ELASTICSEARCH_HOST')
     port = os.getenv('ELASTICSEARCH_PORT')
     password = os.getenv('ELASTICSEARCH_PASSWORD')
     if password:
-        return Elasticsearch(f"{protocol}://{host}:{port}", basic_auth=('elastic', password), timeout=30, max_retries=10, retry_on_timeout=True)
+        return AsyncElasticsearch(f"{protocol}://{host}:{port}", basic_auth=('elastic', password), timeout=30, max_retries=10, retry_on_timeout=True)
     else:
-        return Elasticsearch(f"{protocol}://{host}:{port}", timeout=30, max_retries=10, retry_on_timeout=True) #, basic_auth=('elastic', password))
+        return AsyncElasticsearch(f"{protocol}://{host}:{port}", timeout=30, max_retries=10, retry_on_timeout=True) #, basic_auth=('elastic', password))
 
 def index_definition(record, out):
     """Create index definition from record"""
@@ -26,10 +28,14 @@ def index_definition(record, out):
 
 class ElasticsearchClient:
     """ElasticsearchClient class"""
-    def __init__(self):
+    def __init__(self, indexes):
         """Initial setup"""
-        self.client = create_client()
+        self.client = None
+        self.indexes = indexes
         self.index_name = None
+
+    async def create_client(self):
+        self.client = await create_client()
 
     def set_index(self, index_name):
         """Set index name"""
@@ -52,17 +58,22 @@ class ElasticsearchClient:
         """Delete index"""
         self.client.options(ignore_status=[400, 404]).indices.delete(index=self.index_name)
 
+    def create_indexes(self):
+        """Moved from storage"""
+        for index_name in self.indexes:
+            self.create_index(index_name, self.indexes[index_name]['properties'])
+
     def stats(self, index_name):
         """Get index statistics"""
         return self.client.indices.stats(index=index_name)
 
-    def store_data(self, data):
+    async def store_data(self, data):
         """Store data in index"""
         if isinstance(data, list):
             for d in data:
-                self.client.index(index=self.index_name, document=d)
+                await self.client.index(index=self.index_name, document=d)
         else:
-            self.client.index(index=self.index_name, document=data)
+            await self.client.index(index=self.index_name, document=data)
 
     def bulk_store_data(self, actions, index_name):
         """Store bulk data in index"""
@@ -80,11 +91,12 @@ class ElasticsearchClient:
         print("Bulk:", errors)
         return errors
 
-    def batch_store_data(self, actions, batch, index_name):
+    async def batch_store_data(self, actions, batch, index_name):
         """Store bulk data in index"""
+        await self.create_client()
         record_count = 0
         new_records = 0
-        for ok, result in streaming_bulk(client=self.client, actions=actions, raise_on_error=False): #index=index_name,
+        async for ok, result in async_streaming_bulk(client=self.client, actions=actions, raise_on_error=False): #index=index_name,
             record_count += 1
             #print(ok, result)
             #print(batch[0])
@@ -104,9 +116,14 @@ class ElasticsearchClient:
         else:
             print(f"Storing in {index_name}: {record_count} records; {new_records} new records")
 
-    def search(self, search):
+    async def search(self, search):
         """Search index"""
-        return self.client.search(index=self.index_name, query=search)
+        return await self.client.search(index=self.index_name, query=search)
+
+    async def get(self, id):
+        """Get by id"""
+        match = await self.search({"query": {"match": {"_id": id}}})
+        return match['hits']['hits']
 
     def list_indexes(self):
         """List indexes"""
@@ -119,3 +136,5 @@ class ElasticsearchClient:
     def check_new(self, data):
         pass
 
+    async def setup(self):
+        self.client = await create_client()

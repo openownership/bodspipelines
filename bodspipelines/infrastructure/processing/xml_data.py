@@ -29,7 +29,7 @@ def get_tag(element, pos):
             return element.tag[pos[ns]:]
 
 
-def data_stream(filename, tag_name, namespaces, filter=[]):
+async def data_stream(filename, tag_name, namespaces, filter=[]):
     skip = False
     stack = []
     pos = {namespaces[ns]: len(namespaces[ns])+2 for ns in namespaces}
@@ -99,8 +99,8 @@ class XMLData:
         self.namespace = namespace
         self.filter = filter
 
-    def process(self, filename):
+    async def process(self, filename):
         """Iterate over processed items from file"""
         tag_name = f"{{{self.namespace[next(iter(self.namespace))]}}}{self.item_tag}"
-        for item in data_stream(filename, tag_name, self.namespace, filter=self.filter):
+        async for item in data_stream(filename, tag_name, self.namespace, filter=self.filter):
             yield item

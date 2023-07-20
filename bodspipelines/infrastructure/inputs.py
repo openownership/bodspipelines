@@ -6,8 +6,13 @@ class KinesisInput:
         self.stream_name = stream_name
         self.stream = KinesisStream(self.stream_name)
 
-    def process(self):
-        for records in self.stream.read_stream():
-            for record in records:
-                if isinstance(record, dict):
-                    yield record
+    async def process(self):
+        async for record in self.stream.read_stream():
+            #for record in records:
+            #    if isinstance(record, dict):
+            yield record
+
+    async def setup(self):
+        if hasattr(self.stream, 'setup'):
+            await self.stream.setup()
+
