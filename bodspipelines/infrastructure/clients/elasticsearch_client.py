@@ -61,7 +61,7 @@ class ElasticsearchClient:
     async def create_indexes(self):
         """Moved from storage"""
         for index_name in self.indexes:
-            self.create_index(index_name, self.indexes[index_name]['properties'])
+            await self.create_index(index_name, self.indexes[index_name]['properties'])
 
     def stats(self, index_name):
         """Get index statistics"""
