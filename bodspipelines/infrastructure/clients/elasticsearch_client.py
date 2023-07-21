@@ -138,3 +138,6 @@ class ElasticsearchClient:
 
     async def setup(self):
         self.client = await create_client()
+
+    async def close(self):
+        await self.client.transport.close()
