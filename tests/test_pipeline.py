@@ -119,6 +119,13 @@ def test_lei_ingest_stage(lei_list, xml_data_file):
         mock_kno.return_value.flush.return_value = flush_future
         #mock_sb.return_value = iter([(True, {'create': {'_id': lei}}) for lei in lei_list])
         #mock_kn.return_value.put_records.return_value = {'FailedRecordCount': 0, 'Records': []}
+        producer_close_future = asyncio.Future()
+        producer_close_future.set_result(None)
+        mock_kno.return_value.close.return_value = producer_close_future
+        consumer_close_future = asyncio.Future()
+        consumer_close_future.set_result(None)
+        mock_kni.return_value.close.return_value = consumer_close_future
+
         set_environment_variables()
 
         # Defintion of LEI-CDF v3.1 XML date source
@@ -206,7 +213,19 @@ def test_lei_transform_stage(lei_list, json_data_file):
         async def result():
             for item in json_data_file:
                 yield item
-        mock_kni.return_value = result()
+        class AsyncIterator:
+            def __init__(self, seq):
+                self.iter = iter(seq)
+            def __aiter__(self):
+                return self
+            async def __anext__(self):
+                try:
+                    return next(self.iter)
+                except StopIteration:
+                    raise StopAsyncIteration
+            async def close(self):
+                return None
+        mock_kni.return_value = AsyncIterator(json_data_file)
         #mock_kn.return_value.get_records.return_value = {'MillisBehindLatest': 0, 'Records': [{'Data': json.dumps(js).encode('utf-8')} for js in json_data_file]}
         mock_pdr.return_value = None
         mock_sdr.return_value = None
@@ -222,6 +241,12 @@ def test_lei_transform_stage(lei_list, json_data_file):
         flush_future = asyncio.Future()
         flush_future.set_result(None)
         mock_kno.return_value.flush.return_value = flush_future
+        producer_close_future = asyncio.Future()
+        producer_close_future.set_result(None)
+        mock_kno.return_value.close.return_value = producer_close_future
+        #consumer_close_future = asyncio.Future()
+        #consumer_close_future.set_result(None)
+        #mock_kni.return_value.close.return_value = consumer_close_future
 
         set_environment_variables()
 

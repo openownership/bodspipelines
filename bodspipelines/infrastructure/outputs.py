@@ -60,6 +60,13 @@ class NewOutput:
         if hasattr(self.output, 'setup'):
             await self.output.setup()
 
+    async def close(self):
+        if hasattr(self.storage, 'close'):
+            await self.storage.close()
+        if hasattr(self.output, 'close'):
+            await self.output.close()
+
+
 class KinesisOutput:
     """Output to Kinesis Stream"""
     def __init__(self, stream_name=None):
@@ -76,3 +83,7 @@ class KinesisOutput:
     async def setup(self):
         if hasattr(self.stream, 'setup'):
             await self.stream.setup()
+
+    async def close(self):
+        if hasattr(self.stream, 'close'):
+            await self.stream.close()

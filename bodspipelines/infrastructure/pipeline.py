@@ -30,6 +30,10 @@ class Source:
         if hasattr(self.origin, 'setup'):
             await self.origin.setup()
 
+    async def close(self):
+        if hasattr(self.origin, 'close'):
+            await self.origin.close()
+
 
 class Stage:
     """Pipeline stage definition class"""
@@ -83,15 +87,26 @@ class Stage:
         print(f"Finished {self.name} pipeline stage")
 
     async def setup(self):
-        for source in self.sources:
-            if hasattr(source, 'setup'):
-                await source.setup()
-        for processor in self.processors:
-            if hasattr(processor, 'setup'):
-                await processor.setup()
-        for output in self.outputs:
-            if hasattr(output, 'setup'):
-                await output.setup()
+        """Setup stage components"""
+        for components in (self.sources, self.processors, self.outputs):
+            for component in components:
+                if hasattr(component, 'setup'):
+                    await component.setup()
+
+        #for processor in self.processors:
+        #    if hasattr(processor, 'setup'):
+        #        await processor.setup()
+        #for output in self.outputs:
+        #    if hasattr(output, 'setup'):
+        #        await output.setup()
+
+    async def close(self):
+        """Shutdown stage components"""
+        for components in (self.sources, self.processors, self.outputs):
+            for component in components:
+                if hasattr(component, 'close'):
+                    await component.close()
+
 
 class Pipeline:
     """Pipeline definition class"""
@@ -119,6 +134,7 @@ class Pipeline:
         pipeline_dir = self.directory()
         await stage.setup()
         await stage.process(pipeline_dir)
+        await stage.close()
 
     def process(self, stage_name):
         """Process specified pipeline stage"""

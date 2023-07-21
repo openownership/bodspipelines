@@ -16,6 +16,10 @@ class KinesisStream:
         self.producer = Producer(stream_name=self.stream_name, processor=self.processor, region_name=os.getenv('BODS_AWS_REGION'))
         self.consumer = Consumer(stream_name=self.stream_name, processor=self.processor, region_name=os.getenv('BODS_AWS_REGION'))
 
+    async def close(self):
+        await self.producer.close()
+        await self.consumer.close()
+
     async def read_stream(self):
         """Read records from stream"""
         found = False

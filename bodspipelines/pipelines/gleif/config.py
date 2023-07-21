@@ -124,9 +124,11 @@ async def setup_indexes():
             client = ElasticsearchClient(indexes=index_properties)
             await client.setup()
             await client.create_indexes()
+            await client.close()
             client = ElasticsearchClient(indexes=bods_index_properties)
             await client.setup()
             await client.create_indexes()
+            await client.close()
             done = True
         except elastic_transport.ConnectionError:
             print("Waiting for Elasticsearch to start ...")

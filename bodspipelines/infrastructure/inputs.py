@@ -16,3 +16,6 @@ class KinesisInput:
         if hasattr(self.stream, 'setup'):
             await self.stream.setup()
 
+    async def close(self):
+        if hasattr(self.stream, 'close'):
+            await self.stream.close()
