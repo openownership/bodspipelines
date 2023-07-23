@@ -13,15 +13,19 @@ class KinesisStream:
         os.environ['AWS_SECRET_ACCESS_KEY'] = os.getenv('BODS_AWS_SECRET_ACCESS_KEY')
 
     async def setup(self):
+        """Setup kinesis clients"""
         self.producer = Producer(stream_name=self.stream_name, processor=self.processor, region_name=os.getenv('BODS_AWS_REGION'))
         self.consumer = Consumer(stream_name=self.stream_name, processor=self.processor, region_name=os.getenv('BODS_AWS_REGION'))
+        self.read = False
 
     async def close(self):
+        """Close kinesis clients"""
         await self.producer.close()
-        await self.consumer.close()
+        if self.read: await self.consumer.close() # Client only started by first read, so only close if has been read
 
     async def read_stream(self):
         """Read records from stream"""
+        self.read = True
         found = False
         count = 0
         while True:
