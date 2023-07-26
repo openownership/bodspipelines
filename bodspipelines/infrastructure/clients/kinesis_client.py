@@ -14,7 +14,8 @@ class KinesisStream:
 
     async def setup(self):
         """Setup kinesis clients"""
-        self.producer = Producer(stream_name=self.stream_name, processor=self.processor, region_name=os.getenv('BODS_AWS_REGION'))
+        self.producer = Producer(stream_name=self.stream_name, processor=self.processor, region_name=os.getenv('BODS_AWS_REGION'),
+                                 put_bandwidth_limit_per_shard=800)
         self.consumer = Consumer(stream_name=self.stream_name, processor=self.processor, region_name=os.getenv('BODS_AWS_REGION'))
         self.read = False
 
