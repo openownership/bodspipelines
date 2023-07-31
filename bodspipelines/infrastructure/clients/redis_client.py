@@ -58,3 +58,8 @@ class RedisClient:
         else:
             key = get_key(self.index_name, data['_id'])
             await self.client.set(key, data['_source'])
+
+    async def setup(self):
+        """Dummy setup method"""
+        pass
+
