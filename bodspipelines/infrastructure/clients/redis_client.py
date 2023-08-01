@@ -38,7 +38,7 @@ class RedisClient:
                     new_records += 1
                     yield batch[i]['_source']
                 else:
-                    print(result, batch[i]['_if'])
+                    print(result, batch[i]['_id'])
 
     async def get(self, id):
         """Search index"""
