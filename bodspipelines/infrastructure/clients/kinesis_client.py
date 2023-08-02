@@ -47,4 +47,5 @@ class KinesisStream:
 
     async def finish_write(self):
         """Write any remaining records"""
-        await self.producer.flush()
+        #await self.producer.flush()
+        await asyncio.sleep(5)
