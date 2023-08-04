@@ -106,8 +106,8 @@ def identify_bods(item):
     elif item['statementType'] == 'ownershipOrControlStatement':
         return 'ownership'
 
-# BODS data: Store in Easticsearch and output new to Kinesis stream
-bods_output_new = NewOutput(storage=Storage(storage=ElasticsearchClient(indexes=bods_index_properties)),
+# BODS data: Store in Redis and output new to Kinesis stream
+bods_output_new = NewOutput(storage=Storage(storage=RedisClient(indexes=bods_index_properties)),
                             output=KinesisOutput(stream_name="bods-gleif-dev"),
                             identify=identify_bods)
 
