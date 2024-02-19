@@ -1,0 +1,50 @@
+[
+  {
+    "LEI": "159516LKTEGWITQUIE78",
+    "ExceptionCategory": "DIRECT_ACCOUNTING_CONSOLIDATION_PARENT",
+    "ExceptionReason": "NON_CONSOLIDATING",
+    "ContentDate": "2023-11-06T09:13:21Z"
+  },
+  {
+    "LEI": "0292001398F7K0YJI588",
+    "ExceptionCategory": "DIRECT_ACCOUNTING_CONSOLIDATION_PARENT",
+    "ExceptionReason": "NON_CONSOLIDATING",
+    "ContentDate": "2023-11-06T09:13:21Z"
+  },
+  {
+    "LEI": "004L5FPTUREIWK9T2N63",
+    "ExceptionCategory": "DIRECT_ACCOUNTING_CONSOLIDATION_PARENT",
+    "ExceptionReason": "NO_KNOWN_PERSON",
+    "ContentDate": "2023-11-06T09:13:21Z"
+  },
+  {
+    "LEI": "020BQJXAXCZNLKIN7326",
+    "ExceptionCategory": "DIRECT_ACCOUNTING_CONSOLIDATION_PARENT",
+    "ExceptionReason": "NATURAL_PERSONS",
+    "ContentDate": "2023-11-06T09:13:21Z"
+  },
+  {
+    "LEI": "0292001018B2N4DBI146",
+    "ExceptionCategory": "DIRECT_ACCOUNTING_CONSOLIDATION_PARENT",
+    "ExceptionReason": "NO_LEI",
+    "ContentDate": "2023-11-06T09:13:21Z"
+  },
+  {
+    "LEI": "2549007VY3IWUVGW7A82",
+    "ExceptionCategory": "DIRECT_ACCOUNTING_CONSOLIDATION_PARENT",
+    "ExceptionReason": "NON_CONSOLIDATING",
+    "Extension": {
+      "Deletion": {
+        "DeletedAt": "2023-11-24T02:07:59Z"
+      }
+    },
+    "ContentDate": "2023-11-06T09:13:21Z"
+  },
+  {
+    "LEI": "159515PKYKQYJLT0KF16",
+    "ExceptionCategory": "DIRECT_ACCOUNTING_CONSOLIDATION_PARENT",
+    "ExceptionReason": "NATURAL_PERSONS",
+    "ExceptionReference": "Datenschutz!",
+    "ContentDate": "2023-11-06T09:13:21Z"
+  }
+]

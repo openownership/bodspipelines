@@ -59,7 +59,29 @@ class RedisClient:
             key = get_key(self.index_name, data['_id'])
             await self.client.set(key, data['_source'])
 
+    async def count_keys(self, pattern: str) -> int:
+        """Counts the number of keys matching a pattern."""
+        keys_count = self.client.register_script(
+            """
+            return #redis.call('KEYS', ARGV[1])
+            """
+        )
+        return await keys_count(args=[pattern])
+
+    async def statistics(self) -> dict:
+        """Calculate storage statistics"""
+        stats = {}
+        for index in self.indexes:
+            keys = await self.count_keys(f"{index}*")
+            stats[index] = keys
+        total_keys = await self.client.dbsize()
+        stats['total'] = total_keys
+        return stats
+
     async def setup(self):
         """Dummy setup method"""
         pass
 
+    async def setup_indexes(self):
+        """Dummy setup indexes"""
+        pass

@@ -30,6 +30,7 @@ def get_tag(element, pos):
 
 
 async def data_stream(filename, tag_name, namespaces, filter=[]):
+    """Stream items from XML file"""
     skip = False
     stack = []
     pos = {namespaces[ns]: len(namespaces[ns])+2 for ns in namespaces}
@@ -76,11 +77,6 @@ async def data_stream(filename, tag_name, namespaces, filter=[]):
                                 stack[-1][1] = [val]
                             else:
                                 stack[-1][1] = [{'type': element.attrib['type'], tag: val}]
-                            #if isinstance(stack[-1][1], list):
-                            #    stack[-1][1].append({'type': element.attrib['type'], tag: val})
-                            #else:
-                            #    stack[-1][1] = [{'type': element.attrib['type'], tag: val}]
-                            ##stack[-1][1][element.attrib['type']] = val
                         else:
                             if isinstance(stack[-1][1], list):
                                 stack[-1][1].append(val)
@@ -93,14 +89,25 @@ async def data_stream(filename, tag_name, namespaces, filter=[]):
 class XMLData:
     """XML data parser configuration"""
 
-    def __init__(self, item_tag=None, namespace=None, filter=[]):
+    def __init__(self, item_tag=None, header_tag=None, namespace=None, filter=[]):
         """Initial setup"""
         self.item_tag = item_tag
+        self.header_tag = header_tag
         self.namespace = namespace
         self.filter = filter
 
+    async def extract_header(self, filename):
+        """Extract header"""
+        if self.header_tag:
+            tag_name = f"{{{self.namespace[next(iter(self.namespace))]}}}{self.header_tag}"
+            async for item in data_stream(filename, tag_name, self.namespace, filter=self.filter):
+                return item
+        else:
+            return None
+
     async def process(self, filename):
         """Iterate over processed items from file"""
+        header = await self.extract_header(filename)
         tag_name = f"{{{self.namespace[next(iter(self.namespace))]}}}{self.item_tag}"
         async for item in data_stream(filename, tag_name, self.namespace, filter=self.filter):
-            yield item
+            yield header, item

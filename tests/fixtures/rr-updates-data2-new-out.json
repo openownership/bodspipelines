@@ -1,0 +1,352 @@
+[
+  {
+    "statementID": "9b2197d7-2d52-5b77-1356-c9d62b5ce670",
+    "statementType": "ownershipOrControlStatement",
+    "statementDate": "2023-08-23",
+    "subject": {
+      "describedByEntityStatement": "7239ce6e-d0c6-731a-30b5-b2157eb12419"
+    },
+    "interestedParty": {
+      "describedByEntityStatement": "97e2090a-9a29-3d48-3229-6cf390a8cf55"
+    },
+    "interests": [
+      {
+        "type": "other-influence-or-control",
+        "interestLevel": "direct",
+        "beneficialOwnershipOrControl": false,
+        "startDate": "2012-11-29T00:00:00.000Z"
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2023-12-11",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister",
+        "verified"
+      ],
+      "description": "GLEIF"
+    }
+  },
+  {
+    "statementID": "724871b2-e240-68c9-030c-c85370efa7c4",
+    "statementType": "ownershipOrControlStatement",
+    "statementDate": "2023-09-17",
+    "subject": {
+      "describedByEntityStatement": "d400beea-3cdc-a894-ce0d-9ce8fa67c30b"
+    },
+    "interestedParty": {
+      "describedByEntityStatement": "296865b4-00a0-2f0e-47ac-c20037da1f30"
+    },
+    "interests": [
+      {
+        "type": "other-influence-or-control",
+        "interestLevel": "direct",
+        "beneficialOwnershipOrControl": false,
+        "startDate": "2005-03-23T08:00:00+01:00"
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2023-12-11",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister",
+        "verified"
+      ],
+      "description": "GLEIF"
+    }
+  },
+  {
+    "statementID": "46af8fa4-1b3d-00db-c440-7b53bee06464",
+    "statementType": "ownershipOrControlStatement",
+    "statementDate": "2023-09-17",
+    "subject": {
+      "describedByEntityStatement": "19fb3b00-c801-7ff9-fae7-a1955c772e71"
+    },
+    "interestedParty": {
+      "describedByEntityStatement": "296865b4-00a0-2f0e-47ac-c20037da1f30"
+    },
+    "interests": [
+      {
+        "type": "other-influence-or-control",
+        "interestLevel": "direct",
+        "beneficialOwnershipOrControl": false,
+        "startDate": "2012-04-02T08:00:00+02:00"
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2023-12-11",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister",
+        "verified"
+      ],
+      "description": "GLEIF"
+    }
+  },
+  {
+    "statementID": "90ccd99f-086c-1bfe-211e-330266d50cb1",
+    "statementType": "ownershipOrControlStatement",
+    "statementDate": "2023-09-17",
+    "subject": {
+      "describedByEntityStatement": "1ff23b39-62f3-4744-da92-b11c2c3f8ff3"
+    },
+    "interestedParty": {
+      "describedByEntityStatement": "296865b4-00a0-2f0e-47ac-c20037da1f30"
+    },
+    "interests": [
+      {
+        "type": "other-influence-or-control",
+        "interestLevel": "direct",
+        "beneficialOwnershipOrControl": false,
+        "startDate": "2005-03-22T08:00:00+01:00"
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2023-12-11",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister",
+        "verified"
+      ],
+      "description": "GLEIF"
+    }
+  },
+  {
+    "statementID": "5729d9a2-f80d-b945-930f-0ed3c210f222",
+    "statementType": "ownershipOrControlStatement",
+    "statementDate": "2023-09-17",
+    "subject": {
+      "describedByEntityStatement": "a8866f73-572f-5ec5-6b42-2fe78b72f128"
+    },
+    "interestedParty": {
+      "describedByEntityStatement": "296865b4-00a0-2f0e-47ac-c20037da1f30"
+    },
+    "interests": [
+      {
+        "type": "other-influence-or-control",
+        "interestLevel": "direct",
+        "beneficialOwnershipOrControl": false,
+        "startDate": "2005-03-22T08:00:00+01:00"
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2023-12-11",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister",
+        "verified"
+      ],
+      "description": "GLEIF"
+    }
+  },
+  {
+    "statementID": "41e51ae9-3a31-e7ed-10a2-7bb13375ccf6",
+    "statementType": "ownershipOrControlStatement",
+    "statementDate": "2023-06-25",
+    "subject": {
+      "describedByEntityStatement": "296865b4-00a0-2f0e-47ac-c20037da1f30"
+    },
+    "interestedParty": {
+      "describedByEntityStatement": "426b5ddd-267f-0020-ae05-5dbc1e0f3341"
+    },
+    "interests": [
+      {
+        "type": "other-influence-or-control",
+        "interestLevel": "direct",
+        "beneficialOwnershipOrControl": false,
+        "startDate": "2022-10-24T08:00:00+02:00"
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2023-12-11",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister",
+        "verified"
+      ],
+      "description": "GLEIF"
+    }
+  },
+  {
+    "statementID": "c1aa1715-1cd3-b105-842a-1da48c0b5e30",
+    "statementType": "ownershipOrControlStatement",
+    "statementDate": "2023-02-11",
+    "subject": {
+      "describedByEntityStatement": "657a9791-1cf0-e35c-a65f-0785e4685749"
+    },
+    "interestedParty": {
+      "describedByEntityStatement": "8304570e-5bbf-d8df-1674-51f9d2a1f354"
+    },
+    "interests": [
+      {
+        "type": "other-influence-or-control",
+        "interestLevel": "direct",
+        "beneficialOwnershipOrControl": false,
+        "startDate": "2019-06-30T00:00:00+00:00"
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2023-12-11",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister",
+        "verified"
+      ],
+      "description": "GLEIF"
+    }
+  },
+  {
+    "statementID": "82d4a9f1-5ee6-d620-1a85-e45323563dde",
+    "statementType": "ownershipOrControlStatement",
+    "statementDate": "2023-02-11",
+    "subject": {
+      "describedByEntityStatement": "657a9791-1cf0-e35c-a65f-0785e4685749"
+    },
+    "interestedParty": {
+      "describedByEntityStatement": "8304570e-5bbf-d8df-1674-51f9d2a1f354"
+    },
+    "interests": [
+      {
+        "type": "other-influence-or-control",
+        "interestLevel": "indirect",
+        "beneficialOwnershipOrControl": false,
+        "startDate": "2019-06-30T00:00:00+00:00"
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2023-12-11",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister",
+        "verified"
+      ],
+      "description": "GLEIF"
+    }
+  },
+  {
+    "statementID": "e6afa469-a581-82cd-e9b8-63763fae365d",
+    "statementType": "ownershipOrControlStatement",
+    "statementDate": "2023-04-30",
+    "subject": {
+      "describedByEntityStatement": "64ced3b2-7c19-bd8f-3ff9-6eeb1ebe1d81"
+    },
+    "interestedParty": {
+      "describedByEntityStatement": "657a9791-1cf0-e35c-a65f-0785e4685749"
+    },
+    "interests": [
+      {
+        "type": "other-influence-or-control",
+        "interestLevel": "direct",
+        "beneficialOwnershipOrControl": false,
+        "startDate": "2018-06-30T00:00:00+00:00"
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2023-12-11",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister",
+        "verified"
+      ],
+      "description": "GLEIF"
+    }
+  },
+  {
+    "statementID": "5c126e1c-83f9-fece-2f82-70af13007c69",
+    "statementType": "ownershipOrControlStatement",
+    "statementDate": "2023-04-30",
+    "subject": {
+      "describedByEntityStatement": "64ced3b2-7c19-bd8f-3ff9-6eeb1ebe1d81"
+    },
+    "interestedParty": {
+      "describedByEntityStatement": "8304570e-5bbf-d8df-1674-51f9d2a1f354"
+    },
+    "interests": [
+      {
+        "type": "other-influence-or-control",
+        "interestLevel": "indirect",
+        "beneficialOwnershipOrControl": false,
+        "startDate": "2018-06-30T00:00:00+00:00"
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2023-12-11",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister",
+        "verified"
+      ],
+      "description": "GLEIF"
+    }
+  }
+]

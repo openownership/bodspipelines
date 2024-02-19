@@ -1,0 +1,636 @@
+[
+  {
+    "statementID": "179355f9-6d62-3ccc-1779-f09db959a042",
+    "statementType": "entityStatement",
+    "statementDate": "2023-09-12",
+    "entityType": "registeredEntity",
+    "name": "Delaware Ivy Value Fund",
+    "incorporatedInJurisdiction": {
+      "name": "United States",
+      "code": "US"
+    },
+    "identifiers": [
+      {
+        "id": "ZZZWS8Y6XVKM0Q9RJQ79",
+        "scheme": "XI-LEI",
+        "schemeName": "Global Legal Entity Identifier Index"
+      },
+      {
+        "id": "S000024832",
+        "schemeName": "RA000665"
+      }
+    ],
+    "addresses": [
+      {
+        "type": "registered",
+        "address": "C/O THE CORPORATION TRUST COMPANY, WILMINGTON",
+        "country": "US",
+        "postCode": "19801"
+      },
+      {
+        "type": "business",
+        "address": "C/O Delaware Management Company, Inc., WILMINGTON",
+        "country": "US",
+        "postCode": "19808"
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2023-12-11",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister",
+        "verified"
+      ],
+      "description": "GLEIF"
+    },
+    "foundingDate": "2012-06-06T00:00:00.000Z"
+  },
+  {
+    "statementID": "68b6a4dc-cc3d-3c8d-d44c-47b29ab0935c",
+    "statementType": "entityStatement",
+    "statementDate": "2023-09-03",
+    "entityType": "registeredEntity",
+    "name": "ESG DOMESTIC OPPORTUNITY OFFSHORE FUND LTD.",
+    "incorporatedInJurisdiction": {
+      "name": "Cayman Islands",
+      "code": "KY"
+    },
+    "identifiers": [
+      {
+        "id": "00TR8NKAEL48RGTZEW89",
+        "scheme": "XI-LEI",
+        "schemeName": "Global Legal Entity Identifier Index"
+      },
+      {
+        "id": "574206",
+        "schemeName": "RA000087"
+      }
+    ],
+    "addresses": [
+      {
+        "type": "registered",
+        "address": "89 Nexus Way, Camana Bay",
+        "country": "KY",
+        "postCode": "KY1-9009"
+      },
+      {
+        "type": "business",
+        "address": "C/O Citco Fund Services (Curacao) B.V., Willemstad",
+        "country": "CW"
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2023-12-11",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister",
+        "verified"
+      ],
+      "description": "GLEIF"
+    }
+  },
+  {
+    "statementID": "296865b4-00a0-2f0e-47ac-c20037da1f30",
+    "statementType": "entityStatement",
+    "statementDate": "2023-06-25",
+    "entityType": "registeredEntity",
+    "name": "VÚB Generali dôchodková správcovská spoločnosť, a.s.",
+    "incorporatedInJurisdiction": {
+      "name": "Slovakia",
+      "code": "SK"
+    },
+    "identifiers": [
+      {
+        "id": "097900BHF50000076475",
+        "scheme": "XI-LEI",
+        "schemeName": "Global Legal Entity Identifier Index"
+      },
+      {
+        "id": "35903058",
+        "schemeName": "RA000526"
+      }
+    ],
+    "addresses": [
+      {
+        "type": "registered",
+        "address": "Mlynské nivy 1, Bratislava",
+        "country": "SK",
+        "postCode": "820 04"
+      },
+      {
+        "type": "business",
+        "address": "Mlynské nivy 1, Bratislava",
+        "country": "SK",
+        "postCode": "820 04"
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2023-12-11",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister",
+        "verified"
+      ],
+      "description": "GLEIF"
+    },
+    "foundingDate": "2004-10-09T08:00:00+02:00"
+  },
+  {
+    "statementID": "d400beea-3cdc-a894-ce0d-9ce8fa67c30b",
+    "statementType": "entityStatement",
+    "statementDate": "2023-09-17",
+    "entityType": "registeredEntity",
+    "name": "SMART, zelený inovatívny negarantovaný dôchodkový fond VÚB Generali dôchodková správcovská spoločnosť, a.s.",
+    "incorporatedInJurisdiction": {
+      "name": "Slovakia",
+      "code": "SK"
+    },
+    "identifiers": [
+      {
+        "id": "097900BEJX0000002337",
+        "scheme": "XI-LEI",
+        "schemeName": "Global Legal Entity Identifier Index"
+      },
+      {
+        "id": "SK35903058VUB04",
+        "schemeName": "RA000706"
+      }
+    ],
+    "addresses": [
+      {
+        "type": "registered",
+        "address": "Mlynské nivy 1, Bratislava",
+        "country": "SK",
+        "postCode": "820 04"
+      },
+      {
+        "type": "business",
+        "address": "c/o VÚB Generali dôchodková správcovská spoločnosť, a.s., Bratislava",
+        "country": "SK",
+        "postCode": "820 04"
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2023-12-11",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister",
+        "verified"
+      ],
+      "description": "GLEIF"
+    },
+    "foundingDate": "2005-03-23T08:00:00+01:00"
+  },
+  {
+    "statementID": "19fb3b00-c801-7ff9-fae7-a1955c772e71",
+    "statementType": "entityStatement",
+    "statementDate": "2023-09-17",
+    "entityType": "registeredEntity",
+    "name": "INDEX, indexový negarantovaný dôchodkový fond VUB Generali d.s.s., a.s.",
+    "incorporatedInJurisdiction": {
+      "name": "Slovakia",
+      "code": "SK"
+    },
+    "identifiers": [
+      {
+        "id": "097900BEJX0000002143",
+        "scheme": "XI-LEI",
+        "schemeName": "Global Legal Entity Identifier Index"
+      },
+      {
+        "id": "SK35903058VUB01",
+        "schemeName": "RA000706"
+      }
+    ],
+    "addresses": [
+      {
+        "type": "registered",
+        "address": "Mlynské nivy 1, Bratislava",
+        "country": "SK",
+        "postCode": "820 04"
+      },
+      {
+        "type": "business",
+        "address": "c/o VÚB Generali dôchodková správcovská spoločnosť, a.s., Bratislava",
+        "country": "SK",
+        "postCode": "820 04"
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2023-12-11",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister",
+        "verified"
+      ],
+      "description": "GLEIF"
+    },
+    "foundingDate": "2012-04-02T08:00:00+02:00"
+  },
+  {
+    "statementID": "1ff23b39-62f3-4744-da92-b11c2c3f8ff3",
+    "statementType": "entityStatement",
+    "statementDate": "2023-09-17",
+    "entityType": "registeredEntity",
+    "name": "KLASIK, dlhopisový garantovaný dôchodkový fond VÚB Generali d.s.s., a.s.",
+    "incorporatedInJurisdiction": {
+      "name": "Slovakia",
+      "code": "SK"
+    },
+    "identifiers": [
+      {
+        "id": "097900BEJX0000002240",
+        "scheme": "XI-LEI",
+        "schemeName": "Global Legal Entity Identifier Index"
+      },
+      {
+        "id": "SK35903058VUB02",
+        "schemeName": "RA000706"
+      }
+    ],
+    "addresses": [
+      {
+        "type": "registered",
+        "address": "Mlynské nivy 1, Bratislava",
+        "country": "SK",
+        "postCode": "820 04"
+      },
+      {
+        "type": "business",
+        "address": "c/o VÚB Generali dôchodková správcovská spoločnosť, a.s., Bratislava",
+        "country": "SK",
+        "postCode": "820 04"
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2023-12-11",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister",
+        "verified"
+      ],
+      "description": "GLEIF"
+    },
+    "foundingDate": "2005-03-22T08:00:00+01:00"
+  },
+  {
+    "statementID": "a8866f73-572f-5ec5-6b42-2fe78b72f128",
+    "statementType": "entityStatement",
+    "statementDate": "2023-09-17",
+    "entityType": "registeredEntity",
+    "name": "PROFIT, akciový negarantovaný dôchodkový fond VÚB Generali d.s.s., a.s.",
+    "incorporatedInJurisdiction": {
+      "name": "Slovakia",
+      "code": "SK"
+    },
+    "identifiers": [
+      {
+        "id": "097900BEJX0000002434",
+        "scheme": "XI-LEI",
+        "schemeName": "Global Legal Entity Identifier Index"
+      },
+      {
+        "id": "SK35903058VUB03",
+        "schemeName": "RA000706"
+      }
+    ],
+    "addresses": [
+      {
+        "type": "registered",
+        "address": "Mlynské nivy 1, Bratislava",
+        "country": "SK",
+        "postCode": "820 04"
+      },
+      {
+        "type": "business",
+        "address": "c/o VÚB Generali dôchodková správcovská spoločnosť, a.s., Bratislava",
+        "country": "SK",
+        "postCode": "820 04"
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2023-12-11",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister",
+        "verified"
+      ],
+      "description": "GLEIF"
+    },
+    "foundingDate": "2005-03-22T08:00:00+01:00"
+  },
+  {
+    "statementID": "426b5ddd-267f-0020-ae05-5dbc1e0f3341",
+    "statementType": "entityStatement",
+    "statementDate": "2023-10-12",
+    "entityType": "registeredEntity",
+    "name": "Všeobecná úverová banka, a.s.",
+    "incorporatedInJurisdiction": {
+      "name": "Slovakia",
+      "code": "SK"
+    },
+    "identifiers": [
+      {
+        "id": "549300JB1P61FUTPEZ75",
+        "scheme": "XI-LEI",
+        "schemeName": "Global Legal Entity Identifier Index"
+      },
+      {
+        "id": "31320155",
+        "schemeName": "RA000526"
+      }
+    ],
+    "addresses": [
+      {
+        "type": "registered",
+        "address": "Mlynské nivy 1, Bratislava",
+        "country": "SK",
+        "postCode": "829 90"
+      },
+      {
+        "type": "business",
+        "address": "Mlynské nivy 1, Bratislava",
+        "country": "SK",
+        "postCode": "829 90"
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2023-12-11",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister",
+        "verified"
+      ],
+      "description": "GLEIF"
+    },
+    "foundingDate": "1992-04-01T08:00:00+02:00"
+  },
+  {
+    "statementID": "42b2a5f0-c7ff-a8c8-fd77-9b0292530830",
+    "statementType": "entityStatement",
+    "statementDate": "2023-02-25",
+    "entityType": "registeredEntity",
+    "name": "Corporate Business Solutions Partners S.à r.l.",
+    "incorporatedInJurisdiction": {
+      "name": "Luxembourg",
+      "code": "LU"
+    },
+    "identifiers": [
+      {
+        "id": "9845002B9874D50A4531",
+        "scheme": "XI-LEI",
+        "schemeName": "Global Legal Entity Identifier Index"
+      },
+      {
+        "id": "B191847",
+        "schemeName": "RA000432"
+      }
+    ],
+    "addresses": [
+      {
+        "type": "registered",
+        "address": "23 Am Scheerleck, Wecker",
+        "country": "LU",
+        "postCode": "6868"
+      },
+      {
+        "type": "business",
+        "address": "23 Am Scheerleck, Wecker",
+        "country": "LU",
+        "postCode": "6868"
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2023-12-11",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister",
+        "verified"
+      ],
+      "description": "GLEIF"
+    },
+    "foundingDate": "2014-11-17T00:00:00+00:00"
+  },
+  {
+    "statementID": "657a9791-1cf0-e35c-a65f-0785e4685749",
+    "statementType": "entityStatement",
+    "statementDate": "2023-02-11",
+    "entityType": "registeredEntity",
+    "name": "MONOOVA GLOBAL PAYMENTS PTY LTD",
+    "incorporatedInJurisdiction": {
+      "name": "Australia",
+      "code": "AU"
+    },
+    "identifiers": [
+      {
+        "id": "2138002YAB7Z9KO21397",
+        "scheme": "XI-LEI",
+        "schemeName": "Global Legal Entity Identifier Index"
+      },
+      {
+        "id": "106 249 852",
+        "schemeName": "RA000014"
+      }
+    ],
+    "addresses": [
+      {
+        "type": "registered",
+        "address": "UNIT L7, NORTH SYDNEY",
+        "country": "AU",
+        "postCode": "2060"
+      },
+      {
+        "type": "business",
+        "address": "'L7', NORTH SYDNEY",
+        "country": "AU",
+        "postCode": "2060"
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2023-12-11",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister",
+        "verified"
+      ],
+      "description": "GLEIF"
+    },
+    "foundingDate": "2003-09-09T00:00:00+00:00"
+  },
+  {
+    "statementID": "8304570e-5bbf-d8df-1674-51f9d2a1f354",
+    "statementType": "entityStatement",
+    "statementDate": "2022-03-23",
+    "entityType": "registeredEntity",
+    "name": "MONEYTECH GROUP LIMITED",
+    "incorporatedInJurisdiction": {
+      "name": "Australia",
+      "code": "AU"
+    },
+    "identifiers": [
+      {
+        "id": "984500501A1B1045PB30",
+        "scheme": "XI-LEI",
+        "schemeName": "Global Legal Entity Identifier Index"
+      },
+      {
+        "id": "611 393 554",
+        "schemeName": "RA000014"
+      }
+    ],
+    "addresses": [
+      {
+        "type": "registered",
+        "address": "'L7', NORTH SYDNEY",
+        "country": "AU",
+        "postCode": "2060"
+      },
+      {
+        "type": "business",
+        "address": "'L7', NORTH SYDNEY",
+        "country": "AU",
+        "postCode": "2060"
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2023-12-11",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister",
+        "verified"
+      ],
+      "description": "GLEIF"
+    },
+    "foundingDate": "2016-03-18T00:00:00+00:00"
+  },
+  {
+    "statementID": "64ced3b2-7c19-bd8f-3ff9-6eeb1ebe1d81",
+    "statementType": "entityStatement",
+    "statementDate": "2023-04-30",
+    "entityType": "registeredEntity",
+    "name": "MONOOVA FX PTY LTD",
+    "incorporatedInJurisdiction": {
+      "name": "Australia",
+      "code": "AU"
+    },
+    "identifiers": [
+      {
+        "id": "98450051BS9C610A8T78",
+        "scheme": "XI-LEI",
+        "schemeName": "Global Legal Entity Identifier Index"
+      },
+      {
+        "id": "151 337 852",
+        "schemeName": "RA000014"
+      }
+    ],
+    "addresses": [
+      {
+        "type": "registered",
+        "address": "LEVEL 7, NORTH SYDNEY",
+        "country": "AU",
+        "postCode": "2060"
+      },
+      {
+        "type": "business",
+        "address": "LEVEL 7, NORTH SYDNEY",
+        "country": "AU",
+        "postCode": "2060"
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2023-12-11",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister",
+        "verified"
+      ],
+      "description": "GLEIF"
+    },
+    "foundingDate": "2011-06-07T00:00:00+00:00"
+  }
+]

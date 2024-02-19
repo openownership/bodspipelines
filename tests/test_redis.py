@@ -19,6 +19,7 @@ index_properties = {"lei": {"properties": lei_properties, "match": match_lei, "i
                     "repex": {"properties": repex_properties, "match": match_repex, "id": id_repex}}
 
 def set_environment_variables():
+    """Set environment variables"""
     os.environ['ELASTICSEARCH_PROTOCOL'] = 'http'
     os.environ['ELASTICSEARCH_HOST'] = 'localhost'
     os.environ['ELASTICSEARCH_PORT'] = '9876'
@@ -48,6 +49,7 @@ def lei_item():
 
 @pytest.fixture
 def lei_list():
+    """List entity LEIs"""
     return ['097900BICQ0000135514', '097900BICQ0000135515', '097900BICQ0000135516', '097900BICQ0000135517', '097900BICQ0000135518',
             '097900BICQ0000135519', '097900BICQ0000135520', '097900BICQ0000135521', '097900BICQ0000135522', '097900BICQ0000135523']
 
@@ -60,7 +62,7 @@ async def test_lei_storage_get(lei_item):
         mock_rd.return_value.get.return_value = get_future
         set_environment_variables()
         storage = Storage(storage=RedisClient(indexes=index_properties))
-        assert await storage.get(lei_item["LEI"]) == lei_item
+        assert await storage.get_item(lei_item["LEI"], 'lei') == lei_item
 
 
 @pytest.mark.asyncio

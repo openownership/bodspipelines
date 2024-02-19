@@ -1,0 +1,374 @@
+[
+  {
+    "Relationship": {
+      "StartNode": {
+        "NodeID": "001GPB6A9XPE8XJICC14",
+        "NodeIDType": "LEI"
+      },
+      "EndNode": {
+        "NodeID": "5493001Z012YSB2A0K51",
+        "NodeIDType": "LEI"
+      },
+      "RelationshipType": "IS_FUND-MANAGED_BY",
+      "RelationshipPeriods": [
+        {
+          "StartDate": "2012-11-29T00:00:00.000Z",
+          "PeriodType": "RELATIONSHIP_PERIOD"
+        }
+      ],
+      "RelationshipStatus": "ACTIVE"
+    },
+    "Registration": {
+      "InitialRegistrationDate": "2022-11-14T09:59:48.000Z",
+      "LastUpdateDate": "2023-08-23T18:46:01.213Z",
+      "RegistrationStatus": "PUBLISHED",
+      "NextRenewalDate": "2024-05-18T15:48:53.604Z",
+      "ManagingLOU": "5493001KJTIIGC8Y1R12",
+      "ValidationSources": "FULLY_CORROBORATED",
+      "ValidationDocuments": "SUPPORTING_DOCUMENTS",
+      "ValidationReference": "https://www.sec.gov/Archives/edgar/data/722574/000072257422000127/filing4699.htm"
+    }
+  },
+  {
+    "Relationship": {
+      "StartNode": {
+        "NodeID": "097900BEJX0000002337",
+        "NodeIDType": "LEI"
+      },
+      "EndNode": {
+        "NodeID": "097900BHF50000076475",
+        "NodeIDType": "LEI"
+      },
+      "RelationshipType": "IS_FUND-MANAGED_BY",
+      "RelationshipPeriods": [
+        {
+          "StartDate": "2005-03-23T08:00:00+01:00",
+          "PeriodType": "RELATIONSHIP_PERIOD"
+        }
+      ],
+      "RelationshipStatus": "ACTIVE"
+    },
+    "Registration": {
+      "InitialRegistrationDate": "2014-09-23T00:00:00+02:00",
+      "LastUpdateDate": "2023-09-17T08:31:04.159+02:00",
+      "RegistrationStatus": "PUBLISHED",
+      "NextRenewalDate": "2024-09-26T00:00:00+02:00",
+      "ManagingLOU": "097900BEFH0000000217",
+      "ValidationSources": "FULLY_CORROBORATED",
+      "ValidationDocuments": "OTHER_OFFICIAL_DOCUMENTS"
+    }
+  },
+  {
+    "Relationship": {
+      "StartNode": {
+        "NodeID": "097900BEJX0000002143",
+        "NodeIDType": "LEI"
+      },
+      "EndNode": {
+        "NodeID": "097900BHF50000076475",
+        "NodeIDType": "LEI"
+      },
+      "RelationshipType": "IS_FUND-MANAGED_BY",
+      "RelationshipPeriods": [
+        {
+          "StartDate": "2012-04-02T08:00:00+02:00",
+          "PeriodType": "RELATIONSHIP_PERIOD"
+        }
+      ],
+      "RelationshipStatus": "ACTIVE"
+    },
+    "Registration": {
+      "InitialRegistrationDate": "2014-09-23T00:00:00+02:00",
+      "LastUpdateDate": "2023-09-17T08:31:02.482+02:00",
+      "RegistrationStatus": "PUBLISHED",
+      "NextRenewalDate": "2024-09-26T00:00:00+02:00",
+      "ManagingLOU": "097900BEFH0000000217",
+      "ValidationSources": "FULLY_CORROBORATED",
+      "ValidationDocuments": "OTHER_OFFICIAL_DOCUMENTS"
+    }
+  },
+  {
+    "Relationship": {
+      "StartNode": {
+        "NodeID": "097900BEJX0000002240",
+        "NodeIDType": "LEI"
+      },
+      "EndNode": {
+        "NodeID": "097900BHF50000076475",
+        "NodeIDType": "LEI"
+      },
+      "RelationshipType": "IS_FUND-MANAGED_BY",
+      "RelationshipPeriods": [
+        {
+          "StartDate": "2005-03-22T08:00:00+01:00",
+          "PeriodType": "RELATIONSHIP_PERIOD"
+        }
+      ],
+      "RelationshipStatus": "ACTIVE"
+    },
+    "Registration": {
+      "InitialRegistrationDate": "2014-09-23T00:00:00+02:00",
+      "LastUpdateDate": "2023-09-17T08:31:03.502+02:00",
+      "RegistrationStatus": "PUBLISHED",
+      "NextRenewalDate": "2024-09-26T00:00:00+02:00",
+      "ManagingLOU": "097900BEFH0000000217",
+      "ValidationSources": "FULLY_CORROBORATED",
+      "ValidationDocuments": "OTHER_OFFICIAL_DOCUMENTS"
+    }
+  },
+  {
+    "Relationship": {
+      "StartNode": {
+        "NodeID": "097900BEJX0000002434",
+        "NodeIDType": "LEI"
+      },
+      "EndNode": {
+        "NodeID": "097900BHF50000076475",
+        "NodeIDType": "LEI"
+      },
+      "RelationshipType": "IS_FUND-MANAGED_BY",
+      "RelationshipPeriods": [
+        {
+          "StartDate": "2005-03-22T08:00:00+01:00",
+          "PeriodType": "RELATIONSHIP_PERIOD"
+        }
+      ],
+      "RelationshipStatus": "ACTIVE"
+    },
+    "Registration": {
+      "InitialRegistrationDate": "2014-09-23T00:00:00+02:00",
+      "LastUpdateDate": "2023-09-17T08:31:04.659+02:00",
+      "RegistrationStatus": "PUBLISHED",
+      "NextRenewalDate": "2024-09-26T00:00:00+02:00",
+      "ManagingLOU": "097900BEFH0000000217",
+      "ValidationSources": "FULLY_CORROBORATED",
+      "ValidationDocuments": "OTHER_OFFICIAL_DOCUMENTS"
+    }
+  },
+  {
+    "Relationship": {
+      "StartNode": {
+        "NodeID": "097900BHF50000076475",
+        "NodeIDType": "LEI"
+      },
+      "EndNode": {
+        "NodeID": "549300JB1P61FUTPEZ75",
+        "NodeIDType": "LEI"
+      },
+      "RelationshipType": "IS_DIRECTLY_CONSOLIDATED_BY",
+      "RelationshipPeriods": [
+        {
+          "StartDate": "2022-10-24T08:00:00+02:00",
+          "PeriodType": "RELATIONSHIP_PERIOD"
+        },
+        {
+          "StartDate": "2022-01-01T08:00:00+01:00",
+          "EndDate": "2022-12-31T08:00:00+01:00",
+          "PeriodType": "ACCOUNTING_PERIOD"
+        }
+      ],
+      "RelationshipStatus": "ACTIVE",
+      "RelationshipQualifiers": [
+        {
+          "QualifierDimension": "ACCOUNTING_STANDARD",
+          "QualifierCategory": "IFRS"
+        }
+      ]
+    },
+    "Registration": {
+      "InitialRegistrationDate": "2023-05-22T12:27:52.655+02:00",
+      "LastUpdateDate": "2023-06-25T08:30:56.059+02:00",
+      "RegistrationStatus": "PUBLISHED",
+      "NextRenewalDate": "2024-05-30T00:00:00+02:00",
+      "ManagingLOU": "097900BEFH0000000217",
+      "ValidationSources": "FULLY_CORROBORATED",
+      "ValidationDocuments": "SUPPORTING_DOCUMENTS"
+    }
+  },
+  {
+    "Relationship": {
+      "StartNode": {
+        "NodeID": "2138002YAB7Z9KO21397",
+        "NodeIDType": "LEI"
+      },
+      "EndNode": {
+        "NodeID": "984500501A1B1045PB30",
+        "NodeIDType": "LEI"
+      },
+      "RelationshipType": "IS_DIRECTLY_CONSOLIDATED_BY",
+      "RelationshipPeriods": [
+        {
+          "StartDate": "2018-06-30T00:00:00+00:00",
+          "EndDate": "2019-06-30T00:00:00+00:00",
+          "PeriodType": "ACCOUNTING_PERIOD"
+        },
+        {
+          "StartDate": "2019-06-30T00:00:00+00:00",
+          "PeriodType": "RELATIONSHIP_PERIOD"
+        }
+      ],
+      "RelationshipStatus": "ACTIVE",
+      "RelationshipQualifiers": [
+        {
+          "QualifierDimension": "ACCOUNTING_STANDARD",
+          "QualifierCategory": "OTHER_ACCOUNTING_STANDARD"
+        }
+      ],
+      "RelationshipQuantifiers": [
+        {
+          "MeasurementMethod": "ACCOUNTING_CONSOLIDATION",
+          "QuantifierAmount": "100.00",
+          "QuantifierUnits": "PERCENTAGE"
+        }
+      ]
+    },
+    "Registration": {
+      "InitialRegistrationDate": "2023-01-10T17:29:10+00:00",
+      "LastUpdateDate": "2023-02-11T11:21:01+00:00",
+      "RegistrationStatus": "PUBLISHED",
+      "NextRenewalDate": "2024-01-13T00:00:00+00:00",
+      "ManagingLOU": "529900T8BM49AURSDO55",
+      "ValidationSources": "FULLY_CORROBORATED",
+      "ValidationDocuments": "ACCOUNTS_FILING"
+    }
+  },
+  {
+    "Relationship": {
+      "StartNode": {
+        "NodeID": "2138002YAB7Z9KO21397",
+        "NodeIDType": "LEI"
+      },
+      "EndNode": {
+        "NodeID": "984500501A1B1045PB30",
+        "NodeIDType": "LEI"
+      },
+      "RelationshipType": "IS_ULTIMATELY_CONSOLIDATED_BY",
+      "RelationshipPeriods": [
+        {
+          "StartDate": "2018-06-30T00:00:00+00:00",
+          "EndDate": "2019-06-30T00:00:00+00:00",
+          "PeriodType": "ACCOUNTING_PERIOD"
+        },
+        {
+          "StartDate": "2019-06-30T00:00:00+00:00",
+          "PeriodType": "RELATIONSHIP_PERIOD"
+        }
+      ],
+      "RelationshipStatus": "ACTIVE",
+      "RelationshipQualifiers": [
+        {
+          "QualifierDimension": "ACCOUNTING_STANDARD",
+          "QualifierCategory": "OTHER_ACCOUNTING_STANDARD"
+        }
+      ],
+      "RelationshipQuantifiers": [
+        {
+          "MeasurementMethod": "ACCOUNTING_CONSOLIDATION",
+          "QuantifierAmount": "100.00",
+          "QuantifierUnits": "PERCENTAGE"
+        }
+      ]
+    },
+    "Registration": {
+      "InitialRegistrationDate": "2023-01-10T17:29:10+00:00",
+      "LastUpdateDate": "2023-02-11T11:21:01+00:00",
+      "RegistrationStatus": "PUBLISHED",
+      "NextRenewalDate": "2024-01-13T00:00:00+00:00",
+      "ManagingLOU": "529900T8BM49AURSDO55",
+      "ValidationSources": "FULLY_CORROBORATED",
+      "ValidationDocuments": "ACCOUNTS_FILING"
+    }
+  },
+  {
+    "Relationship": {
+      "StartNode": {
+        "NodeID": "98450051BS9C610A8T78",
+        "NodeIDType": "LEI"
+      },
+      "EndNode": {
+        "NodeID": "2138002YAB7Z9KO21397",
+        "NodeIDType": "LEI"
+      },
+      "RelationshipType": "IS_DIRECTLY_CONSOLIDATED_BY",
+      "RelationshipPeriods": [
+        {
+          "StartDate": "2019-06-30T00:00:00+00:00",
+          "EndDate": "2020-06-30T00:00:00+00:00",
+          "PeriodType": "ACCOUNTING_PERIOD"
+        },
+        {
+          "StartDate": "2018-06-30T00:00:00+00:00",
+          "PeriodType": "RELATIONSHIP_PERIOD"
+        }
+      ],
+      "RelationshipStatus": "ACTIVE",
+      "RelationshipQualifiers": [
+        {
+          "QualifierDimension": "ACCOUNTING_STANDARD",
+          "QualifierCategory": "OTHER_ACCOUNTING_STANDARD"
+        }
+      ]
+    },
+    "Registration": {
+      "InitialRegistrationDate": "2019-05-15T00:00:00+00:00",
+      "LastUpdateDate": "2023-04-30T14:18:04+00:00",
+      "RegistrationStatus": "PUBLISHED",
+      "NextRenewalDate": "2024-05-15T00:00:00+00:00",
+      "ManagingLOU": "529900T8BM49AURSDO55",
+      "ValidationSources": "FULLY_CORROBORATED",
+      "ValidationDocuments": "ACCOUNTS_FILING"
+    }
+  },
+  {
+    "Relationship": {
+      "StartNode": {
+        "NodeID": "98450051BS9C610A8T78",
+        "NodeIDType": "LEI"
+      },
+      "EndNode": {
+        "NodeID": "984500501A1B1045PB30",
+        "NodeIDType": "LEI"
+      },
+      "RelationshipType": "IS_ULTIMATELY_CONSOLIDATED_BY",
+      "RelationshipPeriods": [
+        {
+          "StartDate": "2019-06-30T00:00:00+00:00",
+          "EndDate": "2020-06-30T00:00:00+00:00",
+          "PeriodType": "ACCOUNTING_PERIOD"
+        },
+        {
+          "StartDate": "2018-06-30T00:00:00+00:00",
+          "PeriodType": "RELATIONSHIP_PERIOD"
+        }
+      ],
+      "RelationshipStatus": "ACTIVE",
+      "RelationshipQualifiers": [
+        {
+          "QualifierDimension": "ACCOUNTING_STANDARD",
+          "QualifierCategory": "OTHER_ACCOUNTING_STANDARD"
+        }
+      ],
+      "RelationshipQuantifiers": [
+        {
+          "MeasurementMethod": "ACCOUNTING_CONSOLIDATION",
+          "QuantifierAmount": "100.00",
+          "QuantifierUnits": "PERCENTAGE"
+        }
+      ]
+    },
+    "Registration": {
+      "InitialRegistrationDate": "2019-05-15T00:00:00+00:00",
+      "LastUpdateDate": "2023-04-30T14:18:04+00:00",
+      "RegistrationStatus": "PUBLISHED",
+      "NextRenewalDate": "2024-05-15T00:00:00+00:00",
+      "ManagingLOU": "529900T8BM49AURSDO55",
+      "ValidationSources": "FULLY_CORROBORATED",
+      "ValidationDocuments": "ACCOUNTS_FILING"
+    },
+    "Extension": {
+      "Deletion": {
+        "DeletedAt": "2023-11-01T01:39:19Z"
+      }
+    }
+  }
+]

@@ -11,12 +11,19 @@ from bodspipelines.infrastructure.outputs import Output, OutputConsole, NewOutpu
 from bodspipelines.infrastructure.processing.bulk_data import BulkData
 from bodspipelines.infrastructure.processing.xml_data import XMLData
 from bodspipelines.infrastructure.processing.json_data import JSONData
+from bodspipelines.infrastructure.updates import ProcessUpdates
 
-from bodspipelines.infrastructure.indexes import (entity_statement_properties, person_statement_properties, ownership_statement_properties,
+from bodspipelines.infrastructure.indexes import (entity_statement_properties,
+                                          person_statement_properties, ownership_statement_properties,
                                           match_entity, match_person, match_ownership,
                                           id_entity, id_person, id_ownership)
 
-from bodspipelines.pipelines.gleif.transforms import Gleif2Bods
+from bodspipelines.infrastructure.indexes import (latest_properties, references_properties, updates_properties,
+                                          match_latest, match_references, match_updates,
+                                          id_latest, id_references, id_updates)
+
+
+from bodspipelines.pipelines.gleif.transforms import Gleif2Bods, AddContentDate
 from bodspipelines.pipelines.gleif.indexes import (lei_properties, rr_properties, repex_properties,
                                           match_lei, match_rr, match_repex,
                                           id_lei, id_rr, id_repex)
@@ -55,28 +62,20 @@ repex_source = Source(name="repex",
                                        namespace={"repex": "http://www.gleif.org/data/schema/repex/2016"},
                                        filter=['NextVersion', 'Extension']))
 
-# Console Output
-#output_console = Output(name="console", target=OutputConsole(name="gleif-ingest"))
-
 # Elasticsearch indexes for GLEIF data
 index_properties = {"lei": {"properties": lei_properties, "match": match_lei, "id": id_lei},
                     "rr": {"properties": rr_properties, "match": match_rr, "id": id_rr},
                     "repex": {"properties": repex_properties, "match": match_repex, "id": id_repex}}
 
 # GLEIF data: Store in Easticsearch and output new to Kinesis stream
-#output_new = NewOutput(storage=Storage(storage=ElasticsearchClient(indexes=index_properties)),
-#                       output=KinesisOutput(stream_name="gleif-dev"))
-
-# GLEIF data: Store in Redis and output new to Kinesis stream
-output_new = NewOutput(storage=Storage(storage=RedisClient(indexes=index_properties)),
+output_new = NewOutput(storage=Storage(storage=ElasticsearchClient(indexes=index_properties)),
                        output=KinesisOutput(stream_name="gleif-dev"))
 
 # Definition of GLEIF data pipeline ingest stage
 ingest_stage = Stage(name="ingest",
               sources=[lei_source, rr_source, repex_source],
-              processors=[],
-              outputs=[output_new]
-)
+              processors=[AddContentDate(identify=identify_gleif)],
+              outputs=[output_new])
 
 # Kinesis stream of GLEIF data from ingest stage
 gleif_source = Source(name="gleif",
@@ -86,7 +85,10 @@ gleif_source = Source(name="gleif",
 # Elasticsearch indexes for BODS data
 bods_index_properties = {"entity": {"properties": entity_statement_properties, "match": match_entity, "id": id_entity},
                          "person": {"properties": person_statement_properties, "match": match_person, "id": id_person},
-                         "ownership": {"properties": ownership_statement_properties, "match": match_ownership, "id": id_ownership}}
+                         "ownership": {"properties": ownership_statement_properties, "match": match_ownership, "id": id_ownership},
+                         "latest": {"properties": latest_properties, "match": match_latest, "id": id_latest},
+                         "references": {"properties": references_properties, "match": match_references, "id": id_references},
+                         "updates": {"properties": updates_properties, "match": match_updates, "id": id_updates}}
 
 # Identify type of GLEIF data
 def identify_gleif(item):
@@ -106,38 +108,27 @@ def identify_bods(item):
     elif item['statementType'] == 'ownershipOrControlStatement':
         return 'ownership'
 
-# BODS data: Store in Redis and output new to Kinesis stream
-bods_output_new = NewOutput(storage=Storage(storage=RedisClient(indexes=bods_index_properties)),
-                            output=KinesisOutput(stream_name="bods-gleif-dev"),
+# BODS data: Store in Easticsearch and output new to Kinesis stream
+bods_output_new = NewOutput(storage=Storage(storage=ElasticsearchClient(indexes=bods_index_properties)),
+                            output=KinesisOutput(stream_name="bods-gleif-test"),
                             identify=identify_bods)
 
 # Definition of GLEIF data pipeline transform stage
-transform_stage = Stage(name="transform",
+transform_stage = Stage(name="transform-test-updates",
               sources=[gleif_source],
-              processors=[Gleif2Bods(identify=identify_gleif)],
-              outputs=[bods_output_new]
-)
+              processors=[ProcessUpdates(id_name='XI-LEI',
+                                         transform=Gleif2Bods(identify=identify_gleif),
+                                         storage=Storage(storage=bods_storage),
+                                         updates=GleifUpdates())],
+              outputs=[bods_output_new])
 
 # Definition of GLEIF data pipeline
 pipeline = Pipeline(name="gleif", stages=[ingest_stage, transform_stage])
 
-# Setup Elasticsearch indexes
+# Setup storage indexes
 async def setup_indexes():
-    done = False
-    while not done:
-        try:
-            client = ElasticsearchClient(indexes=index_properties)
-            await client.setup()
-            await client.create_indexes()
-            await client.close()
-            client = ElasticsearchClient(indexes=bods_index_properties)
-            await client.setup()
-            await client.create_indexes()
-            await client.close()
-            done = True
-        except elastic_transport.ConnectionError:
-            print("Waiting for Elasticsearch to start ...")
-            time.sleep(5)
+    await gleif_source.setup_indexes()
+    await bods_storage.setup_indexes()
 
 # Setup pipeline storage
 def setup():
@@ -145,4 +136,3 @@ def setup():
     asyncio.set_event_loop(loop)
     loop.run_until_complete(setup_indexes())
 
-#stats = ElasticStorage(indexes=index_properties).stats

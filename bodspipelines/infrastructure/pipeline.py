@@ -20,17 +20,20 @@ class Source:
         """Iterate over source items"""
         if hasattr(self.origin, "prepare"):
             data = self.origin.prepare(stage_dir, self.name)
-            async for item in self.datatype.process(data):
-                yield item
+            async for header, item in self.datatype.process(data):
+                yield header, item
         else:
             async for item in self.origin.process():
-                yield self.datatype.process(item)
+                header, item = self.datatype.process(item)
+                yield header, item
 
     async def setup(self):
+        """Run origin setup"""
         if hasattr(self.origin, 'setup'):
             await self.origin.setup()
 
     async def close(self):
+        """Close origin"""
         if hasattr(self.origin, 'close'):
             await self.origin.close()
 
@@ -43,7 +46,7 @@ class Stage:
         self.name = name
         self.sources = sources
         self.processors = processors
-        self.outputs = outputs 
+        self.outputs = outputs
 
     def directory(self, parent_dir) -> Path:
         """Return subdirectory path after ensuring exists"""
@@ -51,39 +54,43 @@ class Stage:
         path.mkdir(exist_ok=True)
         return path
 
-    async def source_processing(self, source, stage_dir):
+    async def source_processing(self, source, stage_dir, updates=False):
         """Iterate over items from source, with processing"""
-        async for item in source.process(stage_dir):
+        async for header, item in source.process(stage_dir):
+            print(header, item)
             if self.processors:
                 for processor in self.processors:
-                    for out in processor.process(item, source.name):
-                        #print(out)
+                    print("Processor:", processor)
+                    async for out in processor.process(item, source.name, header, updates=updates):
+                        print(out)
                         yield out
             else:
                 yield item
+        for processor in self.processors:
+            print("Processor:", hasattr(processor, "finish_updates"), updates)
+            if hasattr(processor, "finish_updates") and updates:
+                async for out in processor.finish_updates():
+                    yield out
 
-    #def process_source(self, source, stage_dir):
-    #    """Iterate over items from source, with processing and output"""
-    #    for item in source.process(stage_dir):
-    #        for processor in self.processors:
-    #            item = processor.process(item, source.name)
-
-    async def process_source(self, source, stage_dir):
+    async def process_source(self, source, stage_dir, updates=False):
         """Iterate over items from source, and output"""
+        print("Process source:", len(self.outputs) > 1, not self.outputs[0].streaming)
         if len(self.outputs) > 1 or not self.outputs[0].streaming:
-            async for item in self.source_processing(source, stage_dir):
+            print("Interating:")
+            async for item in self.source_processing(source, stage_dir, updates=updates):
                 for output in self.outputs:
                     output.process(item, source.name)
         else:
-            await self.outputs[0].process_stream(self.source_processing(source, stage_dir), source.name)
+            print("Streaming:")
+            await self.outputs[0].process_stream(self.source_processing(source, stage_dir, updates=updates), source.name)
 
-    async def process(self, pipeline_dir):
+    async def process(self, pipeline_dir, updates=False):
         """Process all sources for stage"""
         print(f"Running {self.name} pipeline stage")
         stage_dir = self.directory(pipeline_dir)
         for source in self.sources:
             print(f"Processing {source.name} source")
-            await self.process_source(source, stage_dir)
+            await self.process_source(source, stage_dir, updates=updates)
         print(f"Finished {self.name} pipeline stage")
 
     async def setup(self):
@@ -92,13 +99,6 @@ class Stage:
             for component in components:
                 if hasattr(component, 'setup'):
                     await component.setup()
-
-        #for processor in self.processors:
-        #    if hasattr(processor, 'setup'):
-        #        await processor.setup()
-        #for output in self.outputs:
-        #    if hasattr(output, 'setup'):
-        #        await output.setup()
 
     async def close(self):
         """Shutdown stage components"""
@@ -128,26 +128,16 @@ class Pipeline:
                 return stage
         return None
 
-    async def process_stage(self, stage_name):
+    async def process_stage(self, stage_name, updates=False):
         """Process specified pipeline stage"""
         stage = self.get_stage(stage_name)
         pipeline_dir = self.directory()
         await stage.setup()
-        await stage.process(pipeline_dir)
+        await stage.process(pipeline_dir, updates=updates)
         await stage.close()
 
-    def process(self, stage_name):
+    def process(self, stage_name, updates=False):
         """Process specified pipeline stage"""
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
-        loop.run_until_complete(self.process_stage(stage_name))
-        #try:
-        #    asyncio.run(self.process_stage(stage_name))
-        #except RuntimeError:
-        #    #loop = asyncio.get_event_loop()
-        #    #loop = asyncio.new_event_loop()
-        #    #loop.run_until_complete(self.process_stage(stage_name))
-        #    task = asyncio.create_task(self.process_stage(stage_name))
-        #    while not task.done():
-        #        time.sleep(1)
-        #    #asyncio.wait_for(self.process_stage(stage_name), timeout=10000)
+        loop.run_until_complete(self.process_stage(stage_name, updates=updates))

@@ -1,0 +1,262 @@
+[
+  {
+    "statementID": "04c98917-93f2-bd6d-1c9b-40411dc9b8b3",
+    "statementType": "entityStatement",
+    "statementDate": "2023-06-18",
+    "entityType": "registeredEntity",
+    "name": "Fidelity Advisor Leveraged Company Stock Fund",
+    "incorporatedInJurisdiction": {
+      "name": "US-MA",
+      "code": "US-MA"
+    },
+    "identifiers": [
+      {
+        "id": "001GPB6A9XPE8XJICC14",
+        "scheme": "XI-LEI",
+        "schemeName": "Global Legal Entity Identifier Index"
+      },
+      {
+        "id": "S000005113",
+        "schemeName": "RA000665"
+      }
+    ],
+    "addresses": [
+      {
+        "type": "registered",
+        "address": "245 SUMMER STREET, BOSTON",
+        "country": "US",
+        "postCode": "02210"
+      },
+      {
+        "type": "business",
+        "address": "C/O Fidelity Management & Research Company LLC, Boston",
+        "country": "US",
+        "postCode": "02210"
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2023-11-06",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister",
+        "verified"
+      ],
+      "description": "GLEIF"
+    },
+    "foundingDate": "2012-11-29T00:00:00.000Z"
+  },
+  {
+    "statementID": "41c4522b-f5e2-4f19-5f6b-ec5e54258401",
+    "statementType": "entityStatement",
+    "statementDate": "2022-08-22",
+    "entityType": "registeredEntity",
+    "name": "Vanguard Russell 1000 Growth Index Trust",
+    "incorporatedInJurisdiction": {
+      "name": "US-PA",
+      "code": "US-PA"
+    },
+    "identifiers": [
+      {
+        "id": "00EHHQ2ZHDCFXJCPCL46",
+        "scheme": "XI-LEI",
+        "schemeName": "Global Legal Entity Identifier Index"
+      },
+      {
+        "schemeName": "RA999999"
+      }
+    ],
+    "addresses": [
+      {
+        "type": "registered",
+        "address": "C/O VANGUARD FIDUCIARY TRUST COMPANY, MALVERN",
+        "country": "US",
+        "postCode": "19355"
+      },
+      {
+        "type": "business",
+        "address": "C/O Vanguard Fiduciary Trust Company, Valley Forge",
+        "country": "US",
+        "postCode": "19482"
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2023-11-06",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister"
+      ],
+      "description": "GLEIF"
+    },
+    "foundingDate": "2012-10-05T00:00:00.000Z"
+  },
+  {
+    "statementID": "ede4fef6-2aa2-8caa-b69a-330187c1750f",
+    "statementType": "entityStatement",
+    "statementDate": "2023-06-03",
+    "entityType": "registeredEntity",
+    "name": "PRUDENTIAL INVESTMENT PORTFOLIOS 18",
+    "incorporatedInJurisdiction": {
+      "name": "US-DE",
+      "code": "US-DE"
+    },
+    "identifiers": [
+      {
+        "id": "00QDBXDXLLF3W3JJJO36",
+        "scheme": "XI-LEI",
+        "schemeName": "Global Legal Entity Identifier Index"
+      },
+      {
+        "id": "2835527",
+        "schemeName": "RA000602"
+      }
+    ],
+    "addresses": [
+      {
+        "type": "registered",
+        "address": "CORPORATION TRUST CENTER 1209 ORANGE ST, WILMINGTON",
+        "country": "US",
+        "postCode": "19801"
+      },
+      {
+        "type": "business",
+        "address": "655 Broad Street, Newark",
+        "country": "US",
+        "postCode": "07102"
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2023-11-06",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister",
+        "verified"
+      ],
+      "description": "GLEIF"
+    },
+    "foundingDate": "1997-12-18T05:00:00.000Z"
+  },
+  {
+    "statementID": "96a93ace-30e2-016f-5ac1-6e88f320a1b6",
+    "statementType": "entityStatement",
+    "statementDate": "2020-08-17",
+    "entityType": "registeredEntity",
+    "name": "GE Pacific-3 Holdings, Inc.",
+    "incorporatedInJurisdiction": {
+      "name": "US-DE",
+      "code": "US-DE"
+    },
+    "identifiers": [
+      {
+        "id": "00W0SLGGVF0QQ5Q36N03",
+        "scheme": "XI-LEI",
+        "schemeName": "Global Legal Entity Identifier Index"
+      },
+      {
+        "schemeName": "RA999999"
+      }
+    ],
+    "addresses": [
+      {
+        "type": "registered",
+        "address": "C/O The Corporation Trust Company, Wilmington",
+        "country": "US",
+        "postCode": "19801"
+      },
+      {
+        "type": "business",
+        "address": "C/O The Corporation Trust Company, Wilmington",
+        "country": "US",
+        "postCode": "19801"
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2023-11-06",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister"
+      ],
+      "description": "GLEIF"
+    }
+  },
+  {
+    "statementID": "11739b48-9df9-2d05-34aa-79c04d5cca06",
+    "statementType": "entityStatement",
+    "statementDate": "2023-03-02",
+    "entityType": "registeredEntity",
+    "name": "DENTSU INTERNATIONAL LIMITED",
+    "incorporatedInJurisdiction": {
+      "name": "United Kingdom",
+      "code": "GB"
+    },
+    "identifiers": [
+      {
+        "id": "213800FERQ5LE3H7WJ58",
+        "scheme": "XI-LEI",
+        "schemeName": "Global Legal Entity Identifier Index"
+      },
+      {
+        "id": "01403668",
+        "schemeName": "RA000585"
+      }
+    ],
+    "addresses": [
+      {
+        "type": "registered",
+        "address": "10 TRITON STREET, LONDON",
+        "country": "GB",
+        "postCode": "NW1 3BF"
+      },
+      {
+        "type": "business",
+        "address": "10 TRITON STREET, LONDON",
+        "country": "GB",
+        "postCode": "NW1 3BF"
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2023-11-06",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister",
+        "verified"
+      ],
+      "description": "GLEIF"
+    },
+    "foundingDate": "1978-12-05T00:00:00Z"
+  }
+]

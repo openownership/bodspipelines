@@ -12,6 +12,7 @@ from bodspipelines.infrastructure.inputs import KinesisInput
 from bodspipelines.infrastructure.outputs import KinesisOutput
 
 def validate_datetime(d):
+    """Test is valid datetime"""
     try:
         datetime.datetime.strptime(d, '%Y-%m-%dT%H:%M:%S%z')
         return True
@@ -20,17 +21,19 @@ def validate_datetime(d):
 
 
 def validate_date_now(d):
+    """Test is today's date"""
     return d == datetime.date.today().strftime('%Y-%m-%d')
 
 
 def set_environment_variables():
-    os.environ['ELASTICSEARCH_PROTOCOL'] = 'http'
-    os.environ['ELASTICSEARCH_HOST'] = 'localhost'
-    os.environ['ELASTICSEARCH_PORT'] = '9876'
-    os.environ['ELASTICSEARCH_PASSWORD'] = '********'
+    """Set environmant variables"""
+    os.environ['BODS_AWS_REGION'] = "eu-west-1"
+    os.environ['BODS_AWS_ACCESS_KEY_ID'] ="********************"
+    os.environ['BODS_AWS_SECRET_ACCESS_KEY'] = "****************************************"
 
 
 class AsyncIterator:
+    """Dummy async iterator"""
     def __init__(self, seq):
         self.iter = iter(seq)
 
@@ -46,12 +49,14 @@ class AsyncIterator:
 
 @pytest.fixture
 def json_data_file():
+    """LEI JSON data"""
     with open("tests/fixtures/lei-data.json", "r") as read_file:
         return json.load(read_file)
 
 
 @pytest.fixture
 def lei_list():
+    """List of enitity LEIs"""
     return ['001GPB6A9XPE8XJICC14', '004L5FPTUREIWK9T2N63', '00EHHQ2ZHDCFXJCPCL46', '00GBW0Z2GYIER7DHDS71', '00KLB2PFTM3060S2N216',
             '00QDBXDXLLF3W3JJJO36', '00TR8NKAEL48RGTZEW89', '00TV1D5YIV5IDUGWBW29', '00W0SLGGVF0QQ5Q36N03', '00X5RQKJQQJFFX0WPA53',
             '1595D0QCK7Y15293JK84', '213800FERQ5LE3H7WJ58', '213800BJPX8V9HVY1Y11']
