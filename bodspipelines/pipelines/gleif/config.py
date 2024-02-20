@@ -27,7 +27,26 @@ from bodspipelines.pipelines.gleif.transforms import Gleif2Bods, AddContentDate
 from bodspipelines.pipelines.gleif.indexes import (lei_properties, rr_properties, repex_properties,
                                           match_lei, match_rr, match_repex,
                                           id_lei, id_rr, id_repex)
-from bodspipelines.pipelines.gleif.utils import gleif_download_link
+from bodspipelines.pipelines.gleif.utils import gleif_download_link, GLEIFData
+from bodspipelines.pipelines.gleif.updates import GleifUpdates
+
+# Identify type of GLEIF data
+def identify_gleif(item):
+    if 'Entity' in item:
+        return 'lei'
+    elif 'Relationship' in item:
+        return 'rr'
+    elif 'ExceptionCategory' in item:
+        return 'repex'
+
+# Identify type of BODS data
+def identify_bods(item):
+    if item['statementType'] == 'entityStatement':
+        return 'entity'
+    elif item['statementType'] == 'personStatement':
+        return 'person'
+    elif item['statementType'] == 'ownershipOrControlStatement':
+        return 'ownership'
 
 # Defintion of LEI-CDF v3.1 XML date source
 lei_source = Source(name="lei",
@@ -47,7 +66,7 @@ rr_source = Source(name="rr",
                    origin=BulkData(display="RR-CDF v2.1",
                                    #url='https://leidata.gleif.org/api/v1/concatenated-files/rr/get/30450/zip',
                                    #url=gleif_download_link("https://goldencopy.gleif.org/api/v2/golden-copies/publishes/latest"),
-                                   data=GLEIFData(url="https://goldencopy.gleif.org/api/v2/golden-copies/publishes/rr/latest"
+                                   data=GLEIFData(url="https://goldencopy.gleif.org/api/v2/golden-copies/publishes/rr/latest",
                                                   data_date="2024-01-01"),
                                    size=2823,
                                    directory="rr-cdf"),
@@ -73,9 +92,12 @@ index_properties = {"lei": {"properties": lei_properties, "match": match_lei, "i
                     "rr": {"properties": rr_properties, "match": match_rr, "id": id_rr},
                     "repex": {"properties": repex_properties, "match": match_repex, "id": id_repex}}
 
+# Easticsearch storage for GLEIF data
+gleif_storage = ElasticsearchClient(indexes=index_properties)
+
 # GLEIF data: Store in Easticsearch and output new to Kinesis stream
-output_new = NewOutput(storage=Storage(storage=ElasticsearchClient(indexes=index_properties)),
-                       output=KinesisOutput(stream_name="gleif-dev"))
+output_new = NewOutput(storage=Storage(storage=gleif_storage),
+                       output=KinesisOutput(stream_name="gleif-updates"))
 
 # Definition of GLEIF data pipeline ingest stage
 ingest_stage = Stage(name="ingest",
@@ -85,7 +107,7 @@ ingest_stage = Stage(name="ingest",
 
 # Kinesis stream of GLEIF data from ingest stage
 gleif_source = Source(name="gleif",
-                      origin=KinesisInput(stream_name="gleif-dev"),
+                      origin=KinesisInput(stream_name="gleif-updates"),
                       datatype=JSONData())
 
 # Elasticsearch indexes for BODS data
@@ -96,27 +118,12 @@ bods_index_properties = {"entity": {"properties": entity_statement_properties, "
                          "references": {"properties": references_properties, "match": match_references, "id": id_references},
                          "updates": {"properties": updates_properties, "match": match_updates, "id": id_updates}}
 
-# Identify type of GLEIF data
-def identify_gleif(item):
-    if 'Entity' in item:
-        return 'lei'
-    elif 'Relationship' in item:
-        return 'rr'
-    elif 'ExceptionCategory' in item:
-        return 'repex'
-
-# Identify type of BODS data
-def identify_bods(item):
-    if item['statementType'] == 'entityStatement':
-        return 'entity'
-    elif item['statementType'] == 'personStatement':
-        return 'person'
-    elif item['statementType'] == 'ownershipOrControlStatement':
-        return 'ownership'
+# Easticsearch storage for BODS data
+bods_storage = ElasticsearchClient(indexes=bods_index_properties)
 
 # BODS data: Store in Easticsearch and output new to Kinesis stream
-bods_output_new = NewOutput(storage=Storage(storage=ElasticsearchClient(indexes=bods_index_properties)),
-                            output=KinesisOutput(stream_name="bods-gleif-test"),
+bods_output_new = NewOutput(storage=Storage(storage=bods_storage),
+                            output=KinesisOutput(stream_name="bods-gleif-updates"),
                             identify=identify_bods)
 
 # Definition of GLEIF data pipeline transform stage
@@ -133,7 +140,7 @@ pipeline = Pipeline(name="gleif", stages=[ingest_stage, transform_stage])
 
 # Setup storage indexes
 async def setup_indexes():
-    await gleif_source.setup_indexes()
+    await gleif_storage.setup_indexes()
     await bods_storage.setup_indexes()
 
 # Setup pipeline storage
