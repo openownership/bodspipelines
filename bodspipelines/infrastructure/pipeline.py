@@ -19,9 +19,9 @@ class Source:
     async def process(self, stage_dir):
         """Iterate over source items"""
         if hasattr(self.origin, "prepare"):
-            data = self.origin.prepare(stage_dir, self.name)
-            async for header, item in self.datatype.process(data):
-                yield header, item
+            for data in self.origin.prepare(stage_dir, self.name):
+                async for header, item in self.datatype.process(data):
+                    yield header, item
         else:
             async for item in self.origin.process():
                 header, item = self.datatype.process(item)
