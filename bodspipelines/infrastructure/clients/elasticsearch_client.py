@@ -1,6 +1,7 @@
 import os
 import json
 import asyncio
+import elastic_transport
 from elasticsearch import AsyncElasticsearch
 from elasticsearch.helpers import async_streaming_bulk, async_scan
 
@@ -65,15 +66,15 @@ class ElasticsearchClient:
     async def setup_indexes(self):
         """Setup indexes"""
         done = False
+        if not self.client: await self.setup()
         while not done:
             try:
-                await self.client.setup()
-                await self.client.create_indexes()
-                await self.client.close()
+                await self.create_indexes()
                 done = True
             except elastic_transport.ConnectionError:
                 print("Waiting for Elasticsearch to start ...")
                 asyncio.sleep(5)
+        await self.close()
 
     def delete_index(self):
         """Delete index"""
