@@ -107,14 +107,45 @@ def get_sources(url, last_update):
     data = source_metadata(request)
     yield from get_sources_int(data, base, last_update)
 
+def get_source_by_date(url, data_date):
+    """Get source data url for specified date"""
+    target_date = datetime.strptime(data_date, "%Y-%m-%d")
+    page = 1
+    while True:
+        url = f"https://leidata-preview.gleif.org/api/v2/golden-copies/publishes?page={page}&per_page=10"
+        response = download(url)
+        data = source_metadata(response)
+        end_date = datetime.strptime(data[0]["publish_date"].split()[0], "%Y-%m-%d")
+        start_date = datetime.strptime(data[9]["publish_date"].split()[0], "%Y-%m-%d")
+        if target_date < start_date:
+            delta = start_date - target_date
+            print(delta.days)
+            page = page + max(1, int(delta.days/3))
+        elif target_date > end_date:
+            delta = target_date - end_date
+            print(delta.days)
+            page = page - max(1, int(delta.days/3))
+        else:
+            for item in data:
+                item_date = datetime.strptime(item["publish_date"].split()[0], "%Y-%m-%d")
+                if item_date == target_date:
+                    #print(json.dumps(item, indent=4))
+                    if "lei" in url:
+                        return item["lei2"]["full_file"]["xml"]["url"]
+                    elif "rr" in url:
+                        return item["rr"]["full_file"]["xml"]["url"]
+                    elif "repex" in url:
+                        return item["repex"]["full_file"]["xml"]["url"]
+
 def gleif_download_link(url):
     """Returns callable to download data"""
     return download_delayed(url, get_source)
 
 class GLEIFData:
-    def __init__(self, url=None):
+    def __init__(self, url=None, data_date=None):
         """Initialise with url"""
         self.url = url
+        self.data_date = data_date
 
     def sources(self, last_update=False):
         """Yield data sources"""
@@ -122,5 +153,8 @@ class GLEIFData:
             print("Updating ...")
             yield from get_sources(self.url, last_update)
         else:
-            yield gleif_download_link(self.url)
+            if self.data_date:
+                yield get_source_by_date(self.url, self.data_date)
+            else:
+                yield gleif_download_link(self.url)
 
