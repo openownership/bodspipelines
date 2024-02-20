@@ -160,6 +160,6 @@ class BulkData:
         for url in self.check_manifest(path, name, last_update=last_update):
             for fn in self.download_extract_data(directory, name, url):
                 files.append(fn)
-                yield fn
+                yield directory / fn
         print("Files:", files)
         self.create_manifest(path, name)
