@@ -72,7 +72,8 @@ rr_source = Source(name="rr",
                                    directory="rr-cdf"),
                    datatype=XMLData(item_tag="RelationshipRecord",
                                     namespace={"rr": "http://www.gleif.org/data/schema/rr/2016"},
-                                    filter=['Extension']))
+                                    #filter=['Extension']
+                                    filter=[]))
 
 # Defintion of Reporting Exceptions v2.1 XML date source
 repex_source = Source(name="repex",
@@ -85,7 +86,8 @@ repex_source = Source(name="repex",
                                       directory="rep-ex"),
                       datatype=XMLData(item_tag="Exception",
                                        namespace={"repex": "http://www.gleif.org/data/schema/repex/2016"},
-                                       filter=['NextVersion', 'Extension']))
+                                       #filter=['NextVersion', 'Extension']
+                                       filter=['NextVersion']))
 
 # Elasticsearch indexes for GLEIF data
 index_properties = {"lei": {"properties": lei_properties, "match": match_lei, "id": id_lei},
