@@ -36,20 +36,43 @@ class BulkData:
                 manifest.append({"url": url, "timestamp": time.time()})
             json.dump(manifest, outfile)
 
-    def source_data(self, name, last_update=None):
-        """source"""
-        for data in self.data.sources(last_update=last_update):
+    def read_manifest(self, path):
+        """Read manifest file if exists"""
+        manifest_file = self.manifest_file(path)
+        if manifest_file.exists():
+            with open(manifest_file, 'r') as openfile:
+                try:
+                    return json.load(openfile)
+                except json.decoder.JSONDecodeError:
+                    return False
+        else:
+            return None
+
+    def source_data(self, name, last_update=None, delta_type=False):
+        """Yield urls for source"""
+        for data in self.data.sources(last_update=last_update, delta_type=delta_type):
             if callable(data):
                 url = data(name)
             else:
                 url = data
             yield url
 
-    def check_manifest(self, path, name, last_update=None):
+    def check_manifest(self, path, name, updates=False):
         """Check manifest file exists and up-to-date"""
-        manifest_file = self.manifest_file(path)
+        #manifest_file = self.manifest_file(path)
+        manifest = self.read_manifest(path)
+        if updates and manifest:
+            d, t, *_ = manifest['url'].split('/')[-1].split('-')
+            last_update = f"{d[:4]}-{d[4:6]}-{d[6:8]}"
+        else:
+            last_update = False
         if last_update:
-            yield from self.source_data(name, last_update=last_update)
+            if updates in ("month", "week", "day"):
+                # Special case for testing (usually True/False)
+                delta_type = updates
+            else:
+                delta_type = None
+            yield from self.source_data(name, last_update=last_update, delta_type=delta_type)
         else:
             if manifest_file.exists():
                 with open(manifest_file, 'r') as openfile:
@@ -152,12 +175,12 @@ class BulkData:
             self.delete_zip_data(directory, url)
             yield fn
 
-    def prepare(self, path, name, last_update=None) -> Path:
+    def prepare(self, path, name, updates=False) -> Path:
         """Prepare data for use"""
         directory = self.data_dir(path)
         directory.mkdir(exist_ok=True)
         files = []
-        for url in self.check_manifest(path, name, last_update=last_update):
+        for url in self.check_manifest(path, name, updates=updates):
             for fn in self.download_extract_data(directory, name, url):
                 files.append(fn)
                 yield directory / fn

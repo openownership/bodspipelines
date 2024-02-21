@@ -16,10 +16,10 @@ class Source:
         self.origin = origin
         self.datatype = datatype
 
-    async def process(self, stage_dir):
+    async def process(self, stage_dir, updates=False):
         """Iterate over source items"""
         if hasattr(self.origin, "prepare"):
-            for data in self.origin.prepare(stage_dir, self.name):
+            for data in self.origin.prepare(stage_dir, self.name, updates=updates):
                 async for header, item in self.datatype.process(data):
                     yield header, item
         else:
@@ -56,7 +56,7 @@ class Stage:
 
     async def source_processing(self, source, stage_dir, updates=False):
         """Iterate over items from source, with processing"""
-        async for header, item in source.process(stage_dir):
+        async for header, item in source.process(stage_dir, updates=updates):
             #print(header, item)
             if self.processors:
                 for processor in self.processors:
