@@ -60,7 +60,7 @@ class Stage:
             #print(header, item)
             if self.processors:
                 for processor in self.processors:
-                    print("Processor:", processor)
+                    #print("Processor:", processor)
                     async for out in processor.process(item, source.name, header, updates=updates):
                         #print(out)
                         yield out
