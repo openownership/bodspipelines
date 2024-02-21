@@ -57,12 +57,12 @@ class Stage:
     async def source_processing(self, source, stage_dir, updates=False):
         """Iterate over items from source, with processing"""
         async for header, item in source.process(stage_dir):
-            print(header, item)
+            #print(header, item)
             if self.processors:
                 for processor in self.processors:
                     print("Processor:", processor)
                     async for out in processor.process(item, source.name, header, updates=updates):
-                        print(out)
+                        #print(out)
                         yield out
             else:
                 yield item

@@ -7,7 +7,7 @@ from .annotations import (add_lei_annotation, add_repex_annotation_changed,
 def void_entity_statement(reason, statement_id, status, update_date, entity_type, lei):
     """Create BODS statemnt to void entity/person"""
     id = generate_statement_id(f"{statement_id}", "voided")
-    print(f"Voiding entity ({statement_id}):", id)
+    #print(f"Voiding entity ({statement_id}):", id)
     statement = {"statementID": id,
             "statementDate": format_date(update_date),
             "publicationDetails": {
@@ -37,7 +37,7 @@ def void_entity_statement(reason, statement_id, status, update_date, entity_type
 def void_ooc_statement(reason, statement_id, status, update_date, lei, lei2):
     """Create BODS statement to void ownership or control statement"""
     id = generate_statement_id(f"{statement_id}", "voided_ownershipOrControlStatement")
-    print(f"Voiding OOC ({statement_id}):", id)
+    #print(f"Voiding OOC ({statement_id}):", id)
     statement = {"statementID": id,
             "statementDate": format_date(update_date),
             "publicationDetails": {
@@ -99,4 +99,5 @@ class GleifUpdates():
     def void_ooc_exception_deletion(self, latest_id, update_date, lei, status):
         """Void ownership or control statement for deleted reporting exception"""
         return void_ooc_statement("REPEX_DELETION", latest_id, status, update_date, lei, None)
+
 

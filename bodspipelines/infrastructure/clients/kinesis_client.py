@@ -36,7 +36,7 @@ class KinesisStream:
         count = 0
         while True:
             async for item in self.consumer:
-                print("Read:", item)
+                #print("Read:", item)
                 yield item
                 found = True
                 count = 0

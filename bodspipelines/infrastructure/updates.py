@@ -49,7 +49,7 @@ async def latest_lookup(storage, lei):
     """Lookup latest statement id for LEI/RR/Repex"""
     data = await storage.get_item(lei, "latest")
     if data:
-         print(data)
+         #print(data)
          return data['statement_id'], data['reason']
     else:
          return None, None
@@ -85,7 +85,7 @@ async def lookup_references(storage, statement_id):
     """Lookup list of statement ids referencing statement"""
     data = await storage.get_item(statement_id, "references")
     if data:
-        print(data)
+        #print(data)
         return data['references_id']
     else:
         return {}
@@ -113,14 +113,14 @@ async def lookup_updates(storage, old_statement_id):
     """Lookup statement to updates"""
     data = await storage.get_item(old_statement_id, "updates")
     if data:
-        print("lookup_updates:", data)
+        #print("lookup_updates:", data)
         return data['updates']
     else:
         return {}
 
 async def updates_update(storage, referencing_id, latest_id, old_statement_id, new_statement_id):
     """Save statement to update"""
-    print("Updating update:", referencing_id, latest_id, old_statement_id, new_statement_id)
+    #print("Updating update:", referencing_id, latest_id, old_statement_id, new_statement_id)
     updates = await lookup_updates(storage, referencing_id)
     updates[old_statement_id] = new_statement_id
     await updates_save(storage, referencing_id, latest_id, updates)
@@ -189,7 +189,7 @@ async def item_setup(storage, item):
         except_reference = item["ExceptionReference"] if "ExceptionReference" in item else None
         old_ooc_id, old_other_id, old_reason, old_reference, old_entity_type = \
             await exception_lookup(storage, f"{except_lei}_{except_type}")
-        print(f"{except_lei}_{except_type}:", old_other_id)
+        #print(f"{except_lei}_{except_type}:", old_other_id)
     else:
         old_ooc_id, old_other_id, old_reason, old_reference, old_entity_type, except_lei, except_type, \
             except_reason, except_reference = None, None, None, None, None, None, None, None, None
@@ -202,7 +202,7 @@ async def item_setup(storage, item):
 
 async def process_entity_lei(statement_id, statement, item, lei, updates, mapping, data_type, storage):
     """Process entity statement from LEI"""
-    print(f"Processing {statement_id}: {lei} {updates} {mapping}")
+    #print(f"Processing {statement_id}: {lei} {updates} {mapping}")
     if updates:
         latest_id, _ = await latest_lookup(storage, lei) # Latest statement
         if latest_id:
@@ -216,7 +216,7 @@ async def process_entity_lei(statement_id, statement, item, lei, updates, mappin
             else:
                 add_replaces(statement, latest_id) # Add replaces statement
         referencing_ids = await lookup_references(storage, latest_id)
-        print("referencing_ids:", referencing_ids)
+        #print("referencing_ids:", referencing_ids)
         for ref_id in referencing_ids:
             await updates_update(storage,
                                 ref_id,
@@ -258,7 +258,7 @@ async def process_ooc_rr(statement_id, statement, item, start, end, rel_type, en
     if updates:
         latest_id, _ = await latest_lookup(storage, f"{start}_{end}_{rel_type}")
         if latest_id:
-            print("OOC update:", f"{start}_{end}_{rel_type}", latest_id)
+            #print("OOC update:", f"{start}_{end}_{rel_type}", latest_id)
             # Check if deleted
             if "Extension" in item and "Deletion" in item["Extension"]:
                 statement = data_type.void_ooc_relationship_deletion(latest_id,
@@ -331,7 +331,7 @@ class ProcessUpdates:
         mapping, old_ooc_id, old_other_id, old_reason, old_reference, old_entity_type, except_lei, \
             except_type, except_reason, except_reference = await item_setup(self.storage, item)
         async for statement in self.transform.process(item, item_type, header, mapping=mapping):
-            print(f"Statement: {statement['statementID']} ({statement['statementType']})")
+            #print(f"Statement: {statement['statementID']} ({statement['statementType']})")
             statement_id = statement['statementID']
             if statement['statementType'] in ('entityStatement', 'personStatement'):
                 entity_type = statement['statementType']
@@ -389,7 +389,7 @@ class ProcessUpdates:
         print("In finish_updates")
         done_updates = []
         async for ref_id, latest_id, updates in process_updates(self.storage):
-            print("Update:", ref_id, latest_id, updates)
+            #print("Update:", ref_id, latest_id, updates)
             statement = await retrieve_statement(self.storage, "ownership", ref_id)
             old_statement_id = fix_statement_reference(statement, updates, latest_id)
             statement_id = statement["statementID"]
@@ -397,7 +397,7 @@ class ProcessUpdates:
             await latest_save(self.storage, latest_id, statement_id)
             #await updates_delete(self.storage, old_statement_id)
             done_updates.append(old_statement_id)
-            print("Updated statement:", statement)
+            #print("Updated statement:", statement)
             yield statement
         for statement_id in done_updates:
             await updates_delete(self.storage, statement_id)

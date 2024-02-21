@@ -111,7 +111,7 @@ class ElasticsearchClient:
     def bulk_store_data(self, actions, index_name):
         """Store bulk data in index"""
         for ok, item in streaming_bulk(client=self.client, index=index_name, actions=actions):
-            print(ok, item)
+            #print(ok, item)
             if not ok:
                 yield False
             else:
@@ -128,11 +128,11 @@ class ElasticsearchClient:
         await self.create_client()
         record_count = 0
         new_records = 0
-        for b in batch:
-            print(b['_id'], b['_index'])
+        #for b in batch:
+        #    print(b['_id'], b['_index'])
         async for ok, result in async_streaming_bulk(client=self.client, actions=actions, raise_on_error=False):
             record_count += 1
-            print(ok, result)
+            #print(ok, result)
             if ok:
                 new_records += 1
                 match = [i for i in batch if i['_id'] == result['create']['_id']]

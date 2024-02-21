@@ -44,7 +44,7 @@ def publication_details():
 
 def transform_lei(data):
     """Transform LEI-CDF v3.1 data to BODS statement"""
-    print("Transforming LEI:")
+    #print("Transforming LEI:")
     statementID = generate_statement_id(entity_id(data), 'entityStatement')
     statementType = 'entityStatement'
     statementDate = format_date(data['Registration']['LastUpdateDate'])
@@ -301,7 +301,7 @@ class Gleif2Bods:
     async def process(self, item, item_type, header, mapping={}, updates=False):
         """Process item"""
         if self.identify: item_type = self.identify(item)
-        print("Gleif2Bods:", item_type)
+        #print("Gleif2Bods:", item_type)
         if item_type == 'lei':
             yield transform_lei(item)
         elif item_type == 'rr':
