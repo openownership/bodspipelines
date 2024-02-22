@@ -74,12 +74,12 @@ class BulkData:
                 delta_type = None
             yield from self.source_data(name, last_update=last_update, delta_type=delta_type)
         else:
-            if manifest_file.exists():
-                with open(manifest_file, 'r') as openfile:
-                    try:
-                        manifest = json.load(openfile)
-                    except json.decoder.JSONDecodeError:
-                        return False
+            if manifest: #manifest_file.exists():
+                #with open(manifest_file, 'r') as openfile:
+                #    try:
+                #        manifest = json.load(openfile)
+                #    except json.decoder.JSONDecodeError:
+                #        return False
                 for data in self.data.sources():
                     if callable(data):
                         url = data(name)
