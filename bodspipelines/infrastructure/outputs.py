@@ -1,6 +1,7 @@
 from typing import List, Union
 
-from bodspipelines.infrastructure.clients.kinesis_client import KinesisStream
+#from bodspipelines.infrastructure.clients.kinesis_client import KinesisStream
+from bodspipelines.infrastructure.clients.kinesis_client import create_kinesis
 
 class OutputConsole:
     """Output to console definition class"""
@@ -72,18 +73,23 @@ class KinesisOutput:
     def __init__(self, stream_name=None):
         self.streaming = False
         self.stream_name = stream_name
-        self.stream = KinesisStream(self.stream_name)
+        #self.stream = KinesisStream(self.stream_name)
 
     async def process(self, item, item_type):
-        await self.stream.add_record(item)
+        #await self.stream.add_record(item)
+        await self.stream.put(item)
 
     async def finish(self):
-        await self.stream.finish_write()
+        #await self.stream.finish_write()
+        await self.stream.finish()
 
     async def setup(self):
-        if hasattr(self.stream, 'setup'):
-            await self.stream.setup()
+        self.kinesis = create_kinesis(self.stream_name)
+        self.stream = await anext(self.kinesis)
+        #if hasattr(self.stream, 'setup'):
+        #    await self.stream.setup()
 
     async def close(self):
-        if hasattr(self.stream, 'close'):
-            await self.stream.close()
+        #if hasattr(self.stream, 'close'):
+        #    await self.stream.close()
+        await anext(self.kinesis)
