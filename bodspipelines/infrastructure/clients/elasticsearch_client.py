@@ -125,7 +125,7 @@ class ElasticsearchClient:
 
     async def batch_store_data(self, actions, batch, index_name):
         """Store bulk data in index"""
-        await self.create_client()
+        #await self.create_client()
         record_count = 0
         new_records = 0
         #for b in batch:
