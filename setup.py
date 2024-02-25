@@ -17,7 +17,9 @@ install_requires = [
     "pytz",
     "pycountry",
     "aiohttp",
-    "redis"
+    "redis",
+    "psutil",
+    "loguru"
 ]
 
 setup(
