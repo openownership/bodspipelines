@@ -4,7 +4,7 @@ import elastic_transport
 
 from bodspipelines.infrastructure.pipeline import Source, Stage, Pipeline
 from bodspipelines.infrastructure.inputs import KinesisInput
-from bodspipelines.infrastructure.storage import Storage
+#from bodspipelines.infrastructure.storage import Storage
 from bodspipelines.infrastructure.storage import ElasticStorage
 #from bodspipelines.infrastructure.clients.elasticsearch_client import ElasticsearchClient
 #from bodspipelines.infrastructure.clients.redis_client import RedisClient
@@ -97,10 +97,10 @@ index_properties = {"lei": {"properties": lei_properties, "match": match_lei, "i
 
 # Easticsearch storage for GLEIF data
 #gleif_storage = ElasticsearchClient(indexes=index_properties)
-gleif_storage = ElasticStorage(indexes=index_properties)
+#gleif_storage = ElasticStorage(indexes=index_properties)
 
 # GLEIF data: Store in Easticsearch and output new to Kinesis stream
-output_new = NewOutput(storage=Storage(storage=gleif_storage),
+output_new = NewOutput(storage=ElasticStorage(indexes=index_properties),
                        output=KinesisOutput(stream_name="gleif-updates"))
 
 # Definition of GLEIF data pipeline ingest stage
@@ -124,10 +124,10 @@ bods_index_properties = {"entity": {"properties": entity_statement_properties, "
 
 # Easticsearch storage for BODS data
 #bods_storage = ElasticsearchClient(indexes=bods_index_properties)
-bods_storage = ElasticStorage(indexes=bods_index_properties)
+#bods_storage = ElasticStorage(indexes=bods_index_properties)
 
 # BODS data: Store in Easticsearch and output new to Kinesis stream
-bods_output_new = NewOutput(storage=Storage(storage=bods_storage),
+bods_output_new = NewOutput(storage=ElasticStorage(indexes=bods_index_properties),
                             output=KinesisOutput(stream_name="bods-gleif-updates"),
                             identify=identify_bods)
 
@@ -136,7 +136,7 @@ transform_stage = Stage(name="transform-test-updates",
               sources=[gleif_source],
               processors=[ProcessUpdates(id_name='XI-LEI',
                                          transform=Gleif2Bods(identify=identify_gleif),
-                                         storage=Storage(storage=bods_storage),
+                                         storage=ElasticStorage(storage=bods_storage),
                                          updates=GleifUpdates())],
               outputs=[bods_output_new])
 
