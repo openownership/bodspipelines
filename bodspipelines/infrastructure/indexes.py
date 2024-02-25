@@ -88,6 +88,19 @@ ownership_statement_properties = {'statementID': {'type': 'text'},
                                                                                               'uri': {'type': 'text'}}}}}}
 
 
+# Additional indexes for managing updates
+latest_properties = {'latest_id': {'type': 'text'}, 'statement_id': {'type': 'text'}}
+references_properties = {'references_id': {'type': 'text'}, 'statement_id': {'type': 'text'}}
+updates_properties = {'referencing_id': {'type': 'text'},
+                      'old_statement_id': {'type': 'text'},
+                      'new_statement_id': {'type': 'text'}}
+exceptions_properties = {'latest_id': {'type': 'text'},
+                         'statement_id': {'type': 'text'},
+                         'other_id': {'type': 'text'},
+                         'reason': {'type': 'text'},
+                         'reference': {'type': 'text'},
+                         'entity_type': {'type': 'text'}}
+
 def match_entity(item):
     return {"match": {"statementID": item["statementID"]}}
 
@@ -97,6 +110,19 @@ def match_person(item):
 def match_ownership(item):
     return {"match": {"statementID": item["statementID"]}}
 
+def match_latest(item):
+    return {"match": {"latest_id": item["latest_id"]}}
+
+def match_references(item):
+    return {"match": {"statement_id": item["statement_id"]}}
+
+def match_updates(item):
+    return {"match": {"old_statement_id": item["old_statement_id"]}}
+
+def match_exceptions(item):
+    return {"match": {"latest_id": item["latest_id"]}}
+
+
 def id_entity(item):
     return item["statementID"]
 
@@ -105,3 +131,15 @@ def id_person(item):
 
 def id_ownership(item):
     return item["statementID"]
+
+def id_latest(item):
+    return item["latest_id"]
+
+def id_references(item):
+    return item["statement_id"]
+
+def id_updates(item):
+    return item["referencing_id"]
+
+def id_exceptions(item):
+    return item["latest_id"]
