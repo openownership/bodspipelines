@@ -77,24 +77,24 @@ def exception_delete(storage, old_statement_id):
     storage.delete_item(old_statement_id, "exceptions")
 
 
-async def references_save(storage, statement_id, referencing_ids):
+def references_save(storage, statement_id, referencing_ids):
     """Save list of statement ids referencing statement"""
-    await storage.add_item(build_references(statement_id, referencing_ids), "references")
+    storage.add_item(build_references(statement_id, referencing_ids), "references")
 
-async def lookup_references(storage, statement_id):
+def lookup_references(storage, statement_id):
     """Lookup list of statement ids referencing statement"""
-    data = await storage.get_item(statement_id, "references")
+    data = storage.get_item(statement_id, "references")
     if data:
         #print(data)
         return data['references_id']
     else:
         return {}
 
-async def references_update(storage, referenced_id, statement_id, latest_id):
+def references_update(storage, referenced_id, statement_id, latest_id):
     """Update list of statement ids referencing statement"""
-    referencing_ids = await lookup_references(storage, referenced_id)
+    referencing_ids = lookup_references(storage, referenced_id)
     referencing_ids[statement_id] = latest_id
-    await references_save(storage, referenced_id, referencing_ids)
+    references_save(storage, referenced_id, referencing_ids)
 
 def add_replaces(statement, old_statement_id):
     """Add replacesStatements to statement object"""
@@ -231,7 +231,7 @@ def process_entity_repex(statement_id, statement, item, except_lei, except_type,
     """Process entity statement from reporting exception"""
     void_statement = None
     if "Extension" in item and "Deletion" in item["Extension"]:
-        latest_id, _ = await latest_lookup(storage, f"{except_lei}_{except_type}_{except_reason}_entity")
+        latest_id, _ = latest_lookup(storage, f"{except_lei}_{except_type}_{except_reason}_entity")
         statement = data_type.void_entity_deletion(latest_id,
                                                  item["Extension"]["Deletion"]["DeletedAt"],
                                                  item["LEI"],
@@ -256,7 +256,7 @@ def process_ooc_rr(statement_id, statement, item, start, end, rel_type, entity_v
         references_update(storage, ref_id, statement_id, f"{start}_{end}_{rel_type}")
     # If updating, add replacesStatement
     if updates:
-        latest_id, _ = await latest_lookup(storage, f"{start}_{end}_{rel_type}")
+        latest_id, _ = latest_lookup(storage, f"{start}_{end}_{rel_type}")
         if latest_id:
             #print("OOC update:", f"{start}_{end}_{rel_type}", latest_id)
             # Check if deleted
@@ -329,7 +329,7 @@ class ProcessUpdates:
         entity_voided = False
         entity_type = None
         mapping, old_ooc_id, old_other_id, old_reason, old_reference, old_entity_type, except_lei, \
-            except_type, except_reason, except_reference = await item_setup(self.storage, item)
+            except_type, except_reason, except_reference = item_setup(self.storage, item)
         for statement in self.transform.process(item, item_type, header, mapping=mapping):
             #print(f"Statement: {statement['statementID']} ({statement['statementType']})")
             statement_id = statement['statementID']
@@ -384,7 +384,7 @@ class ProcessUpdates:
             exception_save(self.storage, f"{except_lei}_{except_type}", ooc_id, 
                                  other_id, except_reason, except_reference, entity_type)
 
-    async def finish_updates(self):
+    def finish_updates(self):
         """Process updates to referencing statements"""
         print("In finish_updates")
         done_updates = []
