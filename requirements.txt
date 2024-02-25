@@ -14,3 +14,6 @@ tqdm==4.64.1
 pytz==2022.7.1
 pycountry==22.3.5
 redis==4.6.0
+# Debugging
+loguru==0.7.2
+psutil==5.9.8
