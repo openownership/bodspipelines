@@ -73,7 +73,7 @@ class ElasticsearchClient:
                 done = True
             except elastic_transport.ConnectionError:
                 print("Waiting for Elasticsearch to start ...")
-                asyncio.sleep(5)
+                await asyncio.sleep(5)
         await self.close()
 
     def delete_index(self):
