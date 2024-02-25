@@ -109,5 +109,5 @@ class XMLData:
         """Iterate over processed items from file"""
         header = await self.extract_header(filename)
         tag_name = f"{{{self.namespace[next(iter(self.namespace))]}}}{self.item_tag}"
-        async for item in data_stream(filename, tag_name, self.namespace, filter=self.filter):
+        for item in data_stream(filename, tag_name, self.namespace, filter=self.filter):
             yield header, item
