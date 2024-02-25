@@ -8,7 +8,7 @@ from bodspipelines.infrastructure.processing.xml_data import XMLData
 
 #from bodspipelines.infrastructure.storage import ElasticStorage
 
-from memory_debugging import log_memory
+from .memory_debugging import log_memory
 
 class Source:
     """Data source definition class"""
