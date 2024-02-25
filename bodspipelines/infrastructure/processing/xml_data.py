@@ -100,7 +100,7 @@ class XMLData:
         """Extract header"""
         if self.header_tag:
             tag_name = f"{{{self.namespace[next(iter(self.namespace))]}}}{self.header_tag}"
-            async for item in data_stream(filename, tag_name, self.namespace, filter=self.filter):
+            for item in data_stream(filename, tag_name, self.namespace, filter=self.filter):
                 return item
         else:
             return None
