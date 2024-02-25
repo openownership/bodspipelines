@@ -7,29 +7,32 @@ import pytz
 from typing import List, Union
 import pycountry
 
+from bodspipelines.infrastructure.utils import format_date, current_date_iso, generate_statement_id
+from .annotations import (add_lei_annotation, add_rr_annotation_status,
+                          add_repex_annotation_reason, add_repex_ooc_annotation)
+
+
+def entity_id(data):
+    """Create ID for entity"""
+    return f"{data['LEI']}_{data['Registration']['LastUpdateDate']}"
+
+def rr_id(data):
+    """Create ID for relationship"""
+    return f"{data['Relationship']['StartNode']['NodeID']}_{data['Relationship']['EndNode']['NodeID']}_{data['Relationship']['RelationshipType']}_{data['Registration']['LastUpdateDate']}"
+
+def repex_id(data):
+    """Create ID for reporting exception"""
+    if 'ExceptionReference' in data:
+        return f"{data['LEI']}_{data['ExceptionCategory']}_{data['ExceptionReason']}_{data['ExceptionReference']}"
+    else:
+        return f"{data['LEI']}_{data['ExceptionCategory']}_{data['ExceptionReason']}_None"
+
 def format_address(address_type, address):
     """Format address structure"""
     address_string = ", ".join([address['FirstAddressLine'], address['City']])
     out = {'type': address_type,'address': address_string, 'country': address['Country']}
     if 'PostalCode' in address: out['postCode'] = address['PostalCode']
     return out
-def generate_statement_id(name, role, version=None):
-    """Generate statement ID deterministically"""
-    if version:
-        seed = '-'.join([name, role, version])
-    else:
-        seed = '-'.join([name, role])
-    m = hashlib.md5()
-    m.update(seed.encode('utf-8'))
-    return str(uuid.UUID(m.hexdigest()))
-
-def format_date(d):
-    """Format date in ISO 8601"""
-    return dateutil.parser.isoparse(d).strftime("%Y-%m-%d") #.isoformat(timespec='seconds')
-
-def current_date_iso():
-    """Generate current date in ISO 8601"""
-    return datetime.datetime.now(pytz.timezone('Europe/London')).strftime("%Y-%m-%d") #.isoformat(timespec='seconds')
 
 def publication_details():
     """Generate publication details"""
@@ -41,7 +44,8 @@ def publication_details():
 
 def transform_lei(data):
     """Transform LEI-CDF v3.1 data to BODS statement"""
-    statementID = generate_statement_id(data['LEI'], 'entityStatement')
+    #print("Transforming LEI:")
+    statementID = generate_statement_id(entity_id(data), 'entityStatement')
     statementType = 'entityStatement'
     statementDate = format_date(data['Registration']['LastUpdateDate'])
     entityType = 'registeredEntity'
@@ -59,9 +63,6 @@ def transform_lei(data):
         if 'RegistrationAuthorityID' in data['Entity']['RegistrationAuthority']:
             authority['schemeName'] = data['Entity']['RegistrationAuthority']['RegistrationAuthorityID']
         if authority: identifiers.append(authority)
-        #identifiers.append({'id': data['Entity']['RegistrationAuthority']['RegistrationAuthorityEntityID'],
-        #                    'schemeName': data['Entity']['RegistrationAuthority']['RegistrationAuthorityID']})
-    #foundingDate = data['Entity']['EntityCreationDate']
     registeredAddress = format_address('registered', data['Entity']['LegalAddress'])
     businessAddress = format_address('business', data['Entity']['HeadquartersAddress'])
     if 'ValidationSources' in data['Registration']:
@@ -69,6 +70,8 @@ def transform_lei(data):
     else:
         sourceType = ['officialRegister']
     sourceDescription = 'GLEIF'
+    annotations = []
+    add_lei_annotation(annotations, data['LEI'], data["Registration"]["RegistrationStatus"])
     out = {'statementID': statementID,
     'statementType': statementType,
     'statementDate': statementDate,
@@ -76,8 +79,8 @@ def transform_lei(data):
     'name': name,
     'incorporatedInJurisdiction': jurisdiction,
     'identifiers': identifiers,
-    #'foundingDate': foundingDate,
     'addresses': [registeredAddress,businessAddress],
+    'annotations': annotations,
     'publicationDetails': publication_details(),
     'source': {'type':sourceType,'description':sourceDescription}}
     if 'EntityCreationDate' in data['Entity']: out['foundingDate'] = data['Entity']['EntityCreationDate']
@@ -92,20 +95,26 @@ def interest_level(relationship_type, default):
     else:
         return default # Other options in data
 
-def transform_rr(data):
+def calc_statement_id(lei, mapping):
+    """Calculate statementID for lei using mapping if available"""
+    if lei in mapping:
+        return mapping[lei]
+    else:
+        return generate_statement_id(lei, 'entityStatement')
+
+def transform_rr(data, mapping):
     """Transform RR-CDF v2.1 data to BODS statement"""
-    statementID = generate_statement_id(data['Relationship']['StartNode']['NodeID'] + 
-                                        data['Relationship']['EndNode']['NodeID'] +
-                                        data['Relationship']['RelationshipType'], 'ownershipOrControlStatement')
+    statementID = generate_statement_id(rr_id(data), 'ownershipOrControlStatement')
     statementType = 'ownershipOrControlStatement'
     statementDate = format_date(data['Registration']['LastUpdateDate'])
-    subjectDescribedByEntityStatement = generate_statement_id(data['Relationship']['StartNode']['NodeID'], 'entityStatement')
-    interestedPartyDescribedByEntityStatement = generate_statement_id(data['Relationship']['EndNode']['NodeID'], 'entityStatement')
-    #interestType = 'otherInfluenceOrControl'
+    subjectDescribedByEntityStatement = calc_statement_id(data['Relationship']['StartNode']['NodeID'], mapping)
+    interestedPartyDescribedByEntityStatement = calc_statement_id(data['Relationship']['EndNode']['NodeID'], mapping)
     interestType = 'other-influence-or-control'
-    interestLevel = interest_level(data['Relationship']['RelationshipType'], 'unknown')
+    #interestLevel = interest_level(data['Relationship']['RelationshipType'], 'unknown')
+    interestLevel = "unknown"
     #periods = data['Relationship']['RelationshipPeriods']
     interestStartDate = False
+    interestDetails = f"LEI RelationshipType: {data['Relationship']['RelationshipType']}"
     start_date = False
     if 'RelationshipPeriods' in data['Relationship']:
         periods = data['Relationship']['RelationshipPeriods']
@@ -122,6 +131,10 @@ def transform_rr(data):
     beneficialOwnershipOrControl = False
     sourceType = ['officialRegister'] if not data['Registration']['ValidationSources'] == 'FULLY_CORROBORATED' else ['officialRegister', 'verified']
     sourceDescription = 'GLEIF'
+    annotations = []
+    add_rr_annotation_status(annotations,
+                             data['Relationship']['StartNode']['NodeID'],
+                             data['Relationship']['EndNode']['NodeID'])
     out = {'statementID': statementID,
            'statementType':statementType,
            'statementDate':statementDate,
@@ -130,7 +143,9 @@ def transform_rr(data):
            'interests':[{'type': interestType,
                   'interestLevel': interestLevel,
                   'beneficialOwnershipOrControl': beneficialOwnershipOrControl,
-                  'startDate': interestStartDate}],
+                  'startDate': interestStartDate,
+                  'details': interestDetails}],
+           'annotations': annotations,
            'publicationDetails': publication_details(),
            'source':{'type': sourceType, 'description': sourceDescription}}
     return out
@@ -143,14 +158,22 @@ def transform_repex_entity(data, description, person=False):
     else:
         statementType = 'entityStatement'
         entityType = "unknownEntity"
-    statementID = generate_statement_id(data['LEI'] + data['ExceptionCategory'] + data['ExceptionReason'], statementType)
+    statementID = generate_statement_id(repex_id(data), statementType)
+    statementDate = format_date(data['ContentDate'])
     #isComponent = 'false' Required?
     unspecified_reason = 'interested-party-exempt-from-disclosure'
-    unspecified_description = description
+    if "ExceptionReference" in data:
+        unspecified_description = f"{description} ExemptionReference provided: {data['ExceptionReference']}"
+    else:
+        unspecified_description = description
     sourceType = ['officialRegister']
     sourceDescription = 'GLEIF'
+    annotations = []
+    add_repex_annotation_reason(annotations, data["ExceptionReason"], data["LEI"])
     out = {'statementID': statementID,
            'statementType': statementType,
+           'statementDate': statementDate,
+           'annotations': annotations,
            'publicationDetails': publication_details(),
            'source':{'type':sourceType,'description':sourceDescription}}
     if person:
@@ -163,27 +186,25 @@ def transform_repex_entity(data, description, person=False):
 
 def transform_repex_ooc(data, interested=None, person=False):
     """Transform Reporting Exception to Ownership or Control statement"""
-    statementID = generate_statement_id(data['LEI'] + data['ExceptionCategory'] + data['ExceptionReason'], 'ownershipOrControlStatement')
+    statementID = generate_statement_id(repex_id(data), 'ownershipOrControlStatement')
     statementType = 'ownershipOrControlStatement'
+    statementDate = format_date(data['ContentDate'])
     subjectDescribedByEntityStatement = generate_statement_id(data['LEI'], 'entityStatement')
     if interested:
         interestedParty = interested
     else:
         interestedParty = data['ExceptionReason']
-    #interestType = 'unknownInterest'
     interestType = 'other-influence-or-control'
-    annotation = {'motivation': 'commenting',
-                  'description': "The nature of this interest is unknown",
-                  'statementPointerTarget': "/interests/0/type",
-                  'creationDate': current_date_iso(),
-                  'createdBy': {'name': 'Open Ownership',
-                                'uri': "https://www.openownership.org"}}
+    annotations = []
+    add_repex_ooc_annotation(annotations)
+    add_repex_annotation_reason(annotations, data["ExceptionReason"], data["LEI"])
     if data['ExceptionCategory'] == "ULTIMATE_ACCOUNTING_CONSOLIDATION_PARENT":
         interestLevel = 'indirect'
     elif data['ExceptionCategory'] == "DIRECT_ACCOUNTING_CONSOLIDATION_PARENT":
         interestLevel = 'direct'
     else:
         interestLevel = 'unknown'
+    interestDetails = f"LEI ExceptionCategory: {data['ExceptionCategory']}"
     sourceType = ['officialRegister']
     sourceDescription = 'GLEIF'
     if interested:
@@ -195,15 +216,16 @@ def transform_repex_ooc(data, interested=None, person=False):
         interestedParty = {'unspecified': {'reason': interestedParty}}
     out = {'statementID': statementID,
            'statementType':statementType,
+           'statementDate': statementDate,
            'subject': {'describedByEntityStatement': subjectDescribedByEntityStatement},
            'interestedParty': interestedParty,
            'interests':[{'type': interestType,
                          'interestLevel': interestLevel,
                          'beneficialOwnershipOrControl': False,
                          'details': "A controlling interest."}],
+           'annotations': annotations,
            'publicationDetails': publication_details(),
-           'source':{'type': sourceType, 'description': sourceDescription},
-           'annotations': [annotation]}
+           'source':{'type': sourceType, 'description': sourceDescription}}
     return out, statementID
 
 def transform_repex_no_lei(data):
@@ -242,11 +264,18 @@ def transform_repex_non_public(data):
             statement, statement_id = func(data, "From LEI ExemptionReason `NON_PUBLIC` or related deprecated values. The legal entity’s relationship information with an entity it controls is non-public. There are therefore obstacles to releasing this information.")
         yield statement
 
+def transform_repex_no_known(data):
+    """Transform NO_KNOWN_PERSON Reporting Exception"""
+    for func in (transform_repex_entity, transform_repex_ooc):
+        if func == transform_repex_ooc:
+            statement, statement_id = func(data, interested=statement_id, person=True)
+        else:
+            statement, statement_id = func(data, "From LEI ExemptionReason `NO_KNOWN_PERSON`. There is no known person(s) controlling the entity.", person=True)
+        yield statement
+
 def transform_repex(data):
     """Transform Reporting Exceptions to BODS statements"""
-    #print(data['ExceptionReason'])
     if data['ExceptionReason'] == "NO_LEI":
-        #print("Got here!")
         for statement in transform_repex_no_lei(data):
             yield statement
     elif data['ExceptionReason'] == "NATURAL_PERSONS":
@@ -259,6 +288,9 @@ def transform_repex(data):
                                      'DISCLOSURE_DETRIMENTAL', 'DETRIMENT_NOT_EXCLUDED', 'DETRIMENT_NOT_EXCLUDED'):
         for statement in transform_repex_non_public(data):
             yield statement
+    elif data['ExceptionReason'] == "NO_KNOWN_PERSON":
+        for statement in transform_repex_no_known(data):
+            yield statement
 
 class Gleif2Bods:
     """Data processor definition class"""
@@ -266,12 +298,27 @@ class Gleif2Bods:
         """Initial setup"""
         self.identify = identify
 
-    def process(self, item, item_type):
+    def process(self, item, item_type, header, mapping={}, updates=False):
+        """Process item"""
         if self.identify: item_type = self.identify(item)
+        #print("Gleif2Bods:", item_type)
         if item_type == 'lei':
             yield transform_lei(item)
         elif item_type == 'rr':
-            yield transform_rr(item)
+            yield transform_rr(item, mapping)
         elif item_type == 'repex':
-            yield from transform_repex(item)
+            for statement in transform_repex(item):
+                yield statement
 
+class AddContentDate:
+    """Data processor to add ContentDate"""
+    def __init__(self, identify=None):
+        """Initial setup"""
+        self.identify = identify
+
+    def process(self, item, item_type, header, mapping={}, updates=False):
+        """Process item"""
+        if self.identify: item_type = self.identify(item)
+        if item_type == 'repex':
+            item["ContentDate"] = header["ContentDate"]
+        yield item

@@ -2,10 +2,13 @@
 lei_properties = {'LEI': {'type': 'text'},
               'Entity': {'type': 'object',
                          'properties': {'LegalName': {'type': 'text'},
-                                        'OtherEntityNames': {'type': 'text'},
-#                                        'TransliteratedOtherEntityNames': {'type': 'object',
-#                                                                           'properties': {'TransliteratedOtherEntityName': {'type': 'text'}}},
-                                        'TransliteratedOtherEntityNames': {'type': 'text'},
+                                        'OtherEntityNames': #{'type': 'text'},
+                                                            {'type': 'object',
+                                                             'properties': {'OtherEntityName': {'type': 'text'},
+                                                                            'type': {'type': 'text'}}},
+                                        'TransliteratedOtherEntityNames': {'type': 'object',
+                                                                           'properties': {'TransliteratedOtherEntityName': {'type': 'text'},
+                                                                                          'type': {'type': 'text'}}},
                                         'LegalAddress': {'type': 'object',
                                                          'properties': {'FirstAddressLine': {'type': 'text'},
                                                                         'AdditionalAddressLine': {'type': 'text'},
@@ -35,7 +38,8 @@ lei_properties = {'LEI': {'type': 'text'},
                                                                                'City': {'type': 'text'},
                                                                                'Region': {'type': 'text'},
                                                                                'Country': {'type': 'text'},
-                                                                               'PostalCode': {'type': 'text'}}},
+                                                                               'PostalCode': {'type': 'text'},
+                                                                               'type': {'type': 'text'}}},
                                         'TransliteratedOtherAddresses': {'type': 'object',
                                                                 'properties': {'FirstAddressLine': {'type': 'text'},
                                                                                'AdditionalAddressLine': {'type': 'text'},
@@ -45,7 +49,8 @@ lei_properties = {'LEI': {'type': 'text'},
                                                                                'City': {'type': 'text'},
                                                                                'Region': {'type': 'text'},
                                                                                'Country': {'type': 'text'},
-                                                                               'PostalCode': {'type': 'text'}}},
+                                                                               'PostalCode': {'type': 'text'},
+                                                                               'type': {'type': 'text'}}},
                                         'RegistrationAuthority': {'type': 'object',
                                                                   'properties': {'RegistrationAuthorityID': {'type': 'text'},
                                                                                  'RegistrationAuthorityEntityID': {'type': 'text'},
@@ -131,24 +136,20 @@ def match_rr(item):
     return {'bool': {'must': [{"match": {'Relationship.StartNode.NodeID': item['Relationship']['StartNode']['NodeID']}}, 
                               {"match": {'Relationship.EndNode.NodeID': item['Relationship']['EndNode']['NodeID']}}, 
                               {"match": {'Relationship.RelationshipType': item['Relationship']['RelationshipType']}}]}}
-#{"bool": {"must": [{"term": {'Relationship.StartNode.NodeID': item['Relationship']['StartNode']['NodeID']}},
-#                              {"term": {'Relationship.EndNode.NodeID': item['Relationship']['EndNode']['NodeID']}},
-#                              {"term": {'Relationship.RelationshipType': item['Relationship']['RelationshipType']}}]}}
 
 def match_repex(item):
     return {'bool': {'must': [{"match": {'LEI': item["LEI"]}},
                               {"match": {'ExceptionCategory': item["ExceptionCategory"]}}, 
                               {"match": {'ExceptionReason': item["ExceptionReason"]}}]}}
-#{"bool": {"must": [{"term": {'ExceptionCategory': item["ExceptionCategory"]}}, 
-#                              {"term": {'ExceptionReason': item["ExceptionReason"]}}, 
-#                              {"term": {'LEI': item["LEI"]}}]}}
 
 def id_lei(item):
-    return item["LEI"]
+    return f"{item['LEI']}_{item['Registration']['LastUpdateDate']}"
 
 def id_rr(item):
-    return f"{item['Relationship']['StartNode']['NodeID']}_{item['Relationship']['EndNode']['NodeID']}_{item['Relationship']['RelationshipType']}"
+    return f"{item['Relationship']['StartNode']['NodeID']}_{item['Relationship']['EndNode']['NodeID']}_{item['Relationship']['RelationshipType']}_{item['Registration']['LastUpdateDate']}"
 
 def id_repex(item):
-    return f"{item['LEI']}_{item['ExceptionCategory']}_{item['ExceptionReason']}"
-
+    if "ExceptionReference" in item:
+        return f"{item['LEI']}_{item['ExceptionCategory']}_{item['ExceptionReason']}_{item['ExceptionReference']}"
+    else:
+        return f"{item['LEI']}_{item['ExceptionCategory']}_{item['ExceptionReason']}_None"

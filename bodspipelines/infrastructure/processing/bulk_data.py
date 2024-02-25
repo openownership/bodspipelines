@@ -93,13 +93,13 @@ class BulkData:
         zip = self.download_large(directory, name)
         self.unzip_data(zip, directory)
 
-    def prepare(self, path, name) -> Path:
+    def prepare(self, path, name, updates=False) -> Path:
         """Prepare data for use"""
-        if not self.check_manifest(path, name):
-            self.download_extract_data(path, name)
-            self.create_manifest(path, name)
-        else:
-            print(f"{self.display} data up-to-date ...")
+        #if not self.check_manifest(path, name):
+        #    self.download_extract_data(path, name)
+        #    self.create_manifest(path, name)
+        #else:
+        #    print(f"{self.display} data up-to-date ...")
         for file in self.data_dir(path).glob('*.xml'):
             return file
 

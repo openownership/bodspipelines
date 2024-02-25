@@ -14,15 +14,16 @@ class Source:
         self.origin = origin
         self.datatype = datatype
 
-    def process(self, stage_dir):
+    def process(self, stage_dir, updates=False):
         """Iterate over source items"""
         if hasattr(self.origin, "prepare"):
-            data = self.origin.prepare(stage_dir, self.name)
-            for item in self.datatype.process(data):
-                yield item
+            data = self.origin.prepare(stage_dir, self.name, updates=False)
+            for header, item in self.datatype.process(data):
+                yield header, item
         else:
             for item in self.origin.process():
-                yield self.datatype.process(item)
+                header, item = self.datatype.process(item)
+                yield header, item
 
 class Stage:
     """Pipeline stage definition class"""
@@ -40,16 +41,21 @@ class Stage:
         path.mkdir(exist_ok=True)
         return path
 
-    def source_processing(self, source, stage_dir):
+    def source_processing(self, source, stage_dir, updates=False):
         """Iterate over items from source, with processing"""
-        for item in source.process(stage_dir):
+        for header, item in source.process(stage_dir, updates=False):
             if self.processors:
                 for processor in self.processors:
-                    for out in processor.process(item, source.name):
+                    for out in processor.process(item, source.name, header, updates=updates):
                         #print(out)
                         yield out
             else:
                 yield item
+        for processor in self.processors:
+            print("Processor:", hasattr(processor, "finish_updates"), updates)
+            if hasattr(processor, "finish_updates") and updates:
+                for out in processor.finish_updates():
+                    yield out
 
     #def process_source(self, source, stage_dir):
     #    """Iterate over items from source, with processing and output"""
@@ -57,22 +63,22 @@ class Stage:
     #        for processor in self.processors:
     #            item = processor.process(item, source.name)
 
-    def process_source(self, source, stage_dir):
+    def process_source(self, source, stage_dir, updates=False):
         """Iterate over items from source, and output"""
         if len(self.outputs) > 1 or not self.outputs[0].streaming:
-            for item in self.source_processing(source, stage_dir):
+            for item in self.source_processing(source, stage_dir, updates=False):
                 for output in self.outputs:
                     output.process(item, source.name)
         else:
-            self.outputs[0].process_stream(self.source_processing(source, stage_dir), source.name)
+            self.outputs[0].process_stream(self.source_processing(source, stage_dir, updates=False), source.name)
 
-    def process(self, pipeline_dir):
+    def process(self, pipeline_dir, updates=False):
         """Process all sources for stage"""
         print(f"Running {self.name} pipeline stage")
         stage_dir = self.directory(pipeline_dir)
         for source in self.sources:
             print(f"Processing {source.name} source")
-            self.process_source(source, stage_dir)
+            self.process_source(source, stage_dir, updates=False)
         print(f"Finished {self.name} pipeline stage")
 
 class Pipeline:
@@ -95,8 +101,8 @@ class Pipeline:
                 return stage
         return None
 
-    def process(self, stage_name):
+    def process(self, stage_name, updates=False):
         """Process specified pipeline stage"""
         stage = self.get_stage(stage_name)
         pipeline_dir = self.directory()
-        stage.process(pipeline_dir)
+        stage.process(pipeline_dir, updates=False)

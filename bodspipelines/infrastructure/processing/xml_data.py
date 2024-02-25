@@ -1,6 +1,7 @@
 from lxml import etree
 
 def is_plural(tag, child_tag):
+    """Is tag name plural"""
     if tag == child_tag + "s":
         return True
     elif tag == child_tag + "es":
@@ -9,69 +10,104 @@ def is_plural(tag, child_tag):
         return True
     return False
 
-class XMLData:
-    """XML data definition class"""
 
-    def __init__(self, item_tag=None, namespace=None, filter=[]):
+def is_plural(tag, child_tag):
+    """Is tag name plural"""
+    if tag.endswith(child_tag + "s"):
+        return True
+    elif tag.endswith(child_tag + "es"):
+        return True
+    elif tag.endswith(child_tag[:-1] + 'ies'):
+        return True
+    return False
+
+
+def get_tag(element, pos):
+    """Return tag name without namespace"""
+    for ns in pos:
+        if ns in element.tag:
+            return element.tag[pos[ns]:]
+
+
+def data_stream(filename, tag_name, namespaces, filter=[]):
+    """Stream items from XML file"""
+    skip = False
+    stack = []
+    pos = {namespaces[ns]: len(namespaces[ns])+2 for ns in namespaces}
+    for event, element in etree.iterparse(filename, events=('start', 'end',)):
+        tag = get_tag(element, pos)
+        if event == 'start':
+            if skip:
+                pass
+            elif tag in filter:
+                skip = True
+            elif element.tag == tag_name or stack:
+                stack.append([element.tag, {}])
+        elif event == 'end':
+            if skip:
+                if tag in filter:
+                    skip = False
+            elif element.tag == tag_name:
+                element.clear()
+                elem = stack.pop()
+                yield elem[1]
+            elif stack:
+                elem = stack.pop()
+                if elem[1]:
+                    val = elem[1]
+                else:
+                    val = element.text
+                if stack[-1][1]:
+                    if isinstance(stack[-1][1], list):
+                        if 'type' in element.attrib:
+                            if isinstance(val, dict):
+                                val['type'] = element.attrib['type']
+                                stack[-1][1].append(val)
+                            else:
+                                stack[-1][1].append({'type': element.attrib['type'], tag: val})
+                        else:
+                            stack[-1][1].append(val)
+                    else:
+                        stack[-1][1][tag] = val
+                else:
+                    if is_plural(stack[-1][0], tag):
+                        if 'type' in element.attrib:
+                            if isinstance(val, dict):
+                                val['type'] = element.attrib['type']
+                                stack[-1][1] = [val]
+                            else:
+                                stack[-1][1] = [{'type': element.attrib['type'], tag: val}]
+                        else:
+                            if isinstance(stack[-1][1], list):
+                                stack[-1][1].append(val)
+                            else:
+                                stack[-1][1] = [val]
+                    else:
+                        stack[-1][1][tag] = val
+
+
+class XMLData:
+    """XML data parser configuration"""
+
+    def __init__(self, item_tag=None, header_tag=None, namespace=None, filter=[]):
         """Initial setup"""
         self.item_tag = item_tag
+        self.header_tag = header_tag
         self.namespace = namespace
         self.filter = filter
 
-    def data_stream(self, filename):
-        """Stream parsed XML elements from file"""
-        print(f"Parsing {filename}")
-        ns = self.namespace[next(iter(self.namespace))]
-        tag_name = f"{{{ns}}}{self.item_tag}"
-        for event, element in etree.iterparse(filename, events=('end',), tag=tag_name):
-            yield element
-
-    def is_array(self, tag, child):
-        """Check if is array """
-        child_tag = etree.QName(child[0]).localname
-        if is_plural(tag, child_tag):
-            #print("Array!!!!")
-            return True
+    def extract_header(self, filename):
+        """Extract header"""
+        if self.header_tag:
+            tag_name = f"{{{self.namespace[next(iter(self.namespace))]}}}{self.header_tag}"
+            async for item in data_stream(filename, tag_name, self.namespace, filter=self.filter):
+                return item
         else:
-            return False
-
-    def add_element(self, out, tag, value):
-        if not tag in self.filter and value:
-            out[tag] = value
-
-    def process_item(self, item, out):
-        """Process XML item to dict"""
-        for child in item:
-            tag = etree.QName(child).localname
-            #print(tag, len(child))
-            if len(child) > 0:
-                if self.is_array(tag, child):
-                    parent_data = []
-                else:
-                    parent_data = {}
-                child_data = self.process_item(child, parent_data)
-                if isinstance(out, list):
-                    out.append(child_data)
-                else:
-                    self.add_element(out, tag, child_data)
-                    #out[tag] = child_data
-            else:
-                try:
-                    child_value = child.xpath("./text()", namespaces=self.namespace)[0]
-                except IndexError:
-                    child_value = False
-                if isinstance(out, list):
-                    out.append(child_value)
-                else:
-                    self.add_element(out, tag, child_value)
-                    #out[tag] = child_value
-        return out
+            return None
 
     def process(self, filename):
         """Iterate over processed items from file"""
-        for element in self.data_stream(filename):
-            item = self.process_item(element, {})
-            element.clear()
-            #print(item)
-            yield item
-            #break # Remove
+        header = await self.extract_header(filename)
+        tag_name = f"{{{self.namespace[next(iter(self.namespace))]}}}{self.item_tag}"
+        async for item in data_stream(filename, tag_name, self.namespace, filter=self.filter):
+            yield header, item
