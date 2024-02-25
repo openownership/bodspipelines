@@ -136,7 +136,7 @@ transform_stage = Stage(name="transform-test-updates",
               sources=[gleif_source],
               processors=[ProcessUpdates(id_name='XI-LEI',
                                          transform=Gleif2Bods(identify=identify_gleif),
-                                         storage=ElasticStorage(storage=bods_index_properties),
+                                         storage=ElasticStorage(indexes=bods_index_properties),
                                          updates=GleifUpdates())],
               outputs=[bods_output_new])
 
