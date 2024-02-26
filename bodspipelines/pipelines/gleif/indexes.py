@@ -124,7 +124,11 @@ rr_properties = {'Relationship': {'type': 'object',
                                                                           'properties': {'ValidationAuthorityID': {'type': 'text'}, 
                                                                                          'OtherValidationAuthorityID': {'type': 'text'}, 
                                                                                          'ValidationAuthorityEntityID': {'type': 'text'}}}
-                                                  }}}
+                                                  }},
+                   'Extension': {'type': 'object',
+                                 'properties': {'Deletion': {'type': 'object',
+                                                             'properties': {'DeletedAt': {'type': 'text'}}}}}
+                   }
 
 repex_properties = {'LEI': {'type': 'text'}, 
                     'ExceptionCategory': {'type': 'text'}, 
