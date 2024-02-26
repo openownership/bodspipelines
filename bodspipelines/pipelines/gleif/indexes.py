@@ -154,8 +154,8 @@ def id_rr(item):
 def id_repex(item):
     if "ExceptionReference" in item:
         ref_hash = hashlib.sha256(bytes(item['ExceptionReference'], 'utf8')).hexdigest()
-        item_id = f"{item['LEI']}_{item['ExceptionCategory']}_{item['ExceptionReason']}_{ref_hash}"
+        item_id = f"{item['LEI']}_{item['ExceptionCategory']}_{item['ExceptionReason']}_{ref_hash}_{item['ContentDate']}"
     else:
-        item_id = f"{item['LEI']}_{item['ExceptionCategory']}_{item['ExceptionReason']}_None"
+        item_id = f"{item['LEI']}_{item['ExceptionCategory']}_{item['ExceptionReason']}_None_{item['ContentDate']}"
     #print(item_id, len(item_id), item)
     return item_id
