@@ -385,9 +385,6 @@ class ProcessUpdates:
             except_reference = item["ExceptionReference"] if "ExceptionReference" in item else None
             exception_save(self.storage, f"{except_lei}_{except_type}", ooc_id, 
                                  other_id, except_reason, except_reference, entity_type)
-        if not updates:
-            for item_type in ("latest",):
-                self.storage.auto_batch_flush(item_type)
 
     def finish_updates(self, updates=False):
         """Process updates to referencing statements"""
