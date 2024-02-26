@@ -59,8 +59,8 @@ class Stage:
                 yield item
         for processor in self.processors:
             print("Processor:", hasattr(processor, "finish_updates"), updates)
-            if hasattr(processor, "finish_updates") and updates:
-                for out in processor.finish_updates():
+            if hasattr(processor, "finish_updates"):
+                for out in processor.finish_updates(updates=updates):
                     yield out
 
     #def process_source(self, source, stage_dir):

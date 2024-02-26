@@ -386,24 +386,28 @@ class ProcessUpdates:
             exception_save(self.storage, f"{except_lei}_{except_type}", ooc_id, 
                                  other_id, except_reason, except_reference, entity_type)
         if not updates:
-            for item_type in ("latest"):
+            for item_type in ("latest",):
                 self.storage.auto_batch_flush(item_type)
 
-    def finish_updates(self):
+    def finish_updates(self, updates=False):
         """Process updates to referencing statements"""
         print("In finish_updates")
-        done_updates = []
-        for ref_id, latest_id, updates in process_updates(self.storage):
-            #print("Update:", ref_id, latest_id, updates)
-            statement = retrieve_statement(self.storage, "ownership", ref_id)
-            old_statement_id = fix_statement_reference(statement, updates, latest_id)
-            statement_id = statement["statementID"]
-            add_replaces(statement, old_statement_id)
-            latest_save(self.storage, latest_id, statement_id)
-            #await updates_delete(self.storage, old_statement_id)
-            done_updates.append(old_statement_id)
-            #print("Updated statement:", statement)
-            yield statement
-        for statement_id in done_updates:
-            updates_delete(self.storage, statement_id)
+        if not updates:
+            for item_type in ("latest",):
+                self.storage.auto_batch_flush(item_type)
+        else:
+            done_updates = []
+            for ref_id, latest_id, updates in process_updates(self.storage):
+                #print("Update:", ref_id, latest_id, updates)
+                statement = retrieve_statement(self.storage, "ownership", ref_id)
+                old_statement_id = fix_statement_reference(statement, updates, latest_id)
+                statement_id = statement["statementID"]
+                add_replaces(statement, old_statement_id)
+                latest_save(self.storage, latest_id, statement_id)
+                #await updates_delete(self.storage, old_statement_id)
+                done_updates.append(old_statement_id)
+                #print("Updated statement:", statement)
+                yield statement
+            for statement_id in done_updates:
+                updates_delete(self.storage, statement_id)
 
