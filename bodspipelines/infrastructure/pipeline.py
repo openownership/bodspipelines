@@ -47,11 +47,11 @@ class Stage:
             if self.processors:
                 items = [item]
                 for processor in self.processors:
-                    new_item = []
+                    new_items = []
                     for current_item in items:
                         for out in processor.process(current_item, source.name, header, updates=updates):
                             #print(out)
-                            new_item.append(out)
+                            new_items.append(out)
                     items = new_items
                 for current_item in items:
                     yield current_item
