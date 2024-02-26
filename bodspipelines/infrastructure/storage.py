@@ -12,7 +12,7 @@ class ElasticStorage:
 
     def setup_indexes(self):
         for index_name in self.indexes:
-            if index_name in ("latest", "updates"): self.storage.create_index(index_name, self.indexes[index_name]['properties'])
+            if index_name in ("entity", "person"): self.storage.create_index(index_name, self.indexes[index_name]['properties'])
 
     def create_action(self, index_name, item):
         #print(index_name, item)
