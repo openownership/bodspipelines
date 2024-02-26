@@ -89,11 +89,17 @@ ownership_statement_properties = {'statementID': {'type': 'text'},
 
 
 # Additional indexes for managing updates
-latest_properties = {'latest_id': {'type': 'text'}, 'statement_id': {'type': 'text'}}
-references_properties = {'references_id': {'type': 'text'}, 'statement_id': {'type': 'text'}}
+latest_properties = {'latest_id': {'type': 'text'},
+                     'statement_id': {'type': 'text'},
+                     'reason': {'type': 'text'}}
+references_properties = {'references_id': {'type': 'text'},
+                         'statement_id': {'type': 'text'}}
+#updates_properties = {'referencing_id': {'type': 'text'},
+#                      'old_statement_id': {'type': 'text'},
+#                      'new_statement_id': {'type': 'text'}}
 updates_properties = {'referencing_id': {'type': 'text'},
-                      'old_statement_id': {'type': 'text'},
-                      'new_statement_id': {'type': 'text'}}
+                      'latest_id': {'type': 'text'},
+                      'updates': {'type': 'text'}}
 exceptions_properties = {'latest_id': {'type': 'text'},
                          'statement_id': {'type': 'text'},
                          'other_id': {'type': 'text'},
