@@ -86,6 +86,7 @@ repex_source = Source(name="repex",
                                       size=3954,
                                       directory="rep-ex"),
                       datatype=XMLData(item_tag="Exception",
+                                       header_tag="Header",
                                        namespace={"repex": "http://www.gleif.org/data/schema/repex/2016"},
                                        #filter=['NextVersion', 'Extension']
                                        filter=['NextVersion']))
