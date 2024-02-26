@@ -24,7 +24,7 @@ from bodspipelines.infrastructure.indexes import (latest_properties, references_
                                           id_latest, id_references, id_updates)
 
 
-from bodspipelines.pipelines.gleif.transforms import Gleif2Bods, AddContentDate
+from bodspipelines.pipelines.gleif.transforms import Gleif2Bods, AddContentDate, RemoveEmptyExtension
 from bodspipelines.pipelines.gleif.indexes import (lei_properties, rr_properties, repex_properties,
                                           match_lei, match_rr, match_repex,
                                           id_lei, id_rr, id_repex)
@@ -108,7 +108,8 @@ output_new = NewOutput(storage=ElasticStorage(indexes=index_properties),
 ingest_stage = Stage(name="ingest",
               #sources=[lei_source, rr_source, repex_source],
               sources=[repex_source],
-              processors=[AddContentDate(identify=identify_gleif)],
+              processors=[AddContentDate(identify=identify_gleif),
+                          RemoveEmptyExtension(identify=identify_gleif)],
               outputs=[output_new])
 
 # Kinesis stream of GLEIF data from ingest stage
@@ -134,7 +135,7 @@ bods_output_new = NewOutput(storage=ElasticStorage(indexes=bods_index_properties
                             identify=identify_bods)
 
 # Definition of GLEIF data pipeline transform stage
-transform_stage = Stage(name="transform-test-updates",
+transform_stage = Stage(name="transform",
               sources=[gleif_source],
               processors=[ProcessUpdates(id_name='XI-LEI',
                                          transform=Gleif2Bods(identify=identify_gleif),

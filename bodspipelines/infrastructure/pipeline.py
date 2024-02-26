@@ -45,10 +45,16 @@ class Stage:
         """Iterate over items from source, with processing"""
         for header, item in source.process(stage_dir, updates=False):
             if self.processors:
+                items = [item]
                 for processor in self.processors:
-                    for out in processor.process(item, source.name, header, updates=updates):
-                        #print(out)
-                        yield out
+                    new_item = []
+                    for current_item in items:
+                        for out in processor.process(current_item, source.name, header, updates=updates):
+                            #print(out)
+                            new_item.append(out)
+                    items = new_items
+                for current_item in items:
+                    yield current_item
             else:
                 yield item
         for processor in self.processors:
