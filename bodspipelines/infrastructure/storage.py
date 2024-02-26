@@ -95,8 +95,8 @@ class ElasticStorage:
                 return item
             else:
                 #print(f"Creating: {item}")
-                action = self.create_action(item_type, item)
-                out = self.storage.store_data(action)
+                #action = self.create_action(item_type, item)
+                out = self.storage.store_data(item, id=id)
                 return item
         else:
             return False

@@ -56,13 +56,13 @@ class ElasticsearchClient:
         """Get index statistics"""
         return self.client.indices.stats(index=index_name)
 
-    def store_data(self, data):
+    def store_data(self, data, id=None):
         """Store data in index"""
         if isinstance(data, list):
             for d in data:
                 self.client.index(index=self.index_name, document=d)
         else:
-            self.client.index(index=self.index_name, document=data)
+            self.client.index(index=self.index_name, document=data, id=id)
 
     def update_data(self, data, id):
         """Update data in index"""
