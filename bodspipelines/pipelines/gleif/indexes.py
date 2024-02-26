@@ -127,7 +127,8 @@ rr_properties = {'Relationship': {'type': 'object',
 repex_properties = {'LEI': {'type': 'text'}, 
                     'ExceptionCategory': {'type': 'text'}, 
                     'ExceptionReason': {'type': 'text'},
-                    'ExceptionReference': {'type': 'text'}}
+                    'ExceptionReference': {'type': 'text'},
+                    'ContentDate': {'type': 'text'}}
 
 def match_lei(item):
     return {"match": {"LEI": item["LEI"]}}
@@ -150,6 +151,6 @@ def id_rr(item):
 
 def id_repex(item):
     if "ExceptionReference" in item:
-        return f"{item['LEI']}_{item['ExceptionCategory']}_{item['ExceptionReason']}_{item['ExceptionReference']}"
+        return f"{item['LEI']}_{item['ExceptionCategory']}_{item['ExceptionReason']}_{item['ExceptionReference'][:255]}"
     else:
         return f"{item['LEI']}_{item['ExceptionCategory']}_{item['ExceptionReason']}_None"
