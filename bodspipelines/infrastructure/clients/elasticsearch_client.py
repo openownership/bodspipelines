@@ -66,6 +66,7 @@ class ElasticsearchClient:
 
     def update_data(self, data, id):
         """Update data in index"""
+        print(f"Updating {self.index_name} index: {id} {data}")
         self.client.update(index=self.index_name, id=id, body=data)
 
     def bulk_store_data(self, actions, index_name):
