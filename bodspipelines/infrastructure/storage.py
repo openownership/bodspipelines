@@ -9,6 +9,7 @@ class ElasticStorage:
         self.indexes = indexes
         self.storage = ElasticsearchClient()
         self.current_index = None
+        self.auto_batch = {}
 
     def setup_indexes(self):
         for index_name in self.indexes:
@@ -100,6 +101,23 @@ class ElasticStorage:
                 return item
         else:
             return False
+
+    def flush_batch(self, item_type):
+        items = self.auto_batch[item_type]
+        actions = [self.create_action(item_type, current_item) for current_item in items]
+        for current_item in self.storage.batch_store_data(actions, items, item_type):
+            pass
+        self.auto_batch[item_type] = []
+
+    def add_item_auto_batch(self, item, item_type):
+        if not item_type in self.auto_batch: self.auto_batch[item_type] = []
+        self.auto_batch[item_type].append(item)
+        if len(self.auto_batch[item_type]) < 485:
+            self.flush_batch(item_type)
+
+    def auto_batch_flush(self, item_type):
+        if len(self.auto_batch[item_type]) > 0:
+            self.flush_batch(item_type)
 
     def process(self, item, item_type):
         if item_type != self.current_index:

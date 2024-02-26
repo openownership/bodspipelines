@@ -39,11 +39,13 @@ def build_exception(latest, occ_id, other_id, reason, reference, entity_type):
             'reference': reference, 'entity_type': entity_type}
 
 
-def latest_save(storage, lei, bods_id, reason=False):
+def latest_save(storage, lei, bods_id, reason=False, updates=False):
     """Save latest statement id for LEI/RR/Repex"""
     print(f"Saving latest - {lei}: {bods_id}")
-    storage.add_item(build_latest(lei, bods_id, reason=reason), "latest", overwrite=True)
-
+    if updates:
+        storage.add_item(build_latest(lei, bods_id, reason=reason), "latest", overwrite=True)
+    else:
+        storage.add_item_auto_batch(build_latest(lei, bods_id, reason=reason), "latest")
 
 def latest_lookup(storage, lei):
     """Lookup latest statement id for LEI/RR/Repex"""
@@ -383,6 +385,9 @@ class ProcessUpdates:
             except_reference = item["ExceptionReference"] if "ExceptionReference" in item else None
             exception_save(self.storage, f"{except_lei}_{except_type}", ooc_id, 
                                  other_id, except_reason, except_reference, entity_type)
+        if not updates:
+            for item_type in ("latest"):
+                self.storage.auto_batch_flush(item_type)
 
     def finish_updates(self):
         """Process updates to referencing statements"""
