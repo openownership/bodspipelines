@@ -41,7 +41,7 @@ def build_exception(latest, occ_id, other_id, reason, reference, entity_type):
 
 def latest_save(storage, lei, bods_id, reason=False, updates=False):
     """Save latest statement id for LEI/RR/Repex"""
-    print(f"Saving latest - {lei}: {bods_id}")
+    #print(f"Saving latest - {lei}: {bods_id}")
     if updates:
         storage.add_item(build_latest(lei, bods_id, reason=reason), "latest", overwrite=True)
     else:
@@ -327,7 +327,7 @@ class ProcessUpdates:
 
     def process(self, item, item_type, header, updates=False):
         """Process updates if applicable"""
-        print(f"Processing - updates: {updates}")
+        #print(f"Processing - updates: {updates}")
         entity_voided = False
         entity_type = None
         mapping, old_ooc_id, old_other_id, old_reason, old_reference, old_entity_type, except_lei, \
