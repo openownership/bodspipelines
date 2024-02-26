@@ -1,3 +1,5 @@
+import hashlib
+
 # GLEIF LEI Elasticsearch Properties
 lei_properties = {'LEI': {'type': 'text'},
               'Entity': {'type': 'object',
@@ -151,8 +153,9 @@ def id_rr(item):
 
 def id_repex(item):
     if "ExceptionReference" in item:
-        item_id = f"{item['LEI']}_{item['ExceptionCategory']}_{item['ExceptionReason']}_{item['ExceptionReference'][:255]}"
+        ref_hash = hashlib.sha256(bytes(item['ExceptionReference'], 'utf8')).hexdigest()
+        item_id = f"{item['LEI']}_{item['ExceptionCategory']}_{item['ExceptionReason']}_{ref_hash}"
     else:
         item_id = f"{item['LEI']}_{item['ExceptionCategory']}_{item['ExceptionReason']}_None"
-    print(item_id, len(item_id), item)
+    #print(item_id, len(item_id), item)
     return item_id

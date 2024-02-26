@@ -10,21 +10,24 @@ import pycountry
 from bodspipelines.infrastructure.utils import format_date, current_date_iso, generate_statement_id
 from .annotations import (add_lei_annotation, add_rr_annotation_status,
                           add_repex_annotation_reason, add_repex_ooc_annotation)
+from .indexes import id_lei as entity_id
+from .indexes import id_rr as rr_id
+from .indexes import id_repex as repex_id
 
-def entity_id(data):
-    """Create ID for entity"""
-    return f"{data['LEI']}_{data['Registration']['LastUpdateDate']}"
+#def entity_id(data):
+#    """Create ID for entity"""
+#    return f"{data['LEI']}_{data['Registration']['LastUpdateDate']}"
 
-def rr_id(data):
-    """Create ID for relationship"""
-    return f"{data['Relationship']['StartNode']['NodeID']}_{data['Relationship']['EndNode']['NodeID']}_{data['Relationship']['RelationshipType']}_{data['Registration']['LastUpdateDate']}"
+#def rr_id(data):
+#    """Create ID for relationship"""
+#    return f"{data['Relationship']['StartNode']['NodeID']}_{data['Relationship']['EndNode']['NodeID']}_{data['Relationship']['RelationshipType']}_{data['Registration']['LastUpdateDate']}"
 
-def repex_id(data):
-    """Create ID for reporting exception"""
-    if 'ExceptionReference' in data:
-        return f"{data['LEI']}_{data['ExceptionCategory']}_{data['ExceptionReason']}_{data['ExceptionReference'][:255]}"
-    else:
-        return f"{data['LEI']}_{data['ExceptionCategory']}_{data['ExceptionReason']}_None"
+#def repex_id(data):
+#    """Create ID for reporting exception"""
+#    if 'ExceptionReference' in data:
+#        return f"{data['LEI']}_{data['ExceptionCategory']}_{data['ExceptionReason']}_{data['ExceptionReference'][:255]}"
+#    else:
+#        return f"{data['LEI']}_{data['ExceptionCategory']}_{data['ExceptionReason']}_None"
 
 def format_address(address_type, address):
     """Format address structure"""
