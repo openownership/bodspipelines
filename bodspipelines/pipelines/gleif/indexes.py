@@ -151,6 +151,8 @@ def id_rr(item):
 
 def id_repex(item):
     if "ExceptionReference" in item:
-        return f"{item['LEI']}_{item['ExceptionCategory']}_{item['ExceptionReason']}_{item['ExceptionReference'][:255]}"
+        item_id = f"{item['LEI']}_{item['ExceptionCategory']}_{item['ExceptionReason']}_{item['ExceptionReference'][:255]}"
     else:
-        return f"{item['LEI']}_{item['ExceptionCategory']}_{item['ExceptionReason']}_None"
+        item_id = f"{item['LEI']}_{item['ExceptionCategory']}_{item['ExceptionReason']}_None"
+    print(item_id, len(item_id), item)
+    return item_id
