@@ -70,6 +70,11 @@ class ElasticStorage:
         self.storage.delete_index()
         self.storage.create_index(index_name, self.indexes[index_name]['properties'])
 
+    def get_item(self, id, item_type):
+        """Get item from index"""
+        self.storage.set_index(item_type)
+        return await self.storage.get(id)
+
     def add_item(self, item, item_type):
         #print(item_type, self.indexes[item_type])
         query = self.indexes[item_type]['match'](item)
