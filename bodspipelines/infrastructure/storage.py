@@ -133,6 +133,11 @@ class ElasticStorage:
         self.storage.set_index(item_type)
         self.storage.delete(id)
 
+    def stream_items(self, index):
+        """Stream items in index"""
+        for item in self.storage.scan_index(index):
+            yield item
+
     def process(self, item, item_type):
         if item_type != self.current_index:
             self.set_index(item_type)
