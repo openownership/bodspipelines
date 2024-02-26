@@ -73,7 +73,7 @@ class ElasticStorage:
     def get_item(self, id, item_type):
         """Get item from index"""
         self.storage.set_index(item_type)
-        return await self.storage.get(id)
+        return self.storage.get(id)
 
     def add_item(self, item, item_type):
         #print(item_type, self.indexes[item_type])
@@ -127,6 +127,11 @@ class ElasticStorage:
     def auto_batch_flush(self, item_type):
         if len(self.auto_batch[item_type]) > 0:
             self.flush_batch(item_type)
+
+    def delete_item(self, id, item_type):
+        """Delete item with id in index"""
+        self.storage.set_index(item_type)
+        self.storage.delete(id)
 
     def process(self, item, item_type):
         if item_type != self.current_index:
