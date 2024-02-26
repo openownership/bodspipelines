@@ -134,7 +134,11 @@ repex_properties = {'LEI': {'type': 'text'},
                     'ExceptionCategory': {'type': 'text'}, 
                     'ExceptionReason': {'type': 'text'},
                     'ExceptionReference': {'type': 'text'},
-                    'ContentDate': {'type': 'text'}}
+                    'ContentDate': {'type': 'text'},
+                    'Extension': {'type': 'object',
+                                  'properties': {'Deletion': {'type': 'object',
+                                                              'properties': {'DeletedAt': {'type': 'text'}}}}}
+                   }
 
 def match_lei(item):
     return {"match": {"LEI": item["LEI"]}}
