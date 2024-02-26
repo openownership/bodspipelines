@@ -11,7 +11,6 @@ from bodspipelines.infrastructure.utils import format_date, current_date_iso, ge
 from .annotations import (add_lei_annotation, add_rr_annotation_status,
                           add_repex_annotation_reason, add_repex_ooc_annotation)
 
-
 def entity_id(data):
     """Create ID for entity"""
     return f"{data['LEI']}_{data['Registration']['LastUpdateDate']}"
@@ -23,7 +22,7 @@ def rr_id(data):
 def repex_id(data):
     """Create ID for reporting exception"""
     if 'ExceptionReference' in data:
-        return f"{data['LEI']}_{data['ExceptionCategory']}_{data['ExceptionReason']}_{data['ExceptionReference']}"
+        return f"{data['LEI']}_{data['ExceptionCategory']}_{data['ExceptionReason']}_{data['ExceptionReference'][:255]}"
     else:
         return f"{data['LEI']}_{data['ExceptionCategory']}_{data['ExceptionReason']}_None"
 
