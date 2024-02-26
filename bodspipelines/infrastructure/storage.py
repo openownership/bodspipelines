@@ -85,7 +85,7 @@ class ElasticStorage:
     def add_item(self, item, item_type, overwrite=False):
         """Add item to index"""
         self.storage.set_index(item_type)
-        id = self.storage.indexes[item_type]['id'](item)
+        id = self.indexes[item_type]['id'](item)
         result = self.storage.get(id)
         if overwrite or not result:
             if overwrite and not result:
