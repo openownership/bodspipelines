@@ -106,7 +106,10 @@ class ElasticStorage:
         print(f"Write batch of {len(self.auto_batch[item_type])} item for {item_type}")
         items = self.auto_batch[item_type]
         actions = [self.create_action(item_type, current_item) for current_item in items]
-        for current_item in self.storage.batch_store_data(actions, items, item_type):
+        #def stream(actions):
+        #    for current_item in actions:
+        #        yield current_item
+        for current_item in self.storage.batch_store_data(actions, actions, item_type):
             pass
         self.auto_batch[item_type] = []
 
