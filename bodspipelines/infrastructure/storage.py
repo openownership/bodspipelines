@@ -82,6 +82,24 @@ class ElasticStorage:
         else:
             return False
 
+    def add_item(self, item, item_type, overwrite=False):
+        """Add item to index"""
+        self.storage.set_index(item_type)
+        id = self.storage.indexes[item_type]['id'](item)
+        result = self.storage.get(id)
+        if overwrite or not result:
+            if overwrite and not result:
+                #print(f"Updating: {item}")
+                out = self.storage.update_data(item, id)
+                return item
+            else:
+                #print(f"Creating: {item}")
+                action = self.create_action(item_type, item)
+                out = self.storage.store_data(action)
+                return item
+        else:
+            return False
+
     def process(self, item, item_type):
         if item_type != self.current_index:
             self.set_index(item_type)

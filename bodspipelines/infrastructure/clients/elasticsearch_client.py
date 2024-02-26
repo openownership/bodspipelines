@@ -1,7 +1,7 @@
 import os
 import json
 from elasticsearch import Elasticsearch
-from elasticsearch.helpers import bulk, streaming_bulk
+from elasticsearch.helpers import bulk, streaming_bulk, scan
 
 def create_client():
     """Create Elasticsearch client"""
@@ -64,6 +64,10 @@ class ElasticsearchClient:
         else:
             self.client.index(index=self.index_name, document=data)
 
+    def update_data(self, data, id):
+        """Update data in index"""
+        self.client.update(index=self.index_name, id=id, document=data)
+
     def bulk_store_data(self, actions, index_name):
         """Store bulk data in index"""
         for ok, item in streaming_bulk(client=self.client, index=index_name, actions=actions):
@@ -107,6 +111,30 @@ class ElasticsearchClient:
     def search(self, search):
         """Search index"""
         return self.client.search(index=self.index_name, query=search)
+
+    def get(self, id):
+        """Get by id"""
+        match = self.search({"query": {"match": {"_id": id}}})
+        result = match['hits']['hits']
+        if result:
+            return result[0]
+        else:
+            return None
+
+    def delete(self, id):
+        """Delete by id"""
+        return self.client.delete(self.index_name, id)
+
+    def delete_all(self, index):
+        """Delete all documents in index"""
+        self.client.delete_by_query(index, {"query":{"match_all":{}}})
+
+    def scan_index(self, index):
+        """Scan index"""
+        for doc in scan(client=self.client,
+                                    query={"query": {"match_all": {}}},
+                                    index=index):
+            yield doc
 
     def list_indexes(self):
         """List indexes"""
