@@ -162,7 +162,7 @@ def setup():
     while not done:
         try:
             ElasticStorage(indexes=index_properties).setup_indexes()
-            ElasticStorage(indexes=bods_index_properties).setup_indexes()
+            #ElasticStorage(indexes=bods_index_properties).setup_indexes()
             done = True
         except elastic_transport.ConnectionError:
             print("Waiting for Elasticsearch to start ...")
