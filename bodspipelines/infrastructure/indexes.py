@@ -29,7 +29,16 @@ entity_statement_properties = {'statementID': {'type': 'text'},
                                                                                                   'url': {'type': 'text'}}}}},
                                'source': {'type': 'object',
                                           'properties': {'type': {'type': 'text'},
-                                                         'description': {'type': 'text'}}}}
+                                                         'description': {'type': 'text'}}},
+                               'annotations': {'type': 'object',
+                                               'properties': {'motivation': {'type': 'text'},
+                                                              'description': {'type': 'text'},
+                                                              'statementPointerTarget': {'type': 'text'},
+                                                              'creationDate': {'type': 'text'},
+                                                              'createdBy': {'type': 'object',
+                                                                            'properties': {'name': {'type': 'text'},
+                                                                                           'uri': {'type': 'text'}}}}}
+                               }
 
 
 # BODS Entity Statement Elasticsearch Properties
@@ -49,7 +58,16 @@ person_statement_properties = {'statementID': {'type': 'text'},
                                                                                                   'url': {'type': 'text'}}}}},
                                'source': {'type': 'object',
                                           'properties': {'type': {'type': 'text'},
-                                                         'description': {'type': 'text'}}}}
+                                                         'description': {'type': 'text'}}},
+                               'annotations': {'type': 'object',
+                                               'properties': {'motivation': {'type': 'text'},
+                                                              'description': {'type': 'text'},
+                                                              'statementPointerTarget': {'type': 'text'},
+                                                              'creationDate': {'type': 'text'},
+                                                              'createdBy': {'type': 'object',
+                                                                            'properties': {'name': {'type': 'text'},
+                                                                                           'uri': {'type': 'text'}}}}}
+                               }
 
 # BODS Ownership Or Control Statement 
 ownership_statement_properties = {'statementID': {'type': 'text'},
@@ -85,7 +103,8 @@ ownership_statement_properties = {'statementID': {'type': 'text'},
                                                                  'creationDate': {'type': 'text'},
                                                                  'createdBy': {'type': 'object',
                                                                                'properties': {'name': {'type': 'text'},
-                                                                                              'uri': {'type': 'text'}}}}}}
+                                                                                              'uri': {'type': 'text'}}}}}
+                                  }
 
 
 # Additional indexes for managing updates
