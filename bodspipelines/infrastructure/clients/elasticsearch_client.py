@@ -114,7 +114,8 @@ class ElasticsearchClient:
 
     def get(self, id):
         """Get by id"""
-        match = self.search({"query": {"match": {"_id": id}}})
+        #match = self.search({"query": {"match": {"_id": id}}})
+        match = self.search({"match": {"_id": id}})
         result = match['hits']['hits']
         if result:
             return result[0]
