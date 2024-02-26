@@ -116,7 +116,7 @@ class ElasticStorage:
     def add_item_auto_batch(self, item, item_type):
         if not item_type in self.auto_batch: self.auto_batch[item_type] = []
         self.auto_batch[item_type].append(item)
-        if len(self.auto_batch[item_type]) < 485:
+        if len(self.auto_batch[item_type]) > 485:
             self.flush_batch(item_type)
 
     def auto_batch_flush(self, item_type):
