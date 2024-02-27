@@ -78,7 +78,7 @@ def exception_delete(storage, old_statement_id):
     """Delete exception id"""
     storage.delete_item(old_statement_id, "exceptions")
 
-def build_references(referencing_ids):
+def build_referencing(referencing_ids):
     out = []
     for statement_id in referencing_ids:
         out.append({'statement_id': statement_id, 'latest_id': referencing_ids[statement_id]})
@@ -86,7 +86,7 @@ def build_references(referencing_ids):
 
 def references_save(storage, statement_id, referencing_ids):
     """Save list of statement ids referencing statement"""
-    storage.add_item(build_references(statement_id, build_references(referencing_ids)), "references")
+    storage.add_item(build_references(statement_id, build_referencing(referencing_ids)), "references")
 
 def translate_references(references):
     out = {}
