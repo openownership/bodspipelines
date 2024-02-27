@@ -20,8 +20,8 @@ from bodspipelines.infrastructure.indexes import (entity_statement_properties,
                                           id_entity, id_person, id_ownership)
 
 from bodspipelines.infrastructure.indexes import (latest_properties, references_properties, updates_properties,
-                                          match_latest, match_references, match_updates,
-                                          id_latest, id_references, id_updates)
+                                          exceptions_properties, match_latest, match_references, match_updates,
+                                          match_exceptions, id_latest, id_references, id_updates, id_exceptions)
 
 
 from bodspipelines.pipelines.gleif.transforms import Gleif2Bods, AddContentDate, RemoveEmptyExtension
@@ -123,7 +123,8 @@ bods_index_properties = {"entity": {"properties": entity_statement_properties, "
                          "ownership": {"properties": ownership_statement_properties, "match": match_ownership, "id": id_ownership},
                          "latest": {"properties": latest_properties, "match": match_latest, "id": id_latest},
                          "references": {"properties": references_properties, "match": match_references, "id": id_references},
-                         "updates": {"properties": updates_properties, "match": match_updates, "id": id_updates}}
+                         "updates": {"properties": updates_properties, "match": match_updates, "id": id_updates},
+                         "exceptions": {"properties": exceptions_properties, "match": match_exceptions, "id": id_exceptions}}
 
 # Easticsearch storage for BODS data
 #bods_storage = ElasticsearchClient(indexes=bods_index_properties)
