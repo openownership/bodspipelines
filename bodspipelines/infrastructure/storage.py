@@ -13,7 +13,8 @@ class ElasticStorage:
 
     def setup_indexes(self):
         for index_name in self.indexes:
-            if index_name in ("entity", "latest", "references"): self.storage.create_index(index_name, self.indexes[index_name]['properties'])
+            if index_name in ("entity", "latest", "references", "exceptions"):
+                self.storage.create_index(index_name, self.indexes[index_name]['properties'])
 
     def create_action(self, index_name, item):
         #print(index_name, item)
@@ -106,6 +107,15 @@ class ElasticStorage:
                 return item
         else:
             return False
+
+    def add_batch(self, item_type, items):
+        print(f"Write batch of {len(items)} item for {item_type}")
+        actions = [self.create_action(item_type, current_item) for current_item in items]
+        #def stream(actions):
+        #    for current_item in actions:
+        #        yield current_item
+        for current_item in self.storage.batch_store_data(actions, actions, item_type):
+            pass
 
     def flush_batch(self, item_type):
         print(f"Write batch of {len(self.auto_batch[item_type])} item for {item_type}")
