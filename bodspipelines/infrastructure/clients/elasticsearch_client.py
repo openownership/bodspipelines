@@ -119,7 +119,7 @@ class ElasticsearchClient:
         match = self.search({"match": {"_id": id}})
         result = match['hits']['hits']
         if result:
-            return result[0]
+            return result[0]['_source']
         else:
             return None
 
