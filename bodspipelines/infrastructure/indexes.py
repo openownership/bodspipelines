@@ -111,8 +111,11 @@ ownership_statement_properties = {'statementID': {'type': 'text'},
 latest_properties = {'latest_id': {'type': 'text'},
                      'statement_id': {'type': 'text'},
                      'reason': {'type': 'text'}}
-references_properties = {'references_id': {'type': 'text'},
-                         'statement_id': {'type': 'text'}}
+references_properties = {'statement_id': {'type': 'text'},
+                         'references_id': {'type': 'object',
+                                          'properties': {'statement_id': {'type': 'text'},
+                                                         'latest_id': {'type': 'text'}}}
+                         }
 #updates_properties = {'referencing_id': {'type': 'text'},
 #                      'old_statement_id': {'type': 'text'},
 #                      'new_statement_id': {'type': 'text'}}
