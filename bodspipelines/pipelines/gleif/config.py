@@ -102,7 +102,7 @@ index_properties = {"lei": {"properties": lei_properties, "match": match_lei, "i
 
 # GLEIF data: Store in Easticsearch and output new to Kinesis stream
 output_new = NewOutput(storage=ElasticStorage(indexes=index_properties),
-                       output=KinesisOutput(stream_name="gleif-updates"))
+                       output=KinesisOutput(stream_name="gleif-historical"))
 
 # Definition of GLEIF data pipeline ingest stage
 ingest_stage = Stage(name="ingest",
@@ -114,7 +114,7 @@ ingest_stage = Stage(name="ingest",
 
 # Kinesis stream of GLEIF data from ingest stage
 gleif_source = Source(name="gleif",
-                      origin=KinesisInput(stream_name="gleif-updates"),
+                      origin=KinesisInput(stream_name="gleif-historical"),
                       datatype=JSONData())
 
 # Elasticsearch indexes for BODS data
@@ -132,7 +132,7 @@ bods_index_properties = {"entity": {"properties": entity_statement_properties, "
 
 # BODS data: Store in Easticsearch and output new to Kinesis stream
 bods_output_new = NewOutput(storage=ElasticStorage(indexes=bods_index_properties),
-                            output=KinesisOutput(stream_name="bods-gleif-updates"),
+                            output=KinesisOutput(stream_name="bods-gleif-historical"),
                             identify=identify_bods)
 
 # Definition of GLEIF data pipeline transform stage
