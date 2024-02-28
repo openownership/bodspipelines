@@ -335,6 +335,6 @@ class RemoveEmptyExtension:
         """Process item"""
         if self.identify: item_type = self.identify(item)
         if item_type == 'repex':
-            if not isinstance(item["Extension"], dict):
+            if "Extension" in item and not isinstance(item["Extension"], dict):
                 del item["Extension"]
         yield item
