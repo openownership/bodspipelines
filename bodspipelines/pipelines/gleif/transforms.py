@@ -287,7 +287,7 @@ def transform_repex(data):
         for statement in transform_repex_non_consolidating(data):
             yield statement
     elif data['ExceptionReason'] in ('NON_PUBLIC', 'BINDING_LEGAL_COMMITMENTS', 'LEGAL_OBSTACLES',
-                                     'DISCLOSURE_DETRIMENTAL', 'DETRIMENT_NOT_EXCLUDED', 'DETRIMENT_NOT_EXCLUDED'):
+                                     'DISCLOSURE_DETRIMENTAL', 'DETRIMENT_NOT_EXCLUDED', 'CONSENT_NOT_OBTAINED'):
         for statement in transform_repex_non_public(data):
             yield statement
     elif data['ExceptionReason'] == "NO_KNOWN_PERSON":
