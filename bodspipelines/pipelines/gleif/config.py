@@ -106,8 +106,8 @@ output_new = NewOutput(storage=ElasticStorage(indexes=index_properties),
 
 # Definition of GLEIF data pipeline ingest stage
 ingest_stage = Stage(name="ingest",
-              #sources=[lei_source, rr_source, repex_source],
-              sources=[repex_source],
+              sources=[lei_source, rr_source, repex_source],
+              #sources=[repex_source],
               processors=[AddContentDate(identify=identify_gleif),
                           RemoveEmptyExtension(identify=identify_gleif)],
               outputs=[output_new])
