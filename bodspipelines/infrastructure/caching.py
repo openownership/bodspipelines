@@ -1,5 +1,9 @@
 #from functools import wraps
 
+def get_id(storage, item_type, item):
+    """Get item id given item and item_type"""
+    return storage.indexes[item_type]['id'](item)
+
 class Caching():
     """Caching for updates"""
     def __init__(self):
@@ -59,10 +63,6 @@ class Caching():
         del self.cache[item_type][item_id]
 
 cache = Caching()
-
-def get_id(storage, item_type, item):
-    """Get item id given item and item_type"""
-    return storage.indexes[item_type](item)
 
 #def cached(func):
 #    """Apply caching to function"""
