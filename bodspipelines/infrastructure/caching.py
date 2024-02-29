@@ -46,7 +46,7 @@ class Caching():
         """Check if any batches need writing"""
         for item_type in self.batch:
             if len(self.batch[item_type]) > 485:
-                self.write_batch(item_type)
+                self.write_batch(storage, item_type)
 
     def flush_batch(self, storage):
         """Check if any batches need writing"""
@@ -124,5 +124,5 @@ def cached(func, *args, **kwargs):
             cache.unbatch_item(item_type, item_id)
         else:
             out = func(*args, **kwargs)
-    if batch: cache.check_batch(self, storage)
+    if batch: cache.check_batch(storage)
     return out
