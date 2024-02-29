@@ -10,7 +10,7 @@ class Caching():
         """Setup cache"""
         self.initialised = False
         self.cache = {"latest": {}, "references": {}, "exceptions": {}}
-        self.batched = {"latest": {}, "references": {}, "exceptions": {}}
+        self.batch = {"latest": {}, "references": {}, "exceptions": {}}
 
     def load(self, storage):
         """Load data into cache"""
