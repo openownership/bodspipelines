@@ -39,7 +39,7 @@ class Caching():
     def write_batch(self, storage, item_type):
         """Write batch to storage"""
         items = [self.batch[item_type][item_id] for item_id in self.batch[item_type]]
-        storage.add_batch(self, item_type, items)
+        storage.add_batch(item_type, items)
         self.batch[item_type] = {}
 
     def check_batch(self, storage):
