@@ -1,7 +1,7 @@
 from bodspipelines.pipelines.gleif.transforms import rr_id
 from bodspipelines.infrastructure.utils import (current_date_iso, generate_statement_id, 
                                                 random_string, format_date)
-from bodspipelines.infrastructure.caching import cached
+from bodspipelines.infrastructure.caching import cached, load_cache, flush_cache
 
 
 def convert_rel_type(rel_type):
@@ -357,7 +357,7 @@ class ProcessUpdates:
 
     def setup(self):
         """Load data into cache"""
-        cached(None, initialise=True)
+        load_cache(self.storage)
 
     def process(self, item, item_type, header, updates=False):
         """Process updates if applicable"""
@@ -426,7 +426,8 @@ class ProcessUpdates:
         """Process updates to referencing statements"""
         print("In finish_updates")
         if not updates:
-            cached(None, batch="finished")
+            flush_cache(self.storage)
+            #cached(None, batch="finished")
         #    for item_type in ("latest",):
         #        self.storage.auto_batch_flush(item_type)
         else:

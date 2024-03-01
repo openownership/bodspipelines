@@ -1,4 +1,5 @@
 #from functools import wraps
+import inspect
 
 def get_id(storage, item_type, item):
     """Get item id given item and item_type"""
@@ -86,19 +87,28 @@ cache = Caching()
 #            return func(*args, **kwargs)
 #    return wrapper
 
+def load_cache(storage):
+    cache.load(storage)
+
+def flush_cache(storage):
+    cache.flush_batch(storage)
+
 def cached(func, *args, **kwargs):
     """Apply caching to function call"""
+    #if inspect.isclass(func):
+    #    storage = func
+    #else:
     storage = func.__self__
-    if "initialise" in kwargs and kwargs["initialise"]:
-        cache.load(storage)
+    #if "initialise" in kwargs and kwargs["initialise"]:
+    #    cache.load(storage)
     if "batch" in kwargs:
         batch = kwargs["batch"]
         del kwargs["batch"]
     else:
         batch = False
-    if batch == "finished":
-        cache.flush_batch(storage)
-        return
+    #if batch == "finished":
+    #    cache.flush_batch(storage)
+    #    return
     #if not cache.initialised:
     #    cache.load(storage)
     out = None
