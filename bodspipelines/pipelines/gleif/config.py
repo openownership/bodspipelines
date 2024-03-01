@@ -61,7 +61,7 @@ lei_source = Source(name="lei",
                      datatype=XMLData(item_tag="LEIRecord",
                                       namespace={"lei": "http://www.gleif.org/data/schema/leidata/2016",
                                                  "gleif": "http://www.gleif.org/data/schema/golden-copy/extensions/1.0"},
-                                      filter=['NextVersion', ]))
+                                      filter=['NextVersion', 'Extension']))
 
 # Defintion of RR-CDF v2.1 XML date source
 rr_source = Source(name="rr",
