@@ -134,8 +134,9 @@ class ElasticsearchClient:
     def scan_index(self, index):
         """Scan index"""
         for doc in scan(client=self.client,
-                                    query={"query": {"match_all": {}}},
-                                    index=index):
+                        query={"query": {"match_all": {}}},
+                        index=index,
+                        scroll='10m'):
             yield doc['_source']
 
     def list_indexes(self):
