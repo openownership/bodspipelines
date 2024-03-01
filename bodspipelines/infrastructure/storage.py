@@ -146,7 +146,7 @@ class ElasticStorage:
     def stream_items(self, index):
         """Stream items in index"""
         for item in self.storage.scan_index(index):
-            yield item
+            yield item['_source']
 
     def process(self, item, item_type):
         if item_type != self.current_index:
