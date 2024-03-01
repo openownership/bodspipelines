@@ -59,8 +59,9 @@ lei_source = Source(name="lei",
                                      size=41491,
                                      directory="lei-cdf"),
                      datatype=XMLData(item_tag="LEIRecord",
-                                      namespace={"lei": "http://www.gleif.org/data/schema/leidata/2016"},
-                                      filter=['NextVersion', 'Extension']))
+                                      namespace={"lei": "http://www.gleif.org/data/schema/leidata/2016",
+                                                 "gleif": "http://www.gleif.org/data/schema/golden-copy/extensions/1.0"},
+                                      filter=['NextVersion', ]))
 
 # Defintion of RR-CDF v2.1 XML date source
 rr_source = Source(name="rr",
@@ -72,9 +73,10 @@ rr_source = Source(name="rr",
                                    size=2823,
                                    directory="rr-cdf"),
                    datatype=XMLData(item_tag="RelationshipRecord",
-                                    namespace={"rr": "http://www.gleif.org/data/schema/rr/2016"},
+                                    namespace={"rr": "http://www.gleif.org/data/schema/rr/2016",
+                                               "gleif": "http://www.gleif.org/data/schema/golden-copy/extensions/1.0"},
                                     #filter=['Extension']
-                                    filter=[]))
+                                    filter=['NextVersion', ]))
 
 # Defintion of Reporting Exceptions v2.1 XML date source
 repex_source = Source(name="repex",
@@ -87,9 +89,10 @@ repex_source = Source(name="repex",
                                       directory="rep-ex"),
                       datatype=XMLData(item_tag="Exception",
                                        header_tag="Header",
-                                       namespace={"repex": "http://www.gleif.org/data/schema/repex/2016"},
+                                       namespace={"repex": "http://www.gleif.org/data/schema/repex/2016",
+                                                  "gleif": "http://www.gleif.org/data/schema/golden-copy/extensions/1.0"},
                                        #filter=['NextVersion', 'Extension']
-                                       filter=['NextVersion']))
+                                       filter=['NextVersion', ]))
 
 # Elasticsearch indexes for GLEIF data
 index_properties = {"lei": {"properties": lei_properties, "match": match_lei, "id": id_lei},
