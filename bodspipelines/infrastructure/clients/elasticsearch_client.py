@@ -125,11 +125,12 @@ class ElasticsearchClient:
 
     def delete(self, id):
         """Delete by id"""
-        return self.client.delete(self.index_name, id)
+        return self.client.delete(index=self.index_name, id=id)
 
     def delete_all(self, index):
         """Delete all documents in index"""
-        self.client.delete_by_query(index, {"query":{"match_all":{}}})
+        self.client.delete_by_query(index=index, query={"match_all":{}})
+        #{"query":{"match_all":{}}})
 
     def scan_index(self, index):
         """Scan index"""
