@@ -422,8 +422,9 @@ class ProcessUpdates:
         """Process updates to referencing statements"""
         print("In finish_updates")
         if not updates:
-            for item_type in ("latest",):
-                self.storage.auto_batch_flush(item_type)
+            cached(None, batch="finished")
+        #    for item_type in ("latest",):
+        #        self.storage.auto_batch_flush(item_type)
         else:
             done_updates = []
             for ref_id, latest_id, updates in process_updates(self.storage):
