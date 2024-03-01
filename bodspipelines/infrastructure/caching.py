@@ -54,7 +54,7 @@ class Caching():
         """Check if any batches need writing"""
         for item_type in self.batch:
             if len(self.batch[item_type]) > 0:
-                self.write_batch(item_type)
+                self.write_batch(storage, item_type)
 
     def read(self, item_type, item_id):
         """Read item from cache"""
