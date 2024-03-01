@@ -16,6 +16,7 @@ class Caching():
         """Load data into cache"""
         for item_type in self.cache:
             for item in storage.stream_items(item_type):
+                print(item_type, item)
                 item_id = get_id(storage, item_type, item)
                 self.cache[item_type][item_id] = item
         self.initialised = True
