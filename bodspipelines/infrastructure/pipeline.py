@@ -80,6 +80,9 @@ class Stage:
 
     def process(self, pipeline_dir, updates=False):
         """Process all sources for stage"""
+        for processor in self.processors:
+            if hasattr(processor, "setup"):
+                processor.setup()
         print(f"Running {self.name} pipeline stage")
         stage_dir = self.directory(pipeline_dir)
         for source in self.sources:

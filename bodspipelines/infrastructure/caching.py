@@ -89,6 +89,8 @@ cache = Caching()
 def cached(func, *args, **kwargs):
     """Apply caching to function call"""
     storage = func.__self__
+    if "initialise" in kwargs and kwargs["initialise"]:
+        cache.load(storage)
     if "batch" in kwargs:
         batch = kwargs["batch"]
         del kwargs["batch"]
@@ -97,8 +99,8 @@ def cached(func, *args, **kwargs):
     if batch == "finished":
         cache.flush_batch(storage)
         return
-    if not cache.initialised:
-        cache.load(storage)
+    #if not cache.initialised:
+    #    cache.load(storage)
     out = None
     if func.__name__ == "add_item":
         item = args[0]

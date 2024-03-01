@@ -355,6 +355,10 @@ class ProcessUpdates:
         self.id_name = id_name
         self.storage = storage
 
+    def setup(self):
+        """Load data into cache"""
+        cached(None, initialise=True)
+
     def process(self, item, item_type, header, updates=False):
         """Process updates if applicable"""
         #print(f"Processing - updates: {updates}")
