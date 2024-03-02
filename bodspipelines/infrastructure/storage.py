@@ -16,11 +16,14 @@ class ElasticStorage:
             #if index_name in ("entity", "latest", "references", "exceptions", "person", "ownership"):
             self.storage.create_index(index_name, self.indexes[index_name]['properties'])
 
-    def create_action(self, index_name, item):
+    def create_action(self, index_name, item, action_type='create'):
         #print(index_name, item)
         if callable(index_name): index_name = index_name(item)
         #return {"create": { "_index" : index_name, "_id" : self.indexes[index_name]["id"](item)}}
-        return {"_id": self.indexes[index_name]["id"](item), '_index': index_name, '_op_type': 'create', "_source": item}
+        return {"_id": self.indexes[index_name]["id"](item),
+                '_index': index_name,
+                '_op_type': action_type,
+                "_source": item}
 
     def action_stream(self, stream, index_name):
         for item in stream:
@@ -110,7 +113,8 @@ class ElasticStorage:
 
     def add_batch(self, item_type, items):
         print(f"Write batch of {len(items)} item for {item_type}")
-        actions = [self.create_action(item_type, current_item) for current_item in items]
+        actions = [self.create_action(item_type, current_item[1], action_type=current_item[0])
+                                                                    for current_item in items]
         #def stream(actions):
         #    for current_item in actions:
         #        yield current_item

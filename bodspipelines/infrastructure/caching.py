@@ -26,9 +26,12 @@ class Caching():
         """Save item in cache"""
         self.cache[item_type][item_id] = item
 
-    def batch_item(self, item_type, item, item_id):
+    def batch_item(self, item_type, item, item_id, overwrite=False):
         """Batch to be written later"""
-        self.batch[item_type][item_id] = item
+        if overwrite:
+            self.batch[item_type][item_id] = ('index', item)
+        else:
+            self.batch[item_type][item_id] = ('create', item)
 
     def check_batch_item(self, item_type, item_id):
         """Check batch for item"""
@@ -106,6 +109,11 @@ def cached(func, *args, **kwargs):
         del kwargs["batch"]
     else:
         batch = False
+    if "overwrite" in kwargs:
+        overwrite = kwargs["overwrite"]
+        del kwargs["overwrite"]
+    else:
+        overwrite = False
     #if batch == "finished":
     #    cache.flush_batch(storage)
     #    return
@@ -118,7 +126,7 @@ def cached(func, *args, **kwargs):
         item_id = get_id(storage, item_type, item)
         cache.save(item_type, item, item_id)
         if batch:
-            cache.batch_item(item_type, item, item_id)
+            cache.batch_item(item_type, item, item_id, overwrite=overwrite)
         else:
             out = func(*args, **kwargs)
     elif func.__name__ == "get_item":

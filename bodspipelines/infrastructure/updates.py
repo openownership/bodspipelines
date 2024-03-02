@@ -94,13 +94,14 @@ def build_referencing(referencing_ids):
         out.append({'statement_id': statement_id, 'latest_id': referencing_ids[statement_id]})
     return out
 
-def references_save(storage, statement_id, referencing_ids, updates=False):
+def references_save(storage, statement_id, referencing_ids, updates=False, overwrite=False):
     """Save list of statement ids referencing statement"""
     #storage.add_item(build_references(statement_id, build_referencing(referencing_ids)), "references")
     cached(storage.add_item,
            build_references(statement_id, build_referencing(referencing_ids)),
            "references",
-           batch=(not updates))
+           batch=(not updates),
+           overwrite=overwrite)
 
 def translate_references(references):
     out = {}
@@ -125,7 +126,7 @@ def references_update(storage, referenced_id, statement_id, latest_id, updates=F
     """Update list of statement ids referencing statement"""
     referencing_ids = lookup_references(storage, referenced_id, updates=updates)
     referencing_ids[statement_id] = latest_id
-    references_save(storage, referenced_id, referencing_ids, updates=updates)
+    references_save(storage, referenced_id, referencing_ids, updates=updates, overwrite=True)
 
 def add_replaces(statement, old_statement_id):
     """Add replacesStatements to statement object"""
