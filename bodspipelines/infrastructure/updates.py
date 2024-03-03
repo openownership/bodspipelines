@@ -47,7 +47,8 @@ def latest_save(storage, lei, bods_id, reason=False, updates=False):
     #if updates:
     #    storage.add_item(build_latest(lei, bods_id, reason=reason), "latest", overwrite=True)
     #else:
-    cached(storage.add_item, build_latest(lei, bods_id, reason=reason), "latest", batch=(not updates))
+    cached(storage.add_item, build_latest(lei, bods_id, reason=reason), 
+                "latest", batch=(not updates), overwrite=True)
         #storage.add_item_auto_batch(build_latest(lei, bods_id, reason=reason), "latest")
 
 def latest_lookup(storage, lei, updates=False):
@@ -72,7 +73,7 @@ def exception_save(storage, latest, ooc_id, other_id, reason, reference, entity_
     cached(storage.add_item,
            build_exception(latest, ooc_id, other_id, reason, reference, entity_type),
            "exceptions",
-           batch=(not updates))
+           batch=(not updates), overwrite=True)
 
 def exception_lookup(storage, latest, updates=False):
     """Lookup latest exception"""
