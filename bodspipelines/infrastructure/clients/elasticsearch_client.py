@@ -95,7 +95,10 @@ class ElasticsearchClient:
             #print(batch[0])
             if ok:
                 new_records += 1
-                match = [i for i in batch if i['_id'] == result['create']['_id']]
+                if 'create' in result:
+                    match = [i for i in batch if i['_id'] == result['create']['_id']]
+                else:
+                    match = [i for i in batch if i['_id'] == result['index']['_id']]
                 yield match[0]['_source']
             else:
                 print(ok, result)
