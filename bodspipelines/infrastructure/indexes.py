@@ -38,7 +38,8 @@ entity_statement_properties = {'statementID': {'type': 'text'},
                                                               'creationDate': {'type': 'text'},
                                                               'createdBy': {'type': 'object',
                                                                             'properties': {'name': {'type': 'text'},
-                                                                                           'uri': {'type': 'text'}}}}}
+                                                                                           'uri': {'type': 'text'}}}}},
+                               'replacesStatements': {'type': 'text'}
                                }
 
 
@@ -68,7 +69,8 @@ person_statement_properties = {'statementID': {'type': 'text'},
                                                               'creationDate': {'type': 'text'},
                                                               'createdBy': {'type': 'object',
                                                                             'properties': {'name': {'type': 'text'},
-                                                                                           'uri': {'type': 'text'}}}}}
+                                                                                           'uri': {'type': 'text'}}}}},
+                               'replacesStatements': {'type': 'text'}
                                }
 
 # BODS Ownership Or Control Statement 
@@ -106,7 +108,8 @@ ownership_statement_properties = {'statementID': {'type': 'text'},
                                                                  'creationDate': {'type': 'text'},
                                                                  'createdBy': {'type': 'object',
                                                                                'properties': {'name': {'type': 'text'},
-                                                                                              'uri': {'type': 'text'}}}}}
+                                                                                              'uri': {'type': 'text'}}}}},
+                                  'replacesStatements': {'type': 'text'}
                                   }
 
 
