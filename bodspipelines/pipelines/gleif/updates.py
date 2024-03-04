@@ -18,10 +18,14 @@ def void_entity_statement(reason, statement_id, status, update_date, entity_type
                 }
             },
             "statementType": entity_type,
-            "entityType": "registeredEntity",
+            #"entityType": "registeredEntity",
             "isComponent": False,
             "replacesStatements": [statement_id]
            }
+    if entity_type == "entityStatement":
+        statement["entityType"] = "registeredEntity"
+    else:
+        statement["personType"] = "unknownPerson"
     annotations = []
     if reason == "RETIRED":
         add_lei_annotation(annotations, lei, status)
