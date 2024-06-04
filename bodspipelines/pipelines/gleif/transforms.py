@@ -53,7 +53,11 @@ def transform_lei(data):
     entityType = 'registeredEntity'
     name = data['Entity']['LegalName']
     try:
-        country = pycountry.countries.get(alpha_2=data['Entity']['LegalJurisdiction']).name
+        if "-" in data['Entity']['LegalJurisdiction']:
+            subdivision = pycountry.subdivisions.get(code=data['Entity']['LegalJurisdiction'])
+            country = f"{subdivision.name}, {subdivision.country.name}"
+        else:
+            country = pycountry.countries.get(alpha_2=data['Entity']['LegalJurisdiction']).name
     except AttributeError:
         country = data['Entity']['LegalJurisdiction']
     jurisdiction = {'name': country, 'code': data['Entity']['LegalJurisdiction']}
