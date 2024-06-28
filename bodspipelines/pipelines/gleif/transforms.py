@@ -341,7 +341,7 @@ class RemoveEmptyExtension:
         """Initial setup"""
         self.identify = identify
 
-    def process(self, item, item_type, header, mapping={}, updates=False):
+    async def process(self, item, item_type, header, mapping={}, updates=False):
         """Process item"""
         if self.identify: item_type = self.identify(item)
         if item_type == 'repex':
