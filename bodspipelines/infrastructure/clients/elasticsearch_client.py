@@ -102,12 +102,12 @@ class ElasticsearchClient:
             for d in data:
                 await self.client.index(index=self.index_name, document=d)
         else:
-            print(f"Storing in {self.index_name}: {data}")
+            #print(f"Storing in {self.index_name}: {data}")
             await self.client.index(index=self.index_name, document=data, id=id)
 
     async def update_data(self, data, id):
         """Update data in index"""
-        print(f"Updating {self.index_name} ({id}): {data}")
+        #print(f"Updating {self.index_name} ({id}): {data}")
         await self.client.update(index=self.index_name, id=id, doc=data)
 
     def bulk_store_data(self, actions, index_name):
@@ -148,7 +148,7 @@ class ElasticsearchClient:
 
     async def search(self, search):
         """Search index"""
-        print(f"ES search ({self.index_name}): {search}")
+        #print(f"ES search ({self.index_name}): {search}")
         return await self.client.search(index=self.index_name, query=search)
 
     async def get(self, id):

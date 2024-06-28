@@ -30,7 +30,7 @@ def build_references(statement_id, referencing_ids):
 
 def build_update(referencing_id, latest_id, updates): #old_statement_id, new_statement_id):
     """Build updates object"""
-    print(referencing_id, latest_id, updates)
+    #print(referencing_id, latest_id, updates)
     return {'referencing_id': referencing_id,
             'latest_id': latest_id,
             'updates': [{'old_statement_id': old, 'new_statement_id': updates[old]} for old in updates]}
@@ -133,7 +133,7 @@ def add_replaces(statement, old_statement_id):
 
 async def updates_save(storage, referencing_id, latest_id, updates):
     """Save statement to updates"""
-    print("Saving update")
+    #print("Saving update")
     await storage.add_item(build_update(referencing_id, latest_id, updates), "updates", overwrite=True)
 
 async def updates_delete(storage, old_statement_id):
@@ -215,12 +215,12 @@ async def calculate_mapping(storage, item, updates=False):
     else:
         latest_id, _ = await latest_lookup(storage, item["LEI"], updates=updates)
         if latest_id: out[item["LEI"]] = latest_id
-    print("calculate_mapping:", out)
+    #print("calculate_mapping:", out)
     return out
 
 async def item_setup(storage, item, updates=False):
     """Setup exception and relationship mapping"""
-    print("item_setup:", item)
+    #print("item_setup:", item)
     if "ExceptionCategory" in item:
         except_lei = item["LEI"]
         except_type = item["ExceptionCategory"]
@@ -377,7 +377,7 @@ class ProcessUpdates:
         entity_type = None
         mapping, old_ooc_id, old_other_id, old_reason, old_reference, old_entity_type, except_lei, \
             except_type, except_reason, except_reference = await item_setup(self.storage, item, updates=updates)
-        print("mapping:", mapping)
+        #print("mapping:", mapping)
         async for statement in self.transform.process(item, item_type, header, mapping=mapping):
             #print(f"Statement: {statement['statementID']} ({statement['statementType']})")
             statement_id = statement['statementID']

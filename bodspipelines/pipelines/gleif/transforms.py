@@ -107,7 +107,7 @@ def interest_level(relationship_type, default):
 
 def calc_statement_id(lei, mapping):
     """Calculate statementID for lei using mapping if available"""
-    print("calc_statement_id:", lei, mapping)
+    #print("calc_statement_id:", lei, mapping)
     if lei in mapping:
         return mapping[lei]
     else:

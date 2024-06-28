@@ -64,10 +64,10 @@ class Storage:
         self.storage.set_index(item_type)
         id = self.storage.indexes[item_type]['id'](item)
         result = await self.storage.get(id)
-        print(result)
+        #print(result)
         if overwrite or not result:
             if overwrite and result:
-                print(f"Updating: {item}")
+                #print(f"Updating: {item}")
                 out = await self.storage.update_data(item, id)
                 return item
             else:
