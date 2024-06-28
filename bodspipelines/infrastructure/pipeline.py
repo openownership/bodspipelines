@@ -8,7 +8,7 @@ from bodspipelines.infrastructure.processing.xml_data import XMLData
 
 #from bodspipelines.infrastructure.storage import ElasticStorage
 
-from .memory_debugging import log_memory
+#from .memory_debugging import log_memory
 
 class Source:
     """Data source definition class"""
@@ -58,24 +58,31 @@ class Stage:
 
     async def source_processing(self, source, stage_dir, updates=False):
         """Iterate over items from source, with processing"""
-        count = 0
+        #count = 0
         async for header, item in source.process(stage_dir, updates=updates):
             #print(header, item)
             if self.processors:
+                items = [item]
                 for processor in self.processors:
+                    new_items = []
+                    for current_item in items:
                     #print("Processor:", processor)
-                    async for out in processor.process(item, source.name, header, updates=updates):
-                        #print(out)
-                        yield out
+                        async for out in processor.process(current_item, source.name, header, updates=updates):
+                            #print(out)
+                            #yield out
+                            new_items.append(out)
+                    items = new_items
+                for current_item in items:
+                    yield current_item
             else:
                 yield item
-            count += 1
-            if count % 10000 == 0:
-                log_memory()
+            #count += 1
+            #if count % 10000 == 0:
+            #    log_memory()
         for processor in self.processors:
             print("Processor:", hasattr(processor, "finish_updates"), updates)
             if hasattr(processor, "finish_updates") and updates:
-                async for out in processor.finish_updates():
+                async for out in processor.finish_updates(updates=updates):
                     yield out
 
     async def process_source(self, source, stage_dir, updates=False):

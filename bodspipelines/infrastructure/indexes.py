@@ -4,6 +4,7 @@ entity_statement_properties = {'statementID': {'type': 'text'},
                                'statementDate': {'type': 'text'},
                                'entityType': {'type': 'text'},
                                'name': {'type': 'text'},
+                               'isComponent': {"type": "boolean"},
                                'incorporatedInJurisdiction': {'type': 'object',
                                                               'properties': {'name': {'type': 'text'},
                                                                              'code': {'type': 'text'}}},
@@ -29,7 +30,17 @@ entity_statement_properties = {'statementID': {'type': 'text'},
                                                                                                   'url': {'type': 'text'}}}}},
                                'source': {'type': 'object',
                                           'properties': {'type': {'type': 'text'},
-                                                         'description': {'type': 'text'}}}}
+                                                         'description': {'type': 'text'}}},
+                               'annotations': {'type': 'object',
+                                               'properties': {'motivation': {'type': 'text'},
+                                                              'description': {'type': 'text'},
+                                                              'statementPointerTarget': {'type': 'text'},
+                                                              'creationDate': {'type': 'text'},
+                                                              'createdBy': {'type': 'object',
+                                                                            'properties': {'name': {'type': 'text'},
+                                                                                           'uri': {'type': 'text'}}}}},
+                               'replacesStatements': {'type': 'text'}
+                               }
 
 
 # BODS Entity Statement Elasticsearch Properties
@@ -37,6 +48,7 @@ person_statement_properties = {'statementID': {'type': 'text'},
                                'statementType': {'type': 'text'},
                                'statementDate': {'type': 'text'},
                                'personType': {'type': 'text'},
+                               'isComponent': {"type": "boolean"},
                                'unspecifiedPersonDetails': {'type': 'object',
                                                             'properties': {'reason': {'type': 'text'},
                                                                            'description': {'type': 'text'}}},
@@ -49,12 +61,23 @@ person_statement_properties = {'statementID': {'type': 'text'},
                                                                                                   'url': {'type': 'text'}}}}},
                                'source': {'type': 'object',
                                           'properties': {'type': {'type': 'text'},
-                                                         'description': {'type': 'text'}}}}
+                                                         'description': {'type': 'text'}}},
+                               'annotations': {'type': 'object',
+                                               'properties': {'motivation': {'type': 'text'},
+                                                              'description': {'type': 'text'},
+                                                              'statementPointerTarget': {'type': 'text'},
+                                                              'creationDate': {'type': 'text'},
+                                                              'createdBy': {'type': 'object',
+                                                                            'properties': {'name': {'type': 'text'},
+                                                                                           'uri': {'type': 'text'}}}}},
+                               'replacesStatements': {'type': 'text'}
+                               }
 
 # BODS Ownership Or Control Statement 
 ownership_statement_properties = {'statementID': {'type': 'text'},
                                   'statementType': {'type': 'text'},
                                   'statementDate': {'type': 'text'},
+                                  'isComponent': {"type": "boolean"},
                                   'subject': {'type': 'object',
                                               'properties': {'describedByEntityStatement': {'type': 'text'}}},
                                   'interestedParty': {'type': 'object',
@@ -85,15 +108,31 @@ ownership_statement_properties = {'statementID': {'type': 'text'},
                                                                  'creationDate': {'type': 'text'},
                                                                  'createdBy': {'type': 'object',
                                                                                'properties': {'name': {'type': 'text'},
-                                                                                              'uri': {'type': 'text'}}}}}}
+                                                                                              'uri': {'type': 'text'}}}}},
+                                  'replacesStatements': {'type': 'text'}
+                                  }
 
 
 # Additional indexes for managing updates
-latest_properties = {'latest_id': {'type': 'text'}, 'statement_id': {'type': 'text'}}
-references_properties = {'references_id': {'type': 'text'}, 'statement_id': {'type': 'text'}}
+latest_properties = {'latest_id': {'type': 'text'},
+                     'statement_id': {'type': 'text'},
+                     'reason': {'type': 'text'}}
+references_properties = {'statement_id': {'type': 'text'},
+                         'references_id': {'type': 'object',
+                                          'properties': {'statement_id': {'type': 'text'},
+                                                         'latest_id': {'type': 'text'}}}
+                         }
+#updates_properties = {'referencing_id': {'type': 'text'},
+#                      'old_statement_id': {'type': 'text'},
+#                      'new_statement_id': {'type': 'text'}}
 updates_properties = {'referencing_id': {'type': 'text'},
-                      'old_statement_id': {'type': 'text'},
-                      'new_statement_id': {'type': 'text'}}
+                      'latest_id': {'type': 'text'},
+                      'updates': {'type': 'object',
+                                          'properties': {'old_statement_id': {'type': 'text'},
+                                                         'new_statement_id': {'type': 'text'}}}
+                                 #{'type': 'text'}
+                     }
+
 exceptions_properties = {'latest_id': {'type': 'text'},
                          'statement_id': {'type': 'text'},
                          'other_id': {'type': 'text'},
@@ -143,3 +182,12 @@ def id_updates(item):
 
 def id_exceptions(item):
     return item["latest_id"]
+
+# Elasticsearch indexes for BODS data
+bods_index_properties = {"entity": {"properties": entity_statement_properties, "match": match_entity, "id": id_entity},
+                         "person": {"properties": person_statement_properties, "match": match_person, "id": id_person},
+                         "ownership": {"properties": ownership_statement_properties, "match": match_ownership, "id": id_ownership},
+                         "latest": {"properties": latest_properties, "match": match_latest, "id": id_latest},
+                         "references": {"properties": references_properties, "match": match_references, "id": id_references},
+                         "updates": {"properties": updates_properties, "match": match_updates, "id": id_updates},
+                         "exceptions": {"properties": exceptions_properties, "match": match_exceptions, "id": id_exceptions}}

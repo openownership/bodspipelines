@@ -64,16 +64,16 @@ class Storage:
         self.storage.set_index(item_type)
         id = self.storage.indexes[item_type]['id'](item)
         result = await self.storage.get(id)
-        #print(result)
+        print(result)
         if overwrite or not result:
-            if overwrite and not result:
-                #print(f"Updating: {item}")
+            if overwrite and result:
+                print(f"Updating: {item}")
                 out = await self.storage.update_data(item, id)
                 return item
             else:
                 #print(f"Creating: {item}")
-                action = self.create_action(item_type, item)
-                out = await self.storage.store_data(action)
+                #action = self.create_action(item_type, item)
+                out = await self.storage.store_data(item, id=id)
                 return item
         else:
             return False
@@ -86,7 +86,7 @@ class Storage:
     async def stream_items(self, index):
         """Stream items in index"""
         async for item in self.storage.scan_index(index):
-            yield item
+            yield item['_source']
 
     async def process(self, item, item_type):
         """Add item to index"""
@@ -121,3 +121,10 @@ class Storage:
     async def setup_indexes(self):
         """Setup indexes"""
         await self.storage.setup_indexes()
+
+    async def add_batch(self, item_type, items):
+        print(f"Write batch of {len(items)} item for {item_type}")
+        actions = [self.create_action(item_type, current_item[1], action_type=current_item[0])
+                                                                    for current_item in items]
+        async for current_item in self.storage.batch_store_data(actions, actions, item_type):
+            pass

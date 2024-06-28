@@ -102,11 +102,13 @@ class ElasticsearchClient:
             for d in data:
                 await self.client.index(index=self.index_name, document=d)
         else:
-            await self.client.index(index=self.index_name, document=data)
+            print(f"Storing in {self.index_name}: {data}")
+            await self.client.index(index=self.index_name, document=data, id=id)
 
     async def update_data(self, data, id):
         """Update data in index"""
-        await self.client.update(index=self.index_name, id=id, document=data)
+        print(f"Updating {self.index_name} ({id}): {data}")
+        await self.client.update(index=self.index_name, id=id, doc=data)
 
     def bulk_store_data(self, actions, index_name):
         """Store bulk data in index"""
@@ -146,11 +148,13 @@ class ElasticsearchClient:
 
     async def search(self, search):
         """Search index"""
+        print(f"ES search ({self.index_name}): {search}")
         return await self.client.search(index=self.index_name, query=search)
 
     async def get(self, id):
         """Get by id"""
-        match = await self.search({"query": {"match": {"_id": id}}})
+        #match = await self.search({"query": {"match": {"_id": id}}})
+        match = await self.search({"match": {"_id": id}})
         result = match['hits']['hits']
         if result:
             return result[0]
@@ -159,11 +163,11 @@ class ElasticsearchClient:
 
     async def delete(self, id):
         """Delete by id"""
-        return await self.client.delete(self.index_name, id)
+        return await self.client.delete(index=self.index_name, id=id)
 
     async def delete_all(self, index):
         """Delete all documents in index"""
-        await self.client.delete_by_query(index, {"query":{"match_all":{}}})
+        await self.client.delete_by_query(index=index, query={"query":{"match_all":{}}})
 
     async def scan_index(self, index):
         """Scan index"""

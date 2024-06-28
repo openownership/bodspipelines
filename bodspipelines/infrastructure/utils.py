@@ -72,3 +72,12 @@ def download_delayed(url, func):
             out = func(r, param)
         return out
     return partial(download, url, func)
+
+# Identify type of BODS data
+def identify_bods(item):
+    if item['statementType'] == 'entityStatement':
+        return 'entity'
+    elif item['statementType'] == 'personStatement':
+        return 'person'
+    elif item['statementType'] == 'ownershipOrControlStatement':
+        return 'ownership'

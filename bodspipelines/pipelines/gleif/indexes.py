@@ -1,3 +1,5 @@
+import hashlib
+
 # GLEIF LEI Elasticsearch Properties
 lei_properties = {'LEI': {'type': 'text'},
               'Entity': {'type': 'object',
@@ -122,13 +124,21 @@ rr_properties = {'Relationship': {'type': 'object',
                                                                           'properties': {'ValidationAuthorityID': {'type': 'text'}, 
                                                                                          'OtherValidationAuthorityID': {'type': 'text'}, 
                                                                                          'ValidationAuthorityEntityID': {'type': 'text'}}}
-                                                  }}}
+                                                  }},
+                   'Extension': {'type': 'object',
+                                 'properties': {'Deletion': {'type': 'object',
+                                                             'properties': {'DeletedAt': {'type': 'text'}}}}}
+                   }
 
 repex_properties = {'LEI': {'type': 'text'}, 
                     'ExceptionCategory': {'type': 'text'}, 
                     'ExceptionReason': {'type': 'text'},
                     'ExceptionReference': {'type': 'text'},
-                    'ContentDate': {'type': 'text'}}
+                    'ContentDate': {'type': 'text'},
+                    'Extension': {'type': 'object',
+                                  'properties': {'Deletion': {'type': 'object',
+                                                              'properties': {'DeletedAt': {'type': 'text'}}}}}
+                   }
 
 def match_lei(item):
     return {"match": {"LEI": item["LEI"]}}
@@ -151,6 +161,14 @@ def id_rr(item):
 
 def id_repex(item):
     if "ExceptionReference" in item:
-        return f"{item['LEI']}_{item['ExceptionCategory']}_{item['ExceptionReason']}_{item['ExceptionReference'][:255]}"
+        ref_hash = hashlib.sha256(bytes(item['ExceptionReference'], 'utf8')).hexdigest()
+        item_id = f"{item['LEI']}_{item['ExceptionCategory']}_{item['ExceptionReason']}_{ref_hash}_{item['ContentDate']}"
     else:
-        return f"{item['LEI']}_{item['ExceptionCategory']}_{item['ExceptionReason']}_None"
+        item_id = f"{item['LEI']}_{item['ExceptionCategory']}_{item['ExceptionReason']}_None_{item['ContentDate']}"
+    #print(item_id, len(item_id), item)
+    return item_id
+
+# Elasticsearch indexes for GLEIF data
+gleif_index_properties = {"lei": {"properties": lei_properties, "match": match_lei, "id": id_lei},
+                          "rr": {"properties": rr_properties, "match": match_rr, "id": id_rr},
+                          "repex": {"properties": repex_properties, "match": match_repex, "id": id_repex}}

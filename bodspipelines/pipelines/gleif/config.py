@@ -13,40 +13,42 @@ from bodspipelines.infrastructure.processing.xml_data import XMLData
 from bodspipelines.infrastructure.processing.json_data import JSONData
 from bodspipelines.infrastructure.updates import ProcessUpdates
 
-from bodspipelines.infrastructure.indexes import (entity_statement_properties,
-                                          person_statement_properties, ownership_statement_properties,
-                                          match_entity, match_person, match_ownership,
-                                          id_entity, id_person, id_ownership)
+#from bodspipelines.infrastructure.indexes import (entity_statement_properties,
+#                                          person_statement_properties, ownership_statement_properties,
+#                                          match_entity, match_person, match_ownership,
+#                                          id_entity, id_person, id_ownership)
+from bodspipelines.pipelines.gleif.indexes import gleif_index_properties
 
-from bodspipelines.infrastructure.indexes import (latest_properties, references_properties, updates_properties,
-                                          match_latest, match_references, match_updates,
-                                          id_latest, id_references, id_updates)
+#from bodspipelines.infrastructure.indexes import (latest_properties, references_properties, updates_properties,
+#                                          exceptions_properties, match_latest, match_references, match_updates,
+#                                          match_exceptions, id_latest, id_references, id_updates, id_exceptions)
+from bodspipelines.infrastructure.indexes import bods_index_properties
 
-
-from bodspipelines.pipelines.gleif.transforms import Gleif2Bods, AddContentDate
+from bodspipelines.pipelines.gleif.transforms import Gleif2Bods, AddContentDate, RemoveEmptyExtension
 from bodspipelines.pipelines.gleif.indexes import (lei_properties, rr_properties, repex_properties,
                                           match_lei, match_rr, match_repex,
                                           id_lei, id_rr, id_repex)
-from bodspipelines.pipelines.gleif.utils import gleif_download_link, GLEIFData
+from bodspipelines.pipelines.gleif.utils import gleif_download_link, GLEIFData, identify_gleif
 from bodspipelines.pipelines.gleif.updates import GleifUpdates
+from bodspipelines.infrastructure.utils import identify_bods
 
 # Identify type of GLEIF data
-def identify_gleif(item):
-    if 'Entity' in item:
-        return 'lei'
-    elif 'Relationship' in item:
-        return 'rr'
-    elif 'ExceptionCategory' in item:
-        return 'repex'
+#def identify_gleif(item):
+#    if 'Entity' in item:
+#        return 'lei'
+#    elif 'Relationship' in item:
+#        return 'rr'
+#    elif 'ExceptionCategory' in item:
+#        return 'repex'
 
 # Identify type of BODS data
-def identify_bods(item):
-    if item['statementType'] == 'entityStatement':
-        return 'entity'
-    elif item['statementType'] == 'personStatement':
-        return 'person'
-    elif item['statementType'] == 'ownershipOrControlStatement':
-        return 'ownership'
+#def identify_bods(item):
+#    if item['statementType'] == 'entityStatement':
+#        return 'entity'
+#    elif item['statementType'] == 'personStatement':
+#        return 'person'
+#    elif item['statementType'] == 'ownershipOrControlStatement':
+#        return 'ownership'
 
 # Defintion of LEI-CDF v3.1 XML date source
 lei_source = Source(name="lei",
@@ -58,7 +60,8 @@ lei_source = Source(name="lei",
                                      size=41491,
                                      directory="lei-cdf"),
                      datatype=XMLData(item_tag="LEIRecord",
-                                      namespace={"lei": "http://www.gleif.org/data/schema/leidata/2016"},
+                                      namespace={"lei": "http://www.gleif.org/data/schema/leidata/2016",
+                                                 "gleif": "http://www.gleif.org/data/schema/golden-copy/extensions/1.0"},
                                       filter=['NextVersion', 'Extension']))
 
 # Defintion of RR-CDF v2.1 XML date source
@@ -71,9 +74,10 @@ rr_source = Source(name="rr",
                                    size=2823,
                                    directory="rr-cdf"),
                    datatype=XMLData(item_tag="RelationshipRecord",
-                                    namespace={"rr": "http://www.gleif.org/data/schema/rr/2016"},
+                                    namespace={"rr": "http://www.gleif.org/data/schema/rr/2016",
+                                               "gleif": "http://www.gleif.org/data/schema/golden-copy/extensions/1.0"},
                                     #filter=['Extension']
-                                    filter=[]))
+                                    filter=['NextVersion', ]))
 
 # Defintion of Reporting Exceptions v2.1 XML date source
 repex_source = Source(name="repex",
@@ -85,17 +89,19 @@ repex_source = Source(name="repex",
                                       size=3954,
                                       directory="rep-ex"),
                       datatype=XMLData(item_tag="Exception",
-                                       namespace={"repex": "http://www.gleif.org/data/schema/repex/2016"},
+                                       header_tag="Header",
+                                       namespace={"repex": "http://www.gleif.org/data/schema/repex/2016",
+                                                  "gleif": "http://www.gleif.org/data/schema/golden-copy/extensions/1.0"},
                                        #filter=['NextVersion', 'Extension']
-                                       filter=['NextVersion']))
+                                       filter=['NextVersion', ]))
 
 # Elasticsearch indexes for GLEIF data
-index_properties = {"lei": {"properties": lei_properties, "match": match_lei, "id": id_lei},
-                    "rr": {"properties": rr_properties, "match": match_rr, "id": id_rr},
-                    "repex": {"properties": repex_properties, "match": match_repex, "id": id_repex}}
+#index_properties = {"lei": {"properties": lei_properties, "match": match_lei, "id": id_lei},
+#                    "rr": {"properties": rr_properties, "match": match_rr, "id": id_rr},
+#                    "repex": {"properties": repex_properties, "match": match_repex, "id": id_repex}}
 
 # Easticsearch storage for GLEIF data
-gleif_storage = ElasticsearchClient(indexes=index_properties)
+gleif_storage = ElasticsearchClient(indexes=gleif_index_properties)
 
 # GLEIF data: Store in Easticsearch and output new to Kinesis stream
 output_new = NewOutput(storage=Storage(storage=gleif_storage),
@@ -104,7 +110,8 @@ output_new = NewOutput(storage=Storage(storage=gleif_storage),
 # Definition of GLEIF data pipeline ingest stage
 ingest_stage = Stage(name="ingest",
               sources=[lei_source, rr_source, repex_source],
-              processors=[AddContentDate(identify=identify_gleif)],
+              processors=[AddContentDate(identify=identify_gleif),
+                          RemoveEmptyExtension(identify=identify_gleif)],
               outputs=[output_new])
 
 # Kinesis stream of GLEIF data from ingest stage
@@ -113,12 +120,12 @@ gleif_source = Source(name="gleif",
                       datatype=JSONData())
 
 # Elasticsearch indexes for BODS data
-bods_index_properties = {"entity": {"properties": entity_statement_properties, "match": match_entity, "id": id_entity},
-                         "person": {"properties": person_statement_properties, "match": match_person, "id": id_person},
-                         "ownership": {"properties": ownership_statement_properties, "match": match_ownership, "id": id_ownership},
-                         "latest": {"properties": latest_properties, "match": match_latest, "id": id_latest},
-                         "references": {"properties": references_properties, "match": match_references, "id": id_references},
-                         "updates": {"properties": updates_properties, "match": match_updates, "id": id_updates}}
+#bods_index_properties = {"entity": {"properties": entity_statement_properties, "match": match_entity, "id": id_entity},
+#                         "person": {"properties": person_statement_properties, "match": match_person, "id": id_person},
+#                         "ownership": {"properties": ownership_statement_properties, "match": match_ownership, "id": id_ownership},
+#                         "latest": {"properties": latest_properties, "match": match_latest, "id": id_latest},
+#                         "references": {"properties": references_properties, "match": match_references, "id": id_references},
+#                         "updates": {"properties": updates_properties, "match": match_updates, "id": id_updates}}
 
 # Easticsearch storage for BODS data
 bods_storage = ElasticsearchClient(indexes=bods_index_properties)

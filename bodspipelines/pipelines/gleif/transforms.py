@@ -7,25 +7,35 @@ import pytz
 from typing import List, Union
 import pycountry
 
+from bodspipelines.infrastructure.caching import cached
 from bodspipelines.infrastructure.utils import format_date, current_date_iso, generate_statement_id
 from .annotations import (add_lei_annotation, add_rr_annotation_status,
                           add_repex_annotation_reason, add_repex_ooc_annotation)
+from .indexes import id_lei as entity_id
+from .indexes import id_rr as rr_id
+from .indexes import id_repex as repex_id
 
+#def entity_id(data):
+#    """Create ID for entity"""
+#    return f"{data['LEI']}_{data['Registration']['LastUpdateDate']}"
 
-def entity_id(data):
-    """Create ID for entity"""
-    return f"{data['LEI']}_{data['Registration']['LastUpdateDate']}"
+#def rr_id(data):
+#    """Create ID for relationship"""
+#    return f"{data['Relationship']['StartNode']['NodeID']}_{data['Relationship']['EndNode']['NodeID']}_{data['Relationship']['RelationshipType']}_{data['Registration']['LastUpdateDate']}"
 
-def rr_id(data):
-    """Create ID for relationship"""
-    return f"{data['Relationship']['StartNode']['NodeID']}_{data['Relationship']['EndNode']['NodeID']}_{data['Relationship']['RelationshipType']}_{data['Registration']['LastUpdateDate']}"
+#def repex_id(data):
+#    """Create ID for reporting exception"""
+#    if 'ExceptionReference' in data:
+#        return f"{data['LEI']}_{data['ExceptionCategory']}_{data['ExceptionReason']}_{data['ExceptionReference']}"
+#    else:
+#        return f"{data['LEI']}_{data['ExceptionCategory']}_{data['ExceptionReason']}_None"
 
-def repex_id(data):
-    """Create ID for reporting exception"""
-    if 'ExceptionReference' in data:
-        return f"{data['LEI']}_{data['ExceptionCategory']}_{data['ExceptionReason']}_{data['ExceptionReference']}"
-    else:
-        return f"{data['LEI']}_{data['ExceptionCategory']}_{data['ExceptionReason']}_None"
+#async def subject_id(lei):
+#    async def get_item(x):
+#        return x
+#    get_item.__self__ = None
+#    data = await cached(get_item, lei, "latest", batch=False)
+#    return data['statement_id']
 
 def format_address(address_type, address):
     """Format address structure"""
@@ -97,6 +107,7 @@ def interest_level(relationship_type, default):
 
 def calc_statement_id(lei, mapping):
     """Calculate statementID for lei using mapping if available"""
+    print("calc_statement_id:", lei, mapping)
     if lei in mapping:
         return mapping[lei]
     else:
@@ -184,12 +195,13 @@ def transform_repex_entity(data, description, person=False):
         out['unspecifiedEntityDetails'] = {'reason': unspecified_reason, 'description': unspecified_description}
     return out, statementID
 
-def transform_repex_ooc(data, interested=None, person=False):
+def transform_repex_ooc(data, mapping, interested=None, person=False):
     """Transform Reporting Exception to Ownership or Control statement"""
     statementID = generate_statement_id(repex_id(data), 'ownershipOrControlStatement')
     statementType = 'ownershipOrControlStatement'
     statementDate = format_date(data['ContentDate'])
-    subjectDescribedByEntityStatement = generate_statement_id(data['LEI'], 'entityStatement')
+    #subjectDescribedByEntityStatement = generate_statement_id(data['LEI'], 'entityStatement')
+    subjectDescribedByEntityStatement = calc_statement_id(data['LEI'], mapping)
     if interested:
         interestedParty = interested
     else:
@@ -228,68 +240,68 @@ def transform_repex_ooc(data, interested=None, person=False):
            'source':{'type': sourceType, 'description': sourceDescription}}
     return out, statementID
 
-def transform_repex_no_lei(data):
+def transform_repex_no_lei(data, mapping):
     """Transform NO_LEI Reporting Exception"""
     for func in (transform_repex_entity, transform_repex_ooc):
         if func == transform_repex_ooc:
-            statement, statement_id = func(data, interested=statement_id)
+            statement, statement_id = func(data, mapping, interested=statement_id)
         else:
             statement, statement_id = func(data, "From LEI ExemptionReason `NO_LEI`. This parent legal entity does not consent to obtain an LEI or to authorize its “child entity” to obtain an LEI on its behalf.")
         yield statement
 
-def transform_repex_natural_persons(data):
+def transform_repex_natural_persons(data, mapping):
     """Transform NATURAL_PERSONS Reporting Exception"""
     for func in (transform_repex_entity, transform_repex_ooc):
         if func == transform_repex_ooc:
-            statement, statement_id = func(data, interested=statement_id, person=True)
+            statement, statement_id = func(data, mapping, interested=statement_id, person=True)
         else:
             statement, statement_id = func(data, "From LEI ExemptionReason `NATURAL_PERSONS`. An unknown natural person or persons controls an entity.", person=True)
         yield statement
 
-def transform_repex_non_consolidating(data):
+def transform_repex_non_consolidating(data, mapping):
     """Transform NON_CONSOLIDATING Reporting Exception"""
     for func in (transform_repex_entity, transform_repex_ooc):
         if func == transform_repex_ooc:
-            statement, statement_id = func(data, interested=statement_id)
+            statement, statement_id = func(data, mapping, interested=statement_id)
         else:
             statement, statement_id = func(data, "From LEI ExemptionReason `NON_CONSOLIDATING`. The legal entity or entities are not obliged to provide consolidated accounts in relation to the entity they control.")
         yield statement
 
-def transform_repex_non_public(data):
+def transform_repex_non_public(data, mapping):
     """Transform NON_PUBLIC Reporting Exception"""
     for func in (transform_repex_entity, transform_repex_ooc):
         if func == transform_repex_ooc:
-            statement, statement_id = func(data, interested=statement_id)
+            statement, statement_id = func(data, mapping, interested=statement_id)
         else:
             statement, statement_id = func(data, "From LEI ExemptionReason `NON_PUBLIC` or related deprecated values. The legal entity’s relationship information with an entity it controls is non-public. There are therefore obstacles to releasing this information.")
         yield statement
 
-def transform_repex_no_known(data):
+def transform_repex_no_known(data, mapping):
     """Transform NO_KNOWN_PERSON Reporting Exception"""
     for func in (transform_repex_entity, transform_repex_ooc):
         if func == transform_repex_ooc:
-            statement, statement_id = func(data, interested=statement_id, person=True)
+            statement, statement_id = func(data, mapping, interested=statement_id, person=True)
         else:
             statement, statement_id = func(data, "From LEI ExemptionReason `NO_KNOWN_PERSON`. There is no known person(s) controlling the entity.", person=True)
         yield statement
 
-def transform_repex(data):
+def transform_repex(data, mapping):
     """Transform Reporting Exceptions to BODS statements"""
     if data['ExceptionReason'] == "NO_LEI":
-        for statement in transform_repex_no_lei(data):
+        for statement in transform_repex_no_lei(data, mapping):
             yield statement
     elif data['ExceptionReason'] == "NATURAL_PERSONS":
-        for statement in transform_repex_natural_persons(data):
+        for statement in transform_repex_natural_persons(data, mapping):
             yield statement
     elif data['ExceptionReason'] == "NON_CONSOLIDATING":
-        for statement in transform_repex_non_consolidating(data):
+        for statement in transform_repex_non_consolidating(data, mapping):
             yield statement
     elif data['ExceptionReason'] in ('NON_PUBLIC', 'BINDING_LEGAL_COMMITMENTS', 'LEGAL_OBSTACLES',
-                                     'DISCLOSURE_DETRIMENTAL', 'DETRIMENT_NOT_EXCLUDED', 'DETRIMENT_NOT_EXCLUDED'):
-        for statement in transform_repex_non_public(data):
+                                     'DISCLOSURE_DETRIMENTAL', 'DETRIMENT_NOT_EXCLUDED', 'CONSENT_NOT_OBTAINED'):
+        for statement in transform_repex_non_public(data, mapping):
             yield statement
     elif data['ExceptionReason'] == "NO_KNOWN_PERSON":
-        for statement in transform_repex_no_known(data):
+        for statement in transform_repex_no_known(data, mapping):
             yield statement
 
 class Gleif2Bods:
@@ -307,7 +319,7 @@ class Gleif2Bods:
         elif item_type == 'rr':
             yield transform_rr(item, mapping)
         elif item_type == 'repex':
-            for statement in transform_repex(item):
+            for statement in transform_repex(item, mapping):
                 yield statement
 
 class AddContentDate:
@@ -321,4 +333,18 @@ class AddContentDate:
         if self.identify: item_type = self.identify(item)
         if item_type == 'repex':
             item["ContentDate"] = header["ContentDate"]
+        yield item
+
+class RemoveEmptyExtension:
+    """Data processor to remove empty Extension"""
+    def __init__(self, identify=None):
+        """Initial setup"""
+        self.identify = identify
+
+    def process(self, item, item_type, header, mapping={}, updates=False):
+        """Process item"""
+        if self.identify: item_type = self.identify(item)
+        if item_type == 'repex':
+            if "Extension" in item and not isinstance(item["Extension"], dict):
+                del item["Extension"]
         yield item
