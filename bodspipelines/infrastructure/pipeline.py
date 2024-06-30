@@ -8,7 +8,7 @@ from bodspipelines.infrastructure.processing.xml_data import XMLData
 
 #from bodspipelines.infrastructure.storage import ElasticStorage
 
-#from .memory_debugging import log_memory
+from .memory_debugging import log_memory
 
 class Source:
     """Data source definition class"""
@@ -58,7 +58,7 @@ class Stage:
 
     async def source_processing(self, source, stage_dir, updates=False):
         """Iterate over items from source, with processing"""
-        #count = 0
+        count = 0
         async for header, item in source.process(stage_dir, updates=updates):
             #print(header, item)
             if self.processors:
@@ -76,9 +76,9 @@ class Stage:
                     yield current_item
             else:
                 yield item
-            #count += 1
-            #if count % 10000 == 0:
-            #    log_memory()
+            count += 1
+            if count % 100000 == 0:
+                log_memory()
         for processor in self.processors:
             print("Processor:", hasattr(processor, "finish_updates"), updates)
             if hasattr(processor, "finish_updates") and updates:
