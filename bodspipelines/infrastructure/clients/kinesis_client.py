@@ -15,6 +15,8 @@ class KinesisStream:
 
     async def setup(self):
         """Setup Kinesis clients"""
+        os.environ['AWS_ACCESS_KEY_ID'] = os.getenv('BODS_AWS_ACCESS_KEY_ID')
+        os.environ['AWS_SECRET_ACCESS_KEY'] = os.getenv('BODS_AWS_SECRET_ACCESS_KEY')
         self.producer = await Producer(stream_name=self.stream_name, processor=JsonLineProcessor(),
                         region_name=os.getenv('BODS_AWS_REGION'),
                         put_bandwidth_limit_per_shard=800).__aenter__()
