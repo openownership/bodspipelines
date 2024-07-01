@@ -176,3 +176,11 @@ class GLEIFData:
             else:
                 yield gleif_download_link(self.url)
 
+# Identify type of GLEIF data
+def identify_gleif(item):
+    if 'Entity' in item:
+        return 'lei'
+    elif 'Relationship' in item:
+        return 'rr'
+    elif 'ExceptionCategory' in item:
+        return 'repex'

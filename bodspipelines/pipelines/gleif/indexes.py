@@ -167,3 +167,8 @@ def id_repex(item):
         item_id = f"{item['LEI']}_{item['ExceptionCategory']}_{item['ExceptionReason']}_None_{item['ContentDate']}"
     #print(item_id, len(item_id), item)
     return item_id
+
+# Elasticsearch indexes for GLEIF data
+gleif_index_properties = {"lei": {"properties": lei_properties, "match": match_lei, "id": id_lei},
+                          "rr": {"properties": rr_properties, "match": match_rr, "id": id_rr},
+                          "repex": {"properties": repex_properties, "match": match_repex, "id": id_repex}}
