@@ -34,6 +34,7 @@ def data_stream(filename, tag_name, namespaces, filter=[]):
     skip = False
     stack = []
     pos = {namespaces[ns]: len(namespaces[ns])+2 for ns in namespaces}
+    print(f"Parsing: {filename}")
     for event, element in etree.iterparse(filename, events=('start', 'end',)):
         tag = get_tag(element, pos)
         if event == 'start':

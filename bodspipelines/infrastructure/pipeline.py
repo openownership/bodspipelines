@@ -1,8 +1,8 @@
 from typing import List, Union
 from pathlib import Path
 
-from bodspipelines.infrastructure.processing.bulk_data import BulkData
-from bodspipelines.infrastructure.processing.xml_data import XMLData
+#from bodspipelines.infrastructure.processing.bulk_data import BulkData
+#from bodspipelines.infrastructure.processing.xml_data import XMLData
 
 from bodspipelines.infrastructure.storage import ElasticStorage
 
@@ -17,7 +17,7 @@ class Source:
     def process(self, stage_dir, updates=False):
         """Iterate over source items"""
         if hasattr(self.origin, "prepare"):
-            print(f"Preparing source data: {self.origin} {stage_dir} {self.name}")
+            print(f"Preparing source data: {self.origin} {stage_dir} {self.name} {updates}")
             data = self.origin.prepare(stage_dir, self.name, updates=updates)
             print("Processing source data:")
             for header, item in self.datatype.process(data):
