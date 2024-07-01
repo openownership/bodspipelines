@@ -177,6 +177,7 @@ class BulkData:
 
     def prepare(self, path, name, updates=False) -> Path:
         """Prepare data for use"""
+        print("In prepare:")
         directory = self.data_dir(path)
         directory.mkdir(exist_ok=True)
         files = []
