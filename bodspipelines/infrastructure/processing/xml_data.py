@@ -49,6 +49,10 @@ def data_stream(filename, tag_name, namespaces, filter=[]):
                     skip = False
             elif element.tag == tag_name:
                 element.clear()
+                # Also eliminate now-empty references from the root node to elem
+                for ancestor in element.xpath('ancestor-or-self::*'):
+                    while ancestor.getprevious() is not None:
+                        del ancestor.getparent()[0]
                 elem = stack.pop()
                 yield elem[1]
             elif stack:
