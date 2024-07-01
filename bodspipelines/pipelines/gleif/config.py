@@ -1,3 +1,4 @@
+import os
 import time
 import elastic_transport
 #import asyncio
@@ -108,7 +109,7 @@ repex_source = Source(name="repex",
 
 # GLEIF data: Store in Easticsearch and output new to Kinesis stream
 output_new = NewOutput(storage=ElasticStorage(indexes=gleif_index_properties),
-                       output=KinesisOutput(stream_name="gleif-historical"))
+                       output=KinesisOutput(stream_name=os.environ.get('GLEIF_KINESIS_STREAM')))
 
 # Definition of GLEIF data pipeline ingest stage
 ingest_stage = Stage(name="ingest",
@@ -120,7 +121,7 @@ ingest_stage = Stage(name="ingest",
 
 # Kinesis stream of GLEIF data from ingest stage
 gleif_source = Source(name="gleif",
-                      origin=KinesisInput(stream_name="gleif-historical"),
+                      origin=KinesisInput(stream_name=os.environ.get('GLEIF_KINESIS_STREAM')),
                       datatype=JSONData())
 
 # Elasticsearch indexes for BODS data
@@ -138,7 +139,7 @@ gleif_source = Source(name="gleif",
 
 # BODS data: Store in Easticsearch and output new to Kinesis stream
 bods_output_new = NewOutput(storage=ElasticStorage(indexes=bods_index_properties),
-                            output=KinesisOutput(stream_name="bods-gleif-historical"),
+                            output=KinesisOutput(stream_name=os.environ.get('BODS_KINESIS_STREAM')),
                             identify=identify_bods)
 
 # Definition of GLEIF data pipeline transform stage
