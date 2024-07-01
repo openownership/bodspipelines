@@ -26,39 +26,73 @@ class BulkData:
     def create_manifest(self, path, name):
         """Create manifest file"""
         manifest_file = self.manifest_file(path)
-        if callable(self.url):
-            url = self.url(name)
-        else:
-            url = self.url
+        manifest = []
         with open(manifest_file, "w") as outfile:
-            json.dump({"url": url, "timestamp": time.time()}, outfile)
+            for data in self.data.sources():
+                if callable(data):
+                    url = data(name)
+                else:
+                    url = data
+                manifest.append({"url": url, "timestamp": time.time()})
+            json.dump(manifest, outfile)
 
-    def check_manifest(self, path, name):
-        """Check manifest file exists and up-to-date"""
+    def read_manifest(self, path):
+        """Read manifest file if exists"""
         manifest_file = self.manifest_file(path)
         if manifest_file.exists():
             with open(manifest_file, 'r') as openfile:
                 try:
-                    manifest = json.load(openfile)
+                    return json.load(openfile)
                 except json.decoder.JSONDecodeError:
                     return False
-            if callable(self.url):
-                url = self.url(name)
-            else:
-                url = self.url
-            if manifest["url"] == url and abs(manifest["timestamp"] - time.time()) < 24*60*60:
-                return True
-            else:
-                return False
         else:
-            return False
+            return None
 
-    def download_large(self, directory, name):
-        """Download file to specified directory"""
-        if callable(self.url):
-            url = self.url(name)
+    def source_data(self, name, last_update=None, delta_type=False):
+        """Yield urls for source"""
+        for data in self.data.sources(last_update=last_update, delta_type=delta_type):
+            if callable(data):
+                url = data(name)
+            else:
+                url = data
+            yield url
+
+    def check_manifest(self, path, name, updates=False):
+        """Check manifest file exists and up-to-date"""
+        #manifest_file = self.manifest_file(path)
+        manifest = self.read_manifest(path)
+        if updates and manifest:
+            d, t, *_ = manifest['url'].split('/')[-1].split('-')
+            last_update = f"{d[:4]}-{d[4:6]}-{d[6:8]}"
         else:
-            url = self.url
+            last_update = False
+        if last_update:
+            if updates in ("month", "week", "day"):
+                # Special case for testing (usually True/False)
+                delta_type = updates
+            else:
+                delta_type = None
+            yield from self.source_data(name, last_update=last_update, delta_type=delta_type)
+        else:
+            if manifest: #manifest_file.exists():
+                #with open(manifest_file, 'r') as openfile:
+                #    try:
+                #        manifest = json.load(openfile)
+                #    except json.decoder.JSONDecodeError:
+                #        return False
+                for data in self.data.sources():
+                    if callable(data):
+                        url = data(name)
+                    else:
+                        url = data
+                    match = [m for m in manifest if m["url"] == url]
+                    if not match or abs(m["timestamp"] - time.time()) > 24*60*60:
+                        yield url
+            else:
+                yield from self.source_data(name, last_update=last_update)
+
+    def download_large(self, directory, name, url):
+        """Download file to specified directory"""
         with requests.get(url, stream=True) as r:
             r.raise_for_status()
             if 'content-disposition' in r.headers:
@@ -78,28 +112,77 @@ class BulkData:
     def unzip_data(self, filename, directory):
         """Unzip specified file to directory"""
         with zipfile.ZipFile(filename, 'r') as zip_ref:
-            zip_ref.extractall(directory)
+            for fn in zip_ref.namelist():
+                zip_ref.extract(fn, path=directory)
+                yield fn
 
-    def delete_old_data(self, directory):
+    def delete_old_data_all(self, directory):
+        """Delete all data files"""
         for file in directory.glob('*'):
             print(f"Deleting {file.name} ...")
             file.unlink()
 
+    def delete_old_data(self, directory, url):
+        """Delete filename for specified url"""
+        fn = url.rsplit('/', 1)[-1]
+        for file in directory.glob('*'):
+            print(file.name, fn)
+            if file.name == fn:
+                print(f"Deleting {file.name} ...")
+                file.unlink()
+
+    def delete_unused_data(self, directory, files):
+        """Delete files not in list"""
+        for file in directory.glob('*'):
+            if not file.name in files:
+                print(f"Deleting {file.name} ...")
+                file.unlink()
+
+    def delete_zip_data(self, directory, url):
+        """Delete filename for specified url"""
+        fn = url.rsplit('/', 1)[-1]
+        for file in directory.glob('*'):
+            if file.name == fn:
+                print(f"Deleting {file.name} ...")
+                file.unlink()
+
+    def download_data(self, directory, name):
+        """Download data files"""
+        for data in self.data.sources():
+            if callable(data):
+                url = data(name)
+            else:
+                url = data
+            zip = self.download_large(directory, name, url)
+            for fn in self.unzip_data(zip, directory):
+                yield fn
+
     def download_extract_data(self, path, name):
         """Download and extract data"""
-        directory = self.data_dir(path)
-        directory.mkdir(exist_ok=True)
+        #directory = self.data_dir(path)
+        #directory.mkdir(exist_ok=True)
         self.delete_old_data(directory)
-        zip = self.download_large(directory, name)
-        self.unzip_data(zip, directory)
+        #zip = self.download_large(directory, name)
+        #self.unzip_data(zip, directory)
+        for fn in self.download_data(directory, name):
+            yield fn
+
+    def download_extract_data(self, directory, name, url):
+        """Download and unzip data files"""
+        self.delete_old_data(directory, url)
+        zip = self.download_large(directory, name, url)
+        for fn in self.unzip_data(zip, directory):
+            self.delete_zip_data(directory, url)
+            yield fn
 
     def prepare(self, path, name, updates=False) -> Path:
         """Prepare data for use"""
-        #if not self.check_manifest(path, name):
-        #    self.download_extract_data(path, name)
-        #    self.create_manifest(path, name)
-        #else:
-        #    print(f"{self.display} data up-to-date ...")
-        for file in self.data_dir(path).glob('*.xml'):
-            return file
-
+        directory = self.data_dir(path)
+        directory.mkdir(exist_ok=True)
+        files = []
+        for url in self.check_manifest(path, name, updates=updates):
+            for fn in self.download_extract_data(directory, name, url):
+                files.append(fn)
+                yield directory / fn
+        print("Files:", files)
+        self.create_manifest(path, name)
