@@ -17,7 +17,7 @@ class Source:
     def process(self, stage_dir, updates=False):
         """Iterate over source items"""
         if hasattr(self.origin, "prepare"):
-            data = self.origin.prepare(stage_dir, self.name, updates=False)
+            data = self.origin.prepare(stage_dir, self.name, updates=updates)
             for header, item in self.datatype.process(data):
                 yield header, item
         else:
@@ -43,7 +43,7 @@ class Stage:
 
     def source_processing(self, source, stage_dir, updates=False):
         """Iterate over items from source, with processing"""
-        for header, item in source.process(stage_dir, updates=False):
+        for header, item in source.process(stage_dir, updates=updates):
             if self.processors:
                 items = [item]
                 for processor in self.processors:
@@ -72,11 +72,11 @@ class Stage:
     def process_source(self, source, stage_dir, updates=False):
         """Iterate over items from source, and output"""
         if len(self.outputs) > 1 or not self.outputs[0].streaming:
-            for item in self.source_processing(source, stage_dir, updates=False):
+            for item in self.source_processing(source, stage_dir, updates=updates):
                 for output in self.outputs:
                     output.process(item, source.name)
         else:
-            self.outputs[0].process_stream(self.source_processing(source, stage_dir, updates=False), source.name)
+            self.outputs[0].process_stream(self.source_processing(source, stage_dir, updates=updates), source.name)
 
     def process(self, pipeline_dir, updates=False):
         """Process all sources for stage"""
@@ -87,7 +87,7 @@ class Stage:
         stage_dir = self.directory(pipeline_dir)
         for source in self.sources:
             print(f"Processing {source.name} source")
-            self.process_source(source, stage_dir, updates=False)
+            self.process_source(source, stage_dir, updates=updates)
         print(f"Finished {self.name} pipeline stage")
 
 class Pipeline:
@@ -114,4 +114,4 @@ class Pipeline:
         """Process specified pipeline stage"""
         stage = self.get_stage(stage_name)
         pipeline_dir = self.directory()
-        stage.process(pipeline_dir, updates=False)
+        stage.process(pipeline_dir, updates=updates)
