@@ -17,10 +17,13 @@ class Source:
     def process(self, stage_dir, updates=False):
         """Iterate over source items"""
         if hasattr(self.origin, "prepare"):
+            print("Preparing source data:")
             data = self.origin.prepare(stage_dir, self.name, updates=updates)
+            print("Processing source data:")
             for header, item in self.datatype.process(data):
                 yield header, item
         else:
+            print("Processing source data:")
             for item in self.origin.process():
                 header, item = self.datatype.process(item)
                 yield header, item
