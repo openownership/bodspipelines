@@ -253,7 +253,9 @@ def process_entity_lei(statement_id, statement, item, lei, updates, mapping, dat
                 statement_id = statement['statementID']
             else:
                 add_replaces(statement, latest_id) # Add replaces statement
-        referencing_ids = lookup_references(storage, latest_id, updates=updates)
+            referencing_ids = lookup_references(storage, latest_id, updates=updates)
+        else:
+            referencing_ids = []
         #print("referencing_ids:", referencing_ids)
         for ref_id in referencing_ids:
             updates_update(storage,
