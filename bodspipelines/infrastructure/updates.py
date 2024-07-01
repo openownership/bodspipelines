@@ -147,7 +147,8 @@ def lookup_updates(storage, old_statement_id):
     data = storage.get_item(old_statement_id, "updates")
     if data:
         #print("lookup_updates:", data)
-        return data['updates']
+        #return data['updates']
+        return {update['old_statement_id']: update['new_statement_id'] for update in data['updates']}
     else:
         return {}
 
