@@ -17,7 +17,7 @@ class Source:
     def process(self, stage_dir, updates=False):
         """Iterate over source items"""
         if hasattr(self.origin, "prepare"):
-            print("Preparing source data:")
+            print(f"Preparing source data: {self.origin} {stage_dir} {self.name}")
             data = self.origin.prepare(stage_dir, self.name, updates=updates)
             print("Processing source data:")
             for header, item in self.datatype.process(data):
