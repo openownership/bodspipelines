@@ -127,7 +127,11 @@ references_properties = {'statement_id': {'type': 'text'},
 #                      'new_statement_id': {'type': 'text'}}
 updates_properties = {'referencing_id': {'type': 'text'},
                       'latest_id': {'type': 'text'},
-                      'updates': {'type': 'text'}}
+                      'updates': {'type': 'object',
+                                          'properties': {'old_statement_id': {'type': 'text'},
+                                                         'new_statement_id': {'type': 'text'}}}
+                     }
+
 exceptions_properties = {'latest_id': {'type': 'text'},
                          'statement_id': {'type': 'text'},
                          'other_id': {'type': 'text'},
@@ -177,3 +181,12 @@ def id_updates(item):
 
 def id_exceptions(item):
     return item["latest_id"]
+
+# Elasticsearch indexes for BODS data
+bods_index_properties = {"entity": {"properties": entity_statement_properties, "match": match_entity, "id": id_entity},
+                         "person": {"properties": person_statement_properties, "match": match_person, "id": id_person},
+                         "ownership": {"properties": ownership_statement_properties, "match": match_ownership, "id": id_ownership},
+                         "latest": {"properties": latest_properties, "match": match_latest, "id": id_latest},
+                         "references": {"properties": references_properties, "match": match_references, "id": id_references},
+                         "updates": {"properties": updates_properties, "match": match_updates, "id": id_updates},
+                         "exceptions": {"properties": exceptions_properties, "match": match_exceptions, "id": id_exceptions}}

@@ -32,8 +32,8 @@ def build_update(referencing_id, latest_id, updates): #old_statement_id, new_sta
     """Build updates object"""
     return {'referencing_id': referencing_id,
             'latest_id': latest_id,
-            'updates': updates}
-
+            #'updates': updates}
+            'updates': [{'old_statement_id': old, 'new_statement_id': updates[old]} for old in updates]}
 
 def build_exception(latest, occ_id, other_id, reason, reference, entity_type):
     """Build exception object"""
@@ -162,7 +162,8 @@ def updates_update(storage, referencing_id, latest_id, old_statement_id, new_sta
 def process_updates(storage):
     """Stream updates from index"""
     for update in storage.stream_items("updates"):
-        yield update['referencing_id'], update['latest_id'], update['updates'] #update['old_statement_id'], update['new_statement_id']
+        updates = {data['old_statement_id']: data['new_statement_id'] for data in update['updates']}
+        yield update['referencing_id'], update['latest_id'], updates #update['old_statement_id'], update['new_statement_id']
 
 def retrieve_statement(storage, statement_type, statement_id):
     """Retrive statement using statement_id"""
@@ -363,7 +364,7 @@ class ProcessUpdates:
 
     def process(self, item, item_type, header, updates=False):
         """Process updates if applicable"""
-        #print(f"Processing - updates: {updates}")
+        print(f"Processing - updates: {item} {updates}")
         entity_voided = False
         entity_type = None
         mapping, old_ooc_id, old_other_id, old_reason, old_reference, old_entity_type, except_lei, \
@@ -434,10 +435,10 @@ class ProcessUpdates:
         #        self.storage.auto_batch_flush(item_type)
         else:
             done_updates = []
-            for ref_id, latest_id, updates in process_updates(self.storage):
+            for ref_id, latest_id, todo_updates in process_updates(self.storage):
                 #print("Update:", ref_id, latest_id, updates)
                 statement = retrieve_statement(self.storage, "ownership", ref_id)
-                old_statement_id = fix_statement_reference(statement, updates, latest_id)
+                old_statement_id = fix_statement_reference(statement, todo_updates, latest_id)
                 statement_id = statement["statementID"]
                 add_replaces(statement, old_statement_id)
                 latest_save(self.storage, latest_id, statement_id, updates=updates)
