@@ -209,9 +209,13 @@ def referenced_ids(statement, item):
 def calculate_mapping(storage, item, updates=False):
     """Calculate mapping lei and latest statementID"""
     out = {}
-    for lei in (item["Relationship"]["StartNode"]["NodeID"], item["Relationship"]["EndNode"]["NodeID"]):
-        latest_id, _ = latest_lookup(storage, lei, updates=updates)
-        if latest_id: out[lei] = latest_id
+    if "Relationship" in item:
+        for lei in (item["Relationship"]["StartNode"]["NodeID"], item["Relationship"]["EndNode"]["NodeID"]):
+            latest_id, _ = latest_lookup(storage, lei, updates=updates)
+            if latest_id: out[lei] = latest_id
+    else:
+        latest_id, _ = latest_lookup(storage, item["LEI"], updates=updates)
+        if latest_id: out[item["LEI"]] = latest_id
     return out
 
 def item_setup(storage, item, updates=False):
@@ -227,7 +231,7 @@ def item_setup(storage, item, updates=False):
     else:
         old_ooc_id, old_other_id, old_reason, old_reference, old_entity_type, except_lei, except_type, \
             except_reason, except_reference = None, None, None, None, None, None, None, None, None
-    if "Relationship" in item:
+    if "Relationship" in item or "ExceptionCategory" in item:
         mapping = calculate_mapping(storage, item, updates=updates)
     else:
         mapping = {}
