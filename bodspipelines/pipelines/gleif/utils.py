@@ -118,8 +118,8 @@ def get_source_by_date(url, data_date, delta_type=None):
         target_date = target_date + timedelta(days=1)
     page = 1
     while True:
-        url = f"https://goldencopy.gleif.org/api/v2/golden-copies/publishes?page={page}&per_page=10"
-        response = download(url)
+        page_url = f"https://goldencopy.gleif.org/api/v2/golden-copies/publishes?page={page}&per_page=10"
+        response = download(page_url)
         data = source_metadata(response)
         end_date = datetime.strptime(data[0]["publish_date"].split()[0], "%Y-%m-%d")
         start_date = datetime.strptime(data[9]["publish_date"].split()[0], "%Y-%m-%d")
@@ -136,11 +136,11 @@ def get_source_by_date(url, data_date, delta_type=None):
                 item_date = datetime.strptime(item["publish_date"].split()[0], "%Y-%m-%d")
                 if item_date == target_date:
                     #print(json.dumps(item, indent=4))
-                    if "lei" in url:
+                    if "/lei" in url:
                         data_type = "lei2"
-                    elif "rr" in url:
+                    elif "/rr" in url:
                         data_type = "rr"
-                    elif "repex" in url:
+                    elif "/repex" in url:
                         data_type = "repex"
                     if delta_type:
                         if delta_type == "month":
