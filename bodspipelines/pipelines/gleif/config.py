@@ -113,7 +113,7 @@ output_new = NewOutput(storage=ElasticStorage(indexes=gleif_index_properties),
 
 # Definition of GLEIF data pipeline ingest stage
 ingest_stage = Stage(name="ingest",
-              sources=[ #lei_source,
+              sources=[lei_source,
                        rr_source,
                        repex_source],
               #sources=[repex_source],
