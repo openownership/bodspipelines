@@ -12,20 +12,23 @@ class KinesisStream:
         self.producer = None
         self.consumer = None
         self.stream_name = stream_name
+        self.count = 0
 
     async def setup(self):
         """Setup Kinesis clients"""
-        os.environ['AWS_ACCESS_KEY_ID'] = os.getenv('BODS_AWS_ACCESS_KEY_ID')
-        os.environ['AWS_SECRET_ACCESS_KEY'] = os.getenv('BODS_AWS_SECRET_ACCESS_KEY')
+        os.environ["AWS_ACCESS_KEY_ID"] = os.environ["BODS_AWS_ACCESS_KEY_ID"]
+        os.environ["AWS_SECRET_ACCESS_KEY"] = os.environ["BODS_AWS_SECRET_ACCESS_KEY"]
         self.producer = await Producer(stream_name=self.stream_name, processor=JsonLineProcessor(),
                         region_name=os.getenv('BODS_AWS_REGION'),
-                        put_bandwidth_limit_per_shard=800).__aenter__()
+                        put_bandwidth_limit_per_shard=750).__aenter__()
         self.consumer = await Consumer(stream_name=self.stream_name, processor=JsonLineProcessor(),
                                  region_name=os.getenv('BODS_AWS_REGION')).__aenter__()
 
     async def add_record(self, record):
         """Add record to stream"""
         await self.producer.put(record)
+        self.count += 1
+        if self.count % 10000 == 0: await self.finish_write()
 
     async def finish_write(self):
         """Write any remaining records"""
@@ -40,7 +43,7 @@ class KinesisStream:
                 yield item
                 found = True
                 count = 0
-            print("Waiting for records...")
+            if count % 10 == 0: print("Waiting for records...")
             if found: count += 1
             if found and count > 10: break
         print("No more records")
