@@ -52,6 +52,17 @@ def publication_details():
             'publisher': {"name": "OpenOwnership Register",
                           "url": "https://register.openownership.org"}}
 
+def jurisdiction_name(data):
+    try:
+        if "-" in data['Entity']['LegalJurisdiction']:
+            subdivision = pycountry.subdivisions.get(code=data['Entity']['LegalJurisdiction'])
+            name = f"{subdivision.name}, {subdivision.country.name}"
+        else:
+            name = pycountry.countries.get(alpha_2=data['Entity']['LegalJurisdiction']).name
+    except AttributeError:
+        name = data['Entity']['LegalJurisdiction']
+    return name
+
 def transform_lei(data):
     """Transform LEI-CDF v3.1 data to BODS statement"""
     #print("Transforming LEI:")
@@ -60,10 +71,11 @@ def transform_lei(data):
     statementDate = format_date(data['Registration']['LastUpdateDate'])
     entityType = 'registeredEntity'
     name = data['Entity']['LegalName']
-    try:
-        country = pycountry.countries.get(alpha_2=data['Entity']['LegalJurisdiction']).name
-    except AttributeError:
-        country = data['Entity']['LegalJurisdiction']
+    country = jurisdiction_name(data)
+    #try:
+    #    country = pycountry.countries.get(alpha_2=data['Entity']['LegalJurisdiction']).name
+    #except AttributeError:
+    #    country = data['Entity']['LegalJurisdiction']
     jurisdiction = {'name': country, 'code': data['Entity']['LegalJurisdiction']}
     identifiers = [{'id': data['LEI'], 'scheme':'XI-LEI', 'schemeName':'Global Legal Entity Identifier Index'}]
     if 'RegistrationAuthority' in data['Entity']:
