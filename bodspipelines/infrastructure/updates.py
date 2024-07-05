@@ -244,6 +244,7 @@ async def process_entity_lei(statement_id, statement, item, lei, updates, mappin
     #print(f"Processing {statement_id}: {lei} {updates} {mapping}")
     if updates:
         latest_id, _ = await latest_lookup(storage, lei, updates=updates) # Latest statement
+        #print("Debug:", lei, latest_id)
         if latest_id:
             if item["Registration"]["RegistrationStatus"] == 'RETIRED':
                 update_date = item['Registration']['LastUpdateDate']
@@ -372,7 +373,7 @@ class ProcessUpdates:
 
     async def process(self, item, item_type, header, updates=False):
         """Process updates if applicable"""
-        print(f"Processing - updates: {updates}")
+        #print(f"Processing - updates: {updates}")
         entity_voided = False
         entity_type = None
         mapping, old_ooc_id, old_other_id, old_reason, old_reference, old_entity_type, except_lei, \
