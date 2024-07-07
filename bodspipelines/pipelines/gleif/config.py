@@ -137,7 +137,7 @@ bods_output_new = NewOutput(storage=Storage(storage=bods_storage),
                             identify=identify_bods)
 
 # Definition of GLEIF data pipeline transform stage
-transform_stage = Stage(name="transform-test-updates",
+transform_stage = Stage(name="transform",
               sources=[gleif_source],
               processors=[ProcessUpdates(id_name='XI-LEI',
                                          transform=Gleif2Bods(identify=identify_gleif),
