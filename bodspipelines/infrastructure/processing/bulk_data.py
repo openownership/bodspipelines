@@ -180,9 +180,15 @@ class BulkData:
         directory = self.data_dir(path)
         directory.mkdir(exist_ok=True)
         files = []
-        for url in self.check_manifest(path, name, updates=updates):
-            for fn in self.download_extract_data(directory, name, url):
+        if list(directory.glob("*.xml")) and not list(directory.glob("*golden-copy.xml")):
+            for f in directory.glob("*.xml"):
+                fn = f.name
                 files.append(fn)
                 yield directory / fn
+        else:
+            for url in self.check_manifest(path, name, updates=updates):
+                for fn in self.download_extract_data(directory, name, url):
+                    files.append(fn)
+                    yield directory / fn
         print("Files:", files)
         self.create_manifest(path, name)
