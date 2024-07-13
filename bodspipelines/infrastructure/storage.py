@@ -49,10 +49,13 @@ class Storage:
         self.storage.delete_index()
         self.storage.create_index(index_name, self.indexes[index_name]['properties'])
 
-    def create_action(self, index_name, item):
+    def create_action(self, index_name, item, action_type='create'):
         """Build create action for item"""
         if callable(index_name): index_name = index_name(item)
-        return {"_id": self.storage.indexes[index_name]["id"](item), '_index': index_name, '_op_type': 'create', "_source": item}
+        return {"_id": self.storage.indexes[index_name]["id"](item),
+                '_index': index_name,
+                '_op_type': action_type,
+                "_source": item}
 
     async def get_item(self, id, item_type):
         """Get item from index"""

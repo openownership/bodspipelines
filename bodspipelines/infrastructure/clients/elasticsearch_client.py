@@ -87,13 +87,14 @@ class ElasticsearchClient:
 
     async def statistics(self, index_name):
         """Get index statistics"""
-        count = 0
+        #count = 0
         stats = {}
-        for index_name in self.indexes:
-            result = await self.client.indices.stats(index=index_name)
-            stats[index_name] = result
-            count += result
-        stats['total'] = count
+        #for index_name in self.indexes:
+        result = await self.client.indices.stats(index=index_name)
+        print(result)
+        #stats[index_name] = result['_all']['primaries']['docs']['count']
+        #count += result['_all']['primaries']['docs']['count']
+        stats['total'] = result['_all']['primaries']['indexing']['index_total']
         return stats
 
     async def store_data(self, data, id=None):

@@ -7,7 +7,7 @@ import pytz
 from typing import List, Union
 import pycountry
 
-from bodspipelines.infrastructure.caching import cached
+#from bodspipelines.infrastructure.caching import cached
 from bodspipelines.infrastructure.utils import format_date, current_date_iso, generate_statement_id
 from .annotations import (add_lei_annotation, add_rr_annotation_status,
                           add_repex_annotation_reason, add_repex_ooc_annotation)
