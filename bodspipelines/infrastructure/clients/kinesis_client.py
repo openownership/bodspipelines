@@ -28,10 +28,13 @@ class KinesisStream:
         """Add record to stream"""
         await self.producer.put(record)
         self.count += 1
-        if self.count % 10000 == 0: await self.finish_write()
+        if self.count % 10000 == 0:
+            print("Waiting for 10000 kinesis records to write")
+            await self.finish_write()
 
     async def finish_write(self):
         """Write any remaining records"""
+        print("Flushing stream")
         await self.producer.flush()
 
     async def read_stream(self):
