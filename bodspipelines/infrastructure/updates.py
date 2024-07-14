@@ -1,7 +1,7 @@
 from bodspipelines.pipelines.gleif.transforms import rr_id
 from bodspipelines.infrastructure.utils import (current_date_iso, generate_statement_id, 
                                                 random_string, format_date)
-from bodspipelines.infrastructure.caching import cached, load_cache, flush_cache
+from bodspipelines.infrastructure.caching import Caching #cached, load_cache, flush_cache
 
 
 def convert_rel_type(rel_type):
@@ -41,20 +41,21 @@ def build_exception(latest, occ_id, other_id, reason, reference, entity_type):
             'reference': reference, 'entity_type': entity_type}
 
 
-def latest_save(storage, lei, bods_id, reason=False, updates=False):
+def latest_save(cache, lei, bods_id, reason=False, updates=False):
     """Save latest statement id for LEI/RR/Repex"""
     #print(f"Saving latest - {lei}: {bods_id}")
     #if updates:
     #    storage.add_item(build_latest(lei, bods_id, reason=reason), "latest", overwrite=True)
     #else:
-    cached(storage.add_item, build_latest(lei, bods_id, reason=reason), 
-                "latest", batch=(not updates), overwrite=True)
+    cache.add(build_latest(lei, bods_id, reason=reason),
+              "latest",
+              overwrite=True)
         #storage.add_item_auto_batch(build_latest(lei, bods_id, reason=reason), "latest")
 
-def latest_lookup(storage, lei, updates=False):
+def latest_lookup(cache, lei, updates=False):
     """Lookup latest statement id for LEI/RR/Repex"""
     #data = storage.get_item(lei, "latest")
-    data = cached(storage.get_item, lei, "latest", batch=(not updates))
+    data = cache.get(lei, "latest")
     if data:
          #print(data)
          return data['statement_id'], data['reason']
@@ -62,32 +63,31 @@ def latest_lookup(storage, lei, updates=False):
          return None, None
 
 
-def latest_delete(storage, old_statement_id, updates=False):
+def latest_delete(cache, old_statement_id, updates=False):
     """Delete latest statement id for LEI/RR/Repex"""
-    storage.delete_item(old_statement_id, "updates", batch=(not updates))
+    cache.delete(old_statement_id, "updates")
 
 
-def exception_save(storage, latest, ooc_id, other_id, reason, reference, entity_type, updates=False):
+def exception_save(cache, latest, ooc_id, other_id, reason, reference, entity_type, updates=False):
     """Save latest exception"""
     #storage.add_item(build_exception(latest, ooc_id, other_id, reason, reference, entity_type), "exceptions")
-    cached(storage.add_item,
-           build_exception(latest, ooc_id, other_id, reason, reference, entity_type),
+    cache.add(build_exception(latest, ooc_id, other_id, reason, reference, entity_type),
            "exceptions",
-           batch=(not updates), overwrite=True)
+           overwrite=True)
 
-def exception_lookup(storage, latest, updates=False):
+def exception_lookup(cache, latest, updates=False):
     """Lookup latest exception"""
     #data = storage.get_item(latest, "exceptions")
-    data = cached(storage.get_item, latest, "exceptions", batch=(not updates))
+    data = cache.get(latest, "exceptions")
     if data:
          return data['statement_id'], data['other_id'], data['reason'], data['reference'], data['entity_type']
     else:
          return None, None, None, None, None
 
-def exception_delete(storage, old_statement_id, updates=False):
+def exception_delete(cache, old_statement_id, updates=False):
     """Delete exception id"""
     #storage.delete_item(old_statement_id, "exceptions")
-    cached(storage.delete_item, old_statement_id, "exceptions", batch=(not updates))
+    cache.delete(old_statement_id, "exceptions")
 
 def build_referencing(referencing_ids):
     out = []
@@ -95,13 +95,11 @@ def build_referencing(referencing_ids):
         out.append({'statement_id': statement_id, 'latest_id': referencing_ids[statement_id]})
     return out
 
-def references_save(storage, statement_id, referencing_ids, updates=False, overwrite=False):
+def references_save(cache, statement_id, referencing_ids, updates=False, overwrite=False):
     """Save list of statement ids referencing statement"""
     #storage.add_item(build_references(statement_id, build_referencing(referencing_ids)), "references")
-    cached(storage.add_item,
-           build_references(statement_id, build_referencing(referencing_ids)),
+    cache.add(build_references(statement_id, build_referencing(referencing_ids)),
            "references",
-           batch=(not updates),
            overwrite=overwrite)
 
 def translate_references(references):
@@ -113,38 +111,38 @@ def translate_references(references):
         out[references['statement_id']] = references['latest_id']
     return out
 
-def lookup_references(storage, statement_id, updates=False):
+def lookup_references(cache, statement_id, updates=False):
     """Lookup list of statement ids referencing statement"""
     #data = storage.get_item(statement_id, "references")
-    data = cached(storage.get_item, statement_id, "references", batch=(not updates))
+    data = cache.get(statement_id, "references")
     if data:
         #print(data)
         return translate_references(data['references_id'])
     else:
         return {}
 
-def references_update(storage, referenced_id, statement_id, latest_id, updates=False):
+def references_update(cache, referenced_id, statement_id, latest_id, updates=False):
     """Update list of statement ids referencing statement"""
-    referencing_ids = lookup_references(storage, referenced_id, updates=updates)
+    referencing_ids = lookup_references(cache, referenced_id, updates=updates)
     referencing_ids[statement_id] = latest_id
-    references_save(storage, referenced_id, referencing_ids, updates=updates, overwrite=True)
+    references_save(cache, referenced_id, referencing_ids, updates=updates, overwrite=True)
 
 def add_replaces(statement, old_statement_id):
     """Add replacesStatements to statement object"""
     statement["replacesStatements"] = [old_statement_id]
 
-def updates_save(storage, referencing_id, latest_id, updates):
+def updates_save(cache, referencing_id, latest_id, updates):
     """Save statement to updates"""
     print("Saving update")
-    storage.add_item(build_update(referencing_id, latest_id, updates), "updates", overwrite=True)
+    cache.add(build_update(referencing_id, latest_id, updates), "updates", overwrite=True)
 
-def updates_delete(storage, old_statement_id):
+def updates_delete(cache, old_statement_id):
     """Delete statement to updates"""
-    storage.delete_item(old_statement_id, "updates")
+    cache.delete(old_statement_id, "updates")
 
-def lookup_updates(storage, old_statement_id):
+def lookup_updates(cache, old_statement_id):
     """Lookup statement to updates"""
-    data = storage.get_item(old_statement_id, "updates")
+    data = cache.get(old_statement_id, "updates")
     if data:
         #print("lookup_updates:", data)
         #return data['updates']
@@ -152,17 +150,17 @@ def lookup_updates(storage, old_statement_id):
     else:
         return {}
 
-def updates_update(storage, referencing_id, latest_id, old_statement_id, new_statement_id):
+def updates_update(cache, referencing_id, latest_id, old_statement_id, new_statement_id):
     """Save statement to update"""
     #print("Updating update:", referencing_id, latest_id, old_statement_id, new_statement_id)
-    updates = lookup_updates(storage, referencing_id)
+    updates = lookup_updates(cache, referencing_id)
     updates[old_statement_id] = new_statement_id
-    updates_save(storage, referencing_id, latest_id, updates)
+    updates_save(cache, referencing_id, latest_id, updates)
     #await storage.add_item(build_update(referencing_id, latest_id, old_statement_id, new_statement_id), "updates")
 
-def process_updates(storage):
+def process_updates(cache):
     """Stream updates from index"""
-    for update in storage.stream_items("updates"):
+    for update in cache.stream("updates"):
         updates = {data['old_statement_id']: data['new_statement_id'] for data in update['updates']}
         yield update['referencing_id'], update['latest_id'], updates #update['old_statement_id'], update['new_statement_id']
 
@@ -207,19 +205,19 @@ def referenced_ids(statement, item):
         out.append(statement["interestedParty"]["describedByEntityStatement"])
     return out
 
-def calculate_mapping(storage, item, updates=False):
+def calculate_mapping(cache, item, updates=False):
     """Calculate mapping lei and latest statementID"""
     out = {}
     if "Relationship" in item:
         for lei in (item["Relationship"]["StartNode"]["NodeID"], item["Relationship"]["EndNode"]["NodeID"]):
-            latest_id, _ = latest_lookup(storage, lei, updates=updates)
+            latest_id, _ = latest_lookup(cache, lei, updates=updates)
             if latest_id: out[lei] = latest_id
     else:
-        latest_id, _ = latest_lookup(storage, item["LEI"], updates=updates)
+        latest_id, _ = latest_lookup(cache, item["LEI"], updates=updates)
         if latest_id: out[item["LEI"]] = latest_id
     return out
 
-def item_setup(storage, item, updates=False):
+def item_setup(cache, item, updates=False):
     """Setup exception and relationship mapping"""
     if "ExceptionCategory" in item:
         except_lei = item["LEI"]
@@ -227,23 +225,23 @@ def item_setup(storage, item, updates=False):
         except_reason = item["ExceptionReason"]
         except_reference = item["ExceptionReference"] if "ExceptionReference" in item else None
         old_ooc_id, old_other_id, old_reason, old_reference, old_entity_type = \
-            exception_lookup(storage, f"{except_lei}_{except_type}", updates=updates)
+            exception_lookup(cache, f"{except_lei}_{except_type}", updates=updates)
         #print(f"{except_lei}_{except_type}:", old_other_id)
     else:
         old_ooc_id, old_other_id, old_reason, old_reference, old_entity_type, except_lei, except_type, \
             except_reason, except_reference = None, None, None, None, None, None, None, None, None
     if "Relationship" in item or "ExceptionCategory" in item:
-        mapping = calculate_mapping(storage, item, updates=updates)
+        mapping = calculate_mapping(cache, item, updates=updates)
     else:
         mapping = {}
     return mapping, old_ooc_id, old_other_id, old_reason, old_reference, old_entity_type, except_lei, \
            except_type, except_reason, except_reference
 
-def process_entity_lei(statement_id, statement, item, lei, updates, mapping, data_type, storage):
+def process_entity_lei(statement_id, statement, item, lei, updates, mapping, data_type, cache):
     """Process entity statement from LEI"""
     #print(f"Processing {statement_id}: {lei} {updates} {mapping}")
     if updates:
-        latest_id, _ = latest_lookup(storage, lei, updates=updates) # Latest statement
+        latest_id, _ = latest_lookup(cache, lei, updates=updates) # Latest statement
         if latest_id:
             if item["Registration"]["RegistrationStatus"] == 'RETIRED':
                 update_date = item['Registration']['LastUpdateDate']
@@ -254,26 +252,26 @@ def process_entity_lei(statement_id, statement, item, lei, updates, mapping, dat
                 statement_id = statement['statementID']
             else:
                 add_replaces(statement, latest_id) # Add replaces statement
-            referencing_ids = lookup_references(storage, latest_id, updates=updates)
+            referencing_ids = lookup_references(cache, latest_id, updates=updates)
         else:
             referencing_ids = []
         #print("referencing_ids:", referencing_ids)
         for ref_id in referencing_ids:
-            updates_update(storage,
+            updates_update(cache,
                                 ref_id,
                                 referencing_ids[ref_id],
                                 latest_id,
                                 statement_id) # Save statements to update
-    latest_save(storage, lei, statement_id, updates=updates) # Save new latest
+    latest_save(cache, lei, statement_id, updates=updates) # Save new latest
     return statement_id, statement
 
 def process_entity_repex(statement_id, statement, item, except_lei, except_type, except_reason,
                                old_reason, old_other_id, old_entity_type, data_type, mapping, 
-                               storage, updates=False):
+                               cache, updates=False):
     """Process entity statement from reporting exception"""
     void_statement = None
     if "Extension" in item and "Deletion" in item["Extension"]:
-        latest_id, _ = latest_lookup(storage, f"{except_lei}_{except_type}_{except_reason}_entity", updates=updates)
+        latest_id, _ = latest_lookup(cache, f"{except_lei}_{except_type}_{except_reason}_entity", updates=updates)
         statement = data_type.void_entity_deletion(latest_id,
                                                  item["Extension"]["Deletion"]["DeletedAt"],
                                                  item["LEI"],
@@ -286,19 +284,19 @@ def process_entity_repex(statement_id, statement, item, except_lei, except_type,
                                                        old_entity_type,
                                                        except_lei,
                                                        old_reason)
-    latest_save(storage, f"{except_lei}_{except_type}_{except_reason}_entity", statement_id, updates=updates)
+    latest_save(cache, f"{except_lei}_{except_type}_{except_reason}_entity", statement_id, updates=updates)
     return statement_id, statement, void_statement
 
 def process_ooc_rr(statement_id, statement, item, start, end, rel_type, entity_voided,
-                         updates, data_type, storage):
+                         updates, data_type, cache):
     """Process ownership or control statement for relationship"""
     void_statement = None
     ref_statement_ids = referenced_ids(statement, item) # Statements Referenced By OOC
     for ref_id in ref_statement_ids:
-        references_update(storage, ref_id, statement_id, f"{start}_{end}_{rel_type}", updates=updates)
+        references_update(cache, ref_id, statement_id, f"{start}_{end}_{rel_type}", updates=updates)
     # If updating, add replacesStatement
     if updates:
-        latest_id, _ = latest_lookup(storage, f"{start}_{end}_{rel_type}", updates=updates)
+        latest_id, _ = latest_lookup(cache, f"{start}_{end}_{rel_type}", updates=updates)
         if latest_id:
             #print("OOC update:", f"{start}_{end}_{rel_type}", latest_id)
             # Check if deleted
@@ -317,12 +315,12 @@ def process_ooc_rr(statement_id, statement, item, start, end, rel_type, entity_v
                 statement_id = statement['statementID']
             else:
                 add_replaces(statement, latest_id) # Add replaces statement
-            updates_delete(storage, latest_id)
+            updates_delete(cache, latest_id)
     # Check if replacing exception
     if rel_type in ("IS_DIRECTLY_CONSOLIDATED_BY", "IS_ULTIMATELY_CONSOLIDATED_BY"):
         except_type = convert_rel_type(rel_type)
         except_ooc_id, except_other_id, except_reason, except_ref, except_entity_type \
-                        = exception_lookup(storage, f"{start}_{except_type}", updates=updates)
+                        = exception_lookup(cache, f"{start}_{except_type}", updates=updates)
         if except_ooc_id and not entity_voided:
             update_date = current_date_iso()
             void_statement = data_type.void_entity_replaced(except_ooc_id,
@@ -330,17 +328,17 @@ def process_ooc_rr(statement_id, statement, item, start, end, rel_type, entity_v
                                                             except_entity_type,
                                                             except_ref,
                                                             except_reason)
-            exception_delete(storage, f"{start}_{except_type}", updates=updates)
+            exception_delete(cache, f"{start}_{except_type}", updates=updates)
     # Save statementID in latest
-    latest_save(storage, f"{start}_{end}_{rel_type}", statement_id, updates=updates)
+    latest_save(cache, f"{start}_{end}_{rel_type}", statement_id, updates=updates)
     return statement_id, statement, void_statement
 
 def process_ooc_repex(statement_id, statement, item, except_lei, except_type, except_reason,
                             except_reference, old_reason, old_reference, old_ooc_id, old_other_id,
-                            data_type, storage, updates=False):
+                            data_type, cache, updates=False):
     """Process ownership or control statement for reporting exception"""
     if "Extension" in item and "Deletion" in item["Extension"]:
-        latest_id, _ = latest_lookup(storage, f"{except_lei}_{except_type}_{except_reason}_ownership", updates=updates)
+        latest_id, _ = latest_lookup(cache, f"{except_lei}_{except_type}_{except_reason}_ownership", updates=updates)
         statement = data_type.void_ooc_exception_deletion(latest_id,
                                                           item["Extension"]["Deletion"]["DeletedAt"],
                                                           item["LEI"],
@@ -353,7 +351,7 @@ def process_ooc_repex(statement_id, statement, item, except_lei, except_type, ex
         if statement['statementID'] == old_other_id:
             statement['statementID'] = generate_statement_id(statement['statementID'], "ownership")
             statement_id = statement['statementID']
-    latest_save(storage, f"{except_lei}_{except_type}_{except_reason}_ownership", statement_id, updates=updates)
+    latest_save(cache, f"{except_lei}_{except_type}_{except_reason}_ownership", statement_id, updates=updates)
     return statement_id, statement
 
 class ProcessUpdates:
@@ -364,10 +362,12 @@ class ProcessUpdates:
         self.updates = updates
         self.id_name = id_name
         self.storage = storage
+        self.cache = Caching(self.storage, batching=-1)
 
     def setup(self):
         """Load data into cache"""
-        load_cache(self.storage)
+        #load_cache(self.storage)
+        self.cache.load()
 
     def process(self, item, item_type, header, updates=False):
         """Process updates if applicable"""
@@ -375,7 +375,7 @@ class ProcessUpdates:
         entity_voided = False
         entity_type = None
         mapping, old_ooc_id, old_other_id, old_reason, old_reference, old_entity_type, except_lei, \
-            except_type, except_reason, except_reference = item_setup(self.storage, item, updates=updates)
+            except_type, except_reason, except_reference = item_setup(self.cache, item, updates=updates)
         for statement in self.transform.process(item, item_type, header, mapping=mapping):
             #print(f"Statement: {statement['statementID']} ({statement['statementType']})")
             statement_id = statement['statementID']
@@ -390,12 +390,12 @@ class ProcessUpdates:
                                                                        updates,
                                                                        mapping,
                                                                        self.updates,
-                                                                       self.storage)
+                                                                       self.cache)
                 else:
                     statement_id, statement, void_statement = process_entity_repex(statement_id,
                                             statement, item, except_lei, except_type, except_reason,
                                             old_reason, old_other_id, old_entity_type, self.updates, 
-                                            mapping, self.storage, updates=updates)
+                                            mapping, self.cache, updates=updates)
                     if void_statement:
                         yield void_statement
                         entity_voided = True
@@ -414,14 +414,14 @@ class ProcessUpdates:
                 if not "ExceptionCategory" in item:
                     statement_id, statement, void_statement = process_ooc_rr(statement_id, statement, item,
                                                                    start, end, rel_type, entity_voided,
-                                                                   updates, self.updates, self.storage)
+                                                                   updates, self.updates, self.cache)
                     if void_statement: yield void_statement
                 else:
                     statement_id, statement = process_ooc_repex(statement_id, statement, item,
                                                                 except_lei, except_type, except_reason,
                                                                 except_reference, old_reason, old_reference,
-                                                                old_ooc_id, old_other_id, self.updates, 
-                                                                self.storage, updates=updates)
+                                                                old_ooc_id, old_other_id, self.updates,
+                                                                self.cache, updates=updates)
                 ooc_id = statement_id
             yield statement
         if "ExceptionCategory" in item:
@@ -429,30 +429,31 @@ class ProcessUpdates:
             except_type = item["ExceptionCategory"]
             except_reason = item["ExceptionReason"]
             except_reference = item["ExceptionReference"] if "ExceptionReference" in item else None
-            exception_save(self.storage, f"{except_lei}_{except_type}", ooc_id, 
+            exception_save(self.cache, f"{except_lei}_{except_type}", ooc_id,
                                  other_id, except_reason, except_reference, entity_type, updates=updates)
 
     def finish_updates(self, updates=False):
         """Process updates to referencing statements"""
         print("In finish_updates")
         if not updates:
-            flush_cache(self.storage)
+            #flush_cache(self.storage)
+            self.cache.flush()
             #cached(None, batch="finished")
         #    for item_type in ("latest",):
         #        self.storage.auto_batch_flush(item_type)
         else:
             done_updates = []
-            for ref_id, latest_id, todo_updates in process_updates(self.storage):
+            for ref_id, latest_id, todo_updates in process_updates(self.cache):
                 #print("Update:", ref_id, latest_id, updates)
                 statement = retrieve_statement(self.storage, "ownership", ref_id)
                 old_statement_id = fix_statement_reference(statement, todo_updates, latest_id)
                 statement_id = statement["statementID"]
                 add_replaces(statement, old_statement_id)
-                latest_save(self.storage, latest_id, statement_id, updates=updates)
+                latest_save(self.cache, latest_id, statement_id, updates=updates)
                 #await updates_delete(self.storage, old_statement_id)
                 done_updates.append(old_statement_id)
                 #print("Updated statement:", statement)
                 yield statement
             for statement_id in done_updates:
-                updates_delete(self.storage, statement_id)
+                updates_delete(self.cache, statement_id)
 
