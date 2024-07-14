@@ -175,13 +175,13 @@ class BulkData:
             self.delete_zip_data(directory, url)
             yield fn
 
-    def prepare(self, path, name, updates=False, present=True) -> Path:
+    def prepare(self, path, name, updates=False) -> Path:
         """Prepare data for use"""
         print("In prepare:")
         directory = self.data_dir(path)
         directory.mkdir(exist_ok=True)
         files = []
-        if present:
+        if list(directory.glob("*.xml")) and not list(directory.glob("*golden-copy.xml")):
             for f in directory.glob("*.xml"):
                 fn = f.name
                 files.append(fn)
