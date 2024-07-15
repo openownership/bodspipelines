@@ -1,5 +1,4 @@
-async-kinesis==1.1.5
-boto3==1.34.34
+aiobotocore==2.13.1
 elasticsearch==8.12.1
 elastic_transport==8.12.0
 aiohttp==3.9.3
