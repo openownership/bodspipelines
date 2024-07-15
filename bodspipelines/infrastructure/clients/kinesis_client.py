@@ -20,6 +20,8 @@ class KinesisStream:
         os.environ["AWS_SECRET_ACCESS_KEY"] = os.environ["BODS_AWS_SECRET_ACCESS_KEY"]
         self.producer = await Producer(stream_name=self.stream_name, processor=JsonLineProcessor(),
                         region_name=os.getenv('BODS_AWS_REGION'),
+                        max_queue_size=250000,
+                        put_rate_limit_per_shard=750,
                         put_bandwidth_limit_per_shard=750).__aenter__()
         self.consumer = await Consumer(stream_name=self.stream_name, processor=JsonLineProcessor(),
                                  region_name=os.getenv('BODS_AWS_REGION')).__aenter__()
