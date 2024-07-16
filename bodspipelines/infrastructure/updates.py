@@ -437,10 +437,7 @@ class ProcessUpdates:
     async def finish_updates(self, updates=False):
         """Process updates to referencing statements"""
         print("In finish_updates")
-        if not updates:
-            #flush_cache(self.storage)
-            await self.cache.flush()
-        else:
+        if updates:
             done_updates = []
             async for ref_id, latest_id, todo_updates in process_updates(self.cache):
                 print("Update:", ref_id, latest_id, updates)
@@ -455,3 +452,4 @@ class ProcessUpdates:
                 yield statement
             for statement_id in done_updates:
                 await updates_delete(self.cache, statement_id)
+        await self.cache.flush()
