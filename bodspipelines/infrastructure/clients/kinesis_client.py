@@ -117,7 +117,7 @@ class KinesisStream:
 
     async def close(self):
         """Close Kinesis client"""
-        if self.client: await self.client.__exit__(None, None, None)
+        if self.client: await self.client.__aexit__(None, None, None)
 
 #    def read_stream(self):
 #        """Read records from stream"""

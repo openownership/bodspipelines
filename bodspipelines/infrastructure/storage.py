@@ -52,7 +52,12 @@ class Storage:
     def create_action(self, index_name, item, action_type='create'):
         """Build create action for item"""
         if callable(index_name): index_name = index_name(item)
-        return {"_id": self.storage.indexes[index_name]["id"](item),
+        if action_type == 'delete':
+            return {"_id": self.storage.indexes[index_name]["id"](item),
+                '_index': index_name,
+                '_op_type': action_type}
+        else:
+            return {"_id": self.storage.indexes[index_name]["id"](item),
                 '_index': index_name,
                 '_op_type': action_type,
                 "_source": item}
@@ -126,7 +131,7 @@ class Storage:
         await self.storage.setup_indexes()
 
     async def add_batch(self, item_type, items):
-        print(f"Write batch of {len(items)} item for {item_type}")
+        #print(f"Write batch of {len(items)} item for {item_type}")
         actions = [self.create_action(item_type, current_item[1], action_type=current_item[0])
                                                                     for current_item in items]
         async for current_item in self.storage.batch_store_data(actions, actions, item_type):

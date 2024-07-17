@@ -90,11 +90,14 @@ class ElasticsearchClient:
         #count = 0
         stats = {}
         #for index_name in self.indexes:
-        result = await self.client.indices.stats(index=index_name)
-        print(result)
+        await self.client.indices.refresh(index=index_name)
+        result = await self.client.cat.count(index=index_name, params={"format": "json"})
+        #result = await self.client.indices.stats(index=index_name)
+        #print(result)
         #stats[index_name] = result['_all']['primaries']['docs']['count']
         #count += result['_all']['primaries']['docs']['count']
-        stats['total'] = result['_all']['primaries']['indexing']['index_total']
+        #stats['total'] = result['_all']['primaries']['indexing']['index_total']
+        stats['total'] = int(result[0]['count'])
         return stats
 
     async def store_data(self, data, id=None):
@@ -138,12 +141,19 @@ class ElasticsearchClient:
             #print(ok, result)
             if ok:
                 new_records += 1
-                match = [i for i in batch if i['_id'] == result['create']['_id']]
-                yield match[0]['_source']
+                #match = [i for i in batch if i['_id'] == result['create']['_id']]
+                match = [i for i in batch if i['_id'] == result[i['_op_type']]['_id']]
+                if match[0]['_op_type'] == 'delete':
+                    yield True
+                else:
+                    yield match[0]['_source']
             else:
                 print(ok, result)
         if callable(index_name):
-            print(f"Storing in {index_name(batch[0]['_source'])}: {record_count} records; {new_records} new records")
+            index_name = index_name(batch[0]['_source'])
+            #print(f"Storing in {index_name(batch[0]['_source'])}: {record_count} records; {new_records} new records")
+        if batch[0]['_op_type'] == 'delete':
+            print(f"Deleting in {index_name}: {record_count} records; {new_records} records deleted")
         else:
             print(f"Storing in {index_name}: {record_count} records; {new_records} new records")
 

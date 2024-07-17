@@ -163,7 +163,7 @@ class Caching():
     async def load(self):
         """Load data into cache"""
         for item_type in self.cache:
-            if item_type in self.memory_only:
+            if not item_type in self.memory_only:
                 print(f"Loading cache for {item_type}")
                 async for item in self.storage.stream_items(item_type):
                     #print(item_type, item)
@@ -171,9 +171,21 @@ class Caching():
                     self.cache[item_type][item_id] = item
         self.initialised = True
 
-    def _save(self, item_type, item, item_id):
+    def _save(self, item_type, item, item_id, overwrite=False):
         """Save item in cache"""
-        self.cache[item_type][item_id] = item
+        if item_id in self.cache[item_type]:
+            if overwrite:
+                self.cache[item_type][item_id] = item
+                if item_id in self.batch[item_type]:
+                    # ???
+                    self._batch_item(item_type, item, item_id, overwrite=True)
+                else:
+                    self._batch_item(item_type, item, item_id, overwrite=True)
+            else:
+                raise Exception("Cannot overwrite item {item_id} of type {item_type}")
+        else:
+            self.cache[item_type][item_id] = item
+            self._batch_item(item_type, item, item_id, overwrite=overwrite)
 
     def _batch_item(self, item_type, item, item_id, overwrite=False):
         """Batch to be written later"""
@@ -192,8 +204,13 @@ class Caching():
 
     async def _write_batch(self, item_type):
         """Write batch to storage"""
-        items = [self.batch[item_type][item_id] for item_id in self.batch[item_type]]
-        await self.storage.add_batch(item_type, items)
+        for action in ('create', 'index', 'delete'):
+            items = [self.batch[item_type][item_id] for item_id in self.batch[item_type] 
+                     if self.batch[item_type][item_id][0] == action]
+            #print(f"{action}: {items}")
+            if items:
+                print(f"Flushing {action}: {len(items)} items")
+                await self.storage.add_batch(item_type, items)
         self.batch[item_type] = {}
 
     async def _check_batch(self):
@@ -205,8 +222,10 @@ class Caching():
 
     async def flush(self):
         """Check if any item need writing"""
+        print("Flushing cache")
         for item_type in self.batch:
             if not item_type in self.memory_only:
+                #print(f"{item_type}: {len(self.batch[item_type])} items in batch")
                 if len(self.batch[item_type]) > 0:
                     await self._write_batch(item_type)
 
@@ -216,9 +235,11 @@ class Caching():
 
     def _delete(self, item_type, item_id):
         """Delete item from cache"""
+        item = self.cache[item_type][item_id]
         del self.cache[item_type][item_id]
         if not item_type in self.memory_only:
-            self.batch[item_type][item_id] = None
+            # ???
+            self.batch[item_type][item_id] = ('delete', item)
 
     #async def flush_cache(storage):
     #    await self._flush_batch()
@@ -226,7 +247,7 @@ class Caching():
     async def add(self, item, item_type, overwrite=False):
         """Apply caching to function call"""
         item_id = get_id(self.storage, item_type, item)
-        self._save(item_type, item, item_id)
+        self._save(item_type, item, item_id, overwrite=overwrite)
         if not self.batch is None:
             self._batch_item(item_type, item, item_id, overwrite=overwrite)
         else:
@@ -245,10 +266,10 @@ class Caching():
     async def delete(self, item_id, item_type):
         """Delete acched item"""
         self._delete(item_type, item_id)
-        if self._check_batch_item(item_type, item_id):
-            self._unbatch_item(item_type, item_id)
-        else:
-            out = await self.storage.delete_item(item_id, item_type)
+        #if self._check_batch_item(item_type, item_id):
+        #    self._unbatch_item(item_type, item_id)
+        #else:
+        #    out = await self.storage.delete_item(item_id, item_type)
 
     async def stream(self, item_type):
         """Get cached items"""
