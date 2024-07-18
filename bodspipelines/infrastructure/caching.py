@@ -237,8 +237,10 @@ class Caching():
         """Read item from cache"""
         return self.cache[item_type].get(item_id)
 
-    def _delete(self, item_type, item_id):
+    def _delete(self, item_type, item_id, if_exists=False):
         """Delete item from cache"""
+        if if_exists and not item_id in self.cache[item_type]:
+            return
         item = self.cache[item_type][item_id]
         del self.cache[item_type][item_id]
         if not item_type in self.memory_only:
@@ -267,9 +269,9 @@ class Caching():
         #    out = await self.storage.get_item(item, item_type)
         return item
 
-    async def delete(self, item_id, item_type):
+    async def delete(self, item_id, item_type, if_exists=False):
         """Delete acched item"""
-        self._delete(item_type, item_id)
+        self._delete(item_type, item_id, if_exists=if_exists)
         #if self._check_batch_item(item_type, item_id):
         #    self._unbatch_item(item_type, item_id)
         #else:

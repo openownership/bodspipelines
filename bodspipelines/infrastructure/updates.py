@@ -133,9 +133,9 @@ async def updates_save(cache, referencing_id, latest_id, updates):
     #print("Saving update")
     await cache.add(build_update(referencing_id, latest_id, updates), "updates", overwrite=True)
 
-async def updates_delete(cache, old_statement_id):
+async def updates_delete(cache, old_statement_id, if_exists=False):
     """Delete statement to updates"""
-    await cache.delete(old_statement_id, "updates")
+    await cache.delete(old_statement_id, "updates", if_exists=if_exists)
 
 async def lookup_updates(cache, old_statement_id):
     """Lookup statement to updates"""
@@ -315,7 +315,7 @@ async def process_ooc_rr(statement_id, statement, item, start, end, rel_type, en
                 statement_id = statement['statementID']
             else:
                 add_replaces(statement, latest_id) # Add replaces statement
-            await updates_delete(cache, latest_id)
+            await updates_delete(cache, latest_id, if_exists=True)
     # Check if replacing exception
     if rel_type in ("IS_DIRECTLY_CONSOLIDATED_BY", "IS_ULTIMATELY_CONSOLIDATED_BY"):
         except_type = convert_rel_type(rel_type)
