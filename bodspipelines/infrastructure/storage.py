@@ -136,3 +136,6 @@ class Storage:
                                                                     for current_item in items]
         async for current_item in self.storage.batch_store_data(actions, actions, item_type):
             pass
+
+    async def dump_stream(self, index_name, action_type, items):
+        await self.storage.dump_stream(index_name, action_type, items)

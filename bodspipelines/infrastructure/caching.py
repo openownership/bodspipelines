@@ -192,7 +192,7 @@ class Caching():
         if overwrite:
             self.batch[item_type][item_id] = ('index', item)
         else:
-            self.batch[item_type][item_id] = ('create', item)
+            self.batch[item_type][item_id] = ('index', item)
 
     def _check_batch_item(self, item_type, item_id):
         """Check batch for item"""
@@ -202,15 +202,19 @@ class Caching():
         """Remove item from batch"""
         del self.batch[item_type][item_id]
 
+    async def _generate_items(self, items):
+        for item in items:
+            yield item[1]
+
     async def _write_batch(self, item_type):
         """Write batch to storage"""
-        for action in ('create', 'index', 'delete'):
+        for action in ('index', 'update', 'delete'):
             items = [self.batch[item_type][item_id] for item_id in self.batch[item_type] 
                      if self.batch[item_type][item_id][0] == action]
             #print(f"{action}: {items}")
             if items:
                 print(f"Flushing {action}: {len(items)} items")
-                await self.storage.add_batch(item_type, items)
+                await self.storage.dump_stream(item_type, action, self._generate_items(items))
         self.batch[item_type] = {}
 
     async def _check_batch(self):

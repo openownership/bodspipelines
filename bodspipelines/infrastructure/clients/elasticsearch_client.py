@@ -3,7 +3,7 @@ import json
 import asyncio
 import elastic_transport
 from elasticsearch import AsyncElasticsearch
-from elasticsearch.helpers import async_streaming_bulk, async_scan
+from elasticsearch.helpers import async_streaming_bulk, async_scan, async_bulk
 
 async def create_client():
     """Create Elasticsearch client"""
@@ -186,6 +186,28 @@ class ElasticsearchClient:
                                     query={"query": {"match_all": {}}},
                                     index=index):
             yield doc
+
+    async def _generate_actions(self, index_name, action_type, items):
+        #if action_type == 'update':
+        #    metadata = {'_op_type': action_type,
+        #                '_type': 'document',
+        #                "_index": index_name}
+        #else:
+        metadata = {'_op_type': action_type,
+                    "_index": index_name}
+        async for item in items:
+            if action_type == 'delete':
+                action = metadata | {'_id': self.indexes[index_name]["id"](item)}
+            elif action_type == 'update':
+                action = metadata | {'_id': self.indexes[index_name]["id"](item)} | item
+            else:
+                action = metadata | {'_id': self.indexes[index_name]["id"](item)} | item
+            #print(action)
+            yield action
+
+    async def dump_stream(self, index_name, action_type, items):
+        await async_bulk(client=self.client,
+                         actions=self._generate_actions(index_name, action_type, items))
 
     def list_indexes(self):
         """List indexes"""
