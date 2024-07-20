@@ -113,10 +113,14 @@ class Storage:
         """Create stream of batched actions"""
         batch = []
         async for item in stream:
-            batch.append(self.create_action(index_name, item))
-            if len(batch) > 485:
-                yield await self.create_batch(batch)
-                batch = []
+            if "flush" in item and item["flush"] is True:
+                if len(batch) > 0:
+                    yield await self.create_batch(batch)
+            else:
+                batch.append(self.create_action(index_name, item))
+                if len(batch) > 485:
+                    yield await self.create_batch(batch)
+                    batch = []
         if len(batch) > 0:
             yield await self.create_batch(batch)
 

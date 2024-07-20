@@ -79,6 +79,8 @@ class Stage:
             #count += 1
             #if count % 100000 == 0:
             #    log_memory()
+        yield {"flush": True}
+        await asyncio.sleep(5)
         for processor in self.processors:
             print("Processor:", hasattr(processor, "finish_updates"), updates)
             if hasattr(processor, "finish_updates") and updates:
@@ -95,7 +97,8 @@ class Stage:
                     output.process(item, source.name)
         else:
             print("Streaming:")
-            await self.outputs[0].process_stream(self.source_processing(source, stage_dir, updates=updates), source.name)
+            await self.outputs[0].process_stream(self.source_processing(source, stage_dir, updates=updates),
+                                                 source.name)
 
     async def process(self, pipeline_dir, updates=False):
         """Process all sources for stage"""
