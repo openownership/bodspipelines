@@ -180,7 +180,7 @@ class BulkData:
         directory = self.data_dir(path)
         directory.mkdir(exist_ok=True)
         files = []
-        if list(directory.glob("*.xml")) and not list(directory.glob("*golden-copy.xml")):
+        if list(directory.glob("*.xml")): # and not list(directory.glob("*golden-copy.xml")):
             for f in directory.glob("*.xml"):
                 fn = f.name
                 files.append(fn)
