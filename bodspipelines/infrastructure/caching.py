@@ -244,8 +244,10 @@ class Caching():
         item = self.cache[item_type][item_id]
         del self.cache[item_type][item_id]
         if not item_type in self.memory_only:
-            # ???
-            self.batch[item_type][item_id] = ('delete', item)
+            if item_id in self.batch[item_type] and self.batch[item_type][item_id][0] == 'index':
+                del self.batch[item_type][item_id]
+            else:
+                self.batch[item_type][item_id] = ('delete', item)
 
     #async def flush_cache(storage):
     #    await self._flush_batch()
