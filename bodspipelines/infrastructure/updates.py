@@ -323,10 +323,11 @@ async def process_ooc_rr(statement_id, statement, item, start, end, rel_type, en
                         = await exception_lookup(cache, f"{start}_{except_type}", updates=updates)
         if except_ooc_id and not entity_voided:
             update_date = current_date_iso()
+            #print(except_ooc_id,update_date,except_entity_type,except_ref,except_reason)
             void_statement = data_type.void_entity_replaced(except_ooc_id,
                                                             update_date,
                                                             except_entity_type,
-                                                            except_ref,
+                                                            start,
                                                             except_reason)
             await exception_delete(cache, f"{start}_{except_type}", updates=updates)
     # Save statementID in latest
@@ -440,7 +441,7 @@ class ProcessUpdates:
         if updates:
             done_updates = []
             async for ref_id, latest_id, todo_updates in process_updates(self.cache):
-                print("Update:", ref_id, latest_id, updates)
+                #print("Update:", ref_id, latest_id, updates)
                 statement = await retrieve_statement(self.storage, "ownership", ref_id)
                 old_statement_id = fix_statement_reference(statement, todo_updates, latest_id)
                 statement_id = statement["statementID"]
