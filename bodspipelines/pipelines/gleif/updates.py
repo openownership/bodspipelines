@@ -4,7 +4,7 @@ from .annotations import (add_lei_annotation, add_repex_annotation_changed,
                           add_repex_annotation_replaced, add_repex_ooc_annotation, add_rr_annotation_deleted,
                           add_annotation_retired, add_rr_annotation_status, add_repex_annotation_deleted)
 
-def void_entity_statement(reason, statement_id, status, update_date, entity_type, lei):
+def void_entity_statement(reason, statement_id, status, update_date, entity_type, lei, unknown=False):
     """Create BODS statemnt to void entity/person"""
     id = generate_statement_id(f"{statement_id}", "voided")
     #print(f"Voiding entity ({statement_id}):", id)
@@ -23,7 +23,10 @@ def void_entity_statement(reason, statement_id, status, update_date, entity_type
             "replacesStatements": [statement_id]
            }
     if entity_type == "entityStatement":
-        statement["entityType"] = "registeredEntity"
+        if unknown:
+            statement["entityType"] = "unknownEntity"
+        else:
+            statement["entityType"] = "registeredEntity"
     else:
         statement["personType"] = "unknownPerson"
     annotations = []
@@ -82,11 +85,11 @@ class GleifUpdates():
 
     def void_entity_deletion(self, latest_id, update_date, lei, status):
         """Void entity statement for deleted reporting exception"""
-        return void_entity_statement("DELETION", latest_id, status, update_date, "entityStatement", lei)
+        return void_entity_statement("DELETION", latest_id, status, update_date, "entityStatement", lei, unknown=True)
 
     def void_entity_changed(self, latest_id, update_date, entity_type, lei, status):
         """Void entity statement for changed reporting exception"""
-        return void_entity_statement("CHANGED", latest_id, status, update_date, entity_type, lei)
+        return void_entity_statement("CHANGED", latest_id, status, update_date, entity_type, lei, unknown=True)
 
     def void_ooc_relationship_deletion(self, latest_id, update_date, start, end):
         """Void ownership or control statement for deleted relationship record"""
@@ -98,7 +101,7 @@ class GleifUpdates():
 
     def void_entity_replaced(self, latest_id, update_date, entity_type, lei, status):
         """Void entity statement for replaced (by relationship) reporting exception"""
-        return void_entity_statement("REPLACED", latest_id, status, update_date, entity_type, lei)
+        return void_entity_statement("REPLACED", latest_id, status, update_date, entity_type, lei, unknown=True)
 
     def void_ooc_exception_deletion(self, latest_id, update_date, lei, status):
         """Void ownership or control statement for deleted reporting exception"""
