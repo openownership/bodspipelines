@@ -20,18 +20,21 @@ def convert_except_type(except_type):
 
 def build_latest(lei, bods_id, reason=False):
     """Build latest object"""
-    return {'latest_id': lei, 'statement_id': bods_id, 'reason': reason}
+    return {'latest_id': lei, # Source id (e.g. LEI)
+            'statement_id': bods_id, # Latest statement id
+            'reason': reason} # Unused
 
 
 def build_references(statement_id, referencing_ids):
     """Build references object"""
-    return {'statement_id': statement_id, 'references_id': referencing_ids}
+    return {'statement_id': statement_id, # Statement id
+            'references_id': referencing_ids} # Referencing statement ids
 
 
 def build_update(referencing_id, latest_id, updates): #old_statement_id, new_statement_id):
     """Build updates object"""
     #print(referencing_id, latest_id, updates)
-    return {'referencing_id': referencing_id,
+    return {'referencing_id': referencing_id, 
             'latest_id': latest_id,
             'updates': [{'old_statement_id': old, 'new_statement_id': updates[old]} for old in updates]}
 
@@ -345,13 +348,16 @@ async def process_ooc_repex(statement_id, statement, item, except_lei, except_ty
                                                           item["LEI"],
                                                           item["ExceptionReason"])
         statement_id = statement['statementID']
+        await updates_delete(self.cache, latest_id, if_exists=True)
     elif (old_reason and except_reason != old_reason):
         add_replaces(statement, old_ooc_id) # Add replaces statement
+        await updates_delete(self.cache, old_ooc_id, if_exists=True)
     elif (old_reference and except_reference != old_reference):
         add_replaces(statement, old_ooc_id) # Add replaces statement
         if statement['statementID'] == old_other_id:
             statement['statementID'] = generate_statement_id(statement['statementID'], "ownership")
             statement_id = statement['statementID']
+        await updates_delete(self.cache, old_ooc_id, if_exists=True)
     await latest_save(cache, f"{except_lei}_{except_type}_{except_reason}_ownership", statement_id, updates=updates)
     return statement_id, statement
 
