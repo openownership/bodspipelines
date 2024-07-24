@@ -348,16 +348,16 @@ async def process_ooc_repex(statement_id, statement, item, except_lei, except_ty
                                                           item["LEI"],
                                                           item["ExceptionReason"])
         statement_id = statement['statementID']
-        await updates_delete(self.cache, latest_id, if_exists=True)
+        await updates_delete(cache, latest_id, if_exists=True)
     elif (old_reason and except_reason != old_reason):
         add_replaces(statement, old_ooc_id) # Add replaces statement
-        await updates_delete(self.cache, old_ooc_id, if_exists=True)
+        await updates_delete(cache, old_ooc_id, if_exists=True)
     elif (old_reference and except_reference != old_reference):
         add_replaces(statement, old_ooc_id) # Add replaces statement
         if statement['statementID'] == old_other_id:
             statement['statementID'] = generate_statement_id(statement['statementID'], "ownership")
             statement_id = statement['statementID']
-        await updates_delete(self.cache, old_ooc_id, if_exists=True)
+        await updates_delete(cache, old_ooc_id, if_exists=True)
     await latest_save(cache, f"{except_lei}_{except_type}_{except_reason}_ownership", statement_id, updates=updates)
     return statement_id, statement
 
