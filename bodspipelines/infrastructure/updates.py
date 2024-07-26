@@ -327,7 +327,7 @@ async def process_ooc_rr(statement_id, statement, item, start, end, rel_type, en
         if except_ooc_id and not entity_voided:
             update_date = current_date_iso()
             #print(except_ooc_id,update_date,except_entity_type,except_ref,except_reason)
-            void_statement = data_type.void_entity_replaced(except_ooc_id,
+            void_statement = data_type.void_entity_replaced(except_other_id,
                                                             update_date,
                                                             except_entity_type,
                                                             start,
