@@ -79,32 +79,71 @@ def void_ooc_statement(reason, statement_id, status, update_date, lei, lei2):
 class GleifUpdates():
     """GLEIF specific updates"""
 
+    def __init__(self):
+        self.already_voided = []
+        self.already_replaced = []
+
     def void_entity_retired(self, latest_id, update_date, lei, status):
         """Void entity statement for retired LEI"""
-        return void_entity_statement("RETIRED", latest_id, status, update_date, "entityStatement", lei)
+        if latest_id in self.already_voided or latest_id in self.already_replaced:
+            return None
+        else:
+            self.already_voided.append(latest_id)
+            return void_entity_statement("RETIRED", latest_id, status, update_date, "entityStatement", lei)
 
     def void_entity_deletion(self, latest_id, update_date, lei, status):
         """Void entity statement for deleted reporting exception"""
-        return void_entity_statement("DELETION", latest_id, status, update_date, "entityStatement", lei, unknown=True)
+        if latest_id in self.already_voided or latest_id in self.already_replaced:
+            return None
+        else:
+            self.already_voided.append(latest_id)
+            return void_entity_statement("DELETION", latest_id, status, update_date, "entityStatement", lei, unknown=True)
 
     def void_entity_changed(self, latest_id, update_date, entity_type, lei, status):
         """Void entity statement for changed reporting exception"""
-        return void_entity_statement("CHANGED", latest_id, status, update_date, entity_type, lei, unknown=True)
+        if latest_id in self.already_voided or latest_id in self.already_replaced:
+            return None
+        else:
+            self.already_voided.append(latest_id)
+            return void_entity_statement("CHANGED", latest_id, status, update_date, entity_type, lei, unknown=True)
 
     def void_ooc_relationship_deletion(self, latest_id, update_date, start, end):
         """Void ownership or control statement for deleted relationship record"""
-        return void_ooc_statement("RR_DELETION", latest_id, None, update_date, start, end)
+        if latest_id in self.already_voided or latest_id in self.already_replaced:
+            return None
+        else:
+            self.already_voided.append(latest_id)
+            return void_ooc_statement("RR_DELETION", latest_id, None, update_date, start, end)
 
     def void_ooc_relationship_retired(self, latest_id, update_date, start, end):
         """Void ownership or control statement for retired relationship record """
-        return void_ooc_statement("RETIRED", latest_id, None, update_date, start, end)
+        if latest_id in self.already_voided or latest_id in self.already_replaced:
+            return None
+        else:
+            self.already_voided.append(latest_id)
+            return void_ooc_statement("RETIRED", latest_id, None, update_date, start, end)
 
     def void_entity_replaced(self, latest_id, update_date, entity_type, lei, status):
         """Void entity statement for replaced (by relationship) reporting exception"""
-        return void_entity_statement("REPLACED", latest_id, status, update_date, entity_type, lei, unknown=True)
+        if latest_id in self.already_voided or latest_id in self.already_replaced:
+            return None
+        else:
+            self.already_voided.append(latest_id)
+            return void_entity_statement("REPLACED", latest_id, status, update_date, entity_type, lei, unknown=True)
 
     def void_ooc_exception_deletion(self, latest_id, update_date, lei, status):
         """Void ownership or control statement for deleted reporting exception"""
-        return void_ooc_statement("REPEX_DELETION", latest_id, status, update_date, lei, None)
+        if latest_id in self.already_voided or latest_id in self.already_replaced:
+            return None
+        else:
+            self.already_voided.append(latest_id)
+            return void_ooc_statement("REPEX_DELETION", latest_id, status, update_date, lei, None)
 
-
+    def add_replaces(self, statement, old_statement_id):
+        """Add replacesStatements to statement object"""
+        if old_statement_id in self.already_replaced:
+            return None
+        else:
+            self.already_replaced.append(old_statement_id)
+            statement["replacesStatements"] = [old_statement_id]
+            return statement

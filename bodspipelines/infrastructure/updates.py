@@ -127,9 +127,9 @@ async def references_update(cache, referenced_id, statement_id, latest_id, updat
     referencing_ids[statement_id] = latest_id
     await references_save(cache, referenced_id, referencing_ids, updates=updates, overwrite=True)
 
-def add_replaces(statement, old_statement_id):
-    """Add replacesStatements to statement object"""
-    statement["replacesStatements"] = [old_statement_id]
+#def add_replaces(statement, old_statement_id):
+#    """Add replacesStatements to statement object"""
+#    statement["replacesStatements"] = [old_statement_id]
 
 async def updates_save(cache, referencing_id, latest_id, updates):
     """Save statement to updates"""
@@ -254,7 +254,7 @@ async def process_entity_lei(statement_id, statement, item, lei, updates, mappin
                                                           item["Registration"]["RegistrationStatus"])
                 statement_id = statement['statementID']
             else:
-                add_replaces(statement, latest_id) # Add replaces statement
+                data_type.add_replaces(statement, latest_id) # Add replaces statement
             referencing_ids = await lookup_references(cache, latest_id, updates=updates)
         else:
             referencing_ids = []
@@ -279,7 +279,7 @@ async def process_entity_repex(statement_id, statement, item, except_lei, except
                                                  item["Extension"]["Deletion"]["DeletedAt"],
                                                  item["LEI"],
                                                  item["ExceptionReason"])
-        statement_id = statement['statementID']
+        statement_id = statement['statementID'] if statement else None
     elif (old_reason and except_reason != old_reason):
         update_date = current_date_iso()
         void_statement = data_type.void_entity_changed(old_other_id,
@@ -287,7 +287,8 @@ async def process_entity_repex(statement_id, statement, item, except_lei, except
                                                        old_entity_type,
                                                        except_lei,
                                                        old_reason)
-    await latest_save(cache, f"{except_lei}_{except_type}_{except_reason}_entity", statement_id, updates=updates)
+    if statement_id:
+        await latest_save(cache, f"{except_lei}_{except_type}_{except_reason}_entity", statement_id, updates=updates)
     return statement_id, statement, void_statement
 
 async def process_ooc_rr(statement_id, statement, item, start, end, rel_type, entity_voided,
@@ -317,7 +318,7 @@ async def process_ooc_rr(statement_id, statement, item, start, end, rel_type, en
                                                                   end)
                 statement_id = statement['statementID']
             else:
-                add_replaces(statement, latest_id) # Add replaces statement
+                data_type.add_replaces(statement, latest_id) # Add replaces statement
             await updates_delete(cache, latest_id, if_exists=True)
     # Check if replacing exception
     if rel_type in ("IS_DIRECTLY_CONSOLIDATED_BY", "IS_ULTIMATELY_CONSOLIDATED_BY"):
@@ -350,10 +351,10 @@ async def process_ooc_repex(statement_id, statement, item, except_lei, except_ty
         statement_id = statement['statementID']
         await updates_delete(cache, latest_id, if_exists=True)
     elif (old_reason and except_reason != old_reason):
-        add_replaces(statement, old_ooc_id) # Add replaces statement
+        data_type.add_replaces(statement, old_ooc_id) # Add replaces statement
         await updates_delete(cache, old_ooc_id, if_exists=True)
     elif (old_reference and except_reference != old_reference):
-        add_replaces(statement, old_ooc_id) # Add replaces statement
+        data_type.add_replaces(statement, old_ooc_id) # Add replaces statement
         if statement['statementID'] == old_other_id:
             statement['statementID'] = generate_statement_id(statement['statementID'], "ownership")
             statement_id = statement['statementID']
@@ -432,7 +433,7 @@ class ProcessUpdates:
                                                                       old_ooc_id, old_other_id, self.updates, 
                                                                       self.cache, updates=updates)
                 ooc_id = statement_id
-            yield statement
+            if statement: yield statement
         if "ExceptionCategory" in item:
             except_lei = item["LEI"]
             except_type = item["ExceptionCategory"]
@@ -444,14 +445,15 @@ class ProcessUpdates:
     async def finish_updates(self, updates=False):
         """Process updates to referencing statements"""
         print("In finish_updates")
+        data_type = self.updates
         if updates:
             done_updates = []
             async for ref_id, latest_id, todo_updates in process_updates(self.cache):
-                #print("Update:", ref_id, latest_id, updates)
+                print("Update:", ref_id, latest_id, updates)
                 statement = await retrieve_statement(self.storage, "ownership", ref_id)
                 old_statement_id = fix_statement_reference(statement, todo_updates, latest_id)
                 statement_id = statement["statementID"]
-                add_replaces(statement, old_statement_id)
+                data_type.add_replaces(statement, old_statement_id)
                 await latest_save(self.cache, latest_id, statement_id, updates=updates)
                 #await updates_delete(self.storage, old_statement_id)
                 done_updates.append(old_statement_id)
