@@ -252,7 +252,7 @@ async def process_entity_lei(statement_id, statement, item, lei, updates, mappin
                                                           update_date,
                                                           item["LEI"],
                                                           item["Registration"]["RegistrationStatus"])
-                statement_id = statement['statementID']
+                statement_id = statement['statementID'] if statement else None
             else:
                 data_type.add_replaces(statement, latest_id) # Add replaces statement
             referencing_ids = await lookup_references(cache, latest_id, updates=updates)
@@ -265,7 +265,8 @@ async def process_entity_lei(statement_id, statement, item, lei, updates, mappin
                                 referencing_ids[ref_id],
                                 latest_id,
                                 statement_id) # Save statements to update
-    await latest_save(cache, lei, statement_id, updates=updates) # Save new latest
+    if statement_id:
+        await latest_save(cache, lei, statement_id, updates=updates) # Save new latest
     return statement_id, statement
 
 async def process_entity_repex(statement_id, statement, item, except_lei, except_type, except_reason,
@@ -309,14 +310,14 @@ async def process_ooc_rr(statement_id, statement, item, start, end, rel_type, en
                                                                    item["Extension"]["Deletion"]["DeletedAt"],
                                                                    start,
                                                                    end)
-                statement_id = statement['statementID']
+                statement_id = statement['statementID'] if statement else None
             elif item["Registration"]["RegistrationStatus"] == 'RETIRED':
                 update_date = item['Registration']['LastUpdateDate']
                 statement = data_type.void_ooc_relationship_retired(latest_id,
                                                                   update_date,
                                                                   start,
                                                                   end)
-                statement_id = statement['statementID']
+                statement_id = statement['statementID'] if statement else None
             else:
                 data_type.add_replaces(statement, latest_id) # Add replaces statement
             await updates_delete(cache, latest_id, if_exists=True)
@@ -335,7 +336,8 @@ async def process_ooc_rr(statement_id, statement, item, start, end, rel_type, en
                                                             except_reason)
             await exception_delete(cache, f"{start}_{except_type}", updates=updates)
     # Save statementID in latest
-    await latest_save(cache, f"{start}_{end}_{rel_type}", statement_id, updates=updates)
+    if statement_id:
+        await latest_save(cache, f"{start}_{end}_{rel_type}", statement_id, updates=updates)
     return statement_id, statement, void_statement
 
 async def process_ooc_repex(statement_id, statement, item, except_lei, except_type, except_reason,
@@ -348,7 +350,7 @@ async def process_ooc_repex(statement_id, statement, item, except_lei, except_ty
                                                           item["Extension"]["Deletion"]["DeletedAt"],
                                                           item["LEI"],
                                                           item["ExceptionReason"])
-        statement_id = statement['statementID']
+        statement_id = statement['statementID'] if statement else None
         await updates_delete(cache, latest_id, if_exists=True)
     elif (old_reason and except_reason != old_reason):
         data_type.add_replaces(statement, old_ooc_id) # Add replaces statement
@@ -359,7 +361,8 @@ async def process_ooc_repex(statement_id, statement, item, except_lei, except_ty
             statement['statementID'] = generate_statement_id(statement['statementID'], "ownership")
             statement_id = statement['statementID']
         await updates_delete(cache, old_ooc_id, if_exists=True)
-    await latest_save(cache, f"{except_lei}_{except_type}_{except_reason}_ownership", statement_id, updates=updates)
+    if statement_id:
+        await latest_save(cache, f"{except_lei}_{except_type}_{except_reason}_ownership", statement_id, updates=updates)
     return statement_id, statement
 
 class ProcessUpdates:
