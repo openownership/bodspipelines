@@ -4,6 +4,7 @@ import json
 import gzip
 #import boto3
 
+from pathlib import Path
 from aiobotocore.session import get_session
 
 async def create_client(service):
@@ -33,6 +34,21 @@ def unpack_records(record_response):
         records.append(json.loads(record['Data']))
     return records
 
+def save_last_seqno(stream_name, last_seqno):
+    status_dir = os.getenv('KINESIS_STATUS_DIRECTORY')
+    path = Path(f"{status_dir}/{stream_name}")
+    with open(path, 'w') as file:
+        file.write(last_seqno)
+
+def load_last_seqno(stream_name):
+    status_dir = os.getenv('KINESIS_STATUS_DIRECTORY')
+    path = Path(f"{status_dir}/{stream_name}")
+    if path.is_file():
+        with open(path, 'r') as file:
+            return file.read()
+    else:
+        return None
+
 class KinesisStream:
     """Kinesis Stream class"""
     def __init__(self, stream_name=None, shard_count=1):
@@ -43,12 +59,17 @@ class KinesisStream:
         self.shard_count = shard_count
         self.records = []
         self.waiting_bytes = 0
+        self.last_seqno = load_last_seqno(self.stream_name)
 
     async def setup(self):
         """Setup Kinesis client"""
         self.client = await create_client('kinesis')
         self.stream_arn = await get_stream_arn(self.client, self.stream_name)
         self.shard_id = await shard_id(self.client, self.stream_arn)
+
+    def save_last_seqno(self, response):
+        if response and 'Records' in response and len(response['Records']) > 0:
+            self.last_seqno = response['Records'][-1]['SequenceNumber']
 
     async def send_records(self):
         """Send accumulated records"""
@@ -91,14 +112,20 @@ class KinesisStream:
 
     async def read_stream(self):
         """Read records from stream"""
-        shard_iterator = await self.client.get_shard_iterator(StreamARN=self.stream_arn,
+        if self.last_seqno:
+            shard_iterator = await self.client.get_shard_iterator(StreamARN=self.stream_arn,
+                                                        ShardId=self.shard_id,
+                                                        ShardIteratorType='AFTER_SEQUENCE_NUMBER',
+                                                        StartingSequenceNumber=self.last_seqno)
+        else:
+            shard_iterator = await self.client.get_shard_iterator(StreamARN=self.stream_arn,
 	                                                ShardId=self.shard_id,
                                                         ShardIteratorType='TRIM_HORIZON')
-	                                                #ShardIteratorType='LATEST')
         shard_iterator = shard_iterator['ShardIterator']
         empty = 0
         while True:
             record_response = await self.client.get_records(ShardIterator=shard_iterator, Limit=500)
+            self.save_last_seqno(record_response)
             #print(record_response)
             if len(record_response['Records']) == 0 and record_response['MillisBehindLatest'] == 0:
                 empty += 1
@@ -117,7 +144,9 @@ class KinesisStream:
 
     async def close(self):
         """Close Kinesis client"""
-        if self.client: await self.client.__aexit__(None, None, None)
+        if self.client:
+            await self.client.__aexit__(None, None, None)
+            save_last_seqno(self.stream_name, self.last_seqno)
 
 #    def read_stream(self):
 #        """Read records from stream"""
