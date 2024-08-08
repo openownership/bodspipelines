@@ -37,8 +37,9 @@ def unpack_records(record_response):
 def save_last_seqno(stream_name, last_seqno):
     status_dir = os.getenv('KINESIS_STATUS_DIRECTORY')
     path = Path(f"{status_dir}/{stream_name}")
-    with open(path, 'w') as file:
-        file.write(last_seqno)
+    if last_seqno:
+        with open(path, 'w') as file:
+            file.write(last_seqno)
 
 def load_last_seqno(stream_name):
     status_dir = os.getenv('KINESIS_STATUS_DIRECTORY')
