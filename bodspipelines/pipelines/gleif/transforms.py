@@ -48,9 +48,9 @@ def publication_details():
     """Generate publication details"""
     return {'publicationDate': current_date_iso(), # TODO: fix publication date
             'bodsVersion': "0.2",
-            'license': "https://register.openownership.org/terms-and-conditions",
-            'publisher': {"name": "OpenOwnership Register",
-                          "url": "https://register.openownership.org"}}
+            'license': "https://creativecommons.org/publicdomain/zero/1.0/",
+            'publisher': {"name": "Open Ownership",
+                          "url": "https://www.openownership.org"}}
 
 def jurisdiction_name(data):
     try:
