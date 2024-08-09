@@ -155,6 +155,7 @@ async def updates_update(cache, referencing_id, latest_id, old_statement_id, new
     #print("Updating update:", referencing_id, latest_id, old_statement_id, new_statement_id)
     updates = await lookup_updates(cache, referencing_id)
     updates[old_statement_id] = new_statement_id
+    #print("Saving update:", referencing_id, latest_id, updates)
     await updates_save(cache, referencing_id, latest_id, updates)
     #await storage.add_item(build_update(referencing_id, latest_id, old_statement_id, new_statement_id), "updates")
 
@@ -166,6 +167,7 @@ async def process_updates(cache):
 
 async def retrieve_statement(storage, statement_type, statement_id):
     """Retrive statement using statement_id"""
+    #print("Retrieving statement:", statement_type, statement_id)
     data = await storage.get_item(statement_id, statement_type)
     return data
 
@@ -295,10 +297,12 @@ async def process_entity_repex(statement_id, statement, item, except_lei, except
 async def process_ooc_rr(statement_id, statement, item, start, end, rel_type, entity_voided,
                          updates, data_type, cache):
     """Process ownership or control statement for relationship"""
+    #print(f"Processing {statement_id}: {start} {end} {rel_type} {updates}")
     void_statement = None
-    ref_statement_ids = referenced_ids(statement, item) # Statements Referenced By OOC
-    for ref_id in ref_statement_ids:
-        await references_update(cache, ref_id, statement_id, f"{start}_{end}_{rel_type}", updates=updates)
+    # Update references
+    #ref_statement_ids = referenced_ids(statement, item) # Statements Referenced By OOC
+    #for ref_id in ref_statement_ids:
+    #    await references_update(cache, ref_id, statement_id, f"{start}_{end}_{rel_type}", updates=updates)
     # If updating, add replacesStatement
     if updates:
         latest_id, _ = await latest_lookup(cache, f"{start}_{end}_{rel_type}", updates=updates)
@@ -306,6 +310,7 @@ async def process_ooc_rr(statement_id, statement, item, start, end, rel_type, en
             #print("OOC update:", f"{start}_{end}_{rel_type}", latest_id)
             # Check if deleted
             if "Extension" in item and "Deletion" in item["Extension"]:
+                #print("Voiding deleted:", latest_id)
                 statement = data_type.void_ooc_relationship_deletion(latest_id,
                                                                    item["Extension"]["Deletion"]["DeletedAt"],
                                                                    start,
@@ -335,6 +340,12 @@ async def process_ooc_rr(statement_id, statement, item, start, end, rel_type, en
                                                             start,
                                                             except_reason)
             await exception_delete(cache, f"{start}_{except_type}", updates=updates)
+    # Update references
+    if statement_id:
+        ref_statement_ids = referenced_ids(statement, item) # Statements Referenced By OOC
+        for ref_id in ref_statement_ids:
+            if ref_id:
+                await references_update(cache, ref_id, statement_id, f"{start}_{end}_{rel_type}", updates=updates)
     # Save statementID in latest
     if statement_id:
         await latest_save(cache, f"{start}_{end}_{rel_type}", statement_id, updates=updates)
