@@ -268,6 +268,7 @@ async def process_entity_lei(statement_id, statement, item, lei, updates, mappin
                                 latest_id,
                                 statement_id) # Save statements to update
     if statement_id:
+        #print("New statement:", statement_id)
         await latest_save(cache, lei, statement_id, updates=updates) # Save new latest
     return statement_id, statement
 
@@ -278,11 +279,15 @@ async def process_entity_repex(statement_id, statement, item, except_lei, except
     void_statement = None
     if "Extension" in item and "Deletion" in item["Extension"]:
         latest_id, _ = await latest_lookup(cache, f"{except_lei}_{except_type}_{except_reason}_entity", updates=updates)
-        statement = data_type.void_entity_deletion(latest_id,
+        if latest_id:
+            #print(latest_id,item["Extension"]["Deletion"]["DeletedAt"],item["LEI"],item["ExceptionReason"])
+            statement = data_type.void_entity_deletion(latest_id,
                                                  item["Extension"]["Deletion"]["DeletedAt"],
                                                  item["LEI"],
                                                  item["ExceptionReason"])
-        statement_id = statement['statementID'] if statement else None
+            statement_id = statement['statementID'] if statement else None
+        else:
+            statement, statement_id = None, None
     elif (old_reason and except_reason != old_reason):
         update_date = current_date_iso()
         void_statement = data_type.void_entity_changed(old_other_id,
@@ -291,6 +296,7 @@ async def process_entity_repex(statement_id, statement, item, except_lei, except
                                                        except_lei,
                                                        old_reason)
     if statement_id:
+        #print("New statement:", f"{except_lei}_{except_type}_{except_reason}_entity", statement_id)
         await latest_save(cache, f"{except_lei}_{except_type}_{except_reason}_entity", statement_id, updates=updates)
     return statement_id, statement, void_statement
 
@@ -340,6 +346,7 @@ async def process_ooc_rr(statement_id, statement, item, start, end, rel_type, en
                                                             start,
                                                             except_reason)
             await exception_delete(cache, f"{start}_{except_type}", updates=updates)
+            await latest_save(cache, f"{start}_{except_type}_{except_reason}_entity", None, updates=updates)
     # Update references
     if statement_id:
         ref_statement_ids = referenced_ids(statement, item) # Statements Referenced By OOC
@@ -348,6 +355,7 @@ async def process_ooc_rr(statement_id, statement, item, start, end, rel_type, en
                 await references_update(cache, ref_id, statement_id, f"{start}_{end}_{rel_type}", updates=updates)
     # Save statementID in latest
     if statement_id:
+        #print("New statement:", statement_id)
         await latest_save(cache, f"{start}_{end}_{rel_type}", statement_id, updates=updates)
     return statement_id, statement, void_statement
 
@@ -373,6 +381,7 @@ async def process_ooc_repex(statement_id, statement, item, except_lei, except_ty
             statement_id = statement['statementID']
         await updates_delete(cache, old_ooc_id, if_exists=True)
     if statement_id:
+        #print("New statement:", statement_id)
         await latest_save(cache, f"{except_lei}_{except_type}_{except_reason}_ownership", statement_id, updates=updates)
     return statement_id, statement
 
@@ -463,7 +472,7 @@ class ProcessUpdates:
         if updates:
             done_updates = []
             async for ref_id, latest_id, todo_updates in process_updates(self.cache):
-                print("Update:", ref_id, latest_id, updates)
+                #print("Update:", ref_id, latest_id, updates)
                 statement = await retrieve_statement(self.storage, "ownership", ref_id)
                 old_statement_id = fix_statement_reference(statement, todo_updates, latest_id)
                 statement_id = statement["statementID"]
