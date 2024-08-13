@@ -127,6 +127,12 @@ async def references_update(cache, referenced_id, statement_id, latest_id, updat
     referencing_ids[statement_id] = latest_id
     await references_save(cache, referenced_id, referencing_ids, updates=updates, overwrite=True)
 
+async def references_remove(cache, referenced_id, statement_id, updates=False):
+    """Update list of statement ids referencing statement"""
+    referencing_ids = await lookup_references(cache, referenced_id, updates=updates)
+    if statement_id in referencing_ids: del referencing_ids[statement_id]
+    await references_save(cache, referenced_id, referencing_ids, updates=updates, overwrite=True)
+
 #def add_replaces(statement, old_statement_id):
 #    """Add replacesStatements to statement object"""
 #    statement["replacesStatements"] = [old_statement_id]
@@ -197,13 +203,13 @@ def source_id(data, id_name):
             return id['id']
     return None
 
-def referenced_ids(statement, item):
+def referenced_ids(statement, item=None):
     """Collect statement ids referenced by statement"""
     out = []
     if "subject" in statement and "describedByEntityStatement" in statement["subject"]:
         out.append(statement["subject"]["describedByEntityStatement"])
     if ("interestedParty" in statement and "describedByEntityStatement" in statement["interestedParty"] and
-        item["Registration"]["RegistrationStatus"] == "PUBLISHED"):
+        (not item or item["Registration"]["RegistrationStatus"] == "PUBLISHED")):
         out.append(statement["interestedParty"]["describedByEntityStatement"])
     return out
 
@@ -349,7 +355,7 @@ async def process_ooc_rr(statement_id, statement, item, start, end, rel_type, en
             await latest_save(cache, f"{start}_{except_type}_{except_reason}_entity", None, updates=updates)
     # Update references
     if statement_id:
-        ref_statement_ids = referenced_ids(statement, item) # Statements Referenced By OOC
+        ref_statement_ids = referenced_ids(statement, item=item) # Statements Referenced By OOC
         for ref_id in ref_statement_ids:
             if ref_id:
                 await references_update(cache, ref_id, statement_id, f"{start}_{end}_{rel_type}", updates=updates)
@@ -478,6 +484,12 @@ class ProcessUpdates:
                 statement_id = statement["statementID"]
                 data_type.add_replaces(statement, old_statement_id)
                 await latest_save(self.cache, latest_id, statement_id, updates=updates)
+                # Update references
+                ref_statement_ids = referenced_ids(statement) # Statements Referenced By OOC
+                for new_ref_id in ref_statement_ids:
+                    if new_ref_id:
+                        await references_remove(self.cache, new_ref_id, old_statement_id, updates=updates)
+                        await references_update(self.cache, new_ref_id, statement_id, latest_id, updates=updates)
                 #await updates_delete(self.storage, old_statement_id)
                 done_updates.append(old_statement_id)
                 #print("Updated statement:", statement)
