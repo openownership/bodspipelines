@@ -282,6 +282,7 @@ async def process_entity_repex(statement_id, statement, item, except_lei, except
                                     old_reason, old_other_id, old_entity_type, data_type, mapping,
                                     cache, updates=False):
     """Process entity statement from reporting exception"""
+    #print(f"Processing repex {statement_id}: {except_lei}, {except_type}, {except_reason}")
     void_statement = None
     if "Extension" in item and "Deletion" in item["Extension"]:
         latest_id, _ = await latest_lookup(cache, f"{except_lei}_{except_type}_{except_reason}_entity", updates=updates)
@@ -358,6 +359,8 @@ async def process_ooc_rr(statement_id, statement, item, start, end, rel_type, en
         ref_statement_ids = referenced_ids(statement, item=item) # Statements Referenced By OOC
         for ref_id in ref_statement_ids:
             if ref_id:
+                #print("Update ref:", ref_id, statement_id, f"{start}_{end}_{rel_type}")
+                if latest_id: await references_remove(cache, ref_id, latest_id, updates=updates)
                 await references_update(cache, ref_id, statement_id, f"{start}_{end}_{rel_type}", updates=updates)
     # Save statementID in latest
     if statement_id:
@@ -369,6 +372,7 @@ async def process_ooc_repex(statement_id, statement, item, except_lei, except_ty
                             except_reference, old_reason, old_reference, old_ooc_id, old_other_id,
                             data_type, cache, updates=False):
     """Process ownership or control statement for reporting exception"""
+    print(f"Processing OOC repex {statement_id}: {except_lei}, {except_type}, {except_reason}")
     if "Extension" in item and "Deletion" in item["Extension"]:
         latest_id, _ = await latest_lookup(cache, f"{except_lei}_{except_type}_{except_reason}_ownership", updates=updates)
         statement = data_type.void_ooc_exception_deletion(latest_id,
@@ -478,7 +482,7 @@ class ProcessUpdates:
         if updates:
             done_updates = []
             async for ref_id, latest_id, todo_updates in process_updates(self.cache):
-                #print("Update:", ref_id, latest_id, updates)
+                #print("Update:", ref_id, latest_id, todo_updates)
                 statement = await retrieve_statement(self.storage, "ownership", ref_id)
                 old_statement_id = fix_statement_reference(statement, todo_updates, latest_id)
                 statement_id = statement["statementID"]
