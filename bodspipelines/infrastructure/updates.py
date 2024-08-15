@@ -372,7 +372,7 @@ async def process_ooc_repex(statement_id, statement, item, except_lei, except_ty
                             except_reference, old_reason, old_reference, old_ooc_id, old_other_id,
                             data_type, cache, updates=False):
     """Process ownership or control statement for reporting exception"""
-    print(f"Processing OOC repex {statement_id}: {except_lei}, {except_type}, {except_reason}")
+    #print(f"Processing OOC repex {statement_id}: {except_lei}, {except_type}, {except_reason}")
     if "Extension" in item and "Deletion" in item["Extension"]:
         latest_id, _ = await latest_lookup(cache, f"{except_lei}_{except_type}_{except_reason}_ownership", updates=updates)
         statement = data_type.void_ooc_exception_deletion(latest_id,
