@@ -107,15 +107,35 @@ def get_sources(url, last_update):
     data = source_metadata(request)
     yield from get_sources_int(data, base, last_update)
 
-def get_source_by_date(url, data_date, delta_type=None):
-    """Get source data url for specified date"""
-    target_date = datetime.strptime(data_date, "%Y-%m-%d")
-    if delta_type == "month":
-        target_date = target_date + timedelta(days=31)
-    elif delta_type == "week":
-        target_date = target_date + timedelta(days=7)
-    elif delta_type == "day":
-        target_date = target_date + timedelta(days=1)
+def get_data_type(url):
+    """Get type of data"""
+    if "/lei" in url:
+        data_type = "lei2"
+    elif "/rr" in url:
+        data_type = "rr"
+    elif "/repex" in url:
+        data_type = "repex"
+    return data_type
+
+def get_url_for_target_date(url, data, target_date, target_time, delta_type=None):
+    """Get url for specified date"""
+    for item in data:
+        item_date = datetime.strptime(item["publish_date"].split()[0], "%Y-%m-%d")
+        item_time = item["publish_date"].split()[1]
+        if item_date == target_date and item_time == target_time:
+            data_type = get_data_type(url)
+            if delta_type:
+                if delta_type == "month":
+                    return item[data_type]["delta_files"]["LastMonth"]["xml"]["url"]
+                elif delta_type == "week":
+                    return item[data_type]["delta_files"]["LastWeek"]["xml"]["url"]
+                elif delta_type == "day":
+                    return item[data_type]["delta_files"]["LastDay"]["xml"]["url"]
+            else:
+                return item[data_type]["full_file"]["xml"]["url"]
+
+def find_urls_for_target_date(target_date):
+    """Find urls for specified date"""
     page = 1
     while True:
         page_url = f"https://goldencopy.gleif.org/api/v2/golden-copies/publishes?page={page}&per_page=10"
@@ -132,25 +152,56 @@ def get_source_by_date(url, data_date, delta_type=None):
             print(delta.days)
             page = page - max(1, int(delta.days/3))
         else:
-            for item in data:
-                item_date = datetime.strptime(item["publish_date"].split()[0], "%Y-%m-%d")
-                if item_date == target_date:
-                    #print(json.dumps(item, indent=4))
-                    if "/lei" in url:
-                        data_type = "lei2"
-                    elif "/rr" in url:
-                        data_type = "rr"
-                    elif "/repex" in url:
-                        data_type = "repex"
-                    if delta_type:
-                        if delta_type == "month":
-                            return item[data_type]["delta_files"]["LastMonth"]["xml"]["url"]
-                        elif delta_type == "week":
-                            return item[data_type]["delta_files"]["LastWeek"]["xml"]["url"]
-                        elif delta_type == "day":
-                            return item[data_type]["delta_files"]["LastDay"]["xml"]["url"]
-                    else:
-                        return item[data_type]["full_file"]["xml"]["url"]
+            return data, page
+
+def get_source_by_date(url, data_date, delta_type=None):
+    """Get source data url for specified date"""
+    target_date = datetime.strptime(data_date.split()[0], "%Y-%m-%d")
+    if len(data_date.split()) > 1 and ":" in data_date.split()[1]:
+        target_time = data_date.split()[1]
+    else:
+        target_time = "00:00:00"
+    if delta_type == "month":
+        target_date = target_date + timedelta(days=31)
+    elif delta_type == "week":
+        target_date = target_date + timedelta(days=7)
+    elif delta_type == "day":
+        target_date = target_date + timedelta(days=1)
+    data, page = find_urls_for_target_date(target_date)
+    target_url = get_url_for_target_date(url, data, target_date, target_time, delta_type=delta_type)
+    return target_url
+
+def stream_delta_file(item, target_date, target_time, data_type):
+    """Yield delta file"""
+    item_date = datetime.strptime(item["publish_date"].split()[0], "%Y-%m-%d")
+    item_time = item["publish_date"].split()[1]
+    if item_date > target_date or (item_date == target_date and
+       int(item_time.split(":")[0]) > int(target_time.split(":")[0])):
+        yield item[data_type]["delta_files"]["IntraDay"]["xml"]["url"]
+
+def stream_delta_files(url, data, target_date, target_time, page):
+    """Yield delta files"""
+    data_type = get_data_type(url)
+    for item in data:
+        yield from stream_delta_file(item, target_date, target_time, data_type)
+    page = page - 1
+    while page > 0:
+        page_url = f"https://goldencopy.gleif.org/api/v2/golden-copies/publishes?page={page}&per_page=10"
+        response = download(page_url)
+        data = source_metadata(response)
+        for item in data:
+            yield from stream_delta_file(item, target_date, target_time, data_type)
+        page = page - 1
+
+def get_source_from_date(url, data_date, delta_type=None):
+    """Get source data url for specified date"""
+    target_date = datetime.strptime(data_date.split()[0], "%Y-%m-%d")
+    if len(data_date.split()) > 1 and ":" in data_date.split()[1]:
+        target_time = data_date.split()[1]
+    else:
+        target_time = "00:00:00"
+    data, page = data, page = find_urls_for_target_date(target_date)
+    yield from stream_delta_files(url, data, target_date, target_time, page)
 
 def gleif_download_link(url):
     """Returns callable to download data"""
@@ -167,7 +218,10 @@ class GLEIFData:
         if last_update:
             print("Updating ...")
             if delta_type:
-                yield get_source_by_date(url, data_date, delta_type=delta_type)
+                if delta_type == "stream":
+                    yield from get_source_from_date(self.url, self.data_date, delta_type=delta_type)
+                else:
+                    yield get_source_by_date(self.url, self.data_date, delta_type=delta_type)
             else:
                 yield from get_sources(self.url, last_update)
         else:
@@ -176,8 +230,8 @@ class GLEIFData:
             else:
                 yield gleif_download_link(self.url)
 
-# Identify type of GLEIF data
 def identify_gleif(item):
+    """Identify type of GLEIF data"""
     if 'Entity' in item:
         return 'lei'
     elif 'Relationship' in item:

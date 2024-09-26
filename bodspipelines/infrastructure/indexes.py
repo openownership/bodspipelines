@@ -140,6 +140,11 @@ exceptions_properties = {'latest_id': {'type': 'text'},
                          'reference': {'type': 'text'},
                          'entity_type': {'type': 'text'}}
 
+# Properties for logging pipeline runs
+pipeline_run_properties = {'stage_name': {'type': 'text'},
+                           'start_timestamp': {"type": "text"},
+                           'end_timestamp': {"type": "text"}}
+
 def match_entity(item):
     return {"match": {"statementID": item["statementID"]}}
 
@@ -161,6 +166,8 @@ def match_updates(item):
 def match_exceptions(item):
     return {"match": {"latest_id": item["latest_id"]}}
 
+def match_run(item):
+    return {"match": {"end_timestamp": item["end_timestamp"]}}
 
 def id_entity(item):
     return item["statementID"]
@@ -183,6 +190,9 @@ def id_updates(item):
 def id_exceptions(item):
     return item["latest_id"]
 
+def id_run(item):
+    return item["end_timestamp"]
+
 # Elasticsearch indexes for BODS data
 bods_index_properties = {"entity": {"properties": entity_statement_properties, "match": match_entity, "id": id_entity},
                          "person": {"properties": person_statement_properties, "match": match_person, "id": id_person},
@@ -190,4 +200,5 @@ bods_index_properties = {"entity": {"properties": entity_statement_properties, "
                          "latest": {"properties": latest_properties, "match": match_latest, "id": id_latest},
                          "references": {"properties": references_properties, "match": match_references, "id": id_references},
                          "updates": {"properties": updates_properties, "match": match_updates, "id": id_updates},
-                         "exceptions": {"properties": exceptions_properties, "match": match_exceptions, "id": id_exceptions}}
+                         "exceptions": {"properties": exceptions_properties, "match": match_exceptions, "id": id_exceptions},
+                         "runs": {"properties": pipeline_run_properties, "match": match_run, "id": id_run}}

@@ -73,11 +73,24 @@ def download_delayed(url, func):
         return out
     return partial(download, url, func)
 
-# Identify type of BODS data
 def identify_bods(item):
+    """Identify type of BODS data"""
     if item['statementType'] == 'entityStatement':
         return 'entity'
     elif item['statementType'] == 'personStatement':
         return 'person'
     elif item['statementType'] == 'ownershipOrControlStatement':
         return 'ownership'
+
+async def load_last_run(storage, name=None):
+    """Load data about last pipeline run"""
+    runs = []
+    async for run in storage.stream_items("runs"):
+        runs.append(run)
+    if name:
+        runs = [run for run in runs if run['stage_name'] == name]
+    return sorted(runs, key=lambda x: float(x["end_timestamp"]))[-1]
+
+async def save_run(storage, data):
+    """Save data about last pipeline run"""
+    await storage.add_item(data, "runs")
