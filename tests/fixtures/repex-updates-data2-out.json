@@ -1,0 +1,653 @@
+[
+  {
+    "statementID": "854a1c24-5b4e-1587-9dea-222bc503163b",
+    "statementType": "personStatement",
+    "statementDate": "2023-11-06",
+    "annotations": [
+      {
+        "motivation": "commenting",
+        "description": "This statement was created due to a NO_KNOWN_PERSON GLEIF Reporting Exception for 0292001398F7K0YJI588",
+        "statementPointerTarget": "/",
+        "creationDate": "2024-02-15",
+        "createdBy": {
+          "name": "Open Ownership",
+          "uri": "https://www.openownership.org"
+        }
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2024-02-15",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister"
+      ],
+      "description": "GLEIF"
+    },
+    "personType": "unknownPerson",
+    "unspecifiedPersonDetails": {
+      "reason": "interested-party-exempt-from-disclosure",
+      "description": "From LEI ExemptionReason `NO_KNOWN_PERSON`. There is no known person(s) controlling the entity."
+    }
+  },
+  {
+    "statementID": "c33246ac-e412-9e13-6f17-410c94ca303e",
+    "statementType": "ownershipOrControlStatement",
+    "statementDate": "2023-11-06",
+    "subject": {
+      "describedByEntityStatement": "24d30d0b-3f58-7118-ec6a-0772ddb7dfa3"
+    },
+    "interestedParty": {
+      "describedByPersonStatement": "854a1c24-5b4e-1587-9dea-222bc503163b"
+    },
+    "interests": [
+      {
+        "type": "other-influence-or-control",
+        "interestLevel": "direct",
+        "beneficialOwnershipOrControl": false,
+        "details": "A controlling interest."
+      }
+    ],
+    "annotations": [
+      {
+        "motivation": "commenting",
+        "description": "The nature of this interest is unknown",
+        "statementPointerTarget": "/interests/0/type",
+        "creationDate": "2024-02-15",
+        "createdBy": {
+          "name": "Open Ownership",
+          "uri": "https://www.openownership.org"
+        }
+      },
+      {
+        "motivation": "commenting",
+        "description": "This statement was created due to a NO_KNOWN_PERSON GLEIF Reporting Exception for 0292001398F7K0YJI588",
+        "statementPointerTarget": "/",
+        "creationDate": "2024-02-15",
+        "createdBy": {
+          "name": "Open Ownership",
+          "uri": "https://www.openownership.org"
+        }
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2024-02-15",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister"
+      ],
+      "description": "GLEIF"
+    }
+  },
+  {
+    "statementID": "b964a2b7-9a2b-9d5e-4f1d-7802fb8bba82",
+    "statementType": "entityStatement",
+    "statementDate": "2023-11-06",
+    "annotations": [
+      {
+        "motivation": "commenting",
+        "description": "This statement was created due to a NON_CONSOLIDATING GLEIF Reporting Exception for 004L5FPTUREIWK9T2N63",
+        "statementPointerTarget": "/",
+        "creationDate": "2024-02-15",
+        "createdBy": {
+          "name": "Open Ownership",
+          "uri": "https://www.openownership.org"
+        }
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2024-02-15",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister"
+      ],
+      "description": "GLEIF"
+    },
+    "entityType": "unknownEntity",
+    "unspecifiedEntityDetails": {
+      "reason": "interested-party-exempt-from-disclosure",
+      "description": "From LEI ExemptionReason `NON_CONSOLIDATING`. The legal entity or entities are not obliged to provide consolidated accounts in relation to the entity they control."
+    }
+  },
+  {
+    "statementID": "0fd27404-0f10-f9e7-1cb1-46c7d6e1cb4e",
+    "statementType": "ownershipOrControlStatement",
+    "statementDate": "2023-11-06",
+    "subject": {
+      "describedByEntityStatement": "a12cd374-be9e-e6f3-eb97-2e9b143a049d"
+    },
+    "interestedParty": {
+      "describedByEntityStatement": "b964a2b7-9a2b-9d5e-4f1d-7802fb8bba82"
+    },
+    "interests": [
+      {
+        "type": "other-influence-or-control",
+        "interestLevel": "direct",
+        "beneficialOwnershipOrControl": false,
+        "details": "A controlling interest."
+      }
+    ],
+    "annotations": [
+      {
+        "motivation": "commenting",
+        "description": "The nature of this interest is unknown",
+        "statementPointerTarget": "/interests/0/type",
+        "creationDate": "2024-02-15",
+        "createdBy": {
+          "name": "Open Ownership",
+          "uri": "https://www.openownership.org"
+        }
+      },
+      {
+        "motivation": "commenting",
+        "description": "This statement was created due to a NON_CONSOLIDATING GLEIF Reporting Exception for 004L5FPTUREIWK9T2N63",
+        "statementPointerTarget": "/",
+        "creationDate": "2024-02-15",
+        "createdBy": {
+          "name": "Open Ownership",
+          "uri": "https://www.openownership.org"
+        }
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2024-02-15",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister"
+      ],
+      "description": "GLEIF"
+    }
+  },
+  {
+    "statementID": "faaa96d7-b2bb-73e6-5d77-a0b623f9c2c5",
+    "statementType": "entityStatement",
+    "statementDate": "2023-11-06",
+    "annotations": [
+      {
+        "motivation": "commenting",
+        "description": "This statement was created due to a NO_LEI GLEIF Reporting Exception for 020BQJXAXCZNLKIN7326",
+        "statementPointerTarget": "/",
+        "creationDate": "2024-02-15",
+        "createdBy": {
+          "name": "Open Ownership",
+          "uri": "https://www.openownership.org"
+        }
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2024-02-15",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister"
+      ],
+      "description": "GLEIF"
+    },
+    "entityType": "unknownEntity",
+    "unspecifiedEntityDetails": {
+      "reason": "interested-party-exempt-from-disclosure",
+      "description": "From LEI ExemptionReason `NO_LEI`. This parent legal entity does not consent to obtain an LEI or to authorize its “child entity” to obtain an LEI on its behalf."
+    }
+  },
+  {
+    "statementID": "8638ee52-50f6-b3d9-bb81-a7e5f5b9c070",
+    "statementType": "ownershipOrControlStatement",
+    "statementDate": "2023-11-06",
+    "subject": {
+      "describedByEntityStatement": "30332285-0d9a-7256-449c-d917de1685c2"
+    },
+    "interestedParty": {
+      "describedByEntityStatement": "faaa96d7-b2bb-73e6-5d77-a0b623f9c2c5"
+    },
+    "interests": [
+      {
+        "type": "other-influence-or-control",
+        "interestLevel": "direct",
+        "beneficialOwnershipOrControl": false,
+        "details": "A controlling interest."
+      }
+    ],
+    "annotations": [
+      {
+        "motivation": "commenting",
+        "description": "The nature of this interest is unknown",
+        "statementPointerTarget": "/interests/0/type",
+        "creationDate": "2024-02-15",
+        "createdBy": {
+          "name": "Open Ownership",
+          "uri": "https://www.openownership.org"
+        }
+      },
+      {
+        "motivation": "commenting",
+        "description": "This statement was created due to a NO_LEI GLEIF Reporting Exception for 020BQJXAXCZNLKIN7326",
+        "statementPointerTarget": "/",
+        "creationDate": "2024-02-15",
+        "createdBy": {
+          "name": "Open Ownership",
+          "uri": "https://www.openownership.org"
+        }
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2024-02-15",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister"
+      ],
+      "description": "GLEIF"
+    }
+  },
+  {
+    "statementID": "c635057b-a7a5-1bf7-e323-0b8aef4e3347",
+    "statementType": "personStatement",
+    "statementDate": "2023-11-06",
+    "annotations": [
+      {
+        "motivation": "commenting",
+        "description": "This statement was created due to a NATURAL_PERSONS GLEIF Reporting Exception for 0292001018B2N4DBI146",
+        "statementPointerTarget": "/",
+        "creationDate": "2024-02-15",
+        "createdBy": {
+          "name": "Open Ownership",
+          "uri": "https://www.openownership.org"
+        }
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2024-02-15",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister"
+      ],
+      "description": "GLEIF"
+    },
+    "personType": "unknownPerson",
+    "unspecifiedPersonDetails": {
+      "reason": "interested-party-exempt-from-disclosure",
+      "description": "From LEI ExemptionReason `NATURAL_PERSONS`. An unknown natural person or persons controls an entity."
+    }
+  },
+  {
+    "statementID": "25effa14-462b-7559-361c-1e62bb33fe5d",
+    "statementType": "ownershipOrControlStatement",
+    "statementDate": "2023-11-06",
+    "subject": {
+      "describedByEntityStatement": "187cceb8-30de-1aed-0723-d006c6f47260"
+    },
+    "interestedParty": {
+      "describedByPersonStatement": "c635057b-a7a5-1bf7-e323-0b8aef4e3347"
+    },
+    "interests": [
+      {
+        "type": "other-influence-or-control",
+        "interestLevel": "direct",
+        "beneficialOwnershipOrControl": false,
+        "details": "A controlling interest."
+      }
+    ],
+    "annotations": [
+      {
+        "motivation": "commenting",
+        "description": "The nature of this interest is unknown",
+        "statementPointerTarget": "/interests/0/type",
+        "creationDate": "2024-02-15",
+        "createdBy": {
+          "name": "Open Ownership",
+          "uri": "https://www.openownership.org"
+        }
+      },
+      {
+        "motivation": "commenting",
+        "description": "This statement was created due to a NATURAL_PERSONS GLEIF Reporting Exception for 0292001018B2N4DBI146",
+        "statementPointerTarget": "/",
+        "creationDate": "2024-02-15",
+        "createdBy": {
+          "name": "Open Ownership",
+          "uri": "https://www.openownership.org"
+        }
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2024-02-15",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister"
+      ],
+      "description": "GLEIF"
+    }
+  },
+  {
+    "statementID": "894e8dc1-432c-d922-6517-e84923ee7b50",
+    "statementType": "entityStatement",
+    "statementDate": "2023-11-06",
+    "annotations": [
+      {
+        "motivation": "commenting",
+        "description": "This statement was created due to a NON_CONSOLIDATING GLEIF Reporting Exception for ZZZWS8Y6XVKM0Q9RJQ79",
+        "statementPointerTarget": "/",
+        "creationDate": "2024-02-15",
+        "createdBy": {
+          "name": "Open Ownership",
+          "uri": "https://www.openownership.org"
+        }
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2024-02-15",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister"
+      ],
+      "description": "GLEIF"
+    },
+    "entityType": "unknownEntity",
+    "unspecifiedEntityDetails": {
+      "reason": "interested-party-exempt-from-disclosure",
+      "description": "From LEI ExemptionReason `NON_CONSOLIDATING`. The legal entity or entities are not obliged to provide consolidated accounts in relation to the entity they control."
+    }
+  },
+  {
+    "statementID": "ae1f191a-8a87-e58c-7a60-4fa7d727cbbb",
+    "statementType": "ownershipOrControlStatement",
+    "statementDate": "2023-11-06",
+    "subject": {
+      "describedByEntityStatement": "6844aee7-92e6-9b58-111f-c0685b52d81e"
+    },
+    "interestedParty": {
+      "describedByEntityStatement": "894e8dc1-432c-d922-6517-e84923ee7b50"
+    },
+    "interests": [
+      {
+        "type": "other-influence-or-control",
+        "interestLevel": "indirect",
+        "beneficialOwnershipOrControl": false,
+        "details": "A controlling interest."
+      }
+    ],
+    "annotations": [
+      {
+        "motivation": "commenting",
+        "description": "The nature of this interest is unknown",
+        "statementPointerTarget": "/interests/0/type",
+        "creationDate": "2024-02-15",
+        "createdBy": {
+          "name": "Open Ownership",
+          "uri": "https://www.openownership.org"
+        }
+      },
+      {
+        "motivation": "commenting",
+        "description": "This statement was created due to a NON_CONSOLIDATING GLEIF Reporting Exception for ZZZWS8Y6XVKM0Q9RJQ79",
+        "statementPointerTarget": "/",
+        "creationDate": "2024-02-15",
+        "createdBy": {
+          "name": "Open Ownership",
+          "uri": "https://www.openownership.org"
+        }
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2024-02-15",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister"
+      ],
+      "description": "GLEIF"
+    }
+  },
+  {
+    "statementID": "4a8fc4a0-9811-33b9-2a25-78b8b9df9708",
+    "statementType": "entityStatement",
+    "statementDate": "2023-11-06",
+    "annotations": [
+      {
+        "motivation": "commenting",
+        "description": "This statement was created due to a NON_CONSOLIDATING GLEIF Reporting Exception for 2549007VY3IWUVGW7A82",
+        "statementPointerTarget": "/",
+        "creationDate": "2024-02-15",
+        "createdBy": {
+          "name": "Open Ownership",
+          "uri": "https://www.openownership.org"
+        }
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2024-02-15",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister"
+      ],
+      "description": "GLEIF"
+    },
+    "entityType": "unknownEntity",
+    "unspecifiedEntityDetails": {
+      "reason": "interested-party-exempt-from-disclosure",
+      "description": "From LEI ExemptionReason `NON_CONSOLIDATING`. The legal entity or entities are not obliged to provide consolidated accounts in relation to the entity they control."
+    }
+  },
+  {
+    "statementID": "db0e963d-8d2d-3afb-e836-28b76dab3c6e",
+    "statementType": "ownershipOrControlStatement",
+    "statementDate": "2023-11-06",
+    "subject": {
+      "describedByEntityStatement": "282cd39f-4c8d-3ca4-dd39-85919c649f6a"
+    },
+    "interestedParty": {
+      "describedByEntityStatement": "4a8fc4a0-9811-33b9-2a25-78b8b9df9708"
+    },
+    "interests": [
+      {
+        "type": "other-influence-or-control",
+        "interestLevel": "direct",
+        "beneficialOwnershipOrControl": false,
+        "details": "A controlling interest."
+      }
+    ],
+    "annotations": [
+      {
+        "motivation": "commenting",
+        "description": "The nature of this interest is unknown",
+        "statementPointerTarget": "/interests/0/type",
+        "creationDate": "2024-02-15",
+        "createdBy": {
+          "name": "Open Ownership",
+          "uri": "https://www.openownership.org"
+        }
+      },
+      {
+        "motivation": "commenting",
+        "description": "This statement was created due to a NON_CONSOLIDATING GLEIF Reporting Exception for 2549007VY3IWUVGW7A82",
+        "statementPointerTarget": "/",
+        "creationDate": "2024-02-15",
+        "createdBy": {
+          "name": "Open Ownership",
+          "uri": "https://www.openownership.org"
+        }
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2024-02-15",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister"
+      ],
+      "description": "GLEIF"
+    }
+  },
+  {
+    "statementID": "9f8997ec-809e-2ed1-b56b-93269498eecf",
+    "statementType": "personStatement",
+    "statementDate": "2023-11-06",
+    "annotations": [
+      {
+        "motivation": "commenting",
+        "description": "This statement was created due to a NATURAL_PERSONS GLEIF Reporting Exception for 159515PKYKQYJLT0KF16",
+        "statementPointerTarget": "/",
+        "creationDate": "2024-02-15",
+        "createdBy": {
+          "name": "Open Ownership",
+          "uri": "https://www.openownership.org"
+        }
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2024-02-15",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister"
+      ],
+      "description": "GLEIF"
+    },
+    "personType": "unknownPerson",
+    "unspecifiedPersonDetails": {
+      "reason": "interested-party-exempt-from-disclosure",
+      "description": "From LEI ExemptionReason `NATURAL_PERSONS`. An unknown natural person or persons controls an entity. ExemptionReference provided: Datenschutz"
+    }
+  },
+  {
+    "statementID": "3fadbdb5-dd32-800e-c2d1-5dc1cd28754f",
+    "statementType": "ownershipOrControlStatement",
+    "statementDate": "2023-11-06",
+    "subject": {
+      "describedByEntityStatement": "6d2a451e-8449-37c7-1cb2-44a1633fd8d8"
+    },
+    "interestedParty": {
+      "describedByPersonStatement": "9f8997ec-809e-2ed1-b56b-93269498eecf"
+    },
+    "interests": [
+      {
+        "type": "other-influence-or-control",
+        "interestLevel": "direct",
+        "beneficialOwnershipOrControl": false,
+        "details": "A controlling interest."
+      }
+    ],
+    "annotations": [
+      {
+        "motivation": "commenting",
+        "description": "The nature of this interest is unknown",
+        "statementPointerTarget": "/interests/0/type",
+        "creationDate": "2024-02-15",
+        "createdBy": {
+          "name": "Open Ownership",
+          "uri": "https://www.openownership.org"
+        }
+      },
+      {
+        "motivation": "commenting",
+        "description": "This statement was created due to a NATURAL_PERSONS GLEIF Reporting Exception for 159515PKYKQYJLT0KF16",
+        "statementPointerTarget": "/",
+        "creationDate": "2024-02-15",
+        "createdBy": {
+          "name": "Open Ownership",
+          "uri": "https://www.openownership.org"
+        }
+      }
+    ],
+    "publicationDetails": {
+      "publicationDate": "2024-02-15",
+      "bodsVersion": "0.2",
+      "license": "https://register.openownership.org/terms-and-conditions",
+      "publisher": {
+        "name": "OpenOwnership Register",
+        "url": "https://register.openownership.org"
+      }
+    },
+    "source": {
+      "type": [
+        "officialRegister"
+      ],
+      "description": "GLEIF"
+    }
+  }
+]

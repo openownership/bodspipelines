@@ -1,0 +1,623 @@
+[
+  {
+    "LEI": "00TR8NKAEL48RGTZEW89",
+    "Entity": {
+      "LegalName": "ESG DOMESTIC OPPORTUNITY OFFSHORE FUND LTD.",
+      "LegalAddress": {
+        "FirstAddressLine": "89 Nexus Way",
+        "City": "Camana Bay",
+        "Country": "KY",
+        "PostalCode": "KY1-9009"
+      },
+      "HeadquartersAddress": {
+        "FirstAddressLine": "C/O Citco Fund Services (Curacao) B.V.",
+        "AdditionalAddressLine": "Kaya Flamboyan 9",
+        "City": "Willemstad",
+        "Country": "CW"
+      },
+      "RegistrationAuthority": {
+        "RegistrationAuthorityID": "RA000087",
+        "RegistrationAuthorityEntityID": "574206"
+      },
+      "LegalJurisdiction": "KY",
+      "EntityCategory": "GENERAL",
+      "LegalForm": {
+        "EntityLegalFormCode": "9999",
+        "OtherLegalForm": "CAYMAN ISLANDS ORDINARY NON-RESIDENT COMPANY"
+      },
+      "EntityStatus": "ACTIVE"
+    },
+    "Registration": {
+      "InitialRegistrationDate": "2012-08-24T20:53:00.000+02:00",
+      "LastUpdateDate": "2023-08-03T08:48:03.080+02:00",
+      "RegistrationStatus": "ISSUED",
+      "NextRenewalDate": "2019-02-14T01:32:00.000+01:00",
+      "ManagingLOU": "39120001KULK7200U106",
+      "ValidationSources": "FULLY_CORROBORATED",
+      "ValidationAuthority": {
+        "ValidationAuthorityID": "RA000087",
+        "ValidationAuthorityEntityID": "574206"
+      }
+    }
+  },
+  {
+    "LEI": "097900BHF50000076475",
+    "Entity": {
+      "LegalName": "VÚB Generali dôchodková správcovská spoločnosť, a.s.",
+      "TransliteratedOtherEntityNames": [
+        {
+          "type": "AUTO_ASCII_TRANSLITERATED_LEGAL_NAME",
+          "TransliteratedOtherEntityName": "VUB GENERALI DOCHODKOVA SPRAVCOVSKA SPOLOCNOST, AS"
+        }
+      ],
+      "LegalAddress": {
+        "FirstAddressLine": "Mlynské nivy 1",
+        "City": "Bratislava",
+        "Country": "SK",
+        "PostalCode": "820 04"
+      },
+      "HeadquartersAddress": {
+        "FirstAddressLine": "Mlynské nivy 1",
+        "City": "Bratislava",
+        "Country": "SK",
+        "PostalCode": "820 04"
+      },
+      "RegistrationAuthority": {
+        "RegistrationAuthorityID": "RA000526",
+        "RegistrationAuthorityEntityID": "35903058"
+      },
+      "LegalJurisdiction": "SK",
+      "EntityCategory": "GENERAL",
+      "LegalForm": {
+        "EntityLegalFormCode": "2EEG"
+      },
+      "EntityStatus": "ACTIVE",
+      "EntityCreationDate": "2004-10-09T08:00:00+02:00"
+    },
+    "Registration": {
+      "InitialRegistrationDate": "2017-05-30T00:00:00+02:00",
+      "LastUpdateDate": "2023-05-25T08:30:56.059+02:00",
+      "RegistrationStatus": "ISSUED",
+      "NextRenewalDate": "2024-05-30T00:00:00+02:00",
+      "ManagingLOU": "097900BEFH0000000217",
+      "ValidationSources": "FULLY_CORROBORATED",
+      "ValidationAuthority": {
+        "ValidationAuthorityID": "RA000526",
+        "ValidationAuthorityEntityID": "35903058"
+      }
+    }
+  },
+  {
+    "LEI": "097900BEJX0000002337",
+    "Entity": {
+      "LegalName": "SMART, zelený inovatívny negarantovaný dôchodkový fond VÚB Generali dôchodková správcovská spoločnosť, a.s.",
+      "OtherEntityNames": [
+        {
+          "type": "PREVIOUS_LEGAL_NAME",
+          "OtherEntityName": "MIX, zmiešaný negarantovaný dôchodkový fond VÚB Generali d.s.s., a.s."
+        }
+      ],
+      "TransliteratedOtherEntityNames": [
+        {
+          "type": "PREFERRED_ASCII_TRANSLITERATED_LEGAL_NAME",
+          "TransliteratedOtherEntityName": "SMART, zeleny inovativny negarantovany dochodkovy fond VUB Generali dochodkova spravcovska spolocnost, a.s."
+        }
+      ],
+      "LegalAddress": {
+        "FirstAddressLine": "Mlynské nivy 1",
+        "City": "Bratislava",
+        "Country": "SK",
+        "PostalCode": "820 04"
+      },
+      "HeadquartersAddress": {
+        "FirstAddressLine": "c/o VÚB Generali dôchodková správcovská spoločnosť, a.s.",
+        "AdditionalAddressLine": "Mlynské nivy 1",
+        "City": "Bratislava",
+        "Country": "SK",
+        "PostalCode": "820 04"
+      },
+      "RegistrationAuthority": {
+        "RegistrationAuthorityID": "RA000706",
+        "RegistrationAuthorityEntityID": "SK35903058VUB04"
+      },
+      "LegalJurisdiction": "SK",
+      "EntityCategory": "FUND",
+      "LegalForm": {
+        "EntityLegalFormCode": "7EG2"
+      },
+      "EntityStatus": "ACTIVE",
+      "EntityCreationDate": "2005-03-23T08:00:00+01:00"
+    },
+    "Registration": {
+      "InitialRegistrationDate": "2014-09-23T00:00:00+02:00",
+      "LastUpdateDate": "2023-08-17T08:31:04.159+02:00",
+      "RegistrationStatus": "ISSUED",
+      "NextRenewalDate": "2024-09-26T00:00:00+02:00",
+      "ManagingLOU": "097900BEFH0000000217",
+      "ValidationSources": "FULLY_CORROBORATED",
+      "ValidationAuthority": {
+        "ValidationAuthorityID": "RA000706",
+        "ValidationAuthorityEntityID": "SK35903058VUB04"
+      }
+    }
+  },
+  {
+    "LEI": "097900BEJX0000002143",
+    "Entity": {
+      "LegalName": "INDEX, indexový negarantovaný dôchodkový fond VUB Generali d.s.s., a.s.",
+      "TransliteratedOtherEntityNames": [
+        {
+          "type": "AUTO_ASCII_TRANSLITERATED_LEGAL_NAME",
+          "TransliteratedOtherEntityName": "INDEX, INDEXOVY NEGARANTOVANY DOCHODKOVY FOND VUB GENERALI DSS, AS"
+        }
+      ],
+      "LegalAddress": {
+        "FirstAddressLine": "Mlynské nivy 1",
+        "City": "Bratislava",
+        "Country": "SK",
+        "PostalCode": "820 04"
+      },
+      "HeadquartersAddress": {
+        "FirstAddressLine": "c/o VÚB Generali dôchodková správcovská spoločnosť, a.s.",
+        "AdditionalAddressLine": "Mlynské nivy 1",
+        "City": "Bratislava",
+        "Country": "SK",
+        "PostalCode": "820 04"
+      },
+      "RegistrationAuthority": {
+        "RegistrationAuthorityID": "RA000706",
+        "RegistrationAuthorityEntityID": "SK35903058VUB01"
+      },
+      "LegalJurisdiction": "SK",
+      "EntityCategory": "FUND",
+      "LegalForm": {
+        "EntityLegalFormCode": "7EG2"
+      },
+      "EntityStatus": "ACTIVE",
+      "EntityCreationDate": "2012-04-02T08:00:00+02:00"
+    },
+    "Registration": {
+      "InitialRegistrationDate": "2014-09-23T00:00:00+02:00",
+      "LastUpdateDate": "2023-08-17T08:31:02.482+02:00",
+      "RegistrationStatus": "ISSUED",
+      "NextRenewalDate": "2024-09-26T00:00:00+02:00",
+      "ManagingLOU": "097900BEFH0000000217",
+      "ValidationSources": "FULLY_CORROBORATED",
+      "ValidationAuthority": {
+        "ValidationAuthorityID": "RA000706",
+        "ValidationAuthorityEntityID": "SK35903058VUB01"
+      }
+    }
+  },
+  {
+    "LEI": "097900BEJX0000002240",
+    "Entity": {
+      "LegalName": "KLASIK, dlhopisový garantovaný dôchodkový fond VÚB Generali d.s.s., a.s.",
+      "TransliteratedOtherEntityNames": [
+        {
+          "type": "AUTO_ASCII_TRANSLITERATED_LEGAL_NAME",
+          "TransliteratedOtherEntityName": "KLASIK, DLHOPISOVY GARANTOVANY DOCHODKOVY FOND VUB GENERALI DSS, AS"
+        }
+      ],
+      "LegalAddress": {
+        "FirstAddressLine": "Mlynské nivy 1",
+        "City": "Bratislava",
+        "Country": "SK",
+        "PostalCode": "820 04"
+      },
+      "HeadquartersAddress": {
+        "FirstAddressLine": "c/o VÚB Generali dôchodková správcovská spoločnosť, a.s.",
+        "AdditionalAddressLine": "Mlynské nivy 1",
+        "City": "Bratislava",
+        "Country": "SK",
+        "PostalCode": "820 04"
+      },
+      "RegistrationAuthority": {
+        "RegistrationAuthorityID": "RA000706",
+        "RegistrationAuthorityEntityID": "SK35903058VUB02"
+      },
+      "LegalJurisdiction": "SK",
+      "EntityCategory": "FUND",
+      "LegalForm": {
+        "EntityLegalFormCode": "7EG2"
+      },
+      "EntityStatus": "ACTIVE",
+      "EntityCreationDate": "2005-03-22T08:00:00+01:00"
+    },
+    "Registration": {
+      "InitialRegistrationDate": "2014-09-23T00:00:00+02:00",
+      "LastUpdateDate": "2023-08-17T08:31:03.502+02:00",
+      "RegistrationStatus": "ISSUED",
+      "NextRenewalDate": "2024-09-26T00:00:00+02:00",
+      "ManagingLOU": "097900BEFH0000000217",
+      "ValidationSources": "FULLY_CORROBORATED",
+      "ValidationAuthority": {
+        "ValidationAuthorityID": "RA000706",
+        "ValidationAuthorityEntityID": "SK35903058VUB02"
+      }
+    }
+  },
+  {
+    "LEI": "097900BEJX0000002434",
+    "Entity": {
+      "LegalName": "PROFIT, akciový negarantovaný dôchodkový fond VÚB Generali d.s.s., a.s.",
+      "TransliteratedOtherEntityNames": [
+        {
+          "type": "AUTO_ASCII_TRANSLITERATED_LEGAL_NAME",
+          "TransliteratedOtherEntityName": "PROFIT, AKCIOVY NEGARANTOVANY DOCHODKOVY FOND VUB GENERALI DSS, AS"
+        }
+      ],
+      "LegalAddress": {
+        "FirstAddressLine": "Mlynské nivy 1",
+        "City": "Bratislava",
+        "Country": "SK",
+        "PostalCode": "820 04"
+      },
+      "HeadquartersAddress": {
+        "FirstAddressLine": "c/o VÚB Generali dôchodková správcovská spoločnosť, a.s.",
+        "AdditionalAddressLine": "Mlynské nivy 1",
+        "City": "Bratislava",
+        "Country": "SK",
+        "PostalCode": "820 04"
+      },
+      "RegistrationAuthority": {
+        "RegistrationAuthorityID": "RA000706",
+        "RegistrationAuthorityEntityID": "SK35903058VUB03"
+      },
+      "LegalJurisdiction": "SK",
+      "EntityCategory": "FUND",
+      "LegalForm": {
+        "EntityLegalFormCode": "7EG2"
+      },
+      "EntityStatus": "ACTIVE",
+      "EntityCreationDate": "2005-03-22T08:00:00+01:00"
+    },
+    "Registration": {
+      "InitialRegistrationDate": "2014-09-23T00:00:00+02:00",
+      "LastUpdateDate": "2023-08-17T08:31:04.659+02:00",
+      "RegistrationStatus": "ISSUED",
+      "NextRenewalDate": "2024-09-26T00:00:00+02:00",
+      "ManagingLOU": "097900BEFH0000000217",
+      "ValidationSources": "FULLY_CORROBORATED",
+      "ValidationAuthority": {
+        "ValidationAuthorityID": "RA000706",
+        "ValidationAuthorityEntityID": "SK35903058VUB03"
+      }
+    }
+  },
+  {
+    "LEI": "549300JB1P61FUTPEZ75",
+    "Entity": {
+      "LegalName": "Všeobecná úverová banka, a.s.",
+      "TransliteratedOtherEntityNames": [
+        {
+          "type": "AUTO_ASCII_TRANSLITERATED_LEGAL_NAME",
+          "TransliteratedOtherEntityName": "Vseobecna uverova banka, as"
+        }
+      ],
+      "LegalAddress": {
+        "FirstAddressLine": "Mlynské nivy 1",
+        "City": "Bratislava",
+        "Country": "SK",
+        "PostalCode": "829 90"
+      },
+      "HeadquartersAddress": {
+        "FirstAddressLine": "Mlynské nivy 1",
+        "City": "Bratislava",
+        "Country": "SK",
+        "PostalCode": "829 90"
+      },
+      "RegistrationAuthority": {
+        "RegistrationAuthorityID": "RA000526",
+        "RegistrationAuthorityEntityID": "31320155"
+      },
+      "LegalJurisdiction": "SK",
+      "EntityCategory": "GENERAL",
+      "LegalForm": {
+        "EntityLegalFormCode": "2EEG"
+      },
+      "EntityStatus": "ACTIVE",
+      "EntityCreationDate": "1992-04-01T08:00:00+02:00"
+    },
+    "Registration": {
+      "InitialRegistrationDate": "2013-10-02T00:00:00+02:00",
+      "LastUpdateDate": "2023-09-12T08:30:46.285+02:00",
+      "RegistrationStatus": "ISSUED",
+      "NextRenewalDate": "2024-10-03T00:00:00+02:00",
+      "ManagingLOU": "097900BEFH0000000217",
+      "ValidationSources": "FULLY_CORROBORATED",
+      "ValidationAuthority": {
+        "ValidationAuthorityID": "RA000526",
+        "ValidationAuthorityEntityID": "31320155"
+      }
+    }
+  },
+  {
+    "LEI": "097900BJGO0000201513",
+    "Entity": {
+      "LegalName": "Aquila Real Asset Finance III a. s. v likvidácii",
+      "TransliteratedOtherEntityNames": [
+        {
+          "type": "AUTO_ASCII_TRANSLITERATED_LEGAL_NAME",
+          "TransliteratedOtherEntityName": "AQUILA REAL ASSET FINANCE III A S V LIKVIDACII"
+        }
+      ],
+      "LegalAddress": {
+        "FirstAddressLine": "Dúbravská cesta 14",
+        "City": "Bratislava - mestská časť Karlova Ves",
+        "Country": "SK",
+        "PostalCode": "841 04"
+      },
+      "HeadquartersAddress": {
+        "FirstAddressLine": "Dúbravská cesta 14",
+        "City": "Bratislava - mestská časť Karlova Ves",
+        "Country": "SK",
+        "PostalCode": "841 04"
+      },
+      "RegistrationAuthority": {
+        "RegistrationAuthorityID": "RA000526",
+        "RegistrationAuthorityEntityID": "52143058"
+      },
+      "LegalJurisdiction": "SK",
+      "EntityCategory": "GENERAL",
+      "LegalForm": {
+        "EntityLegalFormCode": "2EEG"
+      },
+      "EntityStatus": "ACTIVE",
+      "EntityCreationDate": "2019-02-02T08:00:00+01:00",
+      "LegalEntityEvents": [
+        {
+          "LegalEntityEventType": "LIQUIDATION",
+          "LegalEntityEventEffectiveDate": "2023-04-13T08:00:00+02:00",
+          "LegalEntityEventRecordedDate": "2023-09-27T12:34:16.118+02:00",
+          "ValidationDocuments": "SUPPORTING_DOCUMENTS",
+          "AffectedFields": [
+            "Aquila Real Asset Finance III a. s. v likvidácii"
+          ]
+        }
+      ]
+    },
+    "Registration": {
+      "InitialRegistrationDate": "2019-06-14T00:00:00+02:00",
+      "LastUpdateDate": "2023-09-27T12:34:16.118+02:00",
+      "RegistrationStatus": "LAPSED",
+      "NextRenewalDate": "2023-06-18T00:00:00+02:00",
+      "ManagingLOU": "097900BEFH0000000217",
+      "ValidationSources": "FULLY_CORROBORATED",
+      "ValidationAuthority": {
+        "ValidationAuthorityID": "RA000526",
+        "ValidationAuthorityEntityID": "52143058"
+      }
+    }
+  },
+  {
+    "LEI": "9845002B9874D50A4531",
+    "Entity": {
+      "LegalName": "Corporate Business Solutions Partners S.à r.l.",
+      "LegalAddress": {
+        "FirstAddressLine": "23 Am Scheerleck",
+        "City": "Wecker",
+        "Country": "LU",
+        "PostalCode": "6868"
+      },
+      "HeadquartersAddress": {
+        "FirstAddressLine": "23 Am Scheerleck",
+        "City": "Wecker",
+        "Country": "LU",
+        "PostalCode": "6868"
+      },
+      "RegistrationAuthority": {
+        "RegistrationAuthorityID": "RA000432",
+        "RegistrationAuthorityEntityID": "B191847"
+      },
+      "LegalJurisdiction": "LU",
+      "EntityCategory": "GENERAL",
+      "LegalForm": {
+        "EntityLegalFormCode": "DVXS"
+      },
+      "EntityStatus": "ACTIVE",
+      "EntityCreationDate": "2014-11-17T00:00:00+00:00"
+    },
+    "Registration": {
+      "InitialRegistrationDate": "2020-03-17T08:22:48+00:00",
+      "LastUpdateDate": "2023-01-25T09:13:32+00:00",
+      "RegistrationStatus": "ISSUED",
+      "NextRenewalDate": "2024-03-16T08:36:11+00:00",
+      "ManagingLOU": "529900T8BM49AURSDO55",
+      "ValidationSources": "FULLY_CORROBORATED",
+      "ValidationAuthority": {
+        "ValidationAuthorityID": "RA000432",
+        "ValidationAuthorityEntityID": "B191847"
+      }
+    }
+  },
+  {
+    "LEI": "2138002YAB7Z9KO21397",
+    "Entity": {
+      "LegalName": "MONOOVA GLOBAL PAYMENTS PTY LTD",
+      "OtherEntityNames": [
+        {
+          "type": "PREVIOUS_LEGAL_NAME",
+          "OtherEntityName": "MONOOVA GLOBAL PAYMENTS LIMITED"
+        },
+        {
+          "type": "PREVIOUS_LEGAL_NAME",
+          "OtherEntityName": "MONEYTECH LIMITED"
+        },
+        {
+          "type": "PREVIOUS_LEGAL_NAME",
+          "OtherEntityName": "SQUADRON FINANCIAL SERVICES LIMITED"
+        }
+      ],
+      "LegalAddress": {
+        "FirstAddressLine": "UNIT L7",
+        "AdditionalAddressLine": "80 PACIFIC HIGHWAY",
+        "City": "NORTH SYDNEY",
+        "Region": "AU-NSW",
+        "Country": "AU",
+        "PostalCode": "2060"
+      },
+      "HeadquartersAddress": {
+        "FirstAddressLine": "'L7'",
+        "AdditionalAddressLine": "80 PACIFIC HIGHWAY",
+        "City": "NORTH SYDNEY",
+        "Region": "AU-NSW",
+        "Country": "AU",
+        "PostalCode": "2060"
+      },
+      "RegistrationAuthority": {
+        "RegistrationAuthorityID": "RA000014",
+        "RegistrationAuthorityEntityID": "106 249 852"
+      },
+      "LegalJurisdiction": "AU",
+      "EntityCategory": "GENERAL",
+      "LegalForm": {
+        "EntityLegalFormCode": "TXVC"
+      },
+      "EntityStatus": "ACTIVE",
+      "EntityCreationDate": "2003-09-09T00:00:00+00:00",
+      "LegalEntityEvents": [
+        {
+          "LegalEntityEventType": "CHANGE_LEGAL_FORM",
+          "LegalEntityEventEffectiveDate": "2022-09-16T00:00:00+00:00",
+          "LegalEntityEventRecordedDate": "2023-01-11T09:59:14+00:00",
+          "ValidationDocuments": "SUPPORTING_DOCUMENTS"
+        },
+        {
+          "LegalEntityEventType": "CHANGE_LEGAL_NAME",
+          "LegalEntityEventEffectiveDate": "2022-09-16T00:00:00+00:00",
+          "LegalEntityEventRecordedDate": "2023-01-11T09:59:14+00:00",
+          "ValidationDocuments": "SUPPORTING_DOCUMENTS"
+        }
+      ]
+    },
+    "Registration": {
+      "InitialRegistrationDate": "2019-01-14T00:00:00+00:00",
+      "LastUpdateDate": "2023-01-11T11:21:01+00:00",
+      "RegistrationStatus": "ISSUED",
+      "NextRenewalDate": "2024-01-13T00:00:00+00:00",
+      "ManagingLOU": "529900T8BM49AURSDO55",
+      "ValidationSources": "FULLY_CORROBORATED",
+      "ValidationAuthority": {
+        "ValidationAuthorityID": "RA000014",
+        "ValidationAuthorityEntityID": "106 249 852"
+      }
+    }
+  },
+  {
+    "LEI": "984500501A1B1045PB30",
+    "Entity": {
+      "LegalName": "MONEYTECH GROUP LIMITED",
+      "LegalAddress": {
+        "FirstAddressLine": "'L7'",
+        "AdditionalAddressLine": "80 PACIFIC HIGHWAY",
+        "City": "NORTH SYDNEY",
+        "Region": "AU-NSW",
+        "Country": "AU",
+        "PostalCode": "2060"
+      },
+      "HeadquartersAddress": {
+        "FirstAddressLine": "'L7'",
+        "AdditionalAddressLine": "80 PACIFIC HIGHWAY",
+        "City": "NORTH SYDNEY",
+        "Region": "AU-NSW",
+        "Country": "AU",
+        "PostalCode": "2060"
+      },
+      "RegistrationAuthority": {
+        "RegistrationAuthorityID": "RA000014",
+        "RegistrationAuthorityEntityID": "611 393 554"
+      },
+      "LegalJurisdiction": "AU",
+      "EntityCategory": "GENERAL",
+      "LegalForm": {
+        "EntityLegalFormCode": "R4KK"
+      },
+      "EntityStatus": "ACTIVE",
+      "EntityCreationDate": "2016-03-18T00:00:00+00:00"
+    },
+    "Registration": {
+      "InitialRegistrationDate": "2021-07-27T07:07:14+00:00",
+      "LastUpdateDate": "2022-02-23T15:28:31+00:00",
+      "RegistrationStatus": "LAPSED",
+      "NextRenewalDate": "2022-07-27T07:07:14+00:00",
+      "ManagingLOU": "529900T8BM49AURSDO55",
+      "ValidationSources": "FULLY_CORROBORATED",
+      "ValidationAuthority": {
+        "ValidationAuthorityID": "RA000014",
+        "ValidationAuthorityEntityID": "611 393 554"
+      }
+    }
+  },
+  {
+    "LEI": "98450051BS9C610A8T78",
+    "Entity": {
+      "LegalName": "MONOOVA FX PTY LTD",
+      "OtherEntityNames": [
+        {
+          "type": "PREVIOUS_LEGAL_NAME",
+          "OtherEntityName": "MONEYTECH FX PTY LTD"
+        },
+        {
+          "type": "PREVIOUS_LEGAL_NAME",
+          "OtherEntityName": "360 MARKETS PTY LTD"
+        },
+        {
+          "type": "PREVIOUS_LEGAL_NAME",
+          "OtherEntityName": "360FX PTY LTD"
+        },
+        {
+          "type": "PREVIOUS_LEGAL_NAME",
+          "OtherEntityName": "CAPITAL AND FINANCE FOREX PTY LTD"
+        }
+      ],
+      "LegalAddress": {
+        "FirstAddressLine": "LEVEL 7",
+        "AdditionalAddressLine": "80 PACIFIC HIGHWAY",
+        "City": "NORTH SYDNEY",
+        "Region": "AU-NSW",
+        "Country": "AU",
+        "PostalCode": "2060"
+      },
+      "HeadquartersAddress": {
+        "FirstAddressLine": "LEVEL 7",
+        "AdditionalAddressLine": "80 PACIFIC HIGHWAY",
+        "City": "NORTH SYDNEY",
+        "Region": "AU-NSW",
+        "Country": "AU",
+        "PostalCode": "2060"
+      },
+      "RegistrationAuthority": {
+        "RegistrationAuthorityID": "RA000014",
+        "RegistrationAuthorityEntityID": "151 337 852"
+      },
+      "LegalJurisdiction": "AU",
+      "EntityCategory": "GENERAL",
+      "LegalForm": {
+        "EntityLegalFormCode": "TXVC"
+      },
+      "EntityStatus": "ACTIVE",
+      "EntityCreationDate": "2011-06-07T00:00:00+00:00",
+      "LegalEntityEvents": [
+        {
+          "LegalEntityEventType": "CHANGE_LEGAL_ADDRESS",
+          "LegalEntityEventEffectiveDate": "2022-09-13T00:00:00+00:00",
+          "LegalEntityEventRecordedDate": "2023-03-30T14:18:04+00:00",
+          "ValidationDocuments": "SUPPORTING_DOCUMENTS"
+        }
+      ]
+    },
+    "Registration": {
+      "InitialRegistrationDate": "2019-05-15T12:21:06+00:00",
+      "LastUpdateDate": "2023-03-30T14:18:04+00:00",
+      "RegistrationStatus": "ISSUED",
+      "NextRenewalDate": "2024-05-15T00:00:00+00:00",
+      "ManagingLOU": "529900T8BM49AURSDO55",
+      "ValidationSources": "FULLY_CORROBORATED",
+      "ValidationAuthority": {
+        "ValidationAuthorityID": "RA000014",
+        "ValidationAuthorityEntityID": "151 337 852"
+      }
+    }
+  }
+]

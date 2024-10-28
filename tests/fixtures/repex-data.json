@@ -1,0 +1,62 @@
+[
+  {
+    "LEI": "001GPB6A9XPE8XJICC14",
+    "ExceptionCategory": "DIRECT_ACCOUNTING_CONSOLIDATION_PARENT",
+    "ExceptionReason": "NO_KNOWN_PERSON",
+    "ContentDate": "2023-06-09T09:03:29Z"
+  },
+  {
+    "LEI": "004L5FPTUREIWK9T2N63",
+    "ExceptionCategory": "DIRECT_ACCOUNTING_CONSOLIDATION_PARENT",
+    "ExceptionReason": "NON_CONSOLIDATING",
+    "ContentDate": "2023-06-09T09:03:29Z"
+  },
+  {
+    "LEI": "00EHHQ2ZHDCFXJCPCL46",
+    "ExceptionCategory": "DIRECT_ACCOUNTING_CONSOLIDATION_PARENT",
+    "ExceptionReason": "NON_CONSOLIDATING",
+    "ContentDate": "2023-06-09T09:03:29Z"
+  },
+  {
+    "LEI": "00GBW0Z2GYIER7DHDS71",
+    "ExceptionCategory": "DIRECT_ACCOUNTING_CONSOLIDATION_PARENT",
+    "ExceptionReason": "NON_CONSOLIDATING",
+    "ContentDate": "2023-06-09T09:03:29Z"
+  },
+  {
+    "LEI": "00KLB2PFTM3060S2N216",
+    "ExceptionCategory": "DIRECT_ACCOUNTING_CONSOLIDATION_PARENT",
+    "ExceptionReason": "NO_KNOWN_PERSON",
+    "ContentDate": "2023-06-09T09:03:29Z"
+  },
+  {
+    "LEI": "00QDBXDXLLF3W3JJJO36",
+    "ExceptionCategory": "DIRECT_ACCOUNTING_CONSOLIDATION_PARENT",
+    "ExceptionReason": "NO_KNOWN_PERSON",
+    "ContentDate": "2023-06-09T09:03:29Z"
+  },
+  {
+    "LEI": "00TV1D5YIV5IDUGWBW29",
+    "ExceptionCategory": "DIRECT_ACCOUNTING_CONSOLIDATION_PARENT",
+    "ExceptionReason": "NON_CONSOLIDATING",
+    "ContentDate": "2023-06-09T09:03:29Z"
+  },
+  {
+    "LEI": "00X8DSV26QKJPKUT5B34",
+    "ExceptionCategory": "DIRECT_ACCOUNTING_CONSOLIDATION_PARENT",
+    "ExceptionReason": "NON_CONSOLIDATING",
+    "ContentDate": "2023-06-09T09:03:29Z"
+  },
+  {
+    "LEI": "010G7UHBHEI87EKP0Q97",
+    "ExceptionCategory": "DIRECT_ACCOUNTING_CONSOLIDATION_PARENT",
+    "ExceptionReason": "NON_CONSOLIDATING",
+    "ContentDate": "2023-06-09T09:03:29Z"
+  },
+  {
+    "LEI": "01370W6ZIY66KQ4J3570",
+    "ExceptionCategory": "DIRECT_ACCOUNTING_CONSOLIDATION_PARENT",
+    "ExceptionReason": "NON_PUBLIC",
+    "ContentDate": "2023-06-09T09:03:29Z"
+  }
+]

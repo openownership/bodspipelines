@@ -3,6 +3,7 @@ from setuptools.command.develop import develop
 from setuptools.command.install import install
 
 install_requires = [
+    "async-kinesis",
     "boto3",
     "elasticsearch",
     "elastic_transport",
@@ -14,7 +15,12 @@ install_requires = [
     "requests",
     "tqdm",
     "pytz",
-    "pycountry"
+    "pycountry",
+    "aiohttp",
+    "aiofiles",
+    "redis",
+    "psutil",
+    "loguru"
 ]
 
 setup(

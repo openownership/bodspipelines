@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="UTF-8"?><lei:LEIData xmlns:lei="http://www.gleif.org/data/schema/leidata/2016" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <lei:LEIHeader>
+    <lei:ContentDate>2023-11-06T08:20:40Z</lei:ContentDate>
+    <lei:FileContent>GLEIF_FULL_PUBLISHED</lei:FileContent>
+    <lei:RecordCount>2495059</lei:RecordCount>
+  </lei:LEIHeader>
+<lei:LEIRecords>
+<lei:LEIRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:lei="http://www.gleif.org/data/schema/leidata/2016"
+               xmlns:gleif="http://www.gleif.org/data/schema/golden-copy/extensions/1.0">
+   <lei:LEI>ZZZWS8Y6XVKM0Q9RJQ79</lei:LEI>
+   <lei:Entity>
+      <lei:LegalName xml:lang="en">Delaware Ivy Value Fund</lei:LegalName>
+      <lei:OtherEntityNames>
+         <lei:OtherEntityName xml:lang="en" type="PREVIOUS_LEGAL_NAME">IVY FUNDS - Delaware Ivy Value Fund</lei:OtherEntityName>
+         <lei:OtherEntityName xml:lang="en" type="PREVIOUS_LEGAL_NAME">IVY FUNDS - Ivy Value Fund</lei:OtherEntityName>
+      </lei:OtherEntityNames>
+      <lei:LegalAddress xml:lang="en">
+         <lei:FirstAddressLine>C/O THE CORPORATION TRUST COMPANY</lei:FirstAddressLine>
+         <lei:AdditionalAddressLine>1209 ORANGE ST</lei:AdditionalAddressLine>
+         <lei:City>WILMINGTON</lei:City>
+         <lei:Region>US-DE</lei:Region>
+         <lei:Country>US</lei:Country>
+         <lei:PostalCode>19801</lei:PostalCode>
+      </lei:LegalAddress>
+      <lei:HeadquartersAddress xml:lang="en">
+         <lei:FirstAddressLine>C/O Delaware Management Company, Inc.</lei:FirstAddressLine>
+         <lei:AdditionalAddressLine>CORPORATION SERVICE COMPANY</lei:AdditionalAddressLine>
+         <lei:AdditionalAddressLine>251 LITTLE FALLS DRIVE</lei:AdditionalAddressLine>
+         <lei:City>WILMINGTON</lei:City>
+         <lei:Region>US-DE</lei:Region>
+         <lei:Country>US</lei:Country>
+         <lei:PostalCode>19808</lei:PostalCode>
+      </lei:HeadquartersAddress>
+      <lei:RegistrationAuthority>
+         <lei:RegistrationAuthorityID>RA000665</lei:RegistrationAuthorityID>
+         <lei:RegistrationAuthorityEntityID>S000024832</lei:RegistrationAuthorityEntityID>
+      </lei:RegistrationAuthority>
+      <lei:LegalJurisdiction>US</lei:LegalJurisdiction>
+      <lei:EntityCategory>FUND</lei:EntityCategory>
+      <lei:LegalForm>
+         <lei:EntityLegalFormCode>8888</lei:EntityLegalFormCode>
+         <lei:OtherLegalForm>FUND</lei:OtherLegalForm>
+      </lei:LegalForm>
+      <lei:EntityStatus>ACTIVE</lei:EntityStatus>
+      <lei:EntityCreationDate>2012-06-06T00:00:00.000Z</lei:EntityCreationDate>
+   </lei:Entity>
+   <lei:Registration>
+      <lei:InitialRegistrationDate>2012-06-06T15:56:00.000Z</lei:InitialRegistrationDate>
+      <lei:LastUpdateDate>2023-09-12T20:51:51.031Z</lei:LastUpdateDate>
+      <lei:RegistrationStatus>ISSUED</lei:RegistrationStatus>
+      <lei:NextRenewalDate>2024-09-12T20:51:51.032Z</lei:NextRenewalDate>
+      <lei:ManagingLOU>5493001KJTIIGC8Y1R12</lei:ManagingLOU>
+      <lei:ValidationSources>FULLY_CORROBORATED</lei:ValidationSources>
+      <lei:ValidationAuthority>
+         <lei:ValidationAuthorityID>RA000665</lei:ValidationAuthorityID>
+         <lei:ValidationAuthorityEntityID>S000024832</lei:ValidationAuthorityEntityID>
+      </lei:ValidationAuthority>
+   </lei:Registration>
+   <lei:Extension/>
+</lei:LEIRecord>
+<lei:LEIRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:lei="http://www.gleif.org/data/schema/leidata/2016"
+               xmlns:gleif="http://www.gleif.org/data/schema/golden-copy/extensions/1.0">
+   <lei:LEI>00TR8NKAEL48RGTZEW89</lei:LEI>
+   <lei:Entity>
+      <lei:LegalName xml:lang="en">ESG DOMESTIC OPPORTUNITY OFFSHORE FUND LTD.</lei:LegalName>
+      <lei:LegalAddress xml:lang="en">
+         <lei:FirstAddressLine>89 Nexus Way</lei:FirstAddressLine>
+         <lei:City>Camana Bay</lei:City>
+         <lei:Country>KY</lei:Country>
+         <lei:PostalCode>KY1-9009</lei:PostalCode>
+      </lei:LegalAddress>
+      <lei:HeadquartersAddress xml:lang="en">
+         <lei:FirstAddressLine>C/O Citco Fund Services (Curacao) B.V.</lei:FirstAddressLine>
+         <lei:AdditionalAddressLine>Kaya Flamboyan 9</lei:AdditionalAddressLine>
+         <lei:City>Willemstad</lei:City>
+         <lei:Country>CW</lei:Country>
+      </lei:HeadquartersAddress>
+      <lei:RegistrationAuthority>
+         <lei:RegistrationAuthorityID>RA000087</lei:RegistrationAuthorityID>
+         <lei:RegistrationAuthorityEntityID>574206</lei:RegistrationAuthorityEntityID>
+      </lei:RegistrationAuthority>
+      <lei:LegalJurisdiction>KY</lei:LegalJurisdiction>
+      <lei:EntityCategory>GENERAL</lei:EntityCategory>
+      <lei:LegalForm>
+         <lei:EntityLegalFormCode>9999</lei:EntityLegalFormCode>
+         <lei:OtherLegalForm>CAYMAN ISLANDS ORDINARY NON-RESIDENT COMPANY</lei:OtherLegalForm>
+      </lei:LegalForm>
+      <lei:EntityStatus>INACTIVE</lei:EntityStatus>
+      <lei:LegalEntityEvents>
+         <lei:LegalEntityEvent group_type="STANDALONE" event_status="COMPLETED">
+            <lei:LegalEntityEventType>DISSOLUTION</lei:LegalEntityEventType>
+            <lei:LegalEntityEventEffectiveDate>2018-11-09T00:00:00.000+01:00</lei:LegalEntityEventEffectiveDate>
+            <lei:LegalEntityEventRecordedDate>2022-03-24T20:41:39.000+01:00</lei:LegalEntityEventRecordedDate>
+            <lei:ValidationDocuments>SUPPORTING_DOCUMENTS</lei:ValidationDocuments>
+         </lei:LegalEntityEvent>
+      </lei:LegalEntityEvents>
+   </lei:Entity>
+   <lei:Registration>
+      <lei:InitialRegistrationDate>2012-08-24T20:53:00.000+02:00</lei:InitialRegistrationDate>
+      <lei:LastUpdateDate>2023-09-03T08:48:03.080+02:00</lei:LastUpdateDate>
+      <lei:RegistrationStatus>RETIRED</lei:RegistrationStatus>
+      <lei:NextRenewalDate>2019-02-14T01:32:00.000+01:00</lei:NextRenewalDate>
+      <lei:ManagingLOU>39120001KULK7200U106</lei:ManagingLOU>
+      <lei:ValidationSources>FULLY_CORROBORATED</lei:ValidationSources>
+      <lei:ValidationAuthority>
+         <lei:ValidationAuthorityID>RA000087</lei:ValidationAuthorityID>
+         <lei:ValidationAuthorityEntityID>574206</lei:ValidationAuthorityEntityID>
+      </lei:ValidationAuthority>
+   </lei:Registration>
+   <Extension xmlns="http://www.gleif.org/data/schema/leidata/2016"/>
+</lei:LEIRecord>
+<lei:LEIRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:lei="http://www.gleif.org/data/schema/leidata/2016"
+               xmlns:gleif="http://www.gleif.org/data/schema/golden-copy/extensions/1.0">
+   <lei:LEI>097900BHF50000076475</lei:LEI>
+   <lei:Entity>
+      <lei:LegalName xml:lang="sk">VÚB Generali dôchodková správcovská spoločnosť, a.s.</lei:LegalName>
+      <lei:TransliteratedOtherEntityNames>
+         <lei:TransliteratedOtherEntityName xml:lang="en" type="AUTO_ASCII_TRANSLITERATED_LEGAL_NAME">VUB GENERALI DOCHODKOVA SPRAVCOVSKA SPOLOCNOST, AS</lei:TransliteratedOtherEntityName>
+      </lei:TransliteratedOtherEntityNames>
+      <lei:LegalAddress xml:lang="sk">
+         <lei:FirstAddressLine>Mlynské nivy 1</lei:FirstAddressLine>
+         <lei:City>Bratislava</lei:City>
+         <lei:Country>SK</lei:Country>
+         <lei:PostalCode>820 04</lei:PostalCode>
+      </lei:LegalAddress>
+      <lei:HeadquartersAddress xml:lang="sk">
+         <lei:FirstAddressLine>Mlynské nivy 1</lei:FirstAddressLine>
+         <lei:City>Bratislava</lei:City>
+         <lei:Country>SK</lei:Country>
+         <lei:PostalCode>820 04</lei:PostalCode>
+      </lei:HeadquartersAddress>
+      <lei:RegistrationAuthority>
+         <lei:RegistrationAuthorityID>RA000526</lei:RegistrationAuthorityID>
+         <lei:RegistrationAuthorityEntityID>35903058</lei:RegistrationAuthorityEntityID>
+      </lei:RegistrationAuthority>
+      <lei:LegalJurisdiction>SK</lei:LegalJurisdiction>
+      <lei:EntityCategory>GENERAL</lei:EntityCategory>
+      <lei:LegalForm>
+         <lei:EntityLegalFormCode>2EEG</lei:EntityLegalFormCode>
+      </lei:LegalForm>
+      <lei:EntityStatus>ACTIVE</lei:EntityStatus>
+      <lei:EntityCreationDate>2004-10-09T08:00:00+02:00</lei:EntityCreationDate>
+   </lei:Entity>
+   <lei:Registration>
+      <lei:InitialRegistrationDate>2017-05-30T00:00:00+02:00</lei:InitialRegistrationDate>
+      <lei:LastUpdateDate>2023-06-25T08:30:56.059+02:00</lei:LastUpdateDate>
+      <lei:RegistrationStatus>ISSUED</lei:RegistrationStatus>
+      <lei:NextRenewalDate>2024-05-30T00:00:00+02:00</lei:NextRenewalDate>
+      <lei:ManagingLOU>097900BEFH0000000217</lei:ManagingLOU>
+      <lei:ValidationSources>FULLY_CORROBORATED</lei:ValidationSources>
+      <lei:ValidationAuthority>
+         <lei:ValidationAuthorityID>RA000526</lei:ValidationAuthorityID>
+         <lei:ValidationAuthorityEntityID>35903058</lei:ValidationAuthorityEntityID>
+      </lei:ValidationAuthority>
+   </lei:Registration>
+   <lei:Extension>
+      <gleif:Geocoding>
+         <gleif:original_address>Mlynské nivy 1, null, null, null, SK, null, 820 04, Bratislava</gleif:original_address>
+         <gleif:relevance>0.94</gleif:relevance>
+         <gleif:match_type>pointAddress</gleif:match_type>
+         <gleif:lat>48.14687</gleif:lat>
+         <gleif:lng>17.12492</gleif:lng>
+         <gleif:geocoding_date>2016-05-17T10:50:50</gleif:geocoding_date>
+         <gleif:bounding_box>TopLeft.Latitude: 48.1479942, TopLeft.Longitude: 17.1232352, BottomRight.Latitude: 48.1457458, BottomRight.Longitude: 17.1266048</gleif:bounding_box>
+         <gleif:match_level>houseNumber</gleif:match_level>
+         <gleif:formatted_address>Mlynské nivy 170/1, 821 09 Bratislava, Slovenská Republika</gleif:formatted_address>
+         <gleif:mapped_location_id>NT_kzljYRG5OuCE2R6Jrp7U1D_xcDMvED</gleif:mapped_location_id>
+         <gleif:mapped_street>Mlynské nivy</gleif:mapped_street>
+         <gleif:mapped_housenumber>170/1</gleif:mapped_housenumber>
+         <gleif:mapped_postalcode>821 09</gleif:mapped_postalcode>
+         <gleif:mapped_city>Bratislava</gleif:mapped_city>
+         <gleif:mapped_district>Bratislava I</gleif:mapped_district>
+         <gleif:mapped_state>Bratislavský kraj</gleif:mapped_state>
+         <gleif:mapped_country>SVK</gleif:mapped_country>
+      </gleif:Geocoding>
+   </lei:Extension>
+</lei:LEIRecord>
+<lei:LEIRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:lei="http://www.gleif.org/data/schema/leidata/2016"
+               xmlns:gleif="http://www.gleif.org/data/schema/golden-copy/extensions/1.0">
+   <lei:LEI>097900BEJX0000002337</lei:LEI>
+   <lei:Entity>
+      <lei:LegalName xml:lang="sk">SMART, zelený inovatívny negarantovaný dôchodkový fond VÚB Generali dôchodková správcovská spoločnosť, a.s.</lei:LegalName>
+      <lei:OtherEntityNames>
+         <lei:OtherEntityName xml:lang="sk" type="PREVIOUS_LEGAL_NAME">MIX, zmiešaný negarantovaný dôchodkový fond VÚB Generali d.s.s., a.s.</lei:OtherEntityName>
+      </lei:OtherEntityNames>
+      <lei:TransliteratedOtherEntityNames>
+         <lei:TransliteratedOtherEntityName xml:lang="en" type="PREFERRED_ASCII_TRANSLITERATED_LEGAL_NAME">SMART, zeleny inovativny negarantovany dochodkovy fond VUB Generali dochodkova spravcovska spolocnost, a.s.</lei:TransliteratedOtherEntityName>
+      </lei:TransliteratedOtherEntityNames>
+      <lei:LegalAddress xml:lang="sk">
+         <lei:FirstAddressLine>Mlynské nivy 1</lei:FirstAddressLine>
+         <lei:City>Bratislava</lei:City>
+         <lei:Country>SK</lei:Country>
+         <lei:PostalCode>820 04</lei:PostalCode>
+      </lei:LegalAddress>
+      <lei:HeadquartersAddress xml:lang="sk">
+         <lei:FirstAddressLine>c/o VÚB Generali dôchodková správcovská spoločnosť, a.s.</lei:FirstAddressLine>
+         <lei:AdditionalAddressLine>Mlynské nivy 1</lei:AdditionalAddressLine>
+         <lei:City>Bratislava</lei:City>
+         <lei:Country>SK</lei:Country>
+         <lei:PostalCode>820 04</lei:PostalCode>
+      </lei:HeadquartersAddress>
+      <lei:RegistrationAuthority>
+         <lei:RegistrationAuthorityID>RA000706</lei:RegistrationAuthorityID>
+         <lei:RegistrationAuthorityEntityID>SK35903058VUB04</lei:RegistrationAuthorityEntityID>
+      </lei:RegistrationAuthority>
+      <lei:LegalJurisdiction>SK</lei:LegalJurisdiction>
+      <lei:EntityCategory>FUND</lei:EntityCategory>
+      <lei:LegalForm>
+         <lei:EntityLegalFormCode>7EG2</lei:EntityLegalFormCode>
+      </lei:LegalForm>
+      <lei:EntityStatus>ACTIVE</lei:EntityStatus>
+      <lei:EntityCreationDate>2005-03-23T08:00:00+01:00</lei:EntityCreationDate>
+   </lei:Entity>
+   <lei:Registration>
+      <lei:InitialRegistrationDate>2014-09-23T00:00:00+02:00</lei:InitialRegistrationDate>
+      <lei:LastUpdateDate>2023-09-17T08:31:04.159+02:00</lei:LastUpdateDate>
+      <lei:RegistrationStatus>ISSUED</lei:RegistrationStatus>
+      <lei:NextRenewalDate>2024-09-26T00:00:00+02:00</lei:NextRenewalDate>
+      <lei:ManagingLOU>097900BEFH0000000217</lei:ManagingLOU>
+      <lei:ValidationSources>FULLY_CORROBORATED</lei:ValidationSources>
+      <lei:ValidationAuthority>
+         <lei:ValidationAuthorityID>RA000706</lei:ValidationAuthorityID>
+         <lei:ValidationAuthorityEntityID>SK35903058VUB04</lei:ValidationAuthorityEntityID>
+      </lei:ValidationAuthority>
+   </lei:Registration>
+   <lei:Extension/>
+</lei:LEIRecord>
+<lei:LEIRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:lei="http://www.gleif.org/data/schema/leidata/2016"
+               xmlns:gleif="http://www.gleif.org/data/schema/golden-copy/extensions/1.0">
+   <lei:LEI>097900BEJX0000002143</lei:LEI>
+   <lei:Entity>
+      <lei:LegalName xml:lang="sk">INDEX, indexový negarantovaný dôchodkový fond VUB Generali d.s.s., a.s.</lei:LegalName>
+      <lei:TransliteratedOtherEntityNames>
+         <lei:TransliteratedOtherEntityName xml:lang="en" type="AUTO_ASCII_TRANSLITERATED_LEGAL_NAME">INDEX, INDEXOVY NEGARANTOVANY DOCHODKOVY FOND VUB GENERALI DSS, AS</lei:TransliteratedOtherEntityName>
+      </lei:TransliteratedOtherEntityNames>
+      <lei:LegalAddress xml:lang="sk">
+         <lei:FirstAddressLine>Mlynské nivy 1</lei:FirstAddressLine>
+         <lei:City>Bratislava</lei:City>
+         <lei:Country>SK</lei:Country>
+         <lei:PostalCode>820 04</lei:PostalCode>
+      </lei:LegalAddress>
+      <lei:HeadquartersAddress xml:lang="sk">
+         <lei:FirstAddressLine>c/o VÚB Generali dôchodková správcovská spoločnosť, a.s.</lei:FirstAddressLine>
+         <lei:AdditionalAddressLine>Mlynské nivy 1</lei:AdditionalAddressLine>
+         <lei:City>Bratislava</lei:City>
+         <lei:Country>SK</lei:Country>
+         <lei:PostalCode>820 04</lei:PostalCode>
+      </lei:HeadquartersAddress>
+      <lei:RegistrationAuthority>
+         <lei:RegistrationAuthorityID>RA000706</lei:RegistrationAuthorityID>
+         <lei:RegistrationAuthorityEntityID>SK35903058VUB01</lei:RegistrationAuthorityEntityID>
+      </lei:RegistrationAuthority>
+      <lei:LegalJurisdiction>SK</lei:LegalJurisdiction>
+      <lei:EntityCategory>FUND</lei:EntityCategory>
+      <lei:LegalForm>
+         <lei:EntityLegalFormCode>7EG2</lei:EntityLegalFormCode>
+      </lei:LegalForm>
+      <lei:EntityStatus>ACTIVE</lei:EntityStatus>
+      <lei:EntityCreationDate>2012-04-02T08:00:00+02:00</lei:EntityCreationDate>
+   </lei:Entity>
+   <lei:Registration>
+      <lei:InitialRegistrationDate>2014-09-23T00:00:00+02:00</lei:InitialRegistrationDate>
+      <lei:LastUpdateDate>2023-09-17T08:31:02.482+02:00</lei:LastUpdateDate>
+      <lei:RegistrationStatus>ISSUED</lei:RegistrationStatus>
+      <lei:NextRenewalDate>2024-09-26T00:00:00+02:00</lei:NextRenewalDate>
+      <lei:ManagingLOU>097900BEFH0000000217</lei:ManagingLOU>
+      <lei:ValidationSources>FULLY_CORROBORATED</lei:ValidationSources>
+      <lei:ValidationAuthority>
+         <lei:ValidationAuthorityID>RA000706</lei:ValidationAuthorityID>
+         <lei:ValidationAuthorityEntityID>SK35903058VUB01</lei:ValidationAuthorityEntityID>
+      </lei:ValidationAuthority>
+   </lei:Registration>
+   <lei:Extension/>
+</lei:LEIRecord>
+<lei:LEIRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:lei="http://www.gleif.org/data/schema/leidata/2016"
+               xmlns:gleif="http://www.gleif.org/data/schema/golden-copy/extensions/1.0">
+   <lei:LEI>097900BEJX0000002240</lei:LEI>
+   <lei:Entity>
+      <lei:LegalName xml:lang="sk">KLASIK, dlhopisový garantovaný dôchodkový fond VÚB Generali d.s.s., a.s.</lei:LegalName>
+      <lei:TransliteratedOtherEntityNames>
+         <lei:TransliteratedOtherEntityName xml:lang="en" type="AUTO_ASCII_TRANSLITERATED_LEGAL_NAME">KLASIK, DLHOPISOVY GARANTOVANY DOCHODKOVY FOND VUB GENERALI DSS, AS</lei:TransliteratedOtherEntityName>
+      </lei:TransliteratedOtherEntityNames>
+      <lei:LegalAddress xml:lang="sk">
+         <lei:FirstAddressLine>Mlynské nivy 1</lei:FirstAddressLine>
+         <lei:City>Bratislava</lei:City>
+         <lei:Country>SK</lei:Country>
+         <lei:PostalCode>820 04</lei:PostalCode>
+      </lei:LegalAddress>
+      <lei:HeadquartersAddress xml:lang="sk">
+         <lei:FirstAddressLine>c/o VÚB Generali dôchodková správcovská spoločnosť, a.s.</lei:FirstAddressLine>
+         <lei:AdditionalAddressLine>Mlynské nivy 1</lei:AdditionalAddressLine>
+         <lei:City>Bratislava</lei:City>
+         <lei:Country>SK</lei:Country>
+         <lei:PostalCode>820 04</lei:PostalCode>
+      </lei:HeadquartersAddress>
+      <lei:RegistrationAuthority>
+         <lei:RegistrationAuthorityID>RA000706</lei:RegistrationAuthorityID>
+         <lei:RegistrationAuthorityEntityID>SK35903058VUB02</lei:RegistrationAuthorityEntityID>
+      </lei:RegistrationAuthority>
+      <lei:LegalJurisdiction>SK</lei:LegalJurisdiction>
+      <lei:EntityCategory>FUND</lei:EntityCategory>
+      <lei:LegalForm>
+         <lei:EntityLegalFormCode>7EG2</lei:EntityLegalFormCode>
+      </lei:LegalForm>
+      <lei:EntityStatus>ACTIVE</lei:EntityStatus>
+      <lei:EntityCreationDate>2005-03-22T08:00:00+01:00</lei:EntityCreationDate>
+   </lei:Entity>
+   <lei:Registration>
+      <lei:InitialRegistrationDate>2014-09-23T00:00:00+02:00</lei:InitialRegistrationDate>
+      <lei:LastUpdateDate>2023-09-17T08:31:03.502+02:00</lei:LastUpdateDate>
+      <lei:RegistrationStatus>ISSUED</lei:RegistrationStatus>
+      <lei:NextRenewalDate>2024-09-26T00:00:00+02:00</lei:NextRenewalDate>
+      <lei:ManagingLOU>097900BEFH0000000217</lei:ManagingLOU>
+      <lei:ValidationSources>FULLY_CORROBORATED</lei:ValidationSources>
+      <lei:ValidationAuthority>
+         <lei:ValidationAuthorityID>RA000706</lei:ValidationAuthorityID>
+         <lei:ValidationAuthorityEntityID>SK35903058VUB02</lei:ValidationAuthorityEntityID>
+      </lei:ValidationAuthority>
+   </lei:Registration>
+   <lei:Extension/>
+</lei:LEIRecord>
+<lei:LEIRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:lei="http://www.gleif.org/data/schema/leidata/2016"
+               xmlns:gleif="http://www.gleif.org/data/schema/golden-copy/extensions/1.0">
+   <lei:LEI>097900BEJX0000002434</lei:LEI>
+   <lei:Entity>
+      <lei:LegalName xml:lang="sk">PROFIT, akciový negarantovaný dôchodkový fond VÚB Generali d.s.s., a.s.</lei:LegalName>
+      <lei:TransliteratedOtherEntityNames>
+         <lei:TransliteratedOtherEntityName xml:lang="en" type="AUTO_ASCII_TRANSLITERATED_LEGAL_NAME">PROFIT, AKCIOVY NEGARANTOVANY DOCHODKOVY FOND VUB GENERALI DSS, AS</lei:TransliteratedOtherEntityName>
+      </lei:TransliteratedOtherEntityNames>
+      <lei:LegalAddress xml:lang="sk">
+         <lei:FirstAddressLine>Mlynské nivy 1</lei:FirstAddressLine>
+         <lei:City>Bratislava</lei:City>
+         <lei:Country>SK</lei:Country>
+         <lei:PostalCode>820 04</lei:PostalCode>
+      </lei:LegalAddress>
+      <lei:HeadquartersAddress xml:lang="sk">
+         <lei:FirstAddressLine>c/o VÚB Generali dôchodková správcovská spoločnosť, a.s.</lei:FirstAddressLine>
+         <lei:AdditionalAddressLine>Mlynské nivy 1</lei:AdditionalAddressLine>
+         <lei:City>Bratislava</lei:City>
+         <lei:Country>SK</lei:Country>
+         <lei:PostalCode>820 04</lei:PostalCode>
+      </lei:HeadquartersAddress>
+      <lei:RegistrationAuthority>
+         <lei:RegistrationAuthorityID>RA000706</lei:RegistrationAuthorityID>
+         <lei:RegistrationAuthorityEntityID>SK35903058VUB03</lei:RegistrationAuthorityEntityID>
+      </lei:RegistrationAuthority>
+      <lei:LegalJurisdiction>SK</lei:LegalJurisdiction>
+      <lei:EntityCategory>FUND</lei:EntityCategory>
+      <lei:LegalForm>
+         <lei:EntityLegalFormCode>7EG2</lei:EntityLegalFormCode>
+      </lei:LegalForm>
+      <lei:EntityStatus>ACTIVE</lei:EntityStatus>
+      <lei:EntityCreationDate>2005-03-22T08:00:00+01:00</lei:EntityCreationDate>
+   </lei:Entity>
+   <lei:Registration>
+      <lei:InitialRegistrationDate>2014-09-23T00:00:00+02:00</lei:InitialRegistrationDate>
+      <lei:LastUpdateDate>2023-09-17T08:31:04.659+02:00</lei:LastUpdateDate>
+      <lei:RegistrationStatus>ISSUED</lei:RegistrationStatus>
+      <lei:NextRenewalDate>2024-09-26T00:00:00+02:00</lei:NextRenewalDate>
+      <lei:ManagingLOU>097900BEFH0000000217</lei:ManagingLOU>
+      <lei:ValidationSources>FULLY_CORROBORATED</lei:ValidationSources>
+      <lei:ValidationAuthority>
+         <lei:ValidationAuthorityID>RA000706</lei:ValidationAuthorityID>
+         <lei:ValidationAuthorityEntityID>SK35903058VUB03</lei:ValidationAuthorityEntityID>
+      </lei:ValidationAuthority>
+   </lei:Registration>
+   <lei:Extension/>
+</lei:LEIRecord>
+<lei:LEIRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:lei="http://www.gleif.org/data/schema/leidata/2016"
+               xmlns:gleif="http://www.gleif.org/data/schema/golden-copy/extensions/1.0">
+   <lei:LEI>549300JB1P61FUTPEZ75</lei:LEI>
+   <lei:Entity>
+      <lei:LegalName xml:lang="sk">Všeobecná úverová banka, a.s.</lei:LegalName>
+      <lei:TransliteratedOtherEntityNames>
+         <lei:TransliteratedOtherEntityName xml:lang="en" type="AUTO_ASCII_TRANSLITERATED_LEGAL_NAME">Vseobecna uverova banka, as</lei:TransliteratedOtherEntityName>
+      </lei:TransliteratedOtherEntityNames>
+      <lei:LegalAddress xml:lang="sk">
+         <lei:FirstAddressLine>Mlynské nivy 1</lei:FirstAddressLine>
+         <lei:City>Bratislava</lei:City>
+         <lei:Country>SK</lei:Country>
+         <lei:PostalCode>829 90</lei:PostalCode>
+      </lei:LegalAddress>
+      <lei:HeadquartersAddress xml:lang="sk">
+         <lei:FirstAddressLine>Mlynské nivy 1</lei:FirstAddressLine>
+         <lei:City>Bratislava</lei:City>
+         <lei:Country>SK</lei:Country>
+         <lei:PostalCode>829 90</lei:PostalCode>
+      </lei:HeadquartersAddress>
+      <lei:RegistrationAuthority>
+         <lei:RegistrationAuthorityID>RA000526</lei:RegistrationAuthorityID>
+         <lei:RegistrationAuthorityEntityID>31320155</lei:RegistrationAuthorityEntityID>
+      </lei:RegistrationAuthority>
+      <lei:LegalJurisdiction>SK</lei:LegalJurisdiction>
+      <lei:EntityCategory>GENERAL</lei:EntityCategory>
+      <lei:LegalForm>
+         <lei:EntityLegalFormCode>2EEG</lei:EntityLegalFormCode>
+      </lei:LegalForm>
+      <lei:EntityStatus>ACTIVE</lei:EntityStatus>
+      <lei:EntityCreationDate>1992-04-01T08:00:00+02:00</lei:EntityCreationDate>
+   </lei:Entity>
+   <lei:Registration>
+      <lei:InitialRegistrationDate>2013-10-02T00:00:00+02:00</lei:InitialRegistrationDate>
+      <lei:LastUpdateDate>2023-10-12T08:30:46.285+02:00</lei:LastUpdateDate>
+      <lei:RegistrationStatus>ISSUED</lei:RegistrationStatus>
+      <lei:NextRenewalDate>2024-10-03T00:00:00+02:00</lei:NextRenewalDate>
+      <lei:ManagingLOU>097900BEFH0000000217</lei:ManagingLOU>
+      <lei:ValidationSources>FULLY_CORROBORATED</lei:ValidationSources>
+      <lei:ValidationAuthority>
+         <lei:ValidationAuthorityID>RA000526</lei:ValidationAuthorityID>
+         <lei:ValidationAuthorityEntityID>31320155</lei:ValidationAuthorityEntityID>
+      </lei:ValidationAuthority>
+   </lei:Registration>
+   <lei:Extension/>
+</lei:LEIRecord>
+<lei:LEIRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:lei="http://www.gleif.org/data/schema/leidata/2016"
+               xmlns:gleif="http://www.gleif.org/data/schema/golden-copy/extensions/1.0">
+   <lei:LEI>9845002B9874D50A4531</lei:LEI>
+   <lei:Entity>
+      <lei:LegalName xml:lang="fr">Corporate Business Solutions Partners S.à r.l.</lei:LegalName>
+      <lei:LegalAddress xml:lang="fr">
+         <lei:FirstAddressLine>23 Am Scheerleck</lei:FirstAddressLine>
+         <lei:City>Wecker</lei:City>
+         <lei:Country>LU</lei:Country>
+         <lei:PostalCode>6868</lei:PostalCode>
+      </lei:LegalAddress>
+      <lei:HeadquartersAddress xml:lang="fr">
+         <lei:FirstAddressLine>23 Am Scheerleck</lei:FirstAddressLine>
+         <lei:City>Wecker</lei:City>
+         <lei:Country>LU</lei:Country>
+         <lei:PostalCode>6868</lei:PostalCode>
+      </lei:HeadquartersAddress>
+      <lei:RegistrationAuthority>
+         <lei:RegistrationAuthorityID>RA000432</lei:RegistrationAuthorityID>
+         <lei:RegistrationAuthorityEntityID>B191847</lei:RegistrationAuthorityEntityID>
+      </lei:RegistrationAuthority>
+      <lei:LegalJurisdiction>LU</lei:LegalJurisdiction>
+      <lei:EntityCategory>GENERAL</lei:EntityCategory>
+      <lei:LegalForm>
+         <lei:EntityLegalFormCode>DVXS</lei:EntityLegalFormCode>
+      </lei:LegalForm>
+      <lei:EntityStatus>ACTIVE</lei:EntityStatus>
+      <lei:EntityCreationDate>2014-11-17T00:00:00+00:00</lei:EntityCreationDate>
+   </lei:Entity>
+   <lei:Registration>
+      <lei:InitialRegistrationDate>2020-03-17T08:22:48+00:00</lei:InitialRegistrationDate>
+      <lei:LastUpdateDate>2023-02-25T09:13:32+00:00</lei:LastUpdateDate>
+      <lei:RegistrationStatus>ISSUED</lei:RegistrationStatus>
+      <lei:NextRenewalDate>2024-03-16T08:36:11+00:00</lei:NextRenewalDate>
+      <lei:ManagingLOU>529900T8BM49AURSDO55</lei:ManagingLOU>
+      <lei:ValidationSources>FULLY_CORROBORATED</lei:ValidationSources>
+      <lei:ValidationAuthority>
+         <lei:ValidationAuthorityID>RA000432</lei:ValidationAuthorityID>
+         <lei:ValidationAuthorityEntityID>B191847</lei:ValidationAuthorityEntityID>
+      </lei:ValidationAuthority>
+   </lei:Registration>
+   <lei:Extension/>
+</lei:LEIRecord>
+<lei:LEIRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:lei="http://www.gleif.org/data/schema/leidata/2016"
+               xmlns:gleif="http://www.gleif.org/data/schema/golden-copy/extensions/1.0">
+   <lei:LEI>2138002YAB7Z9KO21397</lei:LEI>
+   <lei:Entity>
+      <lei:LegalName xml:lang="en">MONOOVA GLOBAL PAYMENTS PTY LTD</lei:LegalName>
+      <lei:OtherEntityNames>
+         <lei:OtherEntityName xml:lang="en" type="PREVIOUS_LEGAL_NAME">MONOOVA GLOBAL PAYMENTS LIMITED</lei:OtherEntityName>
+         <lei:OtherEntityName xml:lang="en" type="PREVIOUS_LEGAL_NAME">MONEYTECH LIMITED</lei:OtherEntityName>
+         <lei:OtherEntityName xml:lang="en" type="PREVIOUS_LEGAL_NAME">SQUADRON FINANCIAL SERVICES LIMITED</lei:OtherEntityName>
+      </lei:OtherEntityNames>
+      <lei:LegalAddress xml:lang="en">
+         <lei:FirstAddressLine>UNIT L7</lei:FirstAddressLine>
+         <lei:AdditionalAddressLine>80 PACIFIC HIGHWAY</lei:AdditionalAddressLine>
+         <lei:City>NORTH SYDNEY</lei:City>
+         <lei:Region>AU-NSW</lei:Region>
+         <lei:Country>AU</lei:Country>
+         <lei:PostalCode>2060</lei:PostalCode>
+      </lei:LegalAddress>
+      <lei:HeadquartersAddress xml:lang="en">
+         <lei:FirstAddressLine>'L7'</lei:FirstAddressLine>
+         <lei:AdditionalAddressLine>80 PACIFIC HIGHWAY</lei:AdditionalAddressLine>
+         <lei:City>NORTH SYDNEY</lei:City>
+         <lei:Region>AU-NSW</lei:Region>
+         <lei:Country>AU</lei:Country>
+         <lei:PostalCode>2060</lei:PostalCode>
+      </lei:HeadquartersAddress>
+      <lei:RegistrationAuthority>
+         <lei:RegistrationAuthorityID>RA000014</lei:RegistrationAuthorityID>
+         <lei:RegistrationAuthorityEntityID>106 249 852</lei:RegistrationAuthorityEntityID>
+      </lei:RegistrationAuthority>
+      <lei:LegalJurisdiction>AU</lei:LegalJurisdiction>
+      <lei:EntityCategory>GENERAL</lei:EntityCategory>
+      <lei:LegalForm>
+         <lei:EntityLegalFormCode>TXVC</lei:EntityLegalFormCode>
+      </lei:LegalForm>
+      <lei:EntityStatus>ACTIVE</lei:EntityStatus>
+      <lei:EntityCreationDate>2003-09-09T00:00:00+00:00</lei:EntityCreationDate>
+      <lei:LegalEntityEvents>
+         <lei:LegalEntityEvent group_type="CHANGE_LEGAL_FORM_AND_NAME"
+                               group_id="NT+XmAVfrdqEbGEEV3r4fLwh5x5z4MCItzOSufmJ5QU="
+                               event_status="COMPLETED">
+            <lei:LegalEntityEventType>CHANGE_LEGAL_FORM</lei:LegalEntityEventType>
+            <lei:LegalEntityEventEffectiveDate>2022-09-16T00:00:00+00:00</lei:LegalEntityEventEffectiveDate>
+            <lei:LegalEntityEventRecordedDate>2023-01-11T09:59:14+00:00</lei:LegalEntityEventRecordedDate>
+            <lei:ValidationDocuments>SUPPORTING_DOCUMENTS</lei:ValidationDocuments>
+         </lei:LegalEntityEvent>
+         <lei:LegalEntityEvent group_type="CHANGE_LEGAL_FORM_AND_NAME"
+                               group_id="NT+XmAVfrdqEbGEEV3r4fLwh5x5z4MCItzOSufmJ5QU="
+                               event_status="COMPLETED">
+            <lei:LegalEntityEventType>CHANGE_LEGAL_NAME</lei:LegalEntityEventType>
+            <lei:LegalEntityEventEffectiveDate>2022-09-16T00:00:00+00:00</lei:LegalEntityEventEffectiveDate>
+            <lei:LegalEntityEventRecordedDate>2023-01-11T09:59:14+00:00</lei:LegalEntityEventRecordedDate>
+            <lei:ValidationDocuments>SUPPORTING_DOCUMENTS</lei:ValidationDocuments>
+         </lei:LegalEntityEvent>
+      </lei:LegalEntityEvents>
+   </lei:Entity>
+   <lei:Registration>
+      <lei:InitialRegistrationDate>2019-01-14T00:00:00+00:00</lei:InitialRegistrationDate>
+      <lei:LastUpdateDate>2023-02-11T11:21:01+00:00</lei:LastUpdateDate>
+      <lei:RegistrationStatus>ISSUED</lei:RegistrationStatus>
+      <lei:NextRenewalDate>2024-01-13T00:00:00+00:00</lei:NextRenewalDate>
+      <lei:ManagingLOU>529900T8BM49AURSDO55</lei:ManagingLOU>
+      <lei:ValidationSources>FULLY_CORROBORATED</lei:ValidationSources>
+      <lei:ValidationAuthority>
+         <lei:ValidationAuthorityID>RA000014</lei:ValidationAuthorityID>
+         <lei:ValidationAuthorityEntityID>106 249 852</lei:ValidationAuthorityEntityID>
+      </lei:ValidationAuthority>
+   </lei:Registration>
+   <lei:Extension/>
+</lei:LEIRecord>
+<lei:LEIRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:lei="http://www.gleif.org/data/schema/leidata/2016"
+               xmlns:gleif="http://www.gleif.org/data/schema/golden-copy/extensions/1.0">
+   <lei:LEI>984500501A1B1045PB30</lei:LEI>
+   <lei:Entity>
+      <lei:LegalName xml:lang="en">MONEYTECH GROUP LIMITED</lei:LegalName>
+      <lei:LegalAddress xml:lang="en">
+         <lei:FirstAddressLine>'L7'</lei:FirstAddressLine>
+         <lei:AdditionalAddressLine>80 PACIFIC HIGHWAY</lei:AdditionalAddressLine>
+         <lei:City>NORTH SYDNEY</lei:City>
+         <lei:Region>AU-NSW</lei:Region>
+         <lei:Country>AU</lei:Country>
+         <lei:PostalCode>2060</lei:PostalCode>
+      </lei:LegalAddress>
+      <lei:HeadquartersAddress xml:lang="en">
+         <lei:FirstAddressLine>'L7'</lei:FirstAddressLine>
+         <lei:AdditionalAddressLine>80 PACIFIC HIGHWAY</lei:AdditionalAddressLine>
+         <lei:City>NORTH SYDNEY</lei:City>
+         <lei:Region>AU-NSW</lei:Region>
+         <lei:Country>AU</lei:Country>
+         <lei:PostalCode>2060</lei:PostalCode>
+      </lei:HeadquartersAddress>
+      <lei:RegistrationAuthority>
+         <lei:RegistrationAuthorityID>RA000014</lei:RegistrationAuthorityID>
+         <lei:RegistrationAuthorityEntityID>611 393 554</lei:RegistrationAuthorityEntityID>
+      </lei:RegistrationAuthority>
+      <lei:LegalJurisdiction>AU</lei:LegalJurisdiction>
+      <lei:EntityCategory>GENERAL</lei:EntityCategory>
+      <lei:LegalForm>
+         <lei:EntityLegalFormCode>R4KK</lei:EntityLegalFormCode>
+      </lei:LegalForm>
+      <lei:EntityStatus>ACTIVE</lei:EntityStatus>
+      <lei:EntityCreationDate>2016-03-18T00:00:00+00:00</lei:EntityCreationDate>
+   </lei:Entity>
+   <lei:Registration>
+      <lei:InitialRegistrationDate>2021-07-27T07:07:14+00:00</lei:InitialRegistrationDate>
+      <lei:LastUpdateDate>2022-03-23T15:28:31+00:00</lei:LastUpdateDate>
+      <lei:RegistrationStatus>LAPSED</lei:RegistrationStatus>
+      <lei:NextRenewalDate>2022-07-27T07:07:14+00:00</lei:NextRenewalDate>
+      <lei:ManagingLOU>529900T8BM49AURSDO55</lei:ManagingLOU>
+      <lei:ValidationSources>FULLY_CORROBORATED</lei:ValidationSources>
+      <lei:ValidationAuthority>
+         <lei:ValidationAuthorityID>RA000014</lei:ValidationAuthorityID>
+         <lei:ValidationAuthorityEntityID>611 393 554</lei:ValidationAuthorityEntityID>
+      </lei:ValidationAuthority>
+   </lei:Registration>
+   <lei:Extension/>
+</lei:LEIRecord>
+<lei:LEIRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:lei="http://www.gleif.org/data/schema/leidata/2016"
+               xmlns:gleif="http://www.gleif.org/data/schema/golden-copy/extensions/1.0">
+   <lei:LEI>98450051BS9C610A8T78</lei:LEI>
+   <lei:Entity>
+      <lei:LegalName xml:lang="en">MONOOVA FX PTY LTD</lei:LegalName>
+      <lei:OtherEntityNames>
+         <lei:OtherEntityName xml:lang="en" type="PREVIOUS_LEGAL_NAME">MONEYTECH FX PTY LTD</lei:OtherEntityName>
+         <lei:OtherEntityName xml:lang="en" type="PREVIOUS_LEGAL_NAME">360 MARKETS PTY LTD</lei:OtherEntityName>
+         <lei:OtherEntityName xml:lang="en" type="PREVIOUS_LEGAL_NAME">360FX PTY LTD</lei:OtherEntityName>
+         <lei:OtherEntityName xml:lang="en" type="PREVIOUS_LEGAL_NAME">CAPITAL AND FINANCE FOREX PTY LTD</lei:OtherEntityName>
+      </lei:OtherEntityNames>
+      <lei:LegalAddress xml:lang="en">
+         <lei:FirstAddressLine>LEVEL 7</lei:FirstAddressLine>
+         <lei:AdditionalAddressLine>80 PACIFIC HIGHWAY</lei:AdditionalAddressLine>
+         <lei:City>NORTH SYDNEY</lei:City>
+         <lei:Region>AU-NSW</lei:Region>
+         <lei:Country>AU</lei:Country>
+         <lei:PostalCode>2060</lei:PostalCode>
+      </lei:LegalAddress>
+      <lei:HeadquartersAddress xml:lang="en">
+         <lei:FirstAddressLine>LEVEL 7</lei:FirstAddressLine>
+         <lei:AdditionalAddressLine>80 PACIFIC HIGHWAY</lei:AdditionalAddressLine>
+         <lei:City>NORTH SYDNEY</lei:City>
+         <lei:Region>AU-NSW</lei:Region>
+         <lei:Country>AU</lei:Country>
+         <lei:PostalCode>2060</lei:PostalCode>
+      </lei:HeadquartersAddress>
+      <lei:RegistrationAuthority>
+         <lei:RegistrationAuthorityID>RA000014</lei:RegistrationAuthorityID>
+         <lei:RegistrationAuthorityEntityID>151 337 852</lei:RegistrationAuthorityEntityID>
+      </lei:RegistrationAuthority>
+      <lei:LegalJurisdiction>AU</lei:LegalJurisdiction>
+      <lei:EntityCategory>GENERAL</lei:EntityCategory>
+      <lei:LegalForm>
+         <lei:EntityLegalFormCode>TXVC</lei:EntityLegalFormCode>
+      </lei:LegalForm>
+      <lei:EntityStatus>ACTIVE</lei:EntityStatus>
+      <lei:EntityCreationDate>2011-06-07T00:00:00+00:00</lei:EntityCreationDate>
+      <lei:LegalEntityEvents>
+         <lei:LegalEntityEvent group_type="STANDALONE" event_status="COMPLETED">
+            <lei:LegalEntityEventType>CHANGE_LEGAL_ADDRESS</lei:LegalEntityEventType>
+            <lei:LegalEntityEventEffectiveDate>2022-09-13T00:00:00+00:00</lei:LegalEntityEventEffectiveDate>
+            <lei:LegalEntityEventRecordedDate>2023-03-30T14:18:04+00:00</lei:LegalEntityEventRecordedDate>
+            <lei:ValidationDocuments>SUPPORTING_DOCUMENTS</lei:ValidationDocuments>
+         </lei:LegalEntityEvent>
+      </lei:LegalEntityEvents>
+   </lei:Entity>
+   <lei:Registration>
+      <lei:InitialRegistrationDate>2019-05-15T12:21:06+00:00</lei:InitialRegistrationDate>
+      <lei:LastUpdateDate>2023-04-30T14:18:04+00:00</lei:LastUpdateDate>
+      <lei:RegistrationStatus>ISSUED</lei:RegistrationStatus>
+      <lei:NextRenewalDate>2024-05-15T00:00:00+00:00</lei:NextRenewalDate>
+      <lei:ManagingLOU>529900T8BM49AURSDO55</lei:ManagingLOU>
+      <lei:ValidationSources>FULLY_CORROBORATED</lei:ValidationSources>
+      <lei:ValidationAuthority>
+         <lei:ValidationAuthorityID>RA000014</lei:ValidationAuthorityID>
+         <lei:ValidationAuthorityEntityID>151 337 852</lei:ValidationAuthorityEntityID>
+      </lei:ValidationAuthority>
+   </lei:Registration>
+   <lei:Extension/>
+</lei:LEIRecord>
+  </lei:LEIRecords>
+</lei:LEIData>

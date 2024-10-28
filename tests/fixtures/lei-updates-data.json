@@ -1,0 +1,254 @@
+[
+  {
+    "LEI": "001GPB6A9XPE8XJICC14",
+    "Entity": {
+      "LegalName": "Fidelity Advisor Leveraged Company Stock Fund",
+      "OtherEntityNames": [
+        {
+          "type": "PREVIOUS_LEGAL_NAME",
+          "OtherEntityName": "FIDELITY ADVISOR SERIES I - Fidelity Advisor Leveraged Company Stock Fund"
+        }
+      ],
+      "LegalAddress": {
+        "FirstAddressLine": "245 SUMMER STREET",
+        "City": "BOSTON",
+        "Region": "US-MA",
+        "Country": "US",
+        "PostalCode": "02210"
+      },
+      "HeadquartersAddress": {
+        "FirstAddressLine": "C/O Fidelity Management & Research Company LLC",
+        "City": "Boston",
+        "Region": "US-MA",
+        "Country": "US",
+        "PostalCode": "02210"
+      },
+      "RegistrationAuthority": {
+        "RegistrationAuthorityID": "RA000665",
+        "RegistrationAuthorityEntityID": "S000005113"
+      },
+      "LegalJurisdiction": "US-MA",
+      "EntityCategory": "FUND",
+      "LegalForm": {
+        "EntityLegalFormCode": "8888",
+        "OtherLegalForm": "FUND"
+      },
+      "EntityStatus": "ACTIVE",
+      "EntityCreationDate": "2012-11-29T00:00:00.000Z"
+    },
+    "Registration": {
+      "InitialRegistrationDate": "2012-11-29T16:33:00.000Z",
+      "LastUpdateDate": "2023-06-18T15:41:20.212Z",
+      "RegistrationStatus": "ISSUED",
+      "NextRenewalDate": "2024-05-18T15:48:53.604Z",
+      "ManagingLOU": "EVK05KS7XY1DEII3R011",
+      "ValidationSources": "FULLY_CORROBORATED",
+      "ValidationAuthority": {
+        "ValidationAuthorityID": "RA000665",
+        "ValidationAuthorityEntityID": "S000005113"
+      }
+    }
+  },
+  {
+    "LEI": "00EHHQ2ZHDCFXJCPCL46",
+    "Entity": {
+      "LegalName": "Vanguard Russell 1000 Growth Index Trust",
+      "LegalAddress": {
+        "FirstAddressLine": "C/O VANGUARD FIDUCIARY TRUST COMPANY",
+        "AdditionalAddressLine": "100 VANGUARD BLVD",
+        "City": "MALVERN",
+        "Region": "US-PA",
+        "Country": "US",
+        "PostalCode": "19355"
+      },
+      "HeadquartersAddress": {
+        "FirstAddressLine": "C/O Vanguard Fiduciary Trust Company",
+        "AdditionalAddressLine": "PO Box 2600",
+        "City": "Valley Forge",
+        "Region": "US-PA",
+        "Country": "US",
+        "PostalCode": "19482"
+      },
+      "RegistrationAuthority": {
+        "RegistrationAuthorityID": "RA999999"
+      },
+      "LegalJurisdiction": "US-PA",
+      "EntityCategory": "FUND",
+      "LegalForm": {
+        "EntityLegalFormCode": "8888",
+        "OtherLegalForm": "FUND"
+      },
+      "EntityStatus": "ACTIVE",
+      "EntityCreationDate": "2012-10-05T00:00:00.000Z"
+    },
+    "Registration": {
+      "InitialRegistrationDate": "2012-10-05T20:30:00.000Z",
+      "LastUpdateDate": "2022-08-22T09:32:00.000Z",
+      "RegistrationStatus": "ISSUED",
+      "NextRenewalDate": "2023-07-22T07:35:00.000Z",
+      "ManagingLOU": "EVK05KS7XY1DEII3R011",
+      "ValidationSources": "ENTITY_SUPPLIED_ONLY",
+      "ValidationAuthority": {
+        "ValidationAuthorityID": "RA999999"
+      }
+    }
+  },
+  {
+    "LEI": "00QDBXDXLLF3W3JJJO36",
+    "Entity": {
+      "LegalName": "PRUDENTIAL INVESTMENT PORTFOLIOS 18",
+      "OtherEntityNames": [
+        {
+          "type": "PREVIOUS_LEGAL_NAME",
+          "OtherEntityName": "Jennison 20/20 Focus Fund"
+        },
+        {
+          "type": "PREVIOUS_LEGAL_NAME",
+          "OtherEntityName": "Prudential 20/20 Focus Fund"
+        },
+        {
+          "type": "PREVIOUS_LEGAL_NAME",
+          "OtherEntityName": "Prudential 20/20 Fund"
+        },
+        {
+          "type": "PREVIOUS_LEGAL_NAME",
+          "OtherEntityName": "Prudential Jennison 20/20 Focus Fund"
+        }
+      ],
+      "LegalAddress": {
+        "FirstAddressLine": "CORPORATION TRUST CENTER 1209 ORANGE ST",
+        "City": "WILMINGTON",
+        "Region": "US-DE",
+        "Country": "US",
+        "PostalCode": "19801"
+      },
+      "HeadquartersAddress": {
+        "FirstAddressLine": "655 Broad Street",
+        "City": "Newark",
+        "Region": "US-NJ",
+        "Country": "US",
+        "PostalCode": "07102"
+      },
+      "RegistrationAuthority": {
+        "RegistrationAuthorityID": "RA000602",
+        "RegistrationAuthorityEntityID": "2835527"
+      },
+      "LegalJurisdiction": "US-DE",
+      "EntityCategory": "FUND",
+      "LegalForm": {
+        "EntityLegalFormCode": "4FSX"
+      },
+      "EntityStatus": "ACTIVE",
+      "EntityCreationDate": "1997-12-18T05:00:00.000Z"
+    },
+    "Registration": {
+      "InitialRegistrationDate": "2012-06-06T15:58:00.000Z",
+      "LastUpdateDate": "2023-06-03T07:03:05.620Z",
+      "RegistrationStatus": "ISSUED",
+      "NextRenewalDate": "2024-04-21T15:23:48.020Z",
+      "ManagingLOU": "EVK05KS7XY1DEII3R011",
+      "ValidationSources": "FULLY_CORROBORATED",
+      "ValidationAuthority": {
+        "ValidationAuthorityID": "RA000665",
+        "ValidationAuthorityEntityID": "0001052118"
+      }
+    }
+  },
+  {
+    "LEI": "00W0SLGGVF0QQ5Q36N03",
+    "Entity": {
+      "LegalName": "GE Pacific-3 Holdings, Inc.",
+      "LegalAddress": {
+        "FirstAddressLine": "C/O The Corporation Trust Company",
+        "AdditionalAddressLine": "1209 Orange Street",
+        "City": "Wilmington",
+        "Region": "US-DE",
+        "Country": "US",
+        "PostalCode": "19801"
+      },
+      "HeadquartersAddress": {
+        "FirstAddressLine": "C/O The Corporation Trust Company",
+        "AdditionalAddressLine": "1209 Orange Street",
+        "City": "Wilmington",
+        "Region": "US-DE",
+        "Country": "US",
+        "PostalCode": "19801"
+      },
+      "RegistrationAuthority": {
+        "RegistrationAuthorityID": "RA999999"
+      },
+      "LegalJurisdiction": "US-DE",
+      "EntityCategory": "GENERAL",
+      "LegalForm": {
+        "EntityLegalFormCode": "XTIQ"
+      },
+      "EntityStatus": "ACTIVE"
+    },
+    "Registration": {
+      "InitialRegistrationDate": "2012-06-06T15:56:00.000Z",
+      "LastUpdateDate": "2020-08-17T12:40:00.000Z",
+      "RegistrationStatus": "LAPSED",
+      "NextRenewalDate": "2016-01-12T15:45:00.000Z",
+      "ManagingLOU": "EVK05KS7XY1DEII3R011",
+      "ValidationSources": "ENTITY_SUPPLIED_ONLY",
+      "ValidationAuthority": {
+        "ValidationAuthorityID": "RA999999"
+      }
+    }
+  },
+  {
+    "LEI": "213800FERQ5LE3H7WJ58",
+    "Entity": {
+      "LegalName": "DENTSU INTERNATIONAL LIMITED",
+      "OtherEntityNames": [
+        {
+          "type": "PREVIOUS_LEGAL_NAME",
+          "OtherEntityName": "DENTSU AEGIS NETWORK LTD."
+        },
+        {
+          "type": "PREVIOUS_LEGAL_NAME",
+          "OtherEntityName": "AEGIS GROUP PLC"
+        }
+      ],
+      "LegalAddress": {
+        "FirstAddressLine": "10 TRITON STREET",
+        "AdditionalAddressLine": "REGENT'S PLACE",
+        "City": "LONDON",
+        "Region": "GB-LND",
+        "Country": "GB",
+        "PostalCode": "NW1 3BF"
+      },
+      "HeadquartersAddress": {
+        "FirstAddressLine": "10 TRITON STREET",
+        "AdditionalAddressLine": "REGENT'S PLACE",
+        "City": "LONDON",
+        "Region": "GB-LND",
+        "Country": "GB",
+        "PostalCode": "NW1 3BF"
+      },
+      "RegistrationAuthority": {
+        "RegistrationAuthorityID": "RA000585",
+        "RegistrationAuthorityEntityID": "01403668"
+      },
+      "LegalJurisdiction": "GB",
+      "EntityCategory": "GENERAL",
+      "LegalForm": {
+        "EntityLegalFormCode": "H0PO"
+      },
+      "EntityStatus": "ACTIVE",
+      "EntityCreationDate": "1978-12-05T00:00:00Z"
+    },
+    "Registration": {
+      "InitialRegistrationDate": "2014-02-10T00:00:00Z",
+      "LastUpdateDate": "2023-03-02T09:07:52.390Z",
+      "RegistrationStatus": "ISSUED",
+      "NextRenewalDate": "2024-02-17T00:00:00Z",
+      "ManagingLOU": "213800WAVVOPS85N2205",
+      "ValidationSources": "FULLY_CORROBORATED",
+      "ValidationAuthority": {
+        "ValidationAuthorityID": "RA000585",
+        "ValidationAuthorityEntityID": "01403668"
+      }
+    }
+  }
+]

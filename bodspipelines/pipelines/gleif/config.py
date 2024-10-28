@@ -1,129 +1,132 @@
+import os
 import time
 import elastic_transport
+import asyncio
+from datetime import datetime
 
 from bodspipelines.infrastructure.pipeline import Source, Stage, Pipeline
 from bodspipelines.infrastructure.inputs import KinesisInput
-from bodspipelines.infrastructure.storage import ElasticStorage
+from bodspipelines.infrastructure.storage import Storage
+from bodspipelines.infrastructure.clients.elasticsearch_client import ElasticsearchClient
+from bodspipelines.infrastructure.clients.redis_client import RedisClient
 from bodspipelines.infrastructure.outputs import Output, OutputConsole, NewOutput, KinesisOutput
 from bodspipelines.infrastructure.processing.bulk_data import BulkData
 from bodspipelines.infrastructure.processing.xml_data import XMLData
 from bodspipelines.infrastructure.processing.json_data import JSONData
+from bodspipelines.infrastructure.updates import ProcessUpdates
 
-from bodspipelines.infrastructure.indexes import (entity_statement_properties, person_statement_properties, ownership_statement_properties,
-                                          match_entity, match_person, match_ownership,
-                                          id_entity, id_person, id_ownership)
+from bodspipelines.pipelines.gleif.indexes import gleif_index_properties
+from bodspipelines.infrastructure.indexes import bods_index_properties
 
-from bodspipelines.pipelines.gleif.transforms import Gleif2Bods
+from bodspipelines.pipelines.gleif.transforms import Gleif2Bods, AddContentDate, RemoveEmptyExtension
 from bodspipelines.pipelines.gleif.indexes import (lei_properties, rr_properties, repex_properties,
                                           match_lei, match_rr, match_repex,
                                           id_lei, id_rr, id_repex)
-from bodspipelines.pipelines.gleif.utils import gleif_download_link
+from bodspipelines.pipelines.gleif.utils import gleif_download_link, GLEIFData, identify_gleif
+from bodspipelines.pipelines.gleif.updates import GleifUpdates
+from bodspipelines.infrastructure.utils import identify_bods, load_last_run, save_run
 
 # Defintion of LEI-CDF v3.1 XML date source
 lei_source = Source(name="lei",
-                     origin=BulkData(display="LEI-CDF v3.1",
-                                     #url='https://leidata.gleif.org/api/v1/concatenated-files/lei2/get/30447/zip',
-                                     url=gleif_download_link("https://goldencopy.gleif.org/api/v2/golden-copies/publishes/latest"),
-                                     size=41491,
-                                     directory="lei-cdf"),
-                     datatype=XMLData(item_tag="LEIRecord",
-                                      namespace={"lei": "http://www.gleif.org/data/schema/leidata/2016"},
-                                      filter=['NextVersion', 'Extension']))
+                    origin=BulkData(display="LEI-CDF v3.1",
+                       data=GLEIFData(url="https://goldencopy.gleif.org/api/v2/golden-copies/publishes/lei2/latest",
+                                      data_date="2024-01-01"),
+                              size=41491,
+                              directory="lei-cdf"),
+                    datatype=XMLData(item_tag="LEIRecord",
+                                     namespace={"lei": "http://www.gleif.org/data/schema/leidata/2016",
+                                          "gleif": "http://www.gleif.org/data/schema/golden-copy/extensions/1.0"},
+                                     filter=['NextVersion', 'Extension']))
 
 # Defintion of RR-CDF v2.1 XML date source
 rr_source = Source(name="rr",
                    origin=BulkData(display="RR-CDF v2.1",
-                                   #url='https://leidata.gleif.org/api/v1/concatenated-files/rr/get/30450/zip',
-                                   url=gleif_download_link("https://goldencopy.gleif.org/api/v2/golden-copies/publishes/latest"),
-                                   size=2823,
-                                   directory="rr-cdf"),
+                       data=GLEIFData(url="https://goldencopy.gleif.org/api/v2/golden-copies/publishes/rr/latest",
+                                      data_date="2024-01-01"),
+                       size=2823,
+                       directory="rr-cdf"),
                    datatype=XMLData(item_tag="RelationshipRecord",
-                                    namespace={"rr": "http://www.gleif.org/data/schema/rr/2016"},
-                                    filter=['Extension']))
+                            namespace={"rr": "http://www.gleif.org/data/schema/rr/2016",
+                                       "gleif": "http://www.gleif.org/data/schema/golden-copy/extensions/1.0"},
+                            filter=['NextVersion', ]))
 
 # Defintion of Reporting Exceptions v2.1 XML date source
 repex_source = Source(name="repex",
                       origin=BulkData(display="Reporting Exceptions v2.1",
-                                      #url='https://leidata.gleif.org/api/v1/concatenated-files/repex/get/30453/zip',
-                                      url=gleif_download_link("https://goldencopy.gleif.org/api/v2/golden-copies/publishes/latest"),
-                                      size=3954,
-                                      directory="rep-ex"),
+                      data=GLEIFData(url="https://goldencopy.gleif.org/api/v2/golden-copies/publishes/repex/latest",
+                                     data_date="2024-01-01"),
+                           size=3954,
+                           directory="rep-ex"),
                       datatype=XMLData(item_tag="Exception",
-                                       namespace={"repex": "http://www.gleif.org/data/schema/repex/2016"},
-                                       filter=['NextVersion', 'Extension']))
+                                 header_tag="Header",
+                                 namespace={"repex": "http://www.gleif.org/data/schema/repex/2016",
+                                            "gleif": "http://www.gleif.org/data/schema/golden-copy/extensions/1.0"},
+                                 filter=['NextVersion', ]))
 
-# Console Output
-#output_console = Output(name="console", target=OutputConsole(name="gleif-ingest"))
-
-# Elasticsearch indexes for GLEIF data
-index_properties = {"lei": {"properties": lei_properties, "match": match_lei, "id": id_lei},
-                    "rr": {"properties": rr_properties, "match": match_rr, "id": id_rr},
-                    "repex": {"properties": repex_properties, "match": match_repex, "id": id_repex}}
+# Easticsearch storage for GLEIF data
+gleif_storage = ElasticsearchClient(indexes=gleif_index_properties)
 
 # GLEIF data: Store in Easticsearch and output new to Kinesis stream
-output_new = NewOutput(storage=ElasticStorage(indexes=index_properties),
-                       output=KinesisOutput(stream_name="gleif-prod"))
+output_new = NewOutput(storage=Storage(storage=gleif_storage),
+                       output=KinesisOutput(stream_name=os.environ.get('GLEIF_KINESIS_STREAM')))
 
 # Definition of GLEIF data pipeline ingest stage
 ingest_stage = Stage(name="ingest",
               sources=[lei_source, rr_source, repex_source],
-              processors=[],
-              outputs=[output_new]
-)
+              processors=[AddContentDate(identify=identify_gleif),
+                          RemoveEmptyExtension(identify=identify_gleif)],
+              outputs=[output_new])
 
 # Kinesis stream of GLEIF data from ingest stage
 gleif_source = Source(name="gleif",
-                      origin=KinesisInput(stream_name="gleif-prod"),
+                      origin=KinesisInput(stream_name=os.environ.get('GLEIF_KINESIS_STREAM')),
                       datatype=JSONData())
 
-# Elasticsearch indexes for BODS data
-bods_index_properties = {"entity": {"properties": entity_statement_properties, "match": match_entity, "id": id_entity},
-                         "person": {"properties": person_statement_properties, "match": match_person, "id": id_person},
-                         "ownership": {"properties": ownership_statement_properties, "match": match_ownership, "id": id_ownership}}
-
-# Identify type of GLEIF data
-def identify_gleif(item):
-    if 'Entity' in item:
-        return 'lei'
-    elif 'Relationship' in item:
-        return 'rr'
-    elif 'ExceptionCategory' in item:
-        return 'repex'
-
-# Identify type of BODS data
-def identify_bods(item):
-    if item['statementType'] == 'entityStatement':
-        return 'entity'
-    elif item['statementType'] == 'personStatement':
-        return 'person'
-    elif item['statementType'] == 'ownershipOrControlStatement':
-        return 'ownership'
+# Easticsearch storage for BODS data
+bods_storage = ElasticsearchClient(indexes=bods_index_properties)
 
 # BODS data: Store in Easticsearch and output new to Kinesis stream
-bods_output_new = NewOutput(storage=ElasticStorage(indexes=bods_index_properties),
-                            output=KinesisOutput(stream_name="bods-gleif-prod"),
+bods_output_new = NewOutput(storage=Storage(storage=bods_storage),
+                            output=KinesisOutput(stream_name=os.environ.get('BODS_KINESIS_STREAM')),
                             identify=identify_bods)
 
 # Definition of GLEIF data pipeline transform stage
 transform_stage = Stage(name="transform",
               sources=[gleif_source],
-              processors=[Gleif2Bods(identify=identify_gleif)],
-              outputs=[bods_output_new]
-)
+              processors=[ProcessUpdates(id_name='XI-LEI',
+                                         transform=Gleif2Bods(identify=identify_gleif),
+                                         storage=Storage(storage=bods_storage),
+                                         updates=GleifUpdates())],
+              outputs=[bods_output_new])
 
 # Definition of GLEIF data pipeline
 pipeline = Pipeline(name="gleif", stages=[ingest_stage, transform_stage])
 
-# Setup Elasticsearch indexes
-def setup():
-    done = False
-    while not done:
-        try:
-            ElasticStorage(indexes=index_properties).setup_indexes()
-            ElasticStorage(indexes=bods_index_properties).setup_indexes()
-            done = True
-        except elastic_transport.ConnectionError:
-            print("Waiting for Elasticsearch to start ...")
-            time.sleep(5)
+# Setup storage indexes
+async def setup_indexes():
+    await gleif_storage.setup_indexes()
+    await bods_storage.setup_indexes()
 
-#stats = ElasticStorage(indexes=index_properties).stats
+# Load run
+async def load_previous(name):
+    bods_storage_run = ElasticsearchClient(indexes=bods_index_properties)
+    await bods_storage_run.setup()
+    storage_run = Storage(storage=bods_storage_run)
+    return await load_last_run(storage_run, name=name)
+
+# Save data on current pipeline run
+async def save_current_run(name, start_timestamp):
+    bods_storage_run = ElasticsearchClient(indexes=bods_index_properties)
+    await bods_storage_run.setup()
+    storage_run = Storage(storage=bods_storage_run)
+    run_data = {'stage_name': name,
+                'start_timestamp': str(start_timestamp),
+                'end_timestamp': datetime.now().timestamp()}
+    await save_run(storage_run, run_data)
+
+# Setup pipeline storage
+def setup():
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    loop.run_until_complete(setup_indexes())
+

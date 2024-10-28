@@ -1,0 +1,117 @@
+[
+  {
+    "Relationship": {
+      "StartNode": {
+        "NodeID": "001GPB6A9XPE8XJICC14",
+        "NodeIDType": "LEI"
+      },
+      "EndNode": {
+        "NodeID": "5493001Z012YSB2A0K51",
+        "NodeIDType": "LEI"
+      },
+      "RelationshipType": "IS_FUND-MANAGED_BY",
+      "RelationshipPeriods": [
+        {
+          "StartDate": "2012-11-29T00:00:00.000Z",
+          "PeriodType": "RELATIONSHIP_PERIOD"
+        }
+      ],
+      "RelationshipStatus": "ACTIVE"
+    },
+    "Registration": {
+      "InitialRegistrationDate": "2022-11-14T09:59:48.000Z",
+      "LastUpdateDate": "2023-07-18T15:41:20.212Z",
+      "RegistrationStatus": "PUBLISHED",
+      "NextRenewalDate": "2024-05-18T15:48:53.604Z",
+      "ManagingLOU": "EVK05KS7XY1DEII3R011",
+      "ValidationSources": "FULLY_CORROBORATED",
+      "ValidationDocuments": "SUPPORTING_DOCUMENTS",
+      "ValidationReference": "https://www.sec.gov/Archives/edgar/data/722574/000072257422000127/filing4699.htm"
+    }
+  },
+  {
+    "Relationship": {
+      "StartNode": {
+        "NodeID": "010CMKZ3VON21WF2ZD45",
+        "NodeIDType": "LEI"
+      },
+      "EndNode": {
+        "NodeID": "ZZG38T0MDR3QY1ETUA76",
+        "NodeIDType": "LEI"
+      },
+      "RelationshipType": "IS_DIRECTLY_CONSOLIDATED_BY",
+      "RelationshipPeriods": [
+        {
+          "StartDate": "2018-01-01T00:00:00.000Z",
+          "EndDate": "2018-12-31T00:00:00.000Z",
+          "PeriodType": "ACCOUNTING_PERIOD"
+        },
+        {
+          "StartDate": "2018-02-06T00:00:00.000Z",
+          "PeriodType": "RELATIONSHIP_PERIOD"
+        }
+      ],
+      "RelationshipStatus": "ACTIVE",
+      "RelationshipQualifiers": [
+        {
+          "QualifierDimension": "ACCOUNTING_STANDARD"
+        }
+      ]
+    },
+    "Registration": {
+      "InitialRegistrationDate": "2012-10-01T11:09:00.000Z",
+      "LastUpdateDate": "2022-08-04T01:00:00.000Z",
+      "RegistrationStatus": "LAPSED",
+      "NextRenewalDate": "2022-06-03T13:04:00.000Z",
+      "ManagingLOU": "EVK05KS7XY1DEII3R011",
+      "ValidationSources": "ENTITY_SUPPLIED_ONLY",
+      "ValidationDocuments": "SUPPORTING_DOCUMENTS"
+    }
+  },
+  {
+    "Relationship": {
+      "StartNode": {
+        "NodeID": "010CMKZ3VON21WF2ZD45",
+        "NodeIDType": "LEI"
+      },
+      "EndNode": {
+        "NodeID": "3C7474T6CDKPR9K6YT90",
+        "NodeIDType": "LEI"
+      },
+      "RelationshipType": "IS_ULTIMATELY_CONSOLIDATED_BY",
+      "RelationshipPeriods": [
+        {
+          "StartDate": "2020-01-01T00:00:00.000Z",
+          "EndDate": "2020-12-31T00:00:00.000Z",
+          "PeriodType": "ACCOUNTING_PERIOD"
+        },
+        {
+          "StartDate": "2018-02-06T00:00:00.000Z",
+          "PeriodType": "RELATIONSHIP_PERIOD"
+        },
+        {
+          "StartDate": "2020-01-01T00:00:00.000Z",
+          "EndDate": "2020-12-31T00:00:00.000Z",
+          "PeriodType": "DOCUMENT_FILING_PERIOD"
+        }
+      ],
+      "RelationshipStatus": "ACTIVE",
+      "RelationshipQualifiers": [
+        {
+          "QualifierDimension": "ACCOUNTING_STANDARD",
+          "QualifierCategory": "US_GAAP"
+        }
+      ]
+    },
+    "Registration": {
+      "InitialRegistrationDate": "2012-10-01T11:09:00.000Z",
+      "LastUpdateDate": "2023-03-24T15:32:00.000Z",
+      "RegistrationStatus": "LAPSED",
+      "NextRenewalDate": "2022-06-03T13:04:00.000Z",
+      "ManagingLOU": "EVK05KS7XY1DEII3R011",
+      "ValidationSources": "FULLY_CORROBORATED",
+      "ValidationDocuments": "REGULATORY_FILING",
+      "ValidationReference": "https://www.sec.gov/ix?doc=/Archives/edgar/data/40545/000004054521000011/ge-20201231.htm"
+    }
+  }
+]
