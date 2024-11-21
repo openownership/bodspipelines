@@ -1,0 +1,62 @@
+{
+  "name": {
+    "en": "Local Authorities for England Register",
+    "local": ""
+  },
+  "url": "https://local-authority-eng.register.gov.uk/records?page-index=1&page-size=5000",
+  "description": {
+    "en": "The Local Authorities for England Register has been developed with the UK Department for Communities and Local Government (DCLG), and contains identifiers for 350+ local authorities. It also includes the 'local authority type' (e.g. Unitary Authority, London Borough) for each.\n\nIt uses the second portion of [ISO_3166-2](https://en.wikipedia.org/wiki/ISO_3166-2:GB) codes where these are available, and creates new codes where they are not. For more information on GOV.UK Registers, visit https://registers.cloudapps.digital/"
+  },
+  "coverage": [
+    "GB"
+  ],
+  "subnationalCoverage": [
+    "GB-ENG"
+  ],
+  "structure": [
+    "government_agency/local_government",
+    "government_agency"
+  ],
+  "sector": [],
+  "code": "GB-LAE",
+  "confirmed": true,
+  "deprecated": false,
+  "listType": "secondary",
+  "access": {
+    "availableOnline": true,
+    "onlineAccessDetails": null,
+    "publicDatabase": "https://local-authority-eng.register.gov.uk/records",
+    "guidanceOnLocatingIds": "Look for the value of the 'Local-authority-eng' field. ",
+    "exampleIdentifiers": "WOT, BAS, GED",
+    "languages": [
+      "en"
+    ]
+  },
+  "data": {
+    "availability": [
+      "api",
+      "bulk",
+      "csv",
+      "json",
+      "rdf"
+    ],
+    "dataAccessDetails": "The list is available in CSV, TSV, JSON, YAML and TTL formats. There is also an open API, for guidance on how to use this visit https://registers-docs.cloudapps.digital/#api-documentation-for-registers",
+    "features": [
+      "date_of_registration",
+      "registration_number",
+      "expiry_date",
+      "status"
+    ],
+    "licenseStatus": "open_license",
+    "licenseDetails": "Open Government Licence v3.0"
+  },
+  "meta": {
+    "source": "https://github.com/OpenDataServices/org-ids/issues/64",
+    "lastUpdated": "2017-10-03"
+  },
+  "links": {
+    "opencorporates": "",
+    "wikipedia": "https://en.wikipedia.org/wiki/List_of_local_governments_in_the_United_Kingdom"
+  },
+  "formerPrefixes": []
+}

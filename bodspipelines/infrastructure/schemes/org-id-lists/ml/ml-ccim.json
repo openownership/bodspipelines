@@ -1,0 +1,48 @@
+{
+  "name": {
+    "en": "The Chamber of Commerce and Industry of Mali",
+    "local": ""
+  },
+  "url": "http://www.cci.ml/",
+  "description": {
+    "en": "The Chamber of Commerce and Industry of Mali (CCIM) is responsible for the organization and professional representation of organisations and legal persons working in the various branches of commercial, industrial and service activities in Mali."
+  },
+  "coverage": [
+    "ML"
+  ],
+  "subnationalCoverage": [],
+  "structure": [
+    "company"
+  ],
+  "sector": [],
+  "code": "ML-CCIM",
+  "confirmed": true,
+  "deprecated": false,
+  "listType": "primary",
+  "access": {
+    "availableOnline": false,
+    "onlineAccessDetails": "",
+    "publicDatabase": "",
+    "guidanceOnLocatingIds": "Ask organisations for their registration number as issued by the Chamber of Commerce and Industry of Mali.",
+    "exampleIdentifiers": "",
+    "languages": [
+      ""
+    ]
+  },
+  "data": {
+    "availability": [],
+    "dataAccessDetails": "",
+    "features": [],
+    "licenseStatus": "no_license",
+    "licenseDetails": ""
+  },
+  "meta": {
+    "source": "IATI",
+    "lastUpdated": "2017-08-05"
+  },
+  "links": {
+    "opencorporates": "",
+    "wikipedia": ""
+  },
+  "formerPrefixes": []
+}

@@ -1,0 +1,49 @@
+{
+  "name": {
+    "en": "Ministry of Foreign affairs",
+    "local": " Kementerian Luar Negeri"
+  },
+  "url": "http://www.kemlu.go.id/",
+  "description": {
+    "en": "All NGOs foreign to Indonesia who wish to operate in the country must register through the Ministry of Foreign affairs/ Kementerian Luar Negeri. \n\n\"Registration Process:\n\n1.    INGO submit complete application documents to the Government of the Republic of Indonesia through the Ministry of Foreign Affairs\" [1]\n\n[1] http://www.kemlu.go.id/en/berita/informasi-penting/Pages/Registration-Guidelines-for-International-Non-Governmental-Organizations-in-Indonesia.aspx"
+  },
+  "coverage": [
+    "ID"
+  ],
+  "subnationalCoverage": [],
+  "structure": [],
+  "sector": [],
+  "code": "ID-KLN",
+  "confirmed": true,
+  "deprecated": false,
+  "listType": "secondary",
+  "access": {
+    "availableOnline": false,
+    "onlineAccessDetails": null,
+    "publicDatabase": "http://www.smeru.or.id/en/content/ngo-database",
+    "guidanceOnLocatingIds": "No source of identifiers was found during research. ",
+    "exampleIdentifiers": "",
+    "languages": [
+      "en",
+      "id"
+    ]
+  },
+  "data": {
+    "availability": [
+      "data_not_available"
+    ],
+    "dataAccessDetails": "",
+    "features": [],
+    "licenseStatus": "no_license",
+    "licenseDetails": ""
+  },
+  "meta": {
+    "source": "",
+    "lastUpdated": "2017-10-25"
+  },
+  "links": {
+    "opencorporates": "",
+    "wikipedia": ""
+  },
+  "formerPrefixes": []
+}

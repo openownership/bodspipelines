@@ -1,0 +1,63 @@
+{
+  "name": {
+    "en": "Register of Schools (England and Wales)",
+    "local": "Get information about schools, UK Register of Learning Providers"
+  },
+  "url": "https://get-information-schools.service.gov.uk",
+  "description": {
+    "en": "Schools and Colleges in England must be registered with the Department of Education.[1]\n\nThe Register of Schools is maintained by the Department of Education and provides a URN for each school, university and other educational establishment in England.\n\nThe full Register of Schools in England is available at https://get-information-schools.service.gov.uk/Downloads.\n\n **The register for Welsh schools used to be part of this list, but is now the responsibility of the Welsh Government. Details of the Welsh list are available on org-id.guide.**\n\n[1] This includes independent schools which meet the criteria on https://www.gov.uk/independent-school-registration\n\n[2]http://org-id.guide/list/GB-WALEDU"
+  },
+  "coverage": [
+    "GB"
+  ],
+  "subnationalCoverage": [
+    "GB-ENG"
+  ],
+  "structure": [
+    "government_agency/public_service",
+    "government_agency"
+  ],
+  "sector": [
+    "education"
+  ],
+  "code": "GB-EDU",
+  "confirmed": true,
+  "deprecated": false,
+  "listType": "secondary",
+  "access": {
+    "availableOnline": true,
+    "onlineAccessDetails": "Users can search for an educational establishment on this webpage https://get-information-schools.service.gov.uk",
+    "publicDatabase": "https://get-information-schools.service.gov.uk",
+    "guidanceOnLocatingIds": "After conducting a search and selecting a school, college etc from the search results, the identifier will be next to the heading 'URN'.\n\nUsers can also download a CSV or Excel file of search results data by clicking on 'Download these search results', or access the full open data register from https://get-information-schools.service.gov.uk/Downloads in a variety of alternative formats.",
+    "exampleIdentifiers": "125554, 125756, 134533",
+    "languages": [
+      "en"
+    ]
+  },
+  "data": {
+    "availability": [
+      "bulk",
+      "csv",
+      "excel"
+    ],
+    "dataAccessDetails": "The 'School Eng Register' is available at https://get-information-schools.service.gov.uk/Downloads and contains the URN or 'key' as the identifier.",
+    "features": [
+      "date_of_registration",
+      "number_of_employees",
+      "registration_number",
+      "expiry_date",
+      "status"
+    ],
+    "licenseStatus": "open_license",
+    "licenseDetails": "UK Open Government Licence v3 https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+  },
+  "meta": {
+    "source": "Desk research",
+    "lastUpdated": "2017-10-14"
+  },
+  "links": {
+    "opencorporates": "",
+    "wikipedia": ""
+  },
+  "formerPrefixes": []
+}

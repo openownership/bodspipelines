@@ -67,10 +67,12 @@ class Stage:
                     new_items = []
                     for current_item in items:
                     #print("Processor:", processor)
-                        async for out in processor.process(current_item, source.name, header, updates=updates):
+                        #async for out in processor.process(current_item, source.name, header, updates=updates):
+                        out = await processor.process(current_item, source.name, header, updates=updates)
                             #print(out)
                             #yield out
-                            new_items.append(out)
+                            #new_items.append(out)
+                        new_items.append(out)
                     items = new_items
                 for current_item in items:
                     yield current_item

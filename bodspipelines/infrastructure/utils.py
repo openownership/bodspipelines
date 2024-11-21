@@ -1,5 +1,5 @@
 import datetime
-import dateutil
+import dateutil.parser
 import pytz
 import string
 import random
@@ -9,6 +9,7 @@ import requests
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 from functools import partial
+from copy import deepcopy
 
 def random_string(length):
     """Generate random string of specified length"""
@@ -17,6 +18,7 @@ def random_string(length):
 
 def format_date(d):
     """Format date in ISO 8601"""
+    print("Date:", d)
     return dateutil.parser.isoparse(d).strftime("%Y-%m-%d")
 
 
@@ -75,12 +77,13 @@ def download_delayed(url, func):
 
 def identify_bods(item):
     """Identify type of BODS data"""
-    if item['statementType'] == 'entityStatement':
-        return 'entity'
-    elif item['statementType'] == 'personStatement':
-        return 'person'
-    elif item['statementType'] == 'ownershipOrControlStatement':
-        return 'ownership'
+    return item['recordType']
+    #if item['recordType'] == 'entityStatement':
+    #    return 'entity'
+    #elif item['recordType'] == 'personStatement':
+    #    return 'person'
+    #elif item['recordType'] == 'ownershipOrControlStatement':
+    #    return 'ownership'
 
 async def load_last_run(storage, name=None):
     """Load data about last pipeline run"""
@@ -94,3 +97,25 @@ async def load_last_run(storage, name=None):
 async def save_run(storage, data):
     """Save data about last pipeline run"""
     await storage.add_item(data, "runs")
+
+def map_unspecified(statement):
+    print(statement)
+    if "recordType" in statement and statement["recordType"] == "relationship":
+        if isinstance(statement["recordDetails"]["subject"], dict):
+            statement = deepcopy(statement)
+            statement["recordDetails"]["subject_unspecified"] = statement["recordDetails"]["subject"]
+            del statement["recordDetails"]["subject"]
+        if isinstance(statement["recordDetails"]["interestedParty"], dict):
+            statement = deepcopy(statement)
+            statement["recordDetails"]["interestedParty_unspecified"] = statement["recordDetails"]["interestedParty"]
+            del statement["recordDetails"]["interestedParty"]
+    return statement
+
+def unmap_unspecified(statement):
+    if "recordType" in statement and statement["recordType"] == "relationship":
+        if "subject_unspecified" in statement["recordDetails"]:
+            statement["recordDetails"]["subject"] = statement["recordDetails"]["subject_unspecified"]
+            del statement["recordDetails"]["subject_unspecified"]
+        if "interestedParty_unspecified" in statement["recordDetails"]:
+            statement["recordDetails"]["interestedParty"] = statement["recordDetails"]["interestedParty_unspecified"]
+            del statement["recordDetails"]["interestedParty_unspecified"]

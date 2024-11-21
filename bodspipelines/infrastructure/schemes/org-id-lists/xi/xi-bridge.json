@@ -1,0 +1,55 @@
+{
+  "name": {
+    "en": "Basic Registry of Identified Global Entities",
+    "local": ""
+  },
+  "url": "https://bridge-registry.org/",
+  "description": {
+    "en": "As of August 2020 the BRIDGE project has been shut down. It was led by four nonprofit partners – GlobalGiving, TechSoup Global, GuideStar, and Foundation Center – BRIDGE assigned a unique identification number, known as a BRIDGE number, to individual social sector entities around the world. Each 10-digit BRIDGE number was randomly generated and unique to an organization.\n\n**The legal form or organizations that the list covers**: BRIDGE covered a variety of entities. Any private organization or program anywhere in the world devoted to social good could be assigned a BRIDGE number. The historical data archives of BRIDGE are no longer maintained or updated, but can be accessed at https://www.bridge-registry.org/data/index.html.\n\n"
+  },
+  "coverage": [],
+  "subnationalCoverage": [],
+  "structure": [
+    "charity",
+    "company",
+    "trust",
+    "unincorporated_body"
+  ],
+  "sector": [],
+  "code": "XI-BRIDGE",
+  "confirmed": true,
+  "deprecated": true,
+  "listType": "third_party",
+  "access": {
+    "availableOnline": true,
+    "onlineAccessDetails": "The historical data archives of BRIDGE are no longer maintained or updated, but can be accessed at https://www.bridge-registry.org/data/index.html.",
+    "publicDatabase": "https://bridge-registry.org/",
+    "guidanceOnLocatingIds": "",
+    "exampleIdentifiers": "XI-BRIDGE-7924198567; XI-BRIDGE-1241896123; XI-BRIDGE-62155056",
+    "languages": [
+      "en"
+    ]
+  },
+  "data": {
+    "availability": [
+      "bulk",
+      "csv"
+    ],
+    "dataAccessDetails": "The historical data archives of BRIDGE are no longer maintained or updated, but can be accessed at https://www.bridge-registry.org/data/index.html.",
+    "features": [
+      "registration_number",
+      "country_of_origin"
+    ],
+    "licenseStatus": "open_license",
+    "licenseDetails": "BRIDGE open data is made available for reuse under a [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/) license."
+  },
+  "meta": {
+    "source": "Information and copy provided by a member of the consortium responsible for the list. See this [github issue](https://github.com/org-id/register/issues/276) along with the pages it links to for full details. Update on closure of BRIDGE received from Petya Kangalova, with thanks.",
+    "lastUpdated": "2020-09-21"
+  },
+  "links": {
+    "opencorporates": "",
+    "wikipedia": ""
+  },
+  "formerPrefixes": []
+}

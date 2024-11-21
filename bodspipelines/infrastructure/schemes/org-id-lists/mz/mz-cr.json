@@ -1,0 +1,50 @@
+{
+  "name": {
+    "en": "Mozambique Commercial Registry",
+    "local": "O registo Comercial de Moçambique"
+  },
+  "url": "http://www.portaldogoverno.gov.mz/Empresas/Registos/Registo-de-Sociedades",
+  "description": {
+    "en": "The purpose of the Commercial Registry is to make known the status of merchant of natural and legal persons, being defined as mandatory for the formation of companies. "
+  },
+  "coverage": [
+    "MZ"
+  ],
+  "subnationalCoverage": [],
+  "structure": [
+    "company"
+  ],
+  "sector": [],
+  "code": "MZ-CR",
+  "confirmed": true,
+  "deprecated": false,
+  "listType": "primary",
+  "access": {
+    "availableOnline": false,
+    "onlineAccessDetails": null,
+    "publicDatabase": "",
+    "guidanceOnLocatingIds": "",
+    "exampleIdentifiers": "",
+    "languages": [
+      "PT"
+    ]
+  },
+  "data": {
+    "availability": [
+      "data_not_available"
+    ],
+    "dataAccessDetails": "",
+    "features": [],
+    "licenseStatus": "closed_license",
+    "licenseDetails": ""
+  },
+  "meta": {
+    "source": "Desk research",
+    "lastUpdated": "2017-11-16"
+  },
+  "links": {
+    "opencorporates": "",
+    "wikipedia": ""
+  },
+  "formerPrefixes": []
+}

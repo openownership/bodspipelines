@@ -1,0 +1,48 @@
+{
+  "name": {
+    "en": "Mozambique Ministry of Justice",
+    "local": ""
+  },
+  "url": "http://www.commonwealthofnations.org/sectors-mozambique/civil_society/",
+  "description": {
+    "en": "'Domestic NGOs are required to register with the Ministry of Justice.'[1]\n\n[1] http://www.commonwealthofnations.org/sectors-mozambique/civil_society/national_ngos_civil_society/\n"
+  },
+  "coverage": [
+    "MZ"
+  ],
+  "subnationalCoverage": [],
+  "structure": [
+    "charity"
+  ],
+  "sector": [],
+  "code": "MZ-MOJ",
+  "confirmed": true,
+  "deprecated": false,
+  "listType": "primary",
+  "access": {
+    "availableOnline": false,
+    "onlineAccessDetails": null,
+    "publicDatabase": "",
+    "guidanceOnLocatingIds": "Ask organisations for their registration number as issued by the Ministry of Justice.",
+    "exampleIdentifiers": "",
+    "languages": []
+  },
+  "data": {
+    "availability": [
+      "data_not_available"
+    ],
+    "dataAccessDetails": "",
+    "features": [],
+    "licenseStatus": "no_license",
+    "licenseDetails": ""
+  },
+  "meta": {
+    "source": "Desk research",
+    "lastUpdated": "2017-11-16"
+  },
+  "links": {
+    "opencorporates": "",
+    "wikipedia": ""
+  },
+  "formerPrefixes": []
+}

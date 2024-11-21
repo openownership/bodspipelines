@@ -1,0 +1,56 @@
+{
+  "name": {
+    "en": "Government Organisation Register",
+    "local": ""
+  },
+  "url": "https://github.com/openregister/registers-data-archive",
+  "description": {
+    "en": "The UK Government Organisation Register was a service provided by the Government Digital Service which retired on March 15 2021. It contained an identifier for every government body with a presence on the gov.uk single domain.\n\nThis covered government departments, agencies and Arms Length Bodies (ALBs).\n\nEach organisation was assigned an alphanumeric identifier, and the register also included website addresses, that could be mapped to entries in the GB-GOVUK identifier list."
+  },
+  "coverage": [
+    "GB"
+  ],
+  "subnationalCoverage": [],
+  "structure": [
+    "government_agency"
+  ],
+  "sector": [],
+  "code": "GB-GOR",
+  "confirmed": true,
+  "deprecated": false,
+  "listType": "secondary",
+  "access": {
+    "availableOnline": true,
+    "onlineAccessDetails": "The list was accessible as open data as part of the OpenRegister platform. The historic data is provided by the National Archives Government web archive.",
+    "publicDatabase": "https://github.com/openregister/registers-data-archive",
+    "guidanceOnLocatingIds": "The identifier is available in the 'government-organisation' field within the register. Identifiers are short alphanumeric strings. ",
+    "exampleIdentifiers": "OT1211, PB1204, EA1113, D1198",
+    "languages": [
+      "en"
+    ]
+  },
+  "data": {
+    "availability": [
+      "bulk",
+      "csv",
+      "json",
+      "rdf"
+    ],
+    "dataAccessDetails": "The full list and individual records are available in a number of machine-readable formats.",
+    "features": [
+      "date_of_registration",
+      "expiry_date"
+    ],
+    "licenseStatus": "open_license",
+    "licenseDetails": "Open Government Licence v3.0"
+  },
+  "meta": {
+    "source": "https://github.com/OpenDataServices/org-ids/issues/67",
+    "lastUpdated": "2023-09-20"
+  },
+  "links": {
+    "opencorporates": "",
+    "wikipedia": ""
+  },
+  "formerPrefixes": []
+}

@@ -154,10 +154,12 @@ class Caching():
     def __init__(self, storage, batching=False):
         """Setup cache"""
         self.initialised = False
-        self.cache = {"latest": {}, "references": {}, "exceptions": {}, "updates": {}}
-        self.batch = {"latest": {}, "references": {}, "exceptions": {}, "updates": {}} if batching else None
+        self.cache = {"latest": {}, "references": {}, "exceptions": {},
+                      "updates": {}, "records": {}, "closed": {}}
+        self.batch = {"latest": {}, "references": {}, "exceptions": {},
+                      "updates": {}, "records": {}, "closed": {}} if batching else None
         self.batch_size = batching if batching else None
-        self.memory_only = ["updates"]
+        self.memory_only = ["updates", "closed"]
         self.storage = storage
 
     async def load(self):
@@ -281,6 +283,7 @@ class Caching():
 
     async def stream(self, item_type):
         """Get cached items"""
+        print("Cache:", self.cache)
         for item_id in self.cache[item_type]:
             yield self.cache[item_type].get(item_id)
 

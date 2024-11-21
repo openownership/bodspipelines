@@ -1,0 +1,48 @@
+{
+    "name": {
+      "en": "Commercial Registry, Yemen",
+      "local": ""
+    },
+    "url": "https://moit-ye.com/",
+    "description": {
+      "en": "The Yemen Ministry of Industry and Trade manages the commercial registry of trade names for corporations and sole traders."
+    },
+    "coverage": [
+      "YE"
+    ],
+    "subnationalCoverage": [],
+    "structure": [
+      "company"
+    ],
+    "sector": [],
+    "code": "YE-CR",
+    "confirmed": true,
+    "deprecated": false,
+    "listType": "primary",
+    "access": {
+      "availableOnline": true,
+      "onlineAccessDetails": null,
+      "publicDatabase": "https://moit.gov.ye/tn-searc/index.php",
+      "guidanceOnLocatingIds": "Company numbers or identifiers are not available via the public search facility.",
+      "exampleIdentifiers": "",
+      "languages": []
+    },
+    "data": {
+      "availability": [
+        "data_not_available"
+      ],
+      "dataAccessDetails": "",
+      "features": [],
+      "licenseStatus": "no_license",
+      "licenseDetails": ""
+    },
+    "meta": {
+      "source": "original research",
+      "lastUpdated": "2023-11-27"
+    },
+    "links": {
+      "opencorporates": "",
+      "wikipedia": ""
+    },
+    "formerPrefixes": []
+  }

@@ -1,0 +1,49 @@
+{
+  "name": {
+    "en": "Indonesian Directorate General of Taxes",
+    "local": "Direktorat Jenderal Pajak"
+  },
+  "url": "https://pajak.go.id/en/overview",
+  "description": {
+    "en": "The Directorate General of Taxes is Indonesia's tax office.\n\nThe Tax Identification Number (TIN) is known in Indonesia as Nomor Pokok Wajib Pajak (NPWP) and is issued by the Directorate General of Taxes to individuals and entities. "
+  },
+  "coverage": [
+    "ID"
+  ],
+  "subnationalCoverage": [],
+  "structure": [
+    "company"
+  ],
+  "sector": [],
+  "code": "ID-DJP",
+  "confirmed": true,
+  "deprecated": false,
+  "listType": "primary",
+  "access": {
+    "availableOnline": false,
+    "onlineAccessDetails": "No searchable database of Tax identification Numbers (TINs) has been found.",
+    "publicDatabase": "",
+    "guidanceOnLocatingIds": "",
+    "exampleIdentifiers": "010117771077000, 312666837412000",
+    "languages": [
+      "ID"
+    ]
+  },
+  "data": {
+    "availability": [
+      "data_not_available"
+    ],
+    "dataAccessDetails": "",
+    "features": [],
+    "licenseDetails": ""
+  },
+  "meta": {
+    "source": "Desk research",
+    "lastUpdated": "2024-05-28"
+  },
+  "links": {
+    "opencorporates": "",
+    "wikipedia": "https://en.wikipedia.org/wiki/Directorate_General_of_Taxes_(Indonesia)"
+  },
+  "formerPrefixes": []
+}
