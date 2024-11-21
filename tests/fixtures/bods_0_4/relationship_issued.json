@@ -1,0 +1,168 @@
+[
+    {
+        "Relationship": {
+            "StartNode": {
+                "NodeID": "3003005JY7KTP8L48N10",
+                "NodeIDType": "LEI"
+            },
+            "EndNode": {
+                "NodeID": "30030096HNNZNN7BZK36",
+                "NodeIDType": "LEI"
+            },
+            "RelationshipType": "IS_ULTIMATELY_CONSOLIDATED_BY",
+            "RelationshipPeriods": [
+                {
+                    "StartDate": "2016-02-23T00:00:00.000+08:00",
+                    "PeriodType": "RELATIONSHIP_PERIOD"
+                },
+                {
+                    "StartDate": "2024-01-01T00:00:00.000+08:00",
+                    "EndDate": "2024-12-31T00:00:00.000+08:00",
+                    "PeriodType": "ACCOUNTING_PERIOD"
+                }
+            ],
+            "RelationshipStatus": "ACTIVE",
+            "RelationshipQualifiers": [
+                {
+                    "QualifierDimension": "ACCOUNTING_STANDARD",
+                    "QualifierCategory": "IFRS"
+                }
+            ]
+        },
+        "Registration": {
+            "InitialRegistrationDate": "2020-07-06T14:17:10.543+08:00",
+            "LastUpdateDate": "2024-05-06T09:56:04.826+08:00",
+            "RegistrationStatus": "PUBLISHED",
+            "NextRenewalDate": "2025-05-06T09:51:41.511+08:00",
+            "ManagingLOU": "655600IJ8LS3CCDA4421",
+            "ValidationSources": "FULLY_CORROBORATED",
+            "ValidationDocuments": "SUPPORTING_DOCUMENTS"
+        }
+    },
+    {
+        "LEI": "30030096HNNZNN7BZK36",
+        "Entity": {
+            "LegalName": "\u6a2a\u5e97\u96c6\u56e2\u63a7\u80a1\u6709\u9650\u516c\u53f8",
+            "LegalAddress": {
+                "FirstAddressLine": "\u6d59\u6c5f\u7701\u4e1c\u9633\u5e02\u6a2a\u5e97\u9547\u4e07\u76db\u885742\u53f7",
+                "City": "\u91d1\u534e\u5e02",
+                "Region": "CN-ZJ",
+                "Country": "CN",
+                "PostalCode": "100000"
+            },
+            "HeadquartersAddress": {
+                "FirstAddressLine": "\u6d59\u6c5f\u7701\u4e1c\u9633\u5e02\u6a2a\u5e97\u9547\u4e07\u76db\u885742\u53f7",
+                "City": "\u91d1\u534e\u5e02",
+                "Region": "CN-ZJ",
+                "Country": "CN",
+                "PostalCode": "100000"
+            },
+            "RegistrationAuthority": {
+                "RegistrationAuthorityID": "RA000092",
+                "RegistrationAuthorityEntityID": "91330783717672584H"
+            },
+            "LegalJurisdiction": "CN",
+            "EntityCategory": "GENERAL",
+            "LegalForm": {
+                "EntityLegalFormCode": "ECAK"
+            },
+            "EntityStatus": "ACTIVE",
+            "EntityCreationDate": "1999-11-22T00:00:00.000+08:00",
+            "LegalEntityEvents": [
+                {
+                    "LegalEntityEventType": "CHANGE_OTHER_NAMES",
+                    "LegalEntityEventEffectiveDate": "2022-12-06T00:00:00.000+08:00",
+                    "LegalEntityEventRecordedDate": "2022-12-27T15:42:15.986+08:00",
+                    "ValidationDocuments": "SUPPORTING_DOCUMENTS"
+                },
+                {
+                    "LegalEntityEventType": "CHANGE_LEGAL_ADDRESS",
+                    "LegalEntityEventEffectiveDate": "2022-12-06T00:00:00.000+08:00",
+                    "LegalEntityEventRecordedDate": "2022-12-27T15:42:15.988+08:00",
+                    "ValidationDocuments": "SUPPORTING_DOCUMENTS"
+                },
+                {
+                    "LegalEntityEventType": "CHANGE_HQ_ADDRESS",
+                    "LegalEntityEventEffectiveDate": "2022-12-06T00:00:00.000+08:00",
+                    "LegalEntityEventRecordedDate": "2022-12-27T15:42:15.989+08:00",
+                    "ValidationDocuments": "SUPPORTING_DOCUMENTS"
+                }
+            ]
+        },
+        "Registration": {
+            "InitialRegistrationDate": "2020-03-26T22:48:20.115+08:00",
+            "LastUpdateDate": "2022-12-27T21:58:06.267+08:00",
+            "RegistrationStatus": "LAPSED",
+            "NextRenewalDate": "2023-12-27T22:48:20.450+08:00",
+            "ManagingLOU": "655600IJ8LS3CCDA4421",
+            "ValidationSources": "FULLY_CORROBORATED",
+            "ValidationAuthority": {
+                "ValidationAuthorityID": "RA000092",
+                "ValidationAuthorityEntityID": "91330783717672584H"
+            }
+        }
+    },
+    {
+        "LEI": "3003005JY7KTP8L48N10",
+        "Entity": {
+            "LegalName": "\u6a6b\u83ef\u570b\u969b\u91d1\u878d\u80a1\u4efd\u6709\u9650\u516c\u53f8",
+            "OtherEntityNames": [
+                {
+                    "type": "ALTERNATIVE_LANGUAGE_LEGAL_NAME",
+                    "OtherEntityName": "HGNH INTERNATIONAL FINANCIAL CORPORATION LIMITED"
+                }
+            ],
+            "LegalAddress": {
+                "FirstAddressLine": "\u6e7e\u4ed4\u544a\u58eb\u6253\u9053181-185\u53f7\u4e2d\u6021\u5546\u4e1a\u5927\u53a617\u5c42",
+                "City": "\u9999\u6e2f",
+                "Country": "HK",
+                "PostalCode": "999077"
+            },
+            "HeadquartersAddress": {
+                "FirstAddressLine": "\u6e7e\u4ed4\u544a\u58eb\u6253\u9053181-185\u53f7\u4e2d\u6021\u5546\u4e1a\u5927\u53a617\u5c42",
+                "City": "\u9999\u6e2f",
+                "Country": "HK",
+                "PostalCode": "999077"
+            },
+            "OtherAddresses": [
+                {
+                    "FirstAddressLine": "17/F, CENTRE POINT, 181-185 GLOUCESTER ROAD,WAN CHAI",
+                    "City": "Hong Kong",
+                    "Country": "HK",
+                    "PostalCode": "999077",
+                    "type": "ALTERNATIVE_LANGUAGE_LEGAL_ADDRESS"
+                },
+                {
+                    "FirstAddressLine": "17/F, CENTRE POINT, 181-185 GLOUCESTER ROAD,WAN CHAI",
+                    "City": "Hong Kong",
+                    "Country": "HK",
+                    "PostalCode": "999077",
+                    "type": "ALTERNATIVE_LANGUAGE_HEADQUARTERS_ADDRESS"
+                }
+            ],
+            "RegistrationAuthority": {
+                "RegistrationAuthorityID": "RA000388",
+                "RegistrationAuthorityEntityID": "58931190"
+            },
+            "LegalJurisdiction": "HK",
+            "EntityCategory": "GENERAL",
+            "LegalForm": {
+                "EntityLegalFormCode": "254M"
+            },
+            "EntityStatus": "ACTIVE",
+            "EntityCreationDate": "2011-08-16T00:00:00.000+08:00"
+        },
+        "Registration": {
+            "InitialRegistrationDate": "2018-04-19T09:51:41.506+08:00",
+            "LastUpdateDate": "2024-05-06T09:56:17.513+08:00",
+            "RegistrationStatus": "ISSUED",
+            "NextRenewalDate": "2025-05-06T09:51:41.511+08:00",
+            "ManagingLOU": "655600IJ8LS3CCDA4421",
+            "ValidationSources": "FULLY_CORROBORATED",
+            "ValidationAuthority": {
+                "ValidationAuthorityID": "RA000388",
+                "ValidationAuthorityEntityID": "58931190"
+            }
+        }
+    }
+]

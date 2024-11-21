@@ -1,0 +1,225 @@
+[
+    {
+        "LEI": "959800HPB0TYKYATVE75",
+        "Entity": {
+            "LegalName": "MULTISERVICIOS MAPFRE MULTIMAP SA",
+            "LegalAddress": {
+                "FirstAddressLine": "Carretera de Pozuelo 50",
+                "AddressNumber": "50",
+                "City": "Majadahonda",
+                "Country": "ES",
+                "PostalCode": "28222"
+            },
+            "HeadquartersAddress": {
+                "FirstAddressLine": "Carretera de Pozuelo 50",
+                "AddressNumber": "50",
+                "City": "Majadahonda",
+                "Country": "ES",
+                "PostalCode": "28222"
+            },
+            "RegistrationAuthority": {
+                "RegistrationAuthorityID": "RA000533",
+                "RegistrationAuthorityEntityID": "M-221749-8"
+            },
+            "LegalJurisdiction": "ES",
+            "EntityCategory": "GENERAL",
+            "LegalForm": {
+                "EntityLegalFormCode": "5RDO"
+            },
+            "EntityStatus": "ACTIVE",
+            "EntityCreationDate": "1998-04-30T12:00:00+02:00"
+        },
+        "Registration": {
+            "InitialRegistrationDate": "2023-08-21T11:13:59.605+02:00",
+            "LastUpdateDate": "2023-08-21T13:16:03.199+02:00",
+            "RegistrationStatus": "ISSUED",
+            "NextRenewalDate": "2024-08-21T11:13:59.605+02:00",
+            "ManagingLOU": "959800R2X69K6Y6MX775",
+            "ValidationSources": "FULLY_CORROBORATED",
+            "ValidationAuthority": {
+                "ValidationAuthorityID": "RA000533",
+                "ValidationAuthorityEntityID": "M-221749-8"
+            },
+            "OtherValidationAuthorities": [
+                {
+                    "ValidationAuthorityID": "RA000535",
+                    "ValidationAuthorityEntityID": "A82046061"
+                }
+            ]
+        }
+    },
+    {
+        "LEI": "959800HPB0TYKYATVE75",
+        "Entity": {
+            "LegalName": "MULTISERVICIOS MAPFRE MULTIMAP SA",
+            "LegalAddress": {
+                "FirstAddressLine": "Carretera de Pozuelo 50",
+                "AddressNumber": "50",
+                "City": "Majadahonda",
+                "Country": "ES",
+                "PostalCode": "28222"
+            },
+            "HeadquartersAddress": {
+                "FirstAddressLine": "Carretera de Pozuelo 50",
+                "AddressNumber": "50",
+                "City": "Majadahonda",
+                "Country": "ES",
+                "PostalCode": "28222"
+            },
+            "RegistrationAuthority": {
+                "RegistrationAuthorityID": "RA000533",
+                "RegistrationAuthorityEntityID": "M-221749-8"
+            },
+            "LegalJurisdiction": "ES",
+            "EntityCategory": "GENERAL",
+            "LegalForm": {
+                "EntityLegalFormCode": "5RDO"
+            },
+            "EntityStatus": "ACTIVE",
+            "EntityCreationDate": "1998-04-30T12:00:00+02:00"
+        },
+        "Registration": {
+            "InitialRegistrationDate": "2023-08-21T11:13:59.605+02:00",
+            "LastUpdateDate": "2024-07-02T15:16:15.831+02:00",
+            "RegistrationStatus": "ISSUED",
+            "NextRenewalDate": "2024-08-21T11:13:59.605+02:00",
+            "ManagingLOU": "959800R2X69K6Y6MX775",
+            "ValidationSources": "FULLY_CORROBORATED",
+            "ValidationAuthority": {
+                "ValidationAuthorityID": "RA000533",
+                "ValidationAuthorityEntityID": "M-221749-8"
+            },
+            "OtherValidationAuthorities": [
+                {
+                    "ValidationAuthorityID": "RA000535",
+                    "ValidationAuthorityEntityID": "A82046061"
+                }
+            ]
+        }
+    },
+    {
+        "LEI": "959800M5S8EHVXWG6P95",
+        "Entity": {
+            "LegalName": "MAPFRE ESPA\u00d1A COMPA\u00d1IA DE SEGUROS Y REASEGUROS, S.A",
+            "LegalAddress": {
+                "FirstAddressLine": "CARRETERA DE POZUELO A MAJADAHONDA 50",
+                "AddressNumber": "50",
+                "City": "Majadahonda",
+                "Country": "ES",
+                "PostalCode": "28222"
+            },
+            "HeadquartersAddress": {
+                "FirstAddressLine": "CARRETERA DE POZUELO A MAJADAHONDA 50",
+                "AddressNumber": "50",
+                "City": "Majadahonda",
+                "Country": "ES",
+                "PostalCode": "28222"
+            },
+            "RegistrationAuthority": {
+                "RegistrationAuthorityID": "RA000533",
+                "RegistrationAuthorityEntityID": "M-9333-8"
+            },
+            "LegalJurisdiction": "ES",
+            "EntityCategory": "GENERAL",
+            "LegalForm": {
+                "EntityLegalFormCode": "5RDO"
+            },
+            "EntityStatus": "ACTIVE",
+            "EntityCreationDate": "1965-07-07T12:00:00+02:00"
+        },
+        "Registration": {
+            "InitialRegistrationDate": "2015-04-15T14:10:58.682+02:00",
+            "LastUpdateDate": "2024-04-11T15:16:29.976+02:00",
+            "RegistrationStatus": "ISSUED",
+            "NextRenewalDate": "2025-04-28T14:36:51.734+02:00",
+            "ManagingLOU": "959800R2X69K6Y6MX775",
+            "ValidationSources": "FULLY_CORROBORATED",
+            "ValidationAuthority": {
+                "ValidationAuthorityID": "RA000533",
+                "ValidationAuthorityEntityID": "M-9333-8"
+            },
+            "OtherValidationAuthorities": [
+                {
+                    "ValidationAuthorityID": "RA000535",
+                    "ValidationAuthorityEntityID": "A28141935"
+                }
+            ]
+        }
+    },
+    {
+        "Relationship": {
+            "StartNode": {
+                "NodeID": "959800HPB0TYKYATVE75",
+                "NodeIDType": "LEI"
+            },
+            "EndNode": {
+                "NodeID": "959800M5S8EHVXWG6P95",
+                "NodeIDType": "LEI"
+            },
+            "RelationshipType": "IS_DIRECTLY_CONSOLIDATED_BY",
+            "RelationshipPeriods": [
+                {
+                    "StartDate": "2023-08-18T12:00:00+02:00",
+                    "PeriodType": "RELATIONSHIP_PERIOD"
+                },
+                {
+                    "StartDate": "2022-01-01T12:00:00+01:00",
+                    "EndDate": "2022-12-31T12:00:00+01:00",
+                    "PeriodType": "ACCOUNTING_PERIOD"
+                },
+                {
+                    "StartDate": "2023-08-08T12:00:00+02:00",
+                    "PeriodType": "DOCUMENT_FILING_PERIOD"
+                }
+            ],
+            "RelationshipStatus": "ACTIVE"
+        },
+        "Registration": {
+            "InitialRegistrationDate": "2023-08-21T11:13:59.605+02:00",
+            "LastUpdateDate": "2023-08-21T13:16:03.199+02:00",
+            "RegistrationStatus": "PUBLISHED",
+            "NextRenewalDate": "2024-08-21T11:13:59.605+02:00",
+            "ManagingLOU": "959800R2X69K6Y6MX775",
+            "ValidationSources": "ENTITY_SUPPLIED_ONLY",
+            "ValidationDocuments": "OTHER_OFFICIAL_DOCUMENTS"
+        }
+    },
+    {
+        "Relationship": {
+            "StartNode": {
+                "NodeID": "959800HPB0TYKYATVE75",
+                "NodeIDType": "LEI"
+            },
+            "EndNode": {
+                "NodeID": "959800M5S8EHVXWG6P95",
+                "NodeIDType": "LEI"
+            },
+            "RelationshipType": "IS_DIRECTLY_CONSOLIDATED_BY",
+            "RelationshipPeriods": [
+                {
+                    "StartDate": "2023-08-18T12:00:00+02:00",
+                    "PeriodType": "RELATIONSHIP_PERIOD"
+                },
+                {
+                    "StartDate": "2022-01-01T12:00:00+01:00",
+                    "EndDate": "2022-12-31T12:00:00+01:00",
+                    "PeriodType": "ACCOUNTING_PERIOD"
+                },
+                {
+                    "StartDate": "2023-08-08T12:00:00+02:00",
+                    "PeriodType": "DOCUMENT_FILING_PERIOD"
+                }
+            ],
+            "RelationshipStatus": "ACTIVE"
+        },
+        "Registration": {
+            "InitialRegistrationDate": "2023-08-21T11:13:59.605+02:00",
+            "LastUpdateDate": "2024-07-02T15:16:15.831+02:00",
+            "RegistrationStatus": "PUBLISHED",
+            "NextRenewalDate": "2024-08-21T11:13:59.605+02:00",
+            "ManagingLOU": "959800R2X69K6Y6MX775",
+            "ValidationSources": "ENTITY_SUPPLIED_ONLY",
+            "ValidationDocuments": "OTHER_OFFICIAL_DOCUMENTS"
+        }
+    }
+]

@@ -1,0 +1,297 @@
+[
+    {
+        "source": {
+            "assertedBy": [
+                {
+                    "name": "GLEIF"
+                }
+            ],
+            "url": "https://goldencopy.gleif.org/storage/golden-copy-files/2024/06/06/940025/20240606-0000-gleif-goldencopy-repex-golden-copy.csv.zip"
+        },
+        "statementDate": "2024-06-06",
+        "annotations": [
+            {
+                "motivation": "commenting",
+                "description": "LEI Registration Status: ISSUED",
+                "statementPointerTarget": "",
+                "creationDate": "2024-08-12",
+                "createdBy": {
+                    "name": "Open Ownership",
+                    "uri": "https://www.openownership.org"
+                }
+            }
+        ],
+        "publicationDetails": {
+            "publicationDate": "2024-08-12",
+            "bodsVersion": "0.4",
+            "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+            "publisher": {
+                "name": "Open Ownership",
+                "url": "https://www.openownership.org"
+            }
+        },
+        "recordId": "98450005370BB5YE1D53",
+        "recordStatus": "new",
+        "recordType": "entity",
+        "recordDetails": {
+            "entityType": {
+                "type": "registeredEntity"
+            },
+            "name": "Fjordens El",
+            "jurisdiction": {
+                "name": "Denmark",
+                "code": "DK"
+            },
+            "identifiers": [
+                {
+                    "id": "98450005370BB5YE1D53",
+                    "scheme": "XI-LEI",
+                    "schemeName": "Global Legal Entity Identifier Index"
+                },
+                {
+                    "id": "26054702",
+                    "schemeName": "RA000170"
+                }
+            ],
+            "addresses": [
+                {
+                    "type": "registered",
+                    "address": "Munkh\u00f8jvej 10, Mariager",
+                    "country": {
+                        "name": "Denmark",
+                        "code": "DK"
+                    },
+                    "postCode": "9550"
+                },
+                {
+                    "type": "business",
+                    "address": "Munkh\u00f8jvej 10, Mariager",
+                    "country": {
+                        "name": "Denmark",
+                        "code": "DK"
+                    },
+                    "postCode": "9550"
+                }
+            ],
+            "foundingDate": "2007-07-01",
+            "isComponent": false
+        },
+        "statementId": "XI-LEI-98450005370BB5YE1D53-20240606",
+        "declarationSubject": "98450005370BB5YE1D53"
+    },
+    {
+        "source": {
+            "assertedBy": [
+                {
+                    "name": "GLEIF"
+                }
+            ],
+            "url": "https://goldencopy.gleif.org/storage/golden-copy-files/2024/06/06/940025/20240606-0000-gleif-goldencopy-repex-golden-copy.csv.zip"
+        },
+        "statementDate": "2024-06-06",
+        "publicationDetails": {
+            "publicationDate": "2024-08-13",
+            "bodsVersion": "0.4",
+            "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+            "publisher": {
+                "name": "Open Ownership",
+                "url": "https://www.openownership.org"
+            }
+        },
+        "recordId": "repex-u-98450005370BB5YE1D53-0517f0",
+        "recordStatus": "new",
+        "recordType": "relationship",
+        "recordDetails": {
+            "subject": "98450005370BB5YE1D53",
+            "interestedParty": {
+                "reason": "informationUnknownToPublisher",
+                "details": "Exception Reason: NO KNOWN_PERSON. There is no known person(s) controlling the entity."
+            },
+            "interests": [
+                {
+                    "directOrIndirect": "indirect",
+                    "details": "Exception Category: ULTIMATE_ACCOUNTING_CONSOLIDATION_PARENT",
+                    "type": "otherInfluenceOrControl",
+                    "beneficialOwnershipOrControl": false
+                }
+            ],
+            "isComponent": false
+        },
+        "statementId": "XI-LEI-repex-u-98450005370BB5YE1D53-0517f0-20240606",
+        "declarationSubject": "98450005370BB5YE1D53"
+    },
+    {
+        "source": {
+            "assertedBy": [
+                {
+                    "name": "GLEIF"
+                }
+            ],
+            "url": "https://goldencopy.gleif.org/storage/golden-copy-files/2024/06/06/940025/20240606-0000-gleif-goldencopy-repex-golden-copy.csv.zip"
+        },
+        "statementDate": "2024-07-07",
+        "publicationDetails": {
+            "publicationDate": "2024-08-13",
+            "bodsVersion": "0.4",
+            "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+            "publisher": {
+                "name": "Open Ownership",
+                "url": "https://www.openownership.org"
+            }
+        },
+        "recordId": "repex-u-98450005370BB5YE1D53-8881d6",
+        "recordStatus": "new",
+        "recordType": "relationship",
+        "recordDetails": {
+            "subject": "98450005370BB5YE1D53",
+            "interestedParty": {
+                "reason": "interestedPartyExemptFromDisclosure",
+                "details": "Exception Reason: NON_CONSOLIDATING. The legal entity or entities are not obliged to provide consolidated accounts in relation to the entity they control."
+            },
+            "interests": [
+                {
+                    "directOrIndirect": "indirect",
+                    "details": "Exception Category: ULTIMATE_ACCOUNTING_CONSOLIDATION_PARENT",
+                    "type": "otherInfluenceOrControl",
+                    "beneficialOwnershipOrControl": false
+                }
+            ],
+            "isComponent": false
+        },
+        "statementId": "XI-LEI-repex-u-98450005370BB5YE1D53-8881d6-20240707",
+        "declarationSubject": "98450005370BB5YE1D53"
+    },
+    {
+        "source": {
+            "assertedBy": [
+                {
+                    "name": "GLEIF"
+                }
+            ],
+            "url": "https://goldencopy.gleif.org/storage/golden-copy-files/2024/06/06/940025/20240606-0000-gleif-goldencopy-repex-golden-copy.csv.zip"
+        },
+        "statementDate": "2024-07-07",
+        "annotations": [
+            {
+                "motivation": "commenting",
+                "description": "LEI Registration Status: ISSUED",
+                "statementPointerTarget": "",
+                "creationDate": "2024-08-13",
+                "createdBy": {
+                    "name": "Open Ownership",
+                    "uri": "https://www.openownership.org"
+                }
+            }
+        ],
+        "publicationDetails": {
+            "publicationDate": "2024-08-13",
+            "bodsVersion": "0.4",
+            "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+            "publisher": {
+                "name": "Open Ownership",
+                "url": "https://www.openownership.org"
+            }
+        },
+        "recordId": "98450005370BB5YE1D53",
+        "recordStatus": "updated",
+        "recordType": "entity",
+        "recordDetails": {
+            "entityType": {
+                "type": "registeredEntity"
+            },
+            "name": "Fjordens El",
+            "jurisdiction": {
+                "name": "Denmark",
+                "code": "DK"
+            },
+            "identifiers": [
+                {
+                    "id": "98450005370BB5YE1D53",
+                    "scheme": "XI-LEI",
+                    "schemeName": "Global Legal Entity Identifier Index"
+                },
+                {
+                    "id": "26054702",
+                    "schemeName": "RA000170"
+                }
+            ],
+            "addresses": [
+                {
+                    "type": "registered",
+                    "address": "Munkh\u00f8jvej 10, Mariager",
+                    "country": {
+                        "name": "Denmark",
+                        "code": "DK"
+                    },
+                    "postCode": "9550"
+                },
+                {
+                    "type": "business",
+                    "address": "Munkh\u00f8jvej 10, Mariager",
+                    "country": {
+                        "name": "Denmark",
+                        "code": "DK"
+                    },
+                    "postCode": "9550"
+                }
+            ],
+            "foundingDate": "2007-07-01",
+            "isComponent": false
+        },
+        "statementId": "XI-LEI-98450005370BB5YE1D53-20240707",
+        "declarationSubject": "98450005370BB5YE1D53"
+    },
+    {
+        "source": {
+            "assertedBy": [
+                {
+                    "name": "GLEIF"
+                }
+            ],
+            "url": "https://goldencopy.gleif.org/storage/golden-copy-files/2024/06/06/940025/20240606-0000-gleif-goldencopy-repex-golden-copy.csv.zip"
+        },
+        "statementDate": "2024-07-07",
+        "publicationDetails": {
+            "publicationDate": "2024-08-13",
+            "bodsVersion": "0.4",
+            "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+            "publisher": {
+                "name": "Open Ownership",
+                "url": "https://www.openownership.org"
+            }
+        },
+        "recordId": "repex-u-98450005370BB5YE1D53-0517f0",
+        "recordStatus": "closed",
+        "recordType": "relationship",
+        "recordDetails": {
+            "subject": "98450005370BB5YE1D53",
+            "interestedParty": {
+                "reason": "informationUnknownToPublisher",
+                "details": "Exception Reason: NO KNOWN_PERSON. There is no known person(s) controlling the entity."
+            },
+            "interests": [
+                {
+                    "directOrIndirect": "indirect",
+                    "details": "Exception Category: ULTIMATE_ACCOUNTING_CONSOLIDATION_PARENT",
+                    "type": "otherInfluenceOrControl",
+                    "beneficialOwnershipOrControl": false
+                }
+            ],
+            "isComponent": false
+        },
+        "statementId": "XI-LEI-repex-u-98450005370BB5YE1D53-0517f0-20240707",
+        "declarationSubject": "98450005370BB5YE1D53",
+        "annotations": [
+            {
+                "motivation": "commenting",
+                "description": "Record closed due to a new GLEIF reporting exception replacing this record - recordId: repex-u-98450005370BB5YE1D53-8881d6",
+                "statementPointerTarget": "",
+                "creationDate": "2024-08-13",
+                "createdBy": {
+                    "name": "Open Ownership",
+                    "uri": "https://www.openownership.org"
+                }
+            }
+        ]
+    }
+]

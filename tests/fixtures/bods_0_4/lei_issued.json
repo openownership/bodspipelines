@@ -1,0 +1,53 @@
+[
+{
+    "LEI": "001GPB6A9XPE8XJICC14",
+    "Entity": {
+        "LegalName": "Fidelity Advisor Leveraged Company Stock Fund",
+        "OtherEntityNames": [
+            {
+                "type": "PREVIOUS_LEGAL_NAME",
+                "OtherEntityName": "FIDELITY ADVISOR SERIES I - Fidelity Advisor Leveraged Company Stock Fund"
+            }
+        ],
+        "LegalAddress": {
+            "FirstAddressLine": "245 SUMMER STREET",
+            "City": "BOSTON",
+            "Region": "US-MA",
+            "Country": "US",
+            "PostalCode": "02210"
+        },
+        "HeadquartersAddress": {
+            "FirstAddressLine": "C/O FIDELITY MANAGEMENT & RESEARCH COMPANY LLC",
+            "AdditionalAddressLine": "1209 ORANGE ST",
+            "City": "WILMINGTON",
+            "Region": "US-MA",
+            "Country": "US",
+            "PostalCode": "19801"
+        },
+        "RegistrationAuthority": {
+            "RegistrationAuthorityID": "RA000665",
+            "RegistrationAuthorityEntityID": "S000005113"
+        },
+        "LegalJurisdiction": "US",
+        "EntityCategory": "FUND",
+        "LegalForm": {
+            "EntityLegalFormCode": "8888",
+            "OtherLegalForm": "FUND"
+        },
+        "EntityStatus": "ACTIVE",
+        "EntityCreationDate": "2012-11-29T00:00:00.000Z"
+    },
+    "Registration": {
+        "InitialRegistrationDate": "2012-11-29T16:33:00.000Z",
+        "LastUpdateDate": "2024-03-28T15:27:52.162Z",
+        "RegistrationStatus": "ISSUED",
+        "NextRenewalDate": "2025-04-18T15:48:53.604Z",
+        "ManagingLOU": "5493001KJTIIGC8Y1R12",
+        "ValidationSources": "FULLY_CORROBORATED",
+        "ValidationAuthority": {
+            "ValidationAuthorityID": "RA000665",
+            "ValidationAuthorityEntityID": "S000005113"
+        }
+    }
+}
+]

@@ -1,0 +1,92 @@
+[
+    {
+        "LEI": "984500F41LD86971HC57",
+        "Entity": {
+            "LegalName": "FEVISOS LTD",
+            "LegalAddress": {
+                "FirstAddressLine": "40d Ashchurch Park Villas",
+                "City": "London",
+                "Country": "GB",
+                "PostalCode": "W12 9SP"
+            },
+            "HeadquartersAddress": {
+                "FirstAddressLine": "40d Ashchurch Park Villas",
+                "City": "London",
+                "Country": "GB",
+                "PostalCode": "W12 9SP"
+            },
+            "RegistrationAuthority": {
+                "RegistrationAuthorityID": "RA000585",
+                "RegistrationAuthorityEntityID": "10415749"
+            },
+            "LegalJurisdiction": "GB",
+            "EntityCategory": "GENERAL",
+            "LegalForm": {
+                "EntityLegalFormCode": "H0PO"
+            },
+            "EntityStatus": "ACTIVE",
+            "EntityCreationDate": "2016-10-07T00:00:00+00:00"
+        },
+        "Registration": {
+            "InitialRegistrationDate": "2020-05-11T12:56:00+00:00",
+            "LastUpdateDate": "2023-04-22T14:02:29+00:00",
+            "RegistrationStatus": "LAPSED",
+            "NextRenewalDate": "2023-04-22T13:52:38+00:00",
+            "ManagingLOU": "529900T8BM49AURSDO55",
+            "ValidationSources": "FULLY_CORROBORATED",
+            "ValidationAuthority": {
+                "ValidationAuthorityID": "RA000585",
+                "ValidationAuthorityEntityID": "10415749"
+            }
+        }
+    },
+    {
+        "LEI": "984500F41LD86971HC57",
+        "Entity": {
+            "LegalName": "FEVISOS LTD",
+            "LegalAddress": {
+                "FirstAddressLine": "40d Ashchurch Park Villas",
+                "City": "London",
+                "Country": "GB",
+                "PostalCode": "W12 9SP"
+            },
+            "HeadquartersAddress": {
+                "FirstAddressLine": "40d Ashchurch Park Villas",
+                "City": "London",
+                "Country": "GB",
+                "PostalCode": "W12 9SP"
+            },
+            "RegistrationAuthority": {
+                "RegistrationAuthorityID": "RA000585",
+                "RegistrationAuthorityEntityID": "10415749"
+            },
+            "LegalJurisdiction": "GB",
+            "EntityCategory": "GENERAL",
+            "LegalForm": {
+                "EntityLegalFormCode": "H0PO"
+            },
+            "EntityStatus": "INACTIVE",
+            "EntityCreationDate": "2016-10-07T00:00:00+00:00",
+            "LegalEntityEvents": [
+                {
+                    "LegalEntityEventType": "DISSOLUTION",
+                    "LegalEntityEventEffectiveDate": "2022-12-27T00:00:00+00:00",
+                    "LegalEntityEventRecordedDate": "2024-08-03T09:45:55+00:00",
+                    "ValidationDocuments": "SUPPORTING_DOCUMENTS"
+                }
+            ]
+        },
+        "Registration": {
+            "InitialRegistrationDate": "2020-05-11T12:56:00+00:00",
+            "LastUpdateDate": "2024-08-03T09:45:55+00:00",
+            "RegistrationStatus": "RETIRED",
+            "NextRenewalDate": "2023-04-22T13:52:38+00:00",
+            "ManagingLOU": "529900T8BM49AURSDO55",
+            "ValidationSources": "FULLY_CORROBORATED",
+            "ValidationAuthority": {
+                "ValidationAuthorityID": "RA000585",
+                "ValidationAuthorityEntityID": "10415749"
+            }
+        }
+    }
+]

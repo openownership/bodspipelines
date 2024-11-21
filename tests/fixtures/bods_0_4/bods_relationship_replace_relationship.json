@@ -1,0 +1,451 @@
+[
+    {
+        "source": {
+            "assertedBy": [
+                {
+                    "name": "GLEIF"
+                }
+            ],
+            "url": "https://goldencopy.gleif.org/storage/golden-copy-files/2024/06/06/940025/20240606-0000-gleif-goldencopy-repex-golden-copy.csv.zip"
+        },
+        "statementDate": "2024-06-06",
+        "annotations": [
+            {
+                "motivation": "commenting",
+                "description": "LEI Registration Status: LAPSED",
+                "statementPointerTarget": "",
+                "creationDate": "2024-08-12",
+                "createdBy": {
+                    "name": "Open Ownership",
+                    "uri": "https://www.openownership.org"
+                }
+            }
+        ],
+        "publicationDetails": {
+            "publicationDate": "2024-08-12",
+            "bodsVersion": "0.4",
+            "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+            "publisher": {
+                "name": "Open Ownership",
+                "url": "https://www.openownership.org"
+            }
+        },
+        "recordId": "31570030000000000647",
+        "recordStatus": "new",
+        "recordType": "entity",
+        "recordDetails": {
+            "entityType": {
+                "type": "registeredEntity"
+            },
+            "name": "Home Credit N.V.",
+            "jurisdiction": {
+                "name": "Netherlands",
+                "code": "NL"
+            },
+            "identifiers": [
+                {
+                    "id": "31570030000000000647",
+                    "scheme": "XI-LEI",
+                    "schemeName": "Global Legal Entity Identifier Index"
+                },
+                {
+                    "id": "34126597",
+                    "schemeName": "RA000463"
+                }
+            ],
+            "addresses": [
+                {
+                    "type": "registered",
+                    "address": "Strawinskylaan 933, Amsterdam",
+                    "country": {
+                        "name": "Netherlands",
+                        "code": "NL"
+                    },
+                    "postCode": "1077XX"
+                },
+                {
+                    "type": "business",
+                    "address": "Strawinskylaan 933, Amsterdam",
+                    "country": {
+                        "name": "Netherlands",
+                        "code": "NL"
+                    },
+                    "postCode": "1077XX"
+                }
+            ],
+            "foundingDate": "1999-12-28",
+            "isComponent": false
+        },
+        "statementId": "XI-LEI-31570030000000000647-20240606",
+        "declarationSubject": "31570030000000000647"
+    },
+    {
+        "source": {
+            "assertedBy": [
+                {
+                    "name": "GLEIF"
+                }
+            ],
+            "url": "https://goldencopy.gleif.org/storage/golden-copy-files/2024/06/06/940025/20240606-0000-gleif-goldencopy-repex-golden-copy.csv.zip"
+        },
+        "statementDate": "2024-06-06",
+        "annotations": [
+            {
+                "motivation": "commenting",
+                "description": "LEI Registration Status: ISSUED",
+                "statementPointerTarget": "",
+                "creationDate": "2024-08-12",
+                "createdBy": {
+                    "name": "Open Ownership",
+                    "uri": "https://www.openownership.org"
+                }
+            }
+        ],
+        "publicationDetails": {
+            "publicationDate": "2024-08-12",
+            "bodsVersion": "0.4",
+            "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+            "publisher": {
+                "name": "Open Ownership",
+                "url": "https://www.openownership.org"
+            }
+        },
+        "recordId": "097900CAKA0000147706",
+        "recordStatus": "new",
+        "recordType": "entity",
+        "recordDetails": {
+            "entityType": {
+                "type": "registeredEntity"
+            },
+            "name": "Home Credit Slovakia, a.s.",
+            "jurisdiction": {
+                "name": "Slovakia",
+                "code": "SK"
+            },
+            "identifiers": [
+                {
+                    "id": "097900CAKA0000147706",
+                    "scheme": "XI-LEI",
+                    "schemeName": "Global Legal Entity Identifier Index"
+                },
+                {
+                    "id": "36234176",
+                    "schemeName": "RA000526"
+                }
+            ],
+            "addresses": [
+                {
+                    "type": "registered",
+                    "address": "Teplick\u00e1 7434/147, Pie\u0161\u0165any",
+                    "country": {
+                        "name": "Slovakia",
+                        "code": "SK"
+                    },
+                    "postCode": "92122"
+                },
+                {
+                    "type": "business",
+                    "address": "Teplick\u00e1 7434/147, Pie\u0161\u0165any",
+                    "country": {
+                        "name": "Slovakia",
+                        "code": "SK"
+                    },
+                    "postCode": "92122"
+                }
+            ],
+            "foundingDate": "1999-10-27",
+            "isComponent": false
+        },
+        "statementId": "XI-LEI-097900CAKA0000147706-20240606",
+        "declarationSubject": "097900CAKA0000147706"
+    },
+    {
+        "source": {
+            "assertedBy": [
+                {
+                    "name": "GLEIF"
+                }
+            ],
+            "url": "https://goldencopy.gleif.org/storage/golden-copy-files/2024/06/06/940025/20240606-0000-gleif-goldencopy-repex-golden-copy.csv.zip"
+        },
+        "statementDate": "2024-07-07",
+        "annotations": [
+            {
+                "motivation": "commenting",
+                "description": "LEI Registration Status: ISSUED",
+                "statementPointerTarget": "",
+                "creationDate": "2024-08-13",
+                "createdBy": {
+                    "name": "Open Ownership",
+                    "uri": "https://www.openownership.org"
+                }
+            }
+        ],
+        "publicationDetails": {
+            "publicationDate": "2024-08-13",
+            "bodsVersion": "0.4",
+            "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+            "publisher": {
+                "name": "Open Ownership",
+                "url": "https://www.openownership.org"
+            }
+        },
+        "recordId": "097900CAKA0000147706",
+        "recordStatus": "updated",
+        "recordType": "entity",
+        "recordDetails": {
+            "entityType": {
+                "type": "registeredEntity"
+            },
+            "name": "Home Credit Slovakia, a.s.",
+            "jurisdiction": {
+                "name": "Slovakia",
+                "code": "SK"
+            },
+            "identifiers": [
+                {
+                    "id": "097900CAKA0000147706",
+                    "scheme": "XI-LEI",
+                    "schemeName": "Global Legal Entity Identifier Index"
+                },
+                {
+                    "id": "36234176",
+                    "schemeName": "RA000526"
+                }
+            ],
+            "addresses": [
+                {
+                    "type": "registered",
+                    "address": "Teplick\u00e1 7434/147, Pie\u0161\u0165any",
+                    "country": {
+                        "name": "Slovakia",
+                        "code": "SK"
+                    },
+                    "postCode": "92122"
+                },
+                {
+                    "type": "business",
+                    "address": "Teplick\u00e1 7434/147, Pie\u0161\u0165any",
+                    "country": {
+                        "name": "Slovakia",
+                        "code": "SK"
+                    },
+                    "postCode": "92122"
+                }
+            ],
+            "foundingDate": "1999-10-27",
+            "isComponent": false
+        },
+        "statementId": "XI-LEI-097900CAKA0000147706-20240707",
+        "declarationSubject": "097900CAKA0000147706"
+    },
+    {
+        "source": {
+            "assertedBy": [
+                {
+                    "name": "GLEIF"
+                }
+            ],
+            "url": "https://goldencopy.gleif.org/storage/golden-copy-files/2024/06/06/940025/20240606-0000-gleif-goldencopy-repex-golden-copy.csv.zip"
+        },
+        "statementDate": "2024-06-06",
+        "publicationDetails": {
+            "publicationDate": "2024-08-12",
+            "bodsVersion": "0.4",
+            "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+            "publisher": {
+                "name": "Open Ownership",
+                "url": "https://www.openownership.org"
+            }
+        },
+        "recordId": "rr-d-097900CAKA0000147706-f305b3",
+        "recordStatus": "new",
+        "recordType": "relationship",
+        "recordDetails": {
+            "subject": "097900CAKA0000147706",
+            "interestedParty": "31570030000000000647",
+            "interests": [
+                {
+                    "directOrIndirect": "direct",
+                    "details": "Relationship Type: IS_DIRECTLY_CONSOLIDATED_BY",
+                    "type": "otherInfluenceOrControl",
+                    "beneficialOwnershipOrControl": false,
+                    "startDate": "2014-01-20"
+                }
+            ],
+            "isComponent": false
+        },
+        "statementId": "XI-LEI-rr-d-097900CAKA0000147706-f305b3-2024-06-06",
+        "declarationSubject": "097900CAKA0000147706"
+    },
+    {
+        "source": {
+            "assertedBy": [
+                {
+                    "name": "GLEIF"
+                }
+            ],
+            "url": "https://goldencopy.gleif.org/storage/golden-copy-files/2024/06/06/940025/20240606-0000-gleif-goldencopy-repex-golden-copy.csv.zip"
+        },
+        "statementDate": "2024-07-07",
+        "publicationDetails": {
+            "publicationDate": "2024-08-12",
+            "bodsVersion": "0.4",
+            "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+            "publisher": {
+                "name": "Open Ownership",
+                "url": "https://www.openownership.org"
+            }
+        },
+        "recordId": "rr-d-097900CAKA0000147706-f305b3",
+        "recordStatus": "closed",
+        "recordType": "relationship",
+        "recordDetails": {
+            "subject": "097900CAKA0000147706",
+            "interestedParty": "31570030000000000647",
+            "interests": [
+                {
+                    "directOrIndirect": "direct",
+                    "details": "Relationship Type: IS_DIRECTLY_CONSOLIDATED_BY",
+                    "type": "otherInfluenceOrControl",
+                    "beneficialOwnershipOrControl": false,
+                    "startDate": "2014-01-20"
+                }
+            ],
+            "isComponent": false
+        },
+        "statementId": "XI-LEI-rr-d-097900CAKA0000147706-f305b3-2024-07-07",
+        "declarationSubject": "097900CAKA0000147706",
+        "annotations": [
+            {
+                "motivation": "commenting",
+                "description": "Record closed due to a new GLEIF relationship replacing this record - recordId: rr-d-097900CAKA0000147706-67ffed",
+                "statementPointerTarget": "",
+                "creationDate": "2024-08-13",
+                "createdBy": {
+                    "name": "Open Ownership",
+                    "uri": "https://www.openownership.org"
+                }
+            }
+        ]
+    },
+    {
+        "source": {
+            "assertedBy": [
+                {
+                    "name": "GLEIF"
+                }
+            ],
+            "url": "https://goldencopy.gleif.org/storage/golden-copy-files/2024/06/06/940025/20240606-0000-gleif-goldencopy-repex-golden-copy.csv.zip"
+        },
+        "statementDate": "2024-07-07",
+        "annotations": [
+            {
+                "motivation": "commenting",
+                "description": "LEI Registration Status: ISSUED",
+                "statementPointerTarget": "",
+                "creationDate": "2024-08-13",
+                "createdBy": {
+                    "name": "Open Ownership",
+                    "uri": "https://www.openownership.org"
+                }
+            }
+        ],
+        "publicationDetails": {
+            "publicationDate": "2024-08-13",
+            "bodsVersion": "0.4",
+            "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+            "publisher": {
+                "name": "Open Ownership",
+                "url": "https://www.openownership.org"
+            }
+        },
+        "recordId": "31570010000000049662",
+        "recordStatus": "new",
+        "recordType": "entity",
+        "recordDetails": {
+            "entityType": {
+                "type": "registeredEntity"
+            },
+            "name": "Air Bank a.s.",
+            "jurisdiction": {
+                "name": "Czechia",
+                "code": "CZ"
+            },
+            "identifiers": [
+                {
+                    "id": "31570010000000049662",
+                    "scheme": "XI-LEI",
+                    "schemeName": "Global Legal Entity Identifier Index"
+                },
+                {
+                    "id": "29045371",
+                    "schemeName": "RA000163"
+                }
+            ],
+            "addresses": [
+                {
+                    "type": "registered",
+                    "address": "Evropsk\u00e1 2690/17, Praha",
+                    "country": {
+                        "name": "Czechia",
+                        "code": "CZ"
+                    },
+                    "postCode": "160 00"
+                },
+                {
+                    "type": "business",
+                    "address": "Evropsk\u00e1 2690/17, Praha",
+                    "country": {
+                        "name": "Czechia",
+                        "code": "CZ"
+                    },
+                    "postCode": "160 00"
+                }
+            ],
+            "foundingDate": "2010-02-26",
+            "isComponent": false
+        },
+        "statementId": "XI-LEI-31570010000000049662-20240707",
+        "declarationSubject": "31570010000000049662"
+    },
+    {
+        "source": {
+            "assertedBy": [
+                {
+                    "name": "GLEIF"
+                }
+            ],
+            "url": "https://goldencopy.gleif.org/storage/golden-copy-files/2024/06/06/940025/20240606-0000-gleif-goldencopy-repex-golden-copy.csv.zip"
+        },
+        "statementDate": "2024-07-07",
+        "publicationDetails": {
+            "publicationDate": "2024-08-13",
+            "bodsVersion": "0.4",
+            "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+            "publisher": {
+                "name": "Open Ownership",
+                "url": "https://www.openownership.org"
+            }
+        },
+        "recordId": "rr-d-097900CAKA0000147706-67ffed",
+        "recordStatus": "new",
+        "recordType": "relationship",
+        "recordDetails": {
+            "subject": "097900CAKA0000147706",
+            "interestedParty": "31570010000000049662",
+            "interests": [
+                {
+                    "directOrIndirect": "direct",
+                    "details": "Relationship Type: IS_DIRECTLY_CONSOLIDATED_BY",
+                    "type": "otherInfluenceOrControl",
+                    "beneficialOwnershipOrControl": false,
+                    "startDate": "2023-03-11"
+                }
+            ],
+            "isComponent": false
+        },
+        "statementId": "XI-LEI-rr-d-097900CAKA0000147706-67ffed-20240707",
+        "declarationSubject": "097900CAKA0000147706"
+    }
+]

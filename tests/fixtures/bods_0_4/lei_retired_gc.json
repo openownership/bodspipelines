@@ -1,0 +1,67 @@
+[
+    {
+        "statementID": "2d761b95-f3c5-5ab3-a2dd-007435410ec5",
+        "statementType": "entityStatement",
+        "statementDate": "2024-04-25",
+        "entityType": "registeredEntity",
+        "name": "LIBERTY HARBOR LLC",
+        "incorporatedInJurisdiction": {
+            "name": "Delaware, United States",
+            "code": "US-DE"
+        },
+        "identifiers": [
+            {
+                "id": "549300TO4M4OGFTD0561",
+                "scheme": "XI-LEI",
+                "schemeName": "Global Legal Entity Identifier Index"
+            },
+            {
+                "id": "4314765",
+                "schemeName": "RA000602"
+            }
+        ],
+        "addresses": [
+            {
+                "type": "registered",
+                "address": "251 LITTLE FALLS DRIVE, WILMINGTON",
+                "country": "US",
+                "postCode": "19808"
+            },
+            {
+                "type": "business",
+                "address": "200 WEST STREET, NEW YORK",
+                "country": "US",
+                "postCode": "10282"
+            }
+        ],
+        "annotations": [
+            {
+                "motivation": "commenting",
+                "description": "GLEIF data for this entity - LEI: 549300TO4M4OGFTD0561; Registration Status: RETIRED",
+                "statementPointerTarget": "/",
+                "creationDate": "2024-08-12",
+                "createdBy": {
+                    "name": "Open Ownership",
+                    "uri": "https://www.openownership.org"
+                }
+            }
+        ],
+        "publicationDetails": {
+            "publicationDate": "2024-08-12",
+            "bodsVersion": "0.2",
+            "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+            "publisher": {
+                "name": "Open Ownership",
+                "url": "https://www.openownership.org"
+            }
+        },
+        "source": {
+            "type": [
+                "officialRegister",
+                "verified"
+            ],
+            "description": "GLEIF"
+        },
+        "foundingDate": "2007-03-09T00:00:00+00:00"
+    }
+]

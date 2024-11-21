@@ -1,0 +1,88 @@
+[
+    {
+        "LEI": "52990072YCXRBHR2CS14",
+        "Entity": {
+            "LegalName": "Hochgerner und Auer GesmbH",
+            "LegalAddress": {
+                "FirstAddressLine": "Friedhofgasse 16",
+                "City": "Hainfeld (N\u00d6)",
+                "Region": "AT-3",
+                "Country": "AT",
+                "PostalCode": "3170"
+            },
+            "HeadquartersAddress": {
+                "FirstAddressLine": "Friedhofgasse 16",
+                "City": "Hainfeld (N\u00d6)",
+                "Region": "AT-3",
+                "Country": "AT",
+                "PostalCode": "3170"
+            },
+            "RegistrationAuthority": {
+                "RegistrationAuthorityID": "RA000017",
+                "RegistrationAuthorityEntityID": "284300p"
+            },
+            "LegalJurisdiction": "AT",
+            "EntityCategory": "GENERAL",
+            "LegalForm": {
+                "EntityLegalFormCode": "AXSB"
+            },
+            "EntityStatus": "ACTIVE",
+            "EntityCreationDate": "2006-09-29T00:00:00+02:00"
+        },
+        "Registration": {
+            "InitialRegistrationDate": "2020-03-04T09:10:41+01:00",
+            "LastUpdateDate": "2024-06-16T15:00:27+02:00",
+            "RegistrationStatus": "ISSUED",
+            "NextRenewalDate": "2025-08-14T14:00:56+02:00",
+            "ManagingLOU": "5299000J2N45DDNE4Y28",
+            "ValidationSources": "FULLY_CORROBORATED",
+            "ValidationAuthority": {
+                "ValidationAuthorityID": "RA000017",
+                "ValidationAuthorityEntityID": "284300p"
+            }
+        }
+    },
+    {
+        "LEI": "52990072YCXRBHR2CS14",
+        "Entity": {
+            "LegalName": "Hochgerner und Auer GesmbH",
+            "LegalAddress": {
+                "FirstAddressLine": "Friedhofgasse 16",
+                "City": "Hainfeld (N\u00d6)",
+                "Region": "AT-3",
+                "Country": "AT",
+                "PostalCode": "3170"
+            },
+            "HeadquartersAddress": {
+                "FirstAddressLine": "Friedhofgasse 16",
+                "City": "Hainfeld (N\u00d6)",
+                "Region": "AT-3",
+                "Country": "AT",
+                "PostalCode": "3170"
+            },
+            "RegistrationAuthority": {
+                "RegistrationAuthorityID": "RA000017",
+                "RegistrationAuthorityEntityID": "284300p"
+            },
+            "LegalJurisdiction": "AT",
+            "EntityCategory": "GENERAL",
+            "LegalForm": {
+                "EntityLegalFormCode": "AXSB"
+            },
+            "EntityStatus": "ACTIVE",
+            "EntityCreationDate": "2006-09-29T00:00:00+02:00"
+        },
+        "Registration": {
+            "InitialRegistrationDate": "2020-03-04T09:10:41+01:00",
+            "LastUpdateDate": "2023-08-14T14:00:57+02:00",
+            "RegistrationStatus": "ISSUED",
+            "NextRenewalDate": "2024-08-14T14:00:56+02:00",
+            "ManagingLOU": "5299000J2N45DDNE4Y28",
+            "ValidationSources": "FULLY_CORROBORATED",
+            "ValidationAuthority": {
+                "ValidationAuthorityID": "RA000017",
+                "ValidationAuthorityEntityID": "284300p"
+            }
+        }
+    }
+]

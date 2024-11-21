@@ -1,0 +1,120 @@
+[
+    {
+        "LEI": "98450005370BB5YE1D53",
+        "Entity": {
+            "LegalName": "Fjordens El",
+            "OtherEntityNames": [
+                {
+                    "type": "PREVIOUS_LEGAL_NAME",
+                    "OtherEntityName": "Mariager Dykkercenter v/Jan Hilmar Kristensen"
+                },
+                {
+                    "type": "PREVIOUS_LEGAL_NAME",
+                    "OtherEntityName": "Fjordens El v/Jan Hilmar Kristensen"
+                }
+            ],
+            "LegalAddress": {
+                "FirstAddressLine": "Munkh\u00f8jvej 10",
+                "City": "Mariager",
+                "Region": "DK-82",
+                "Country": "DK",
+                "PostalCode": "9550"
+            },
+            "HeadquartersAddress": {
+                "FirstAddressLine": "Munkh\u00f8jvej 10",
+                "City": "Mariager",
+                "Region": "DK-82",
+                "Country": "DK",
+                "PostalCode": "9550"
+            },
+            "RegistrationAuthority": {
+                "RegistrationAuthorityID": "RA000170",
+                "RegistrationAuthorityEntityID": "26054702"
+            },
+            "LegalJurisdiction": "DK",
+            "EntityCategory": "SOLE_PROPRIETOR",
+            "LegalForm": {
+                "EntityLegalFormCode": "FUKI"
+            },
+            "EntityStatus": "ACTIVE",
+            "EntityCreationDate": "2007-07-01T00:00:00+00:00"
+        },
+        "Registration": {
+            "InitialRegistrationDate": "2020-07-27T11:35:45+00:00",
+            "LastUpdateDate": "2023-06-04T17:23:53+00:00",
+            "RegistrationStatus": "ISSUED",
+            "NextRenewalDate": "2024-07-27T11:37:15+00:00",
+            "ManagingLOU": "529900T8BM49AURSDO55",
+            "ValidationSources": "FULLY_CORROBORATED",
+            "ValidationAuthority": {
+                "ValidationAuthorityID": "RA000170",
+                "ValidationAuthorityEntityID": "26054702"
+            }
+        }
+    },
+    {
+        "LEI": "98450005370BB5YE1D53",
+        "Entity": {
+            "LegalName": "Fjordens El",
+            "OtherEntityNames": [
+                {
+                    "type": "PREVIOUS_LEGAL_NAME",
+                    "OtherEntityName": "Mariager Dykkercenter v/Jan Hilmar Kristensen"
+                },
+                {
+                    "type": "PREVIOUS_LEGAL_NAME",
+                    "OtherEntityName": "Fjordens El v/Jan Hilmar Kristensen"
+                }
+            ],
+            "LegalAddress": {
+                "FirstAddressLine": "Munkh\u00f8jvej 10",
+                "City": "Mariager",
+                "Region": "DK-81",
+                "Country": "DK",
+                "PostalCode": "9550"
+            },
+            "HeadquartersAddress": {
+                "FirstAddressLine": "Munkh\u00f8jvej 10",
+                "City": "Mariager",
+                "Region": "DK-81",
+                "Country": "DK",
+                "PostalCode": "9550"
+            },
+            "RegistrationAuthority": {
+                "RegistrationAuthorityID": "RA000170",
+                "RegistrationAuthorityEntityID": "26054702"
+            },
+            "LegalJurisdiction": "DK",
+            "EntityCategory": "SOLE_PROPRIETOR",
+            "LegalForm": {
+                "EntityLegalFormCode": "FUKI"
+            },
+            "EntityStatus": "ACTIVE",
+            "EntityCreationDate": "2007-07-01T00:00:00+00:00"
+        },
+        "Registration": {
+            "InitialRegistrationDate": "2020-07-27T11:35:45+00:00",
+            "LastUpdateDate": "2024-06-07T18:35:01+00:00",
+            "RegistrationStatus": "ISSUED",
+            "NextRenewalDate": "2025-07-27T11:37:15+00:00",
+            "ManagingLOU": "529900T8BM49AURSDO55",
+            "ValidationSources": "FULLY_CORROBORATED",
+            "ValidationAuthority": {
+                "ValidationAuthorityID": "RA000170",
+                "ValidationAuthorityEntityID": "26054702"
+            }
+        }
+    },
+    {
+        "LEI": "98450005370BB5YE1D53",
+        "ExceptionCategory": "ULTIMATE_ACCOUNTING_CONSOLIDATION_PARENT",
+        "ExceptionReason": "NO_KNOWN_PERSON",
+        "ContentDate": "2024-06-06T00:28:41Z"
+    },
+    {
+        "LEI": "98450005370BB5YE1D53",
+        "ExceptionCategory": "ULTIMATE_ACCOUNTING_CONSOLIDATION_PARENT",
+        "ExceptionReason": "NON_CONSOLIDATING",
+        "ContentDate": "2024-07-07T02:00:00Z"
+    }
+]
