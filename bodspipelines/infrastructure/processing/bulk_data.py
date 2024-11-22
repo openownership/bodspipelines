@@ -100,11 +100,12 @@ class BulkData:
             else:
                 local_filename = url.rsplit('/')[-1]
             if 'content-length' in r.headers:
-                size = r.headers['content-length']
+                size = int(r.headers['content-length'])
             else:
                 size = self.size
             if directory: local_filename = directory / local_filename
             with open(local_filename, 'wb') as f:
+                print(self.display, size)
                 for chunk in Bar(f"Downloading {self.display}", max=size).iter(r.iter_content(chunk_size=8192)):
                     f.write(chunk)
         return local_filename
@@ -182,6 +183,28 @@ class BulkData:
         files = []
         if list(directory.glob("*.xml")): # and not list(directory.glob("*golden-copy.xml")):
             for f in directory.glob("*.xml"):
+                fn = f.name
+                files.append(fn)
+                yield directory / fn
+        else:
+            for url in self.check_manifest(path, name, updates=updates):
+                for fn in self.download_extract_data(directory, name, url):
+                    files.append(fn)
+                    yield directory / fn
+        print("Files:", files)
+        self.create_manifest(path, name)
+
+    def existing_data(self, directory):
+        return [file for file in directory.glob("*") if file.suffix != ".zip"]
+
+    def prepare(self, path, name, updates=False) -> Path:
+        """Prepare data for use"""
+        directory = self.data_dir(path)
+        directory.mkdir(exist_ok=True)
+        files = []
+        existing_files = self.existing_data(directory)
+        if existing_files:
+            for f in existing_files:
                 fn = f.name
                 files.append(fn)
                 yield directory / fn
