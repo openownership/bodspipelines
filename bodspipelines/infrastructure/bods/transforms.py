@@ -11,6 +11,19 @@ def add_address_part(address_str, address_part):
         address_str = address_part
     return address_str
 
+def build_name(data, name_type):
+    name = {}
+    if isinstance(data, dict) and "fullname" in data:
+        name = {}
+        name["type"] = name_type
+        name["fullName"] = data["fullname"]
+        name["familyName"] = data["surname"]
+        name["givenName"] = data["firstname"]
+        #name["patronymicName"] =
+        return name
+    else:
+        return None
+
 def build_address_string(address):
     """Build address string"""
     address_str = ""
@@ -82,6 +95,16 @@ def jurisdiction_name(jurisdiction):
         name = jurisdiction
     return name
 
+def country_from_code(code):
+    """Get Country object from code"""
+    if code == "XK":
+        name = "Kosova"
+    elif code == "XX":
+        name = "Stateless"
+    else:
+        name = pycountry.countries.get(alpha_2=code).name
+    return {"name": name, "code": code}
+
 def data_source(data, source):
     """Build data source"""
     sourceType = source.source_type(data)
@@ -96,7 +119,7 @@ def record_status(record_id, _):
 
 def transform_entity(source, data, record_status):
     """Transform into BODS v0.4 entity"""
-    recordID = source.record_id(data)
+    recordID = source.record_id(data, 'entity')
     declarationSubject = source.declaration_subject(data)
     updated = source.item_updated(data)
     statementDate = format_date(updated)
@@ -104,10 +127,10 @@ def transform_entity(source, data, record_status):
     recordType = 'entity'
     recordStatus = record_status
     entityType = 'registeredEntity'
-    name = source.name(data)
+    name = source.name(data, 'entity')
     country = jurisdiction_name(source.jurisdiction(data))
     jurisdiction = {'name': country, 'code': source.jurisdiction(data)}
-    identifiers = [{'id': source.indentifier(data),
+    identifiers = [{'id': source.identifier(data),
                     'scheme': source.scheme,
                     'schemeName': source.scheme_name}]
     identifiers += source.additional_identifiers(data)
@@ -151,6 +174,64 @@ def transform_entity(source, data, record_status):
 
 def transform_person(source, data, record_status):
     """Transform into BODS v0.4 person"""
+    print("Building person")
+    recordID = source.record_id(data, 'person')
+    declarationSubject = source.declaration_subject(data)
+    updated = source.item_updated(data)
+    statementDate = format_date(updated)
+    statementID = generate_statement_id(f"{recordID}-{updated}", 'personStatement')
+    recordType = 'person'
+    recordStatus = record_status
+    entityType = 'registeredEntity'
+    name = build_name(source.name(data, 'person'), 'legal')
+    country = jurisdiction_name(source.jurisdiction(data))
+    jurisdiction = {'name': country, 'code': source.jurisdiction(data)}
+    identifier = source.person_identifier(data)
+    if identifier:
+        identifiers = [{'id': source.identifier(data),
+                    'scheme': source.scheme,
+                    'schemeName': source.scheme_name}]
+    else:
+        identifiers = []
+    identifiers += source.additional_identifiers(data)
+    registeredAddress = format_address('registered', source.registered_address(data))
+    nationalities = source.person_nationalities(data)
+    placeOfBirthAddress = source.person_place_of_birth(data)
+    birthDate = source.person_birth_date(data)
+    deathDate = source.person_death_date(data)
+    taxResidencies = source.person_tax_residency(data)
+    source_data = data_source(data, source)
+    annotations = []
+    #source_status = source.status(data)
+    #add_entity_annotation(annotations, entity_name, source_status)
+    statement = {"statementId": statementID,
+                 "declarationSubject": declarationSubject,
+                 "statementDate": statementDate,
+                 "recordId": recordID,
+                 "recordStatus": recordStatus,
+                 "recordType": recordType,
+                 "recordDetails": {
+                     "isComponent": False,
+                     "personType": source.person_type(data),
+                     #"unspecifiedPersonDetails":
+                     "names": [name] if name else [],
+                     "identifiers": identifiers,
+                     "nationalities": [country_from_code(code) for code in nationalities],
+                     "taxResidencies": [country_from_code(code) for code in taxResidencies],
+                     "addresses": build_addresses(registeredAddress, None),
+                     #"politicalExposure": 
+                     },
+                 'annotations': annotations,
+                 'publicationDetails': publication_details(),
+                 'source': source_data
+                 }
+    if placeOfBirthAddress:
+        statement["recordDetails"]["placeOfBirthAddress"] = placeOfBirthAddress
+    if birthDate:
+        statement["recordDetails"]["birthDate"] = birthDate
+    if deathDate:
+        statement["recordDetails"]["deathDate"] =deathDate
+    return statement
 
 def build_interest(source, data, data_type):
     if data_type == "relationship":
@@ -171,7 +252,8 @@ def build_interest(source, data, data_type):
 
 def transform_relationship(source, data, record_status):
     """Transform into BODS v0.4 relationship"""
-    recordID = source.record_id(data)
+    print("Building relationship")
+    recordID = source.record_id(data, 'relationship')
     declarationSubject = source.declaration_subject(data)
     updated = source.item_updated(data)
     statementDate = format_date(updated)
@@ -203,7 +285,7 @@ def transform_relationship(source, data, record_status):
 
 def transform_exception(source, data, record_status):
     """Transform exception into BODS v0.4 relationship"""
-    recordID = source.record_id(data)
+    recordID = source.record_id(data, 'relationship')
     declarationSubject = source.declaration_subject(data)
     updated = source.item_updated(data)
     statementDate = format_date(updated)
@@ -234,13 +316,22 @@ def transform_exception(source, data, record_status):
     return statement
 
 def transform_item(source, item, status):
-    item_type = source.identify_item(item)
-    if item_type == 'entity':
-        return transform_entity(source, item, status)
-    elif item_type == 'relationship':
-        return transform_relationship(source, item, status)
-    elif item_type == 'exception':
-        return transform_exception(source, item, status)
+    if not source.skip_item(item):
+        item_type = source.identify_item(item)
+        if item_type == 'entity':
+            yield transform_entity(source, item, status)
+        elif item_type == 'relationship':
+            interested = source.create_interested_party(item)
+            print("create_interested_party:", interested)
+            if interested == "person":
+                yield transform_person(source, item, status)
+            elif interested == "entity":
+                yield transform_entity(source, item, status)
+            yield transform_relationship(source, item, status)
+        elif item_type == 'exception':
+            yield transform_exception(source, item, status)
+    #else:
+    #    yield None
 
 class BodsTransforms:
     """Data processor definition class"""
@@ -255,6 +346,7 @@ class BodsTransforms:
         if item_type == 'entity':
             yield transform_entity(item)
         elif item_type == 'relationship':
+            create_interested_party
             yield transform_relationship(item, mapping)
         elif item_type == 'exception':
             for statement in transform_repex(item, mapping):

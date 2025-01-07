@@ -119,10 +119,12 @@ async def process_closed(cache):
 
 class ProcessUpdates:
     """Data processor definition class"""
-    def __init__(self, id_name=None, transform=None, updates=None, storage=None):
+    def __init__(self, id_name=None, transform=None, 
+                 #updates=None,
+                 storage=None):
         """Initial setup"""
         self.transform = transform
-        self.updates = updates
+        #self.updates = updates
         self.id_name = id_name
         self.storage = storage
         self.cache = Caching(self.storage, batching=-1)
@@ -135,26 +137,26 @@ class ProcessUpdates:
     async def process(self, item, item_type, header, updates=False):
         """Process updates if applicable"""
         print(f"Processing - updates: {item_type} {updates}")
-        statement = transform_item(self.transform, item, 'new')
-        if updates:
-            record_id = statement["recordId"]
-            statement_id = statement["statementId"]
-            status, new_record_id = await record_status(self.transform,
+        for statement in transform_item(self.transform, item, 'new'):
+            status = False
+            if updates:
+                record_id = statement["recordId"]
+                statement_id = statement["statementId"]
+                status, new_record_id = await record_status(self.transform,
                                          self.cache,
                                          self.storage,
                                          item,
                                          statement,
                                          updates=updates)
-            if not status:
-                return None
-            if new_record_id:
-                statement["recordId"] = new_record_id
-            statement["recordStatus"] = status
-            extra_annotations = record_annotations(statement, status, self.transform)
-            statement["annotations"].extend(extra_annotations)
-        await record_save(self.cache, statement["recordId"], statement_id, status, updates=updates)
-        time.sleep(1)
-        return statement
+                if status:
+                    if new_record_id:
+                        statement["recordId"] = new_record_id
+                    statement["recordStatus"] = status
+                    extra_annotations = record_annotations(statement, status, self.transform)
+                    statement["annotations"].extend(extra_annotations)
+            if status:
+                await record_save(self.cache, statement["recordId"], statement_id, status, updates=updates)
+                yield statement
 
     async def finish_updates(self, updates=False):
         """Process updates to referencing statements"""

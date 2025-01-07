@@ -8,6 +8,7 @@ install_requires = [
     "elasticsearch",
     "elastic_transport",
     "lxml",
+    "ijson",
     "parsel",
     "progress",
     "pytest",
