@@ -19,6 +19,7 @@ install_requires = [
     "pycountry",
     "aiohttp",
     "aiofiles",
+    "aiocsv",
     "redis",
     "psutil",
     "loguru"
