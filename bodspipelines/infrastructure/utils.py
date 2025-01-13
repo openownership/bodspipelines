@@ -99,7 +99,7 @@ async def save_run(storage, data):
     await storage.add_item(data, "runs")
 
 def map_unspecified(statement):
-    print(statement)
+    #print(statement)
     if "recordType" in statement and statement["recordType"] == "relationship":
         if isinstance(statement["recordDetails"]["subject"], dict):
             statement = deepcopy(statement)
