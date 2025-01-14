@@ -22,9 +22,10 @@ def get_first_line(filename):
 class JSONData:
     """JSON data definition class"""
 
-    def __init__(self, header=None):
+    def __init__(self, header=None, exclude=None):
         """Initial setup"""
         self.header = header # 1: take first line, -1: take last
+        self.exclude = exclude
 
     async def extract_header(self, filename):
         """Extract header"""
@@ -43,6 +44,10 @@ class JSONData:
                 header = None
             async with aiofiles.open(data, mode="r", encoding="utf-8") as file:
                 async for item in ijson.items(file, '', multiple_values=True):
-                    yield header, item
+                    if self.exclude:
+                        if not self.exclude(item):
+                            yield header, item
+                    else:
+                        yield header, item
         else:
             yield None, data

@@ -1,4 +1,6 @@
 import aiofiles
+import re
+
 from aiocsv import AsyncDictReader
 
 class AsyncDictReaderStrip(AsyncDictReader):
@@ -16,6 +18,15 @@ def get_fieldnames(filename):
     with open(filename) as file:
         return [col.strip() for col in file.readline().split(",")]
 
+def get_file_date(filename):
+    match = re.search(r'\d{4}-\d{2}-\d{2}', filename)
+    if match:
+        return match[0]
+    return None
+
+def get_header(filename):
+    return {"ContentDate": get_file_date(filename)}
+
 class CSVData:
     """CSV data parser configuration"""
 
@@ -26,7 +37,9 @@ class CSVData:
     async def process(self, filename):
         """Iterate over processed items from file"""
         fieldnames = get_fieldnames(filename)
+        header = get_header(filename)
         async with aiofiles.open(filename, mode="r", encoding="utf-8") as afp:
+            await afp.readline()
             async for row in AsyncDictReader(afp, fieldnames=fieldnames):
                 yield None, row
 
