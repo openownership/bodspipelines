@@ -195,7 +195,7 @@ class BulkData:
         self.create_manifest(path, name)
 
     def existing_data(self, directory):
-        return [file for file in directory.glob("*") if file.suffix != ".zip"]
+        return [file for file in directory.glob("*") if file.suffix != ".zip" and file.name != "manifest.json"]
 
     def prepare(self, path, name, updates=False) -> Path:
         """Prepare data for use"""
