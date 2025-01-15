@@ -19,7 +19,7 @@ def get_fieldnames(filename):
         return [col.strip() for col in file.readline().split(",")]
 
 def get_file_date(filename):
-    match = re.search(r'\d{4}-\d{2}-\d{2}', filename)
+    match = re.search(r'\d{4}-\d{2}-\d{2}', filename.name)
     if match:
         return match[0]
     return None
@@ -41,5 +41,5 @@ class CSVData:
         async with aiofiles.open(filename, mode="r", encoding="utf-8") as afp:
             await afp.readline()
             async for row in AsyncDictReader(afp, fieldnames=fieldnames):
-                yield None, row
+                yield header, row
 
