@@ -47,11 +47,11 @@ def lookup_scheme(country, structure, unconfirmed=False):
 
 def get_scheme(scheme_id, scheme_data, country_code=None):
     match = [scheme for scheme in scheme_data if scheme[0] == scheme_id]
-    print("matches:", match, country_code)
+    #print("matches:", match, country_code)
     if match:
         if country_code:
             for m in match:
-                print(m[2], country_code)
+                #print(m[2], country_code)
                 if m[2] == country_code:
                     country = m[2]
                     break

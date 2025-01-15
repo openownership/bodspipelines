@@ -47,7 +47,7 @@ def build_address_string(address):
 
 def format_address(address_type, address):
     """Format address structure"""
-    print("Address:", address)
+    #print("Address:", address)
     if not address:
         return None
     address_string = build_address_string(address)

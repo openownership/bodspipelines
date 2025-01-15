@@ -79,7 +79,7 @@ async def record_status(transform, cache, storage, item, statement, updates=Fals
     """Calculate recordStatus id for record_id"""
     record_id = statement["recordId"]
     latest_statement_id, latest_record_status = await record_lookup(cache, record_id, updates=updates)
-    print("record_status:", record_id, latest_statement_id, latest_record_status, cache.cache)
+    #print("record_status:", record_id, latest_statement_id, latest_record_status, cache.cache)
     if not latest_statement_id and '-RR-' in record_id:
         print("New relationship")
         #latest_statement_id, latest_record_status = await record_lookup(cache,
@@ -99,7 +99,7 @@ async def record_status(transform, cache, storage, item, statement, updates=Fals
     if transform.item_closed(item):
         if '-RE-' in record_id:
             latest_id = await find_closed(cache, record_id)
-            print("Record id:", record_id, "Latest id:", latest_id)
+            #print("Record id:", record_id, "Latest id:", latest_id)
             if latest_id:
                 await closed_delete(cache, latest_id, if_exists=True)
         return 'closed', None
@@ -167,7 +167,7 @@ class ProcessUpdates:
             async for statement_id, record_id in process_closed(self.cache):
                 statement = await retrieve_statement(self.storage, "relationship", statement_id)
                 unmap_unspecified(statement)
-                print("Exception:", statement)
+                #print("Exception:", statement)
                 statement["recordStatus"] = 'closed'
                 statement["statementDate"] = current_date_iso()
                 statementID = generate_statement_id(f"{statement['recordId']}-{statement['statementId']}",
