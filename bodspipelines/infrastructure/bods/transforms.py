@@ -17,8 +17,12 @@ def build_name(data, name_type):
         name = {}
         name["type"] = name_type
         name["fullName"] = data["fullname"]
-        name["familyName"] = data["surname"] if "surname" in data else data["surname"].split()[-1]
-        name["givenName"] = data["firstname"] if "firstname" in data else data["fullname"].split()[0]
+        if data["fullname"]:
+            name["familyName"] = data["surname"] if "surname" in data else data["surname"].split()[-1]
+            name["givenName"] = data["firstname"] if "firstname" in data else data["fullname"].split()[0]
+        else:
+            name["familyName"] = data["surname"] if "surname" in data else ""
+            name["givenName"] = data["firstname"] if "firstname" in data else ""
         #name["patronymicName"] =
         return name
     else:
