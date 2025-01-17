@@ -1,7 +1,7 @@
 from typing import List, Union
 
 from bodspipelines.infrastructure.clients.kinesis_client import KinesisStream
-from bodspipelines.infrastructure.utils import map_unspecified, unmap_unspecified
+#from bodspipelines.infrastructure.utils import map_unspecified, unmap_unspecified
 
 class OutputConsole:
     """Output to console definition class"""
@@ -40,26 +40,27 @@ class NewOutput:
 
     def process(self, item, item_type):
         self.processed_count += 1
-        mapped_item = map_unspecified(item)
-        print(f"{item_type}: {mapped_item}")
-        stored = self.storage.process(mapped_item, item_type)
+        #mapped_item = map_unspecified(item)
+        #print(f"{item_type}: {mapped_item}")
+        stored = self.storage.process(item, item_type)
         print(f"NewOutput: {stored}")
         if stored:
             self.output.process(item, item_type)
             self.new_count += 1
         #print(f"Processed: {self.processed_count}, New: {self.new_count}")
 
-    async def map_unspecified_relationships(self, stream):
-        async for item in stream:
-            #print("Item:", item)
-            if item:
-                yield map_unspecified(item)
+    #async def map_unspecified_relationships(self, stream):
+    #    async for item in stream:
+    #        #print("Item:", item)
+    #        if item:
+    #            yield map_unspecified(item)
 
     async def process_stream(self, stream, item_type):
         if self.identify: item_type = self.identify
-        async for item in self.storage.process_batch(self.map_unspecified_relationships(stream), item_type):
+        #async for item in self.storage.process_batch(self.map_unspecified_relationships(stream), item_type):
+        async for item in self.storage.process_batch(stream, item_type):
             if item:
-                unmap_unspecified(item)
+                #unmap_unspecified(item)
                 await self.output.process(item, item_type)
         await self.output.finish()
 

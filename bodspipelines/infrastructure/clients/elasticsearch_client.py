@@ -35,11 +35,12 @@ def index_definition(record, out):
 
 class ElasticsearchClient:
     """ElasticsearchClient class"""
-    def __init__(self, indexes):
+    def __init__(self, indexes, index_just_id=False):
         """Initial setup"""
         self.client = None
         self.indexes = indexes
         self.index_name = None
+        self.index_just_id = index_just_id
 
     async def create_client(self):
         self.client = await create_client()
@@ -54,8 +55,13 @@ class ElasticsearchClient:
         # index settings
         settings = {"number_of_shards": 1,
                     "number_of_replicas": 0}
-        mappings = {"dynamic": "strict",
-                    "properties": properties}
+        if self.index_just_id:
+            # Only index statementId field
+            mappings = {"dynamic": "false",
+                        "properties": {"statementId": {"index": True, "type": "keyword"}}}
+        else:
+            mappings = {"dynamic": "strict",
+                        "properties": properties}
         if not await self.client.indices.exists(index=self.index_name):
             # Ignore 400 means to ignore "Index Already Exist" error.
             await self.client.options(ignore_status=400).indices.create(index=self.index_name,

@@ -4,7 +4,7 @@ import time
 from bodspipelines.infrastructure.caching import Caching
 from bodspipelines.infrastructure.bods.transforms import transform_item
 from bodspipelines.infrastructure.bods.annotations import add_deletion_annotation
-from bodspipelines.infrastructure.utils import current_date_iso, unmap_unspecified, generate_statement_id
+from bodspipelines.infrastructure.utils import current_date_iso, generate_statement_id #, unmap_unspecified
 
 def new_record_version(record_id):
     """Create new (incremented) version of recordId"""
@@ -166,7 +166,7 @@ class ProcessUpdates:
             print("Got here")
             async for statement_id, record_id in process_closed(self.cache):
                 statement = await retrieve_statement(self.storage, "relationship", statement_id)
-                unmap_unspecified(statement)
+                #unmap_unspecified(statement)
                 #print("Exception:", statement)
                 statement["recordStatus"] = 'closed'
                 statement["statementDate"] = current_date_iso()
