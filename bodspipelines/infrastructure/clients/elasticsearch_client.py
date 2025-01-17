@@ -55,7 +55,7 @@ class ElasticsearchClient:
         # index settings
         settings = {"number_of_shards": 1,
                     "number_of_replicas": 0}
-        if self.index_just_id:
+        if self.index_just_id and index_name in self.index_just_id:
             # Only index statementId field
             mappings = {"dynamic": "false",
                         "properties": {"statementId": {"index": True, "type": "keyword"}}}
