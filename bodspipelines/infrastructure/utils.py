@@ -18,7 +18,7 @@ def random_string(length):
 
 def format_date(d):
     """Format date in ISO 8601"""
-    print("Date:", d)
+    #print("Date:", d)
     return dateutil.parser.isoparse(d).strftime("%Y-%m-%d")
 
 

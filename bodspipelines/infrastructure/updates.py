@@ -136,7 +136,7 @@ class ProcessUpdates:
 
     async def process(self, item, item_type, header, updates=False):
         """Process updates if applicable"""
-        print(f"Processing - updates: {item_type} {updates}")
+        #print(f"Processing - updates: {item_type} {updates}")
         for statement in transform_item(self.transform, item, 'new'):
             status = False
             if updates:
