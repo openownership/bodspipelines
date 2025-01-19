@@ -30,16 +30,19 @@ def get_header(filename):
 class CSVData:
     """CSV data parser configuration"""
 
-    def __init__(self):
+    def __init__(self, sample=None):
         """Initial setup"""
-        pass
+        self.sample = sample
 
     async def process(self, filename):
         """Iterate over processed items from file"""
         fieldnames = get_fieldnames(filename)
         header = get_header(filename)
+        count = 0
         async with aiofiles.open(filename, mode="r", encoding="utf-8") as afp:
             await afp.readline()
             async for row in AsyncDictReader(afp, fieldnames=fieldnames):
+                count += 1
+                if self.sample and not count % self.sample == 0: continue
                 yield header, row
 

@@ -178,7 +178,7 @@ def transform_entity(source, data, record_status):
 
 def transform_person(source, data, record_status):
     """Transform into BODS v0.4 person"""
-    print("Building person")
+    #print("Building person")
     recordID = source.record_id(data, 'person')
     declarationSubject = source.declaration_subject(data)
     updated = source.item_updated(data)
@@ -256,7 +256,7 @@ def build_interest(source, data, data_type):
 
 def transform_relationship(source, data, record_status):
     """Transform into BODS v0.4 relationship"""
-    print("Building relationship")
+    #print("Building relationship")
     recordID = source.record_id(data, 'relationship')
     declarationSubject = source.declaration_subject(data)
     updated = source.item_updated(data)
@@ -326,7 +326,7 @@ def transform_item(source, item, status):
             yield transform_entity(source, item, status)
         elif item_type == 'relationship':
             interested = source.create_interested_party(item)
-            print("create_interested_party:", interested)
+            #print("create_interested_party:", interested)
             if interested == "person":
                 yield transform_person(source, item, status)
             elif interested == "entity":
