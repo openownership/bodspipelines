@@ -283,7 +283,7 @@ class Caching():
 
     async def stream(self, item_type):
         """Get cached items"""
-        print("Cache:", self.cache)
+        #print("Cache:", self.cache)
         for item_id in self.cache[item_type]:
             yield self.cache[item_type].get(item_id)
 
