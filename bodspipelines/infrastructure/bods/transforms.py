@@ -240,7 +240,8 @@ def transform_person(source, data, record_status):
 def build_interests(source, data, data_type):
     if data_type == "relationship":
         interests = []
-        for interest_type in source.interest_types(data):
+        interest_data = source.interest_types(data)
+        for interest_type in interest_data:
             interest = {
                 "directOrIndirect": source.interest_level(data),
                 "type": interest_type,
@@ -248,6 +249,10 @@ def build_interests(source, data, data_type):
                 "startDate": source.interest_start_date(data),
                 "details": source.interest_details(data)
                 }
+            if any([interest_data[interest_type][val_name] for val_name in interest_data[interest_type]]):
+                interest["share"] = {}
+            for val_name in interest_data[interest_type]:
+                interest["share"][val_name] = interest_data[interest_type][val_name]
             interests.append(interest)
         return interests
     else:
