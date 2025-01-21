@@ -237,22 +237,26 @@ def transform_person(source, data, record_status):
         statement["recordDetails"]["deathDate"] =deathDate
     return statement
 
-def build_interest(source, data, data_type):
+def build_interests(source, data, data_type):
     if data_type == "relationship":
-        return {
-            "directOrIndirect": source.interest_level(data),
-            "type": "otherInfluenceOrControl",
-            "beneficialOwnershipOrControl": False,
-            "startDate": source.interest_start_date(data),
-            "details": source.interest_details(data)
-           }
+        interests = []
+        for interest_type in source.interest_types(data):
+            interest = {
+                "directOrIndirect": source.interest_level(data),
+                "type": interest_type,
+                "beneficialOwnershipOrControl": False,
+                "startDate": source.interest_start_date(data),
+                "details": source.interest_details(data)
+                }
+            interests.append(interest)
+        return interests
     else:
-        return {
+        return [{
             "directOrIndirect": source.interest_level(data),
             "type": "otherInfluenceOrControl",
             "beneficialOwnershipOrControl": False,
             "details": source.interest_details(data)
-           }
+           }]
 
 def transform_relationship(source, data, record_status):
     """Transform into BODS v0.4 relationship"""
@@ -266,7 +270,7 @@ def transform_relationship(source, data, record_status):
     recordStatus = record_status
     subject = source.relationship_subject(data)
     interestedParty = source.relationship_interested_party(data)
-    interest = build_interest(source, data, "relationship")
+    interests = build_interests(source, data, "relationship")
     source_data = data_source(data, source)
     annotations = []
     statement = {"statementId": statementID,
@@ -278,7 +282,7 @@ def transform_relationship(source, data, record_status):
                  "recordDetails": {
                      "subject": subject,
                      "interestedParty": interestedParty,
-                     "interests": [interest],
+                     "interests": interests,
                      "isComponent": False
                      },
                  'annotations': annotations,
@@ -298,7 +302,7 @@ def transform_exception(source, data, record_status):
     recordStatus = record_status
     subject = source.relationship_subject(data)
     interestedParty = source.relationship_interested_party(data)
-    interest = build_interest(source, data, "exception")
+    interests = build_interests(source, data, "exception")
     source_data = data_source(data, source)
     annotations = []
     statement = {"statementId": statementID,
@@ -310,7 +314,7 @@ def transform_exception(source, data, record_status):
                  "recordDetails": {
                      "subject": subject,
                      "interestedParty": interestedParty,
-                     "interests": [interest],
+                     "interests": interests,
                      "isComponent": False
                      },
                  'annotations': annotations,
