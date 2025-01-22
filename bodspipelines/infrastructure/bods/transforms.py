@@ -178,7 +178,7 @@ def transform_entity(source, data, record_status):
                  'publicationDetails': publication_details(),
                  'source': source_data
                  }
-    if entit_details: statement["recordDetails"]["entityType"]["details"] = entity_details
+    if entity_details: statement["recordDetails"]["entityType"]["details"] = entity_details
     return statement
 
 def transform_person(source, data, record_status):
