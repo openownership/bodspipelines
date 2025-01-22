@@ -146,7 +146,8 @@ def transform_entity(source, data, record_status):
     annotations = []
     source_status = source.status(data)
     entity_name = source.entity_name
-    add_entity_annotation(annotations, entity_name, source_status)
+    entity_link = source.item_link(data, 'entity')
+    add_entity_annotation(annotations, entity_name, source_status, entity_link)
     statement = {"statementId": statementID,
                  "declarationSubject": declarationSubject,
                  "statementDate": statementDate,
