@@ -1,6 +1,6 @@
 from bodspipelines.infrastructure.utils import current_date_iso
 
-def add_annotation(annotations, description, pointer):
+def add_annotation(annotations, description, pointer, link):
     """Add commenting annotation to statement"""
     annotation = {'motivation': 'commenting',
                   'description': description,
@@ -22,4 +22,5 @@ def add_deletion_annotation(annotations, name, record_type):
     """Annotation of deletion of statement"""
     add_annotation(annotations,
                    f"{name} {record_type} deleted",
-                   "")
+                   "",
+                   None)
