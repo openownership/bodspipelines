@@ -133,7 +133,7 @@ def transform_entity(source, data, record_status):
     recordType = 'entity'
     recordStatus = record_status
     entityType = 'registeredEntity'
-    entityDetails = source.entity_details(data)
+    entity_details = source.entity_details(data)
     name = source.name(data, 'entity')
     country = jurisdiction_name(source.jurisdiction(data))
     jurisdiction = {'name': country, 'code': source.jurisdiction(data)}
@@ -178,7 +178,7 @@ def transform_entity(source, data, record_status):
                  'publicationDetails': publication_details(),
                  'source': source_data
                  }
-    if entityDetails: statement["entityDetails"] = entityDetails
+    if entit_details: statement["recordDetails"]["entityType"]["details"] = entity_details
     return statement
 
 def transform_person(source, data, record_status):
