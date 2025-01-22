@@ -54,6 +54,7 @@ def format_address(address_type, address):
     #print("Address:", address)
     if not address:
         return None
+    if "type" in address: address_type = address["type"]
     address_string = build_address_string(address)
     if len(address['country']) == 2:
         try:
