@@ -252,7 +252,8 @@ def build_interests(source, data, data_type):
             if any([interest_data[interest_type][val_name] for val_name in interest_data[interest_type]]):
                 interest["share"] = {}
             for val_name in interest_data[interest_type]:
-                interest["share"][val_name] = interest_data[interest_type][val_name]
+                if not interest_data[interest_type][val_name] is None:
+                    interest["share"][val_name] = interest_data[interest_type][val_name]
             interests.append(interest)
         return interests
     else:
