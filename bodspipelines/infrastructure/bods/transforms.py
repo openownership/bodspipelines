@@ -148,6 +148,8 @@ def transform_entity(source, data, record_status):
     businessAddress = format_address('business', source.business_address(data))
     creation_date = source.creation_date(data)
     creation = format_date(creation_date) if creation_date else None
+    dissolution_date = source.dissolution_date(data)
+    dissolution = format_date(dissolution_date) if dissolution_date else None
     source_data = data_source(data, source)
     annotations = []
     source_status = source.status(data)
@@ -171,7 +173,6 @@ def transform_entity(source, data, record_status):
                      "jurisdiction": jurisdiction,
                      "identifiers": identifiers,
                      "foundingDate": creation,
-                     #"dissolutionDate": ,
                      "addresses": build_addresses(registeredAddress, businessAddress)
                      #"uri": ,
                      #"publicListing": ,
@@ -182,6 +183,7 @@ def transform_entity(source, data, record_status):
                  'source': source_data
                  }
     if entity_details: statement["recordDetails"]["entityType"]["details"] = entity_details
+    if dissolution: statement["recordDetails"]["dissolutionDate"] = dissolution
     return statement
 
 def transform_person(source, data, record_status):
