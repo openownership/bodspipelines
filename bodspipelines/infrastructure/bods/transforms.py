@@ -174,7 +174,7 @@ def transform_entity(source, data, record_status):
                      "jurisdiction": jurisdiction,
                      "identifiers": identifiers,
                      "foundingDate": creation,
-                     "addresses": build_addresses(registeredAddress, businessAddress)
+                     "addresses": build_addresses(registeredAddress, businessAddress),
                      #"uri": ,
                      "publicListing": {"hasPublicListing": has_public_listing},
                      #"formedByStatute": ,
