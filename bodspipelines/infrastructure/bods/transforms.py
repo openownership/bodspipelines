@@ -150,6 +150,7 @@ def transform_entity(source, data, record_status):
     creation = format_date(creation_date) if creation_date else None
     dissolution_date = source.dissolution_date(data)
     dissolution = format_date(dissolution_date) if dissolution_date else None
+    has_public_listing = source.has_public_listing(data)
     source_data = data_source(data, source)
     annotations = []
     source_status = source.status(data)
@@ -175,7 +176,7 @@ def transform_entity(source, data, record_status):
                      "foundingDate": creation,
                      "addresses": build_addresses(registeredAddress, businessAddress)
                      #"uri": ,
-                     #"publicListing": ,
+                     "publicListing": {"hasPublicListing": has_public_listing},
                      #"formedByStatute": ,
                      },
                  'annotations': annotations,
