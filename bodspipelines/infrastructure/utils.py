@@ -21,6 +21,17 @@ def format_date(d):
     #print("Date:", d)
     return dateutil.parser.isoparse(d).strftime("%Y-%m-%d")
 
+def build_date(date):
+    if "T" in date:
+        date = date.split("T")[0]
+    if date and "/" in date:
+        comp = date.split("/")
+        comp.reverse()
+        return "-".join(comp)
+    elif date and "-" in date:
+        return date
+    else:
+        return None
 
 def current_date_iso():
     """Generate current date in ISO 8601"""
