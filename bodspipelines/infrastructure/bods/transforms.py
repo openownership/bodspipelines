@@ -117,7 +117,7 @@ def data_source(data, source):
     sourceURL = source.source_url
     source_retrieved = source.retrived_date(data)
     return {"type": sourceType,
-            "assertedBy": [{"name": sourceDescription}],
+            "assertedBy": [sourceDescription],
             "url": sourceURL,
             "retrievedAt": source_retrieved}
 
