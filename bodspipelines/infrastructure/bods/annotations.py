@@ -11,10 +11,10 @@ def add_annotation(annotations, description, pointer, link):
     if link: annotation["url"] = link
     annotations.append(annotation)
 
-def add_entity_annotation(annotations, name, registration_status, link):
+def add_entity_annotation(annotations, name, status_name, status, link):
     """Annotation of status for all entity statements"""
     add_annotation(annotations,
-                   f"{name} Registration Status: {registration_status}",
+                   f"{name} {status_name}: {status}",
                    "",
                    link)
 

@@ -154,10 +154,14 @@ def transform_entity(source, data, record_status):
     has_public_listing = source.has_public_listing(data)
     source_data = data_source(data, source)
     annotations = []
-    source_status = source.status(data)
+    entity_status = source.status(data)
+    registration_status = source.registration_status(data)
     entity_name = source.entity_name
     entity_link = source.item_link(data, 'entity')
-    add_entity_annotation(annotations, entity_name, source_status, entity_link)
+    if registration_status:
+        add_entity_annotation(annotations, entity_name, "Registration Status", registration_status, entity_link)
+    if entity_status:
+        add_entity_annotation(annotations, entity_name, "Entity Status", entity_status, entity_link)
     statement = {"statementId": statementID,
                  "declarationSubject": declarationSubject,
                  "statementDate": statementDate,
