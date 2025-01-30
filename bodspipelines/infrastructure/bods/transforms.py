@@ -180,7 +180,6 @@ def transform_entity(source, data, record_status):
                      "identifiers": identifiers,
                      "foundingDate": creation,
                      "addresses": build_addresses(registeredAddress, businessAddress),
-                     #"uri": ,
                      #"formedByStatute": ,
                      },
                  'annotations': annotations,
@@ -189,6 +188,7 @@ def transform_entity(source, data, record_status):
                  }
     if entity_details: statement["recordDetails"]["entityType"]["details"] = entity_details
     if dissolution: statement["recordDetails"]["dissolutionDate"] = dissolution
+    if entity_link: statement["recordDetails"]["uri"] = entity_link
     if not has_public_listing is None:
         statement["recordDetails"]["publicListing"] = {"hasPublicListing": has_public_listing}
     return statement
