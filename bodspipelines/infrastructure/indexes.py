@@ -254,7 +254,7 @@ pipeline_run_properties = {'stage_name': {'type': 'text'},
 
 # Latest record
 record_properties = {'record_id': {'type': 'text'},
-                     'statement_id': {'type': 'text'},
+                     'latest_record_id': {'type': 'text'},
                      'record_status': {'type': 'text'}}
 
 # Records to close

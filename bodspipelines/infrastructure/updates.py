@@ -157,7 +157,6 @@ class ProcessUpdates:
                     statement["annotations"].extend(extra_annotations)
             if status:
                 await record_save(self.cache, statement["recordId"], statement_id, status, updates=updates)
-                print(statement)
                 yield statement
 
     async def finish_updates(self, updates=False):
