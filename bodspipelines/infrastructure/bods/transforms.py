@@ -154,7 +154,7 @@ def transform_entity(source, data, record_status):
     has_public_listing = source.has_public_listing(data)
     source_data = data_source(data, source)
     annotations = []
-    entity_status = source.status(data)
+    entity_status = source.entity_status(data)
     registration_status = source.registration_status(data)
     entity_name = source.entity_name
     entity_link = source.item_link(data, 'entity')

@@ -89,7 +89,10 @@ async def record_status(transform, cache, storage, item, statement, updates=Fals
     #if not latest_statement_id and '-RR-' in record_id:
     #    await closed_delete(cache, latest_id, if_exists=True)
     if not latest_record_id:
-        return 'new', None
+        if transform.item_closed(item):
+            return 'closed', None
+        else:
+            return 'new', None
     if latest_record_status == 'closed':
         if transform.identify_item(item) in ("relationship", "exception") and not transform.item_closed(item):
             new_record_id = new_record_version(record_id)
