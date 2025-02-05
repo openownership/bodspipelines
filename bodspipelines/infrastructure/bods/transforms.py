@@ -136,6 +136,7 @@ def transform_entity(source, data, record_status):
     entityType = 'registeredEntity'
     entity_details = source.entity_details(data)
     name = source.name(data, 'entity')
+    alternate_names = source.alternate_names(data, 'entity')
     country = jurisdiction_name(source.jurisdiction(data))
     jurisdiction = {'name': country, 'code': source.jurisdiction(data)}
     scheme_url = source.scheme_url(data)
@@ -175,7 +176,7 @@ def transform_entity(source, data, record_status):
                      },
                      #"unspecifiedEntityDetails": ,
                      "name": name,
-                     "alternateNames": [],
+                     "alternateNames": alternate_names,
                      "jurisdiction": jurisdiction,
                      "identifiers": identifiers,
                      "foundingDate": creation,
