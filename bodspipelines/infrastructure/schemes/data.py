@@ -41,14 +41,16 @@ def lookup_scheme(country, structure, unconfirmed=False, subnational=False):
                     if not data["subnationalCoverage"]:
                         return data['code'], data["name"]["en"], data['url']
                 else:
-                    return data['code'], data["name"]["en"], data['url']
+                    if "subnationalCoverage" in data and subnational in data["subnationalCoverage"]:
+                        return data['code'], data["name"]["en"], data['url']
             elif (country in data['coverage'] and data['structure'] and
                 structure in data['structure']):
                 if not subnational:
                     if not data["subnationalCoverage"]:
                         unconfirmed_data.append(data)
                 else:
-                    unconfirmed_data.append(data)
+                    if "subnationalCoverage" in data and subnational in data["subnationalCoverage"]:
+                        unconfirmed_data.append(data)
     if unconfirmed and unconfirmed_data:
         return unconfirmed_data[0]['code'], unconfirmed_data[0]["name"]["en"], unconfirmed_data[0]["url"]
     return None, None, None
