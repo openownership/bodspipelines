@@ -13,7 +13,7 @@ def load_data():
             data.append(row)
     return data
 
-def lookup_scheme(country, structure, unconfirmed=False):
+def lookup_scheme(country, structure, unconfirmed=False, subnational=False):
     #print("lookup_scheme:", country, structure)
     if "-" in country:
         directory = scheme_dir / f"org-id-lists/{country.split('-')[0].lower()}"
@@ -37,10 +37,18 @@ def lookup_scheme(country, structure, unconfirmed=False):
             #print(data['coverage'], data['structure'])
             if (data["confirmed"] and country in data['coverage'] and
                 data['structure'] and structure in data['structure']):
-                return data['code'], data["name"]["en"], data['url']
+                if not subnational:
+                    if not data["subnationalCoverage"]:
+                        return data['code'], data["name"]["en"], data['url']
+                else:
+                    return data['code'], data["name"]["en"], data['url']
             elif (country in data['coverage'] and data['structure'] and
                 structure in data['structure']):
-                unconfirmed_data.append(data)
+                if not subnational:
+                    if not data["subnationalCoverage"]:
+                        unconfirmed_data.append(data)
+                else:
+                    unconfirmed_data.append(data)
     if unconfirmed and unconfirmed_data:
         return unconfirmed_data[0]['code'], unconfirmed_data[0]["name"]["en"], unconfirmed_data[0]["url"]
     return None, None, None
