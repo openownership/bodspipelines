@@ -141,8 +141,8 @@ def transform_entity(source, data, record_status):
     jurisdiction = {'name': country, 'code': source.jurisdiction(data)}
     scheme_url = source.scheme_url(data)
     identifier = {'id': source.identifier(data),
-                  'scheme': source.scheme,
-                  'schemeName': source.scheme_name}
+                  'scheme': source.scheme(data),
+                  'schemeName': source.scheme_name(data)}
     if scheme_url: identifier['uri'] = scheme_url
     identifiers = [identifier]
     identifiers += source.additional_identifiers(data)
@@ -211,8 +211,8 @@ def transform_person(source, data, record_status):
     identifier = source.person_identifier(data)
     if identifier:
         identifiers = [{'id': source.identifier(data),
-                    'scheme': source.scheme,
-                    'schemeName': source.scheme_name}]
+                    'scheme': source.scheme(data),
+                    'schemeName': source.scheme_name(data)}]
     else:
         identifiers = []
     identifiers += source.additional_identifiers(data)
