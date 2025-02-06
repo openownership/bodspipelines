@@ -15,6 +15,9 @@ def load_data():
 
 def lookup_scheme(country, structure, unconfirmed=False, subnational=False):
     #print("lookup_scheme:", country, structure)
+    if subnational and not "-" in subnational:
+        country = subnational
+        subnational = False
     if "-" in country:
         directory = scheme_dir / f"org-id-lists/{country.split('-')[0].lower()}"
         schemes = directory.glob(f"{country.lower()}-*.json")
