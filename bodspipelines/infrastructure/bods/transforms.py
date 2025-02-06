@@ -139,12 +139,17 @@ def transform_entity(source, data, record_status):
     alternate_names = source.alternate_names(data, 'entity')
     country = jurisdiction_name(source.jurisdiction(data))
     jurisdiction = {'name': country, 'code': source.jurisdiction(data)}
-    scheme_url = source.scheme_url(data)
-    identifier = {'id': source.identifier(data),
-                  'scheme': source.scheme(data),
-                  'schemeName': source.scheme_name(data)}
-    if scheme_url: identifier['uri'] = scheme_url
-    identifiers = [identifier]
+    scheme_identifier = source.identifier(data)
+    scheme, scheme_name, scheme_url = source.scheme(data)
+    #scheme_url = source.scheme_url(data)
+    if scheme_identifier:
+        identifier = {'id': scheme_identifier,
+                      'scheme': scheme,
+                      'schemeName': scheme_name}
+        if scheme_url: identifier['uri'] = scheme_url
+        identifiers = [identifier]
+    else:
+        identifiers = []
     identifiers += source.additional_identifiers(data)
     registeredAddress = format_address('registered', source.registered_address(data))
     businessAddress = format_address('business', source.business_address(data))
@@ -209,10 +214,14 @@ def transform_person(source, data, record_status):
     country = jurisdiction_name(source.jurisdiction(data))
     jurisdiction = {'name': country, 'code': source.jurisdiction(data)}
     identifier = source.person_identifier(data)
-    if identifier:
-        identifiers = [{'id': source.identifier(data),
-                    'scheme': source.scheme(data),
-                    'schemeName': source.scheme_name(data)}]
+    scheme_identifier = source.identifier(data)
+    scheme, scheme_name, scheme_url = source.scheme(data)
+    if scheme_identifier:
+        identifier = {'id': scheme_identifier,
+                      'scheme': scheme,
+                      'schemeName': scheme_name}
+        if scheme_url: identifier['uri'] = scheme_url
+        identifiers = [identifier]
     else:
         identifiers = []
     identifiers += source.additional_identifiers(data)
