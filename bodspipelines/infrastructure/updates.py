@@ -110,10 +110,12 @@ async def record_status(transform, cache, storage, item, statement, updates=Fals
     return 'updated', None
 
 def record_annotations(statement, status, transform):
+    """Add annotation for closed records"""
     annotations = []
     if status == 'closed':
         record_type = statement["recordType"]
-        add_deletion_annotation(annotations, transform.source_description, record_type)
+        record_id = statement["recordId"]
+        add_deletion_annotation(annotations, record_id, record_type)
     return annotations
 
 async def process_closed(cache):
