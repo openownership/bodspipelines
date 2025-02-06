@@ -23,7 +23,7 @@ def lookup_scheme(country, structure, unconfirmed=False):
                 data = json.load(json_file)
                 if (country.split('-')[0] in data['coverage'] and
                     data['structure'] and structure in data['structure']):
-                    return data['code'], data["name"]["en"]
+                    return data['code'], data["name"]["en"], data['url']
     else:
         #directory = Path(f"bodspipelines/infrastructure/schemes/org-id-lists/{country.lower()}")
         directory = scheme_dir / f"org-id-lists/{country.lower()}"
@@ -37,13 +37,13 @@ def lookup_scheme(country, structure, unconfirmed=False):
             #print(data['coverage'], data['structure'])
             if (data["confirmed"] and country in data['coverage'] and
                 data['structure'] and structure in data['structure']):
-                return data['code'], data["name"]["en"]
+                return data['code'], data["name"]["en"], data['url']
             elif (country in data['coverage'] and data['structure'] and
                 structure in data['structure']):
                 unconfirmed_data.append(data)
     if unconfirmed and unconfirmed_data:
-        return unconfirmed_data[0]['code'], unconfirmed_data[0]["name"]["en"]
-    return None, None
+        return unconfirmed_data[0]['code'], unconfirmed_data[0]["name"]["en"], unconfirmed_data[0]["url"]
+    return None, None, None
 
 def get_scheme(scheme_id, scheme_data, country_code=None):
     match = [scheme for scheme in scheme_data if scheme[0] == scheme_id]
