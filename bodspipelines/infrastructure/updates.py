@@ -133,12 +133,6 @@ async def record_status(transform, cache, storage, item, statement, updates=Fals
         return 'closed', None
     return 'updated', None
 
-async def check_replacing_record(transform, cache, storage, item, statement, updates=False):
-    """Calculate recordStatus id for record_id"""
-    if transform.identify_item(item) in ("relationship", "exception"):
-        relationship_id = transform.relationship_id(item)
-        latest_id, _ = await latest_lookup(cache, relationship_id, updates=updates)
-        if latest_id:
 def record_annotations(statement, status, transform):
     """Add annotation for closed records"""
     annotations = []
