@@ -211,8 +211,8 @@ def transform_person(source, data, record_status):
     recordStatus = record_status
     entityType = 'registeredEntity'
     name = build_name(source.name(data, 'person'), 'legal')
-    country = jurisdiction_name(source.jurisdiction(data))
-    jurisdiction = {'name': country, 'code': source.jurisdiction(data)}
+    #country = jurisdiction_name(source.jurisdiction(data))
+    #jurisdiction = {'name': country, 'code': source.jurisdiction(data)}
     identifier = source.person_identifier(data)
     scheme_identifier = source.identifier(data)
     scheme, scheme_name, scheme_url = source.scheme(data)
