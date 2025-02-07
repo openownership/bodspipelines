@@ -223,7 +223,8 @@ relationship_statement_properties = {'statementId': {'type': 'text'},
 # Additional indexes for managing updates
 latest_properties = {'latest_id': {'type': 'text'},
                      'statement_id': {'type': 'text'},
-                     'reason': {'type': 'text'}}
+                     'record_id': {'type': 'text'}}
+
 references_properties = {'statement_id': {'type': 'text'},
                          'references_id': {'type': 'object',
                                           'properties': {'statement_id': {'type': 'text'},

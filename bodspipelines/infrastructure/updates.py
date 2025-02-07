@@ -21,6 +21,12 @@ async def retrieve_statement(storage, statement_type, statement_id):
     data = await storage.get_item(statement_id, statement_type)
     return data
 
+def build_latest(latest_id, bods_id, record_id):
+    """Build latest object"""
+    return {'latest_id': latest_id, # Source id (e.g. LEI)
+            'statement_id': bods_id, # Latest statement id
+            'record_id': record_id} # Record id
+
 def build_record(record_id, statement_id, status):
     """Build record object"""
     return {'record_id': record_id,
@@ -32,6 +38,19 @@ def build_closed(statement_id, record_id):
     return {'statement_id': statement_id,
             'record_id': record_id, # Unused
            }
+
+async def latest_save(cache, latest_id, statement_id, record_id, updates=False):
+    """Save latest statement id for LEI/RR/Repex"""
+    await cache.add(build_latest(latest_id, statement_id, record_id),
+                "latest", overwrite=True)
+
+async def latest_lookup(cache, latest_id, updates=False):
+    """Lookup latest statement id for LEI/RR/Repex"""
+    data = await cache.get(latest_id, "latest")
+    if data:
+         return data['statement_id'], data['record_id']
+    else:
+         return None, None
 
 async def record_lookup(cache, record_id, updates=False):
     """Lookup latest statement id for record_id"""
@@ -89,6 +108,11 @@ async def record_status(transform, cache, storage, item, statement, updates=Fals
     #if not latest_statement_id and '-RR-' in record_id:
     #    await closed_delete(cache, latest_id, if_exists=True)
     if not latest_record_id:
+        if transform.identify_item(item) in ("relationship", "exception"):
+            relationship_id = transform.relationship_id(item)
+            latest_id, latest_record_id = await latest_lookup(cache, relationship_id, updates=updates)
+            if latest_id:
+                await closed_save(cache, latest_id, latest_record_id)
         if transform.item_closed(item):
             return 'closed', None
         else:
@@ -109,6 +133,12 @@ async def record_status(transform, cache, storage, item, statement, updates=Fals
         return 'closed', None
     return 'updated', None
 
+async def check_replacing_record(transform, cache, storage, item, statement, updates=False):
+    """Calculate recordStatus id for record_id"""
+    if transform.identify_item(item) in ("relationship", "exception"):
+        relationship_id = transform.relationship_id(item)
+        latest_id, _ = await latest_lookup(cache, relationship_id, updates=updates)
+        if latest_id:
 def record_annotations(statement, status, transform):
     """Add annotation for closed records"""
     annotations = []
@@ -181,3 +211,4 @@ class ProcessUpdates:
                 print("Closed:", statement["statementId"], statementID)
                 statement["statementId"] = statementID
                 yield statement
+        await self.cache.flush()

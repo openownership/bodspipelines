@@ -73,4 +73,4 @@ def get_scheme(scheme_id, scheme_data, country_code=None):
         else:
             country = match[0][2]
         return lookup_scheme(country, "company")
-    return None, None
+    return None, None, None
