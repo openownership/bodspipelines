@@ -139,10 +139,10 @@ def transform_entity(source, data, record_status):
     alternate_names = source.alternate_names(data, 'entity')
     country = jurisdiction_name(source.jurisdiction(data))
     jurisdiction = {'name': country, 'code': source.jurisdiction(data)}
-    scheme_identifier = source.identifier(data)
-    scheme, scheme_name, scheme_url = source.scheme(data)
+    scheme_identifier = source.identifier(data, 'entity')
     #scheme_url = source.scheme_url(data)
     if scheme_identifier:
+        scheme, scheme_name, scheme_url = source.scheme(data, 'entity')
         identifier = {'id': scheme_identifier,
                       'scheme': scheme,
                       'schemeName': scheme_name}
@@ -213,10 +213,10 @@ def transform_person(source, data, record_status):
     name = build_name(source.name(data, 'person'), 'legal')
     #country = jurisdiction_name(source.jurisdiction(data))
     #jurisdiction = {'name': country, 'code': source.jurisdiction(data)}
-    identifier = source.person_identifier(data)
-    scheme_identifier = source.identifier(data)
-    scheme, scheme_name, scheme_url = source.scheme(data)
+    #identifier = source.person_identifier(data)
+    scheme_identifier = source.identifier(data, 'person')
     if scheme_identifier:
+        scheme, scheme_name, scheme_url = source.scheme(data, 'person')
         identifier = {'id': scheme_identifier,
                       'scheme': scheme,
                       'schemeName': scheme_name}
