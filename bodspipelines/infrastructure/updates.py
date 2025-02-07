@@ -21,10 +21,10 @@ async def retrieve_statement(storage, statement_type, statement_id):
     data = await storage.get_item(statement_id, statement_type)
     return data
 
-def build_latest(latest_id, bods_id, record_id):
+def build_latest(latest_id, statement_id, record_id):
     """Build latest object"""
     return {'latest_id': latest_id, # Source id (e.g. LEI)
-            'statement_id': bods_id, # Latest statement id
+            'statement_id': statement_id, # Latest statement id
             'record_id': record_id} # Record id
 
 def build_record(record_id, statement_id, status):
@@ -186,6 +186,9 @@ class ProcessUpdates:
                     statement["annotations"].extend(extra_annotations)
             if status:
                 await record_save(self.cache, statement["recordId"], statement_id, status, updates=updates)
+                if statement["recordType"] == "relationship":
+                    relationship_id = self.transform.relationship_id(item)
+                    await latest_save(self.cache, relationship_id, statement_id, statement["recordId"], updates=updates)
                 yield statement
 
     async def finish_updates(self, updates=False):
