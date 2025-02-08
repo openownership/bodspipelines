@@ -208,7 +208,7 @@ class ElasticsearchClient:
                 action = metadata | {'_id': self.indexes[index_name]["id"](item)} | item
             else:
                 action = metadata | {'_id': self.indexes[index_name]["id"](item)} | item
-            #print(action)
+            print(action)
             yield action
 
     async def dump_stream(self, index_name, action_type, items):

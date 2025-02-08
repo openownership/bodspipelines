@@ -159,7 +159,7 @@ class Caching():
         self.batch = {"latest": {}, "references": {}, "exceptions": {},
                       "updates": {}, "records": {}, "closed": {}} if batching else None
         self.batch_size = batching if batching else None
-        self.memory_only = ["updates", "closed"]
+        self.memory_only = ["updates", "closed", "records"]
         self.storage = storage
 
     async def load(self):
@@ -274,7 +274,7 @@ class Caching():
         return item
 
     async def delete(self, item_id, item_type, if_exists=False):
-        """Delete acched item"""
+        """Delete cached item"""
         self._delete(item_type, item_id, if_exists=if_exists)
         #if self._check_batch_item(item_type, item_id):
         #    self._unbatch_item(item_type, item_id)
