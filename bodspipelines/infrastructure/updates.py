@@ -31,7 +31,7 @@ def build_record(record_id, statement_id, status):
     """Build record object"""
     return {'record_id': record_id,
             'latest_record_id': statement_id, # Unused
-            'status': status}
+            'record_status': status}
 
 def build_closed(statement_id, record_id):
     """Build closed object"""
@@ -57,7 +57,7 @@ async def record_lookup(cache, record_id, updates=False):
     data = await cache.get(record_id, "records")
     if data:
          #print(data)
-         return data['latest_record_id'], data['status']
+         return data['latest_record_id'], data['record_status']
     else:
          return None, None
 
