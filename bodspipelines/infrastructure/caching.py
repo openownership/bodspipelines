@@ -159,7 +159,7 @@ class Caching():
         self.batch = {"latest": {}, "references": {}, "exceptions": {},
                       "updates": {}, "records": {}, "closed": {}} if batching else None
         self.batch_size = batching if batching else None
-        self.memory_only = ["updates", "closed", "records"]
+        self.memory_only = ["updates", "closed"]
         self.storage = storage
 
     async def load(self):
