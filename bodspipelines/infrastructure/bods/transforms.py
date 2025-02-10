@@ -137,8 +137,12 @@ def transform_entity(source, data, record_status):
     entity_details = source.entity_details(data)
     name = source.name(data, 'entity')
     alternate_names = source.alternate_names(data, 'entity')
-    country = jurisdiction_name(source.jurisdiction(data))
-    jurisdiction = {'name': country, 'code': source.jurisdiction(data)}
+    jurisdiction_country = source.jurisdiction(data)
+    if jurisdiction_country:
+        jurisdiction = {'name': jurisdiction_name(jurisdiction_country),
+                        'code': jurisdiction_country}
+    else:
+        jurisdiction = {}
     scheme_identifier = source.identifier(data, 'entity')
     #scheme_url = source.scheme_url(data)
     if scheme_identifier:
