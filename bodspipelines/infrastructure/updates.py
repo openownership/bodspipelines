@@ -17,7 +17,7 @@ def new_record_version(record_id):
 
 async def retrieve_statement(storage, statement_type, statement_id):
     """Retrive statement using statement_id"""
-    print("Retriving:", statement_id)
+    #print("Retriving:", statement_id)
     data = await storage.get_item(statement_id, statement_type)
     return data
 
@@ -77,7 +77,7 @@ async def closed_delete(cache, statement_id, if_exists=False):
 async def find_closed(cache, record_id):
     """Stream updates from index"""
     async for closed in cache.stream("closed"):
-        print("Closed:", closed)
+        #print("Closed:", closed)
         if closed['record_id'] == record_id:
             return closed['statement_id']
     return None
@@ -89,7 +89,7 @@ async def check_for_exception(transform, cache, storage, item, record_id, update
                                                                         exception_record_id,
                                                                         updates=updates)
         if latest_statement_id and latest_record_status != "closed":
-            print("Exception needs closing")
+            #print("Exception needs closing")
             await closed_save(cache, latest_statement_id, exception_record_id)
             #statement = await retrieve_statement(storage, "relationship", latest_statement_id)
             #print("Exception:", statement)
@@ -100,7 +100,7 @@ async def record_status(transform, cache, storage, item, statement, updates=Fals
     latest_record_id, latest_record_status = await record_lookup(cache, record_id, updates=updates)
     #print("record_status:", record_id, latest_statement_id, latest_record_status, cache.cache)
     if not latest_record_id and '-RR-' in record_id:
-        print("New relationship")
+        #print("New relationship")
         #latest_statement_id, latest_record_status = await record_lookup(cache,
         #                                                                record_id.replace('-RR-', '-RE-'),
         #                                                                updates=updates)
@@ -196,7 +196,7 @@ class ProcessUpdates:
         print("In finish_updates")
         if updates:
             done_updates = []
-            print("Got here")
+            #print("Got here")
             async for statement_id, record_id in process_closed(self.cache):
                 statement = await retrieve_statement(self.storage, "relationship", statement_id)
                 #unmap_unspecified(statement)
@@ -205,7 +205,7 @@ class ProcessUpdates:
                 statement["statementDate"] = current_date_iso()
                 statementID = generate_statement_id(f"{statement['recordId']}-{statement['statementId']}",
                                                     'relationshipStatement')
-                print("Closed:", statement["statementId"], statementID)
+                #print("Closed:", statement["statementId"], statementID)
                 statement["statementId"] = statementID
                 yield statement
         await self.cache.flush()
