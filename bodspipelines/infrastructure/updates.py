@@ -33,10 +33,11 @@ def build_record(record_id, statement_id, status):
             'latest_record_id': statement_id, # Unused
             'record_status': status}
 
-def build_closed(statement_id, record_id):
+def build_closed(statement_id, record_id, statement_date):
     """Build closed object"""
     return {'statement_id': statement_id,
             'record_id': record_id, # Unused
+            'statement_date': statement_date
            }
 
 async def latest_save(cache, latest_id, statement_id, record_id, updates=False):
@@ -66,9 +67,9 @@ async def record_save(cache, record_id, latest_record_id, status, updates=False)
     await cache.add(build_record(record_id, latest_record_id, status),
                 "records", overwrite=True)
 
-async def closed_save(cache, statement_id, record_id):
+async def closed_save(cache, statement_id, record_id, statement_date):
     """Save statement to close"""
-    await cache.add(build_closed(statement_id, record_id), "closed", overwrite=True)
+    await cache.add(build_closed(statement_id, record_id, statement_date), "closed", overwrite=True)
 
 async def closed_delete(cache, statement_id, if_exists=False):
     """Delete statement to updates"""
@@ -79,7 +80,7 @@ async def find_closed(cache, record_id):
     async for closed in cache.stream("closed"):
         #print("Closed:", closed)
         if closed['record_id'] == record_id:
-            return closed['statement_id']
+            return closed['statement_id'], closed['statement_date']
     return None
 
 async def check_for_exception(transform, cache, storage, item, record_id, updates=False):
@@ -109,12 +110,13 @@ async def record_status(transform, cache, storage, item, statement, updates=Fals
     #if not latest_statement_id and '-RR-' in record_id:
     #    await closed_delete(cache, latest_id, if_exists=True)
     if not latest_record_id:
+        #print(record_type, transform.item_closed(item, record_type))
         #if transform.identify_item(item) in ("relationship", "exception"):
         if record_type == "relationship":
             relationship_id = transform.relationship_id(item)
             latest_id, latest_record_id = await latest_lookup(cache, relationship_id, updates=updates)
             if latest_id:
-                await closed_save(cache, latest_id, latest_record_id)
+                await closed_save(cache, latest_id, latest_record_id, statement["statementDate"])
         if transform.item_closed(item, record_type):
             return 'closed', None
         else:
@@ -148,7 +150,7 @@ def record_annotations(statement, status, transform):
 async def process_closed(cache):
     """Stream updates from index"""
     async for closed in cache.stream("closed"):
-        yield closed['statement_id'], closed['record_id']
+        yield closed['statement_id'], closed['record_id'], closed['statement_date']
 
 class ProcessUpdates:
     """Data processor definition class"""
@@ -200,12 +202,13 @@ class ProcessUpdates:
         if updates:
             done_updates = []
             #print("Got here")
-            async for statement_id, record_id in process_closed(self.cache):
+            async for statement_id, record_id, statement_date in process_closed(self.cache):
                 statement = await retrieve_statement(self.storage, "relationship", statement_id)
                 #unmap_unspecified(statement)
                 #print("Exception:", statement)
                 statement["recordStatus"] = 'closed'
-                statement["statementDate"] = current_date_iso()
+                #statement["statementDate"] = current_date_iso()
+                statement["statementDate"] = statement_date
                 statementID = generate_statement_id(f"{statement['recordId']}-{statement['statementId']}",
                                                     'relationshipStatement')
                 #print("Closed:", statement["statementId"], statementID)
