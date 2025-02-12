@@ -97,6 +97,7 @@ async def check_for_exception(transform, cache, storage, item, record_id, update
 async def record_status(transform, cache, storage, item, statement, updates=False):
     """Calculate recordStatus id for record_id"""
     record_id = statement["recordId"]
+    record_type = statement["recordType"]
     latest_record_id, latest_record_status = await record_lookup(cache, record_id, updates=updates)
     #print("record_status:", record_id, latest_statement_id, latest_record_status, cache.cache)
     if not latest_record_id and '-RR-' in record_id:
@@ -108,23 +109,25 @@ async def record_status(transform, cache, storage, item, statement, updates=Fals
     #if not latest_statement_id and '-RR-' in record_id:
     #    await closed_delete(cache, latest_id, if_exists=True)
     if not latest_record_id:
-        if transform.identify_item(item) in ("relationship", "exception"):
+        #if transform.identify_item(item) in ("relationship", "exception"):
+        if record_type == "relationship":
             relationship_id = transform.relationship_id(item)
             latest_id, latest_record_id = await latest_lookup(cache, relationship_id, updates=updates)
             if latest_id:
                 await closed_save(cache, latest_id, latest_record_id)
-        if transform.item_closed(item):
+        if transform.item_closed(item, record_type):
             return 'closed', None
         else:
             return 'new', None
     if latest_record_status == 'closed':
-        if transform.identify_item(item) in ("relationship", "exception") and not transform.item_closed(item):
+        #if transform.identify_item(item) in ("relationship", "exception") and not transform.item_closed(item):
+        if record_type == "relationship" and not transform.item_closed(item, record_type):
             new_record_id = new_record_version(record_id)
             return 'new', new_record_id
-        elif not transform.item_closed(item):
+        elif not transform.item_closed(item, record_type):
             new_record_id = new_record_version(record_id)
             return 'new', new_record_id
-    if transform.item_closed(item):
+    if transform.item_closed(item, record_type):
         if '-RE-' in record_id:
             latest_id = await find_closed(cache, record_id)
             #print("Record id:", record_id, "Latest id:", latest_id)
