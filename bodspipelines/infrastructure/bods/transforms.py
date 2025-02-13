@@ -119,7 +119,8 @@ def data_source(data, source):
     return {"type": sourceType,
             "assertedBy": [sourceDescription],
             "url": sourceURL,
-            "retrievedAt": source_retrieved}
+            #"retrievedAt": source_retrieved
+           }
 
 def record_status(record_id, _):
     """new updated closed"""
