@@ -138,13 +138,24 @@ async def record_status(transform, cache, storage, item, statement, updates=Fals
         return 'closed', None
     return 'updated', None
 
+def relationship_type(statement):
+    if "interestedParty" in statement["recordDetails"]:
+        if isinstance(statement["recordDetails"]["interestedParty"], dict):
+            return "exception"
+        else:
+            return "relationship"
+
 def record_annotations(statement, status, transform):
     """Add annotation for closed records"""
     annotations = []
     if status == 'closed':
         record_type = statement["recordType"]
         record_id = statement["recordId"]
-        add_deletion_annotation(annotations, record_id, record_type)
+        if record_type == "relationship":
+            source_type = relationship_type(statement)
+        else:
+            source_type = record_type
+        add_deletion_annotation(annotations, record_id, source_type)
     return annotations
 
 async def process_closed(cache):
