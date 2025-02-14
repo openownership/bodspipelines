@@ -83,7 +83,7 @@ async def find_closed(cache, record_id):
             return closed['statement_id'], closed['statement_date']
     return None
 
-async def check_for_exception(transform, cache, storage, item, record_id, updates=False):
+async def check_for_exception(transform, cache, storage, item, record_id, statement_date, updates=False):
     if transform.identify_item(item) == "relationship":
         exception_record_id = transform.exception_id(record_id)
         latest_statement_id, latest_record_status = await record_lookup(cache,
@@ -91,7 +91,7 @@ async def check_for_exception(transform, cache, storage, item, record_id, update
                                                                         updates=updates)
         if latest_statement_id and latest_record_status != "closed":
             #print("Exception needs closing")
-            await closed_save(cache, latest_statement_id, exception_record_id)
+            await closed_save(cache, latest_statement_id, exception_record_id, statement_date)
             #statement = await retrieve_statement(storage, "relationship", latest_statement_id)
             #print("Exception:", statement)
 
@@ -99,6 +99,7 @@ async def record_status(transform, cache, storage, item, statement, updates=Fals
     """Calculate recordStatus id for record_id"""
     record_id = statement["recordId"]
     record_type = statement["recordType"]
+    statement_date = statement["statementDate"]
     latest_record_id, latest_record_status = await record_lookup(cache, record_id, updates=updates)
     #print("record_status:", record_id, latest_statement_id, latest_record_status, cache.cache)
     if not latest_record_id and '-RR-' in record_id:
@@ -106,7 +107,7 @@ async def record_status(transform, cache, storage, item, statement, updates=Fals
         #latest_statement_id, latest_record_status = await record_lookup(cache,
         #                                                                record_id.replace('-RR-', '-RE-'),
         #                                                                updates=updates)
-        await check_for_exception(transform, cache, storage, item, record_id, updates=updates)
+        await check_for_exception(transform, cache, storage, item, record_id, statement_date, updates=updates)
     #if not latest_statement_id and '-RR-' in record_id:
     #    await closed_delete(cache, latest_id, if_exists=True)
     if not latest_record_id:
@@ -116,7 +117,7 @@ async def record_status(transform, cache, storage, item, statement, updates=Fals
             relationship_id = transform.relationship_id(item)
             latest_id, latest_record_id = await latest_lookup(cache, relationship_id, updates=updates)
             if latest_id:
-                await closed_save(cache, latest_id, latest_record_id, statement["statementDate"])
+                await closed_save(cache, latest_id, latest_record_id, statement_date)
         if transform.item_closed(item, record_type):
             return 'closed', None
         else:
