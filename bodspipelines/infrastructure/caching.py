@@ -215,7 +215,7 @@ class Caching():
                      if self.batch[item_type][item_id][0] == action]
             #print(f"{action}: {items}")
             if items:
-                #print(f"Flushing {action}: {len(items)} items")
+                print(f"Flushing {action}: {len(items)} items")
                 await self.storage.dump_stream(item_type, action, self._generate_items(items))
         self.batch[item_type] = {}
 
