@@ -67,13 +67,21 @@ async def record_save(cache, record_id, latest_record_id, status, updates=False)
     await cache.add(build_record(record_id, latest_record_id, status),
                 "records", overwrite=True)
 
+async def closed_lookup(cache, record_id, updates=False):
+    """Lookup closed statement id for LEI/RR/Repex"""
+    data = await cache.get(record_id, "closed")
+    if data:
+         return data['statement_id'], data['record_id'], data['statement_date']
+    else:
+         return None, None, None
+
 async def closed_save(cache, statement_id, record_id, statement_date):
     """Save statement to close"""
     await cache.add(build_closed(statement_id, record_id, statement_date), "closed", overwrite=True)
 
-async def closed_delete(cache, statement_id, if_exists=False):
+async def closed_delete(cache, record_id, if_exists=False):
     """Delete statement to updates"""
-    await cache.delete(statement_id, "closed", if_exists=if_exists)
+    await cache.delete(record_id, "closed", if_exists=if_exists)
 
 async def find_closed(cache, record_id):
     """Stream updates from index"""
@@ -131,11 +139,13 @@ async def record_status(transform, cache, storage, item, statement, updates=Fals
             new_record_id = new_record_version(record_id)
             return 'new', new_record_id
     if transform.item_closed(item, record_type):
-        if '-RE-' in record_id:
-            latest_id = await find_closed(cache, record_id)
-            #print("Record id:", record_id, "Latest id:", latest_id)
+        if '-RE-' in record_id or '-RR-' in record_id:
+            print("Looking up:", record_id)
+            #latest_id = await find_closed(cache, record_id)
+            latest_id, _, _ = await closed_lookup(cache, record_id)
+            print("Record id:", record_id, "Latest id:", latest_id)
             if latest_id:
-                await closed_delete(cache, latest_id, if_exists=True)
+                await closed_delete(cache, record_id, if_exists=True)
         return 'closed', None
     return 'updated', None
 
@@ -205,7 +215,8 @@ class ProcessUpdates:
                 await record_save(self.cache, statement["recordId"], statement_id, status, updates=updates)
                 if statement["recordType"] == "relationship":
                     relationship_id = self.transform.relationship_id(item)
-                    await latest_save(self.cache, relationship_id, statement_id, statement["recordId"], updates=updates)
+                    await latest_save(self.cache, relationship_id, statement_id,
+                                      statement["recordId"], updates=updates)
                 yield statement
 
     async def finish_updates(self, updates=False):

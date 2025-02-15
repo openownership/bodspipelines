@@ -291,7 +291,7 @@ def match_record(item):
     return {"match": {"record_id": item["record_id"]}}
 
 def match_closed(item):
-    return {"match": {"statement_id": item["statement_id"]}}
+    return {"match": {"record_id": item["record_id"]}}
 
 def id_entity(item):
     return item["statementId"]
@@ -321,7 +321,7 @@ def id_record(item):
     return item["record_id"]
 
 def id_closed(item):
-    return item["statement_id"]
+    return item["record_id"]
 
 # Elasticsearch indexes for BODS data
 bods_index_properties = {"entity": {"properties": entity_statement_properties,

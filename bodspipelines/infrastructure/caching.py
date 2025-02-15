@@ -231,7 +231,7 @@ class Caching():
         print("Flushing cache")
         for item_type in self.batch:
             if not item_type in self.memory_only:
-                #print(f"{item_type}: {len(self.batch[item_type])} items in batch")
+                print(f"{item_type}: {len(self.batch[item_type])} items in batch")
                 if len(self.batch[item_type]) > 0:
                     await self._write_batch(item_type)
 
