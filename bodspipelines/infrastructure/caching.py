@@ -218,7 +218,7 @@ class Caching():
             #print(f"{action}: {items}")
             if items:
                 print(f"Flushing {action}: {len(items)} items")
-                print("First 5 items:", first_n(items, 5))
+                print("First 5 items:", items[:5])
                 await self.storage.dump_stream(item_type, action, self._generate_items(items))
         self.batch[item_type] = {}
 
