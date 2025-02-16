@@ -13,8 +13,11 @@ from copy import deepcopy
 
 def first_n(d, n):
     out = {}
+    count = 0
     for k in d:
         out[k] = d[k]
+        count += 1
+        if count >= 5: break
     return out
 
 def random_string(length):
