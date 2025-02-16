@@ -1,6 +1,8 @@
 #from functools import wraps
 import inspect
 
+from .utils import first_n
+
 def get_id(storage, item_type, item):
     """Get item id given item and item_type"""
     return storage.storage.indexes[item_type]['id'](item)
@@ -216,6 +218,7 @@ class Caching():
             #print(f"{action}: {items}")
             if items:
                 print(f"Flushing {action}: {len(items)} items")
+                print("First 5 items:", first_n(items, 5))
                 await self.storage.dump_stream(item_type, action, self._generate_items(items))
         self.batch[item_type] = {}
 

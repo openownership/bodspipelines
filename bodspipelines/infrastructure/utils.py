@@ -11,6 +11,12 @@ from requests.packages.urllib3.util.retry import Retry
 from functools import partial
 from copy import deepcopy
 
+def first_n(d, n):
+    out = {}
+    for k in d:
+        out[k] = d[k]
+    return out
+
 def random_string(length):
     """Generate random string of specified length"""
     characters = string.ascii_letters + string.digits

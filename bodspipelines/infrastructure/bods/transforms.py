@@ -131,7 +131,8 @@ def transform_entity(source, data, record_status):
     declarationSubject = source.declaration_subject(data)
     updated = source.item_updated(data)
     statementDate = format_date(updated)
-    statementID = generate_statement_id(f"{recordID}-{updated}", 'entityStatement')
+    statementID = generate_statement_id(source.statement_id(data, 'entity'),
+                                        'entityStatement')
     recordType = 'entity'
     recordStatus = record_status
     entityType = 'registeredEntity'
@@ -211,7 +212,8 @@ def transform_person(source, data, record_status):
     declarationSubject = source.declaration_subject(data)
     updated = source.item_updated(data)
     statementDate = format_date(updated)
-    statementID = generate_statement_id(f"{recordID}-{updated}", 'personStatement')
+    statementID = generate_statement_id(source.statement_id(data, 'person'),
+                                        'personStatement')
     recordType = 'person'
     recordStatus = record_status
     entityType = 'registeredEntity'
@@ -303,7 +305,8 @@ def transform_relationship(source, data, record_status):
     declarationSubject = source.declaration_subject(data)
     updated = source.item_updated(data)
     statementDate = format_date(updated)
-    statementID = generate_statement_id(f"{recordID}-{updated}", 'relationshipStatement')
+    statementID = generate_statement_id(source.statement_id(data, 'relationship'),
+                                        'relationshipStatement')
     recordType = 'relationship'
     recordStatus = record_status
     subject = source.relationship_subject(data)
@@ -335,7 +338,8 @@ def transform_exception(source, data, record_status):
     declarationSubject = source.declaration_subject(data)
     updated = source.item_updated(data)
     statementDate = format_date(updated)
-    statementID = generate_statement_id(f"{recordID}-{updated}", 'relationshipStatement')
+    statementID = generate_statement_id(source.statement_id(data, 'exception'),
+                                        'relationshipStatement')
     recordType = 'relationship'
     recordStatus = record_status
     subject = source.relationship_subject(data)
