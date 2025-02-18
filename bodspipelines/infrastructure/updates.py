@@ -125,7 +125,9 @@ async def record_status(transform, cache, storage, item, statement, updates=Fals
             relationship_id = transform.relationship_id(item)
             latest_id, latest_record_id = await latest_lookup(cache, relationship_id, updates=updates)
             if latest_id:
-                await closed_save(cache, latest_id, latest_record_id, statement_date)
+                _, relationship_record_status = await record_lookup(cache, latest_record_id, updates=updates)
+                if relationship_record_status != 'closed':
+                    await closed_save(cache, latest_id, latest_record_id, statement_date)
         if transform.item_closed(item, record_type):
             return 'closed', None
         else:
