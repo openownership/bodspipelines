@@ -1,7 +1,7 @@
 #from functools import wraps
 import inspect
 
-from .utils import first_n
+from .utils import first_n, broken_data
 
 def get_id(storage, item_type, item):
     """Get item id given item and item_type"""
@@ -219,6 +219,9 @@ class Caching():
             if items:
                 print(f"Flushing {action}: {len(items)} items")
                 print("First 5 items:", items[:5])
+                if item_type == "latest":
+                    print("Broken data:",
+                        [item for item in items if broken_data(['latest_id', 'statement_id', 'record_id'], item[1])])
                 await self.storage.dump_stream(item_type, action, self._generate_items(items))
         self.batch[item_type] = {}
 

@@ -11,6 +11,14 @@ from requests.packages.urllib3.util.retry import Retry
 from functools import partial
 from copy import deepcopy
 
+def broken_data(fields, data):
+    for field in fields
+        if not field in data:
+            return True
+        elif not data[field]:
+            return True
+    return False
+
 def first_n(d, n):
     out = {}
     count = 0
