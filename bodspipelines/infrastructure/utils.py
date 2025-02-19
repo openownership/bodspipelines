@@ -1,5 +1,6 @@
 import datetime
 import dateutil.parser
+import json
 import pytz
 import string
 import random
@@ -10,6 +11,11 @@ from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 from functools import partial
 from copy import deepcopy
+
+def dump_index_updates(index_name, data):
+    with open(f'{index_name}_dump.json', 'w') as file:
+        for item in data:
+            file.write(json.dumps(item[1]) + '\n')
 
 def broken_data(fields, data):
     for field in fields:

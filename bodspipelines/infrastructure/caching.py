@@ -1,7 +1,7 @@
 #from functools import wraps
 import inspect
 
-from .utils import first_n, broken_data
+from .utils import first_n, broken_data, dump_index_updates
 
 def get_id(storage, item_type, item):
     """Get item id given item and item_type"""
@@ -222,6 +222,7 @@ class Caching():
                 if item_type == "latest":
                     print("Broken data:",
                         [item for item in items if broken_data(['latest_id', 'statement_id', 'record_id'], item[1])])
+                dump_index_updates(item_type, items)
                 await self.storage.dump_stream(item_type, action, self._generate_items(items))
         self.batch[item_type] = {}
 
