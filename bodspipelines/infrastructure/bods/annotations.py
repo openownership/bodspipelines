@@ -18,9 +18,9 @@ def add_entity_annotation(annotations, name, status_name, status, link):
                    "",
                    link)
 
-def add_deletion_annotation(annotations, name, record_type):
+def add_deletion_annotation(annotations, description):
     """Annotation of deletion of statement"""
     add_annotation(annotations,
-                   f"{name} {record_type} deleted",
+                   description,
                    "",
                    None)

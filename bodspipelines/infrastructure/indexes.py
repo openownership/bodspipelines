@@ -261,7 +261,8 @@ record_properties = {'record_id': {'type': 'text'},
 # Records to close
 closed_properties = {'statement_id': {'type': 'text'},
                      'record_id': {'type': 'text'},
-                     'statement_date': {'type': 'text'}}
+                     'statement_date': {'type': 'text'},
+                     'reason': {'type': 'text'}}
 
 def match_entity(item):
     return {"match": {"statementId": item["statementId"]}}
