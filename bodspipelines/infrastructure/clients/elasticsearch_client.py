@@ -155,6 +155,9 @@ class ElasticsearchClient:
                     yield match[0]['_source']
             else:
                 print(ok, result)
+                # Debug
+                match = [i for i in batch if i['_id'] == result[i['_op_type']]['_id']]
+                print(match[0])
         if callable(index_name):
             index_name = index_name(batch[0]['_source'])
             #print(f"Storing in {index_name(batch[0]['_source'])}: {record_count} records; {new_records} new records")
@@ -208,7 +211,7 @@ class ElasticsearchClient:
                 action = metadata | {'_id': self.indexes[index_name]["id"](item)} | item
             else:
                 action = metadata | {'_id': self.indexes[index_name]["id"](item)} | item
-            #print(action)
+            #print(action) # Debug
             yield action
 
     async def dump_stream(self, index_name, action_type, items):
