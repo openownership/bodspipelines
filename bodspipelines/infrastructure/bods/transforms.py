@@ -11,18 +11,39 @@ def add_address_part(address_str, address_part):
         address_str = address_part
     return address_str
 
+def build_names(name, data):
+    """Build givenName/familyName from data"""
+    if "surname" in data:
+        name["familyName"] = data["surname"]
+    elif "fullname" in data:
+        name["familyName"] = data["fullname"].split()[0]
+    else:
+        name["familyName"] = ""
+    given = []
+    for part in ("firstname", "middlename"):
+        if part in data:
+            given.append(data[part])
+    if given:
+        name["givenName"] = " ".join(given)
+    elif "fullname" in data:
+        name["givenName"] = " ".join(data["fullname"].split()[:-1])
+    else:
+        name["givenName"] = ""
+
 def build_name(data, name_type):
+    """Build name structure from data"""
     name = {}
-    if isinstance(data, dict) and "fullname" in data:
+    if isinstance(data, dict) and data:
         name = {}
         name["type"] = name_type
-        name["fullName"] = data["fullname"]
-        if data["fullname"]:
-            name["familyName"] = data["surname"] if "surname" in data else data["surname"].split()[-1]
-            name["givenName"] = data["firstname"] if "firstname" in data else data["fullname"].split()[0]
-        else:
-            name["familyName"] = data["surname"] if "surname" in data else ""
-            name["givenName"] = data["firstname"] if "firstname" in data else ""
+        name["fullName"] = data["fullname"] if "fullname" in data else ""
+        build_names(name, data)
+        #if data["fullname"]:
+        #    name["familyName"] = data["surname"] if "surname" in data else data["surname"].split()[-1]
+        #    name["givenName"] = data["firstname"] if "firstname" in data else data["fullname"].split()[0]
+        #else:
+        #    name["familyName"] = data["surname"] if "surname" in data else ""
+        #    name["givenName"] = data["firstname"] if "firstname" in data else ""
         #name["patronymicName"] =
         return name
     else:
@@ -273,13 +294,14 @@ def transform_person(source, data, record_status):
 
 def build_interests(source, data, data_type):
     if data_type == "relationship":
+        #print("Interests:", source.create_interested_party(data), data)
         interests = []
         interest_data = source.interest_types(data)
         for interest_type in interest_data:
             interest = {
                 "directOrIndirect": source.interest_level(data),
                 "type": interest_type,
-                "beneficialOwnershipOrControl": False,
+                "beneficialOwnershipOrControl": True if source.create_interested_party(data) == "person" else False,
                 "startDate": source.interest_start_date(data),
                 "details": source.interest_details(data)
                 }
