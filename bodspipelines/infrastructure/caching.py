@@ -206,25 +206,28 @@ class Caching():
         """Remove item from batch"""
         del self.batch[item_type][item_id]
 
-    async def _generate_items(self, item_type, items):
-        for item in items:
-            if item[0] == item_type:
-                yield item[1]
+    async def _generate_items(self, item_type, action):
+        for item_id in self.batch[item_type]:
+            if self.batch[item_type][item_id][0] == action:
+                yield self.batch[item_type][item_id][1]
+        #for item in items:
+        #    if item[0] == item_type:
+        #        yield item[1]
 
     async def _write_batch(self, item_type):
         """Write batch to storage"""
         for action in ('index', 'update', 'delete'):
-            items = [self.batch[item_type][item_id] for item_id in self.batch[item_type] 
-                     if self.batch[item_type][item_id][0] == action]
+            #items = [self.batch[item_type][item_id] for item_id in self.batch[item_type] 
+            #         if self.batch[item_type][item_id][0] == action]
             #print(f"{action}: {items}")
-            if items:
-                print(f"Flushing {action}: {len(items)} items")
+            #if items:
+            #    print(f"Flushing {action}: {len(items)} items")
                 #print("First 5 items:", items[:5])
                 #if item_type == "latest":
                 #    print("Broken data:",
                 #        [item for item in items if broken_data(['latest_id', 'statement_id', 'record_id'], item[1])])
                 #dump_index_updates(item_type, items)
-                await self.storage.dump_stream(item_type, action, self._generate_items(item_type, items))
+            await self.storage.dump_stream(item_type, action, self._generate_items(item_type, action))
         self.batch[item_type] = {}
 
     async def _check_batch(self):
