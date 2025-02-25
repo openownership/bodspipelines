@@ -215,8 +215,12 @@ class ElasticsearchClient:
             yield action
 
     async def dump_stream(self, index_name, action_type, items):
-        await async_bulk(client=self.client,
-                         actions=self._generate_actions(index_name, action_type, items))
+        #await async_bulk(client=self.client,
+        #                 actions=self._generate_actions(index_name, action_type, items))
+        async for ok, result in async_streaming_bulk(client=self.client,
+                         actions=self._generate_actions(index_name, action_type, items)):
+            if not ok:
+                print("Failed:", result)
 
     def list_indexes(self):
         """List indexes"""
