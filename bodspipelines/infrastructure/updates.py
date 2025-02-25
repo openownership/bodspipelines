@@ -126,6 +126,8 @@ async def record_status(transform, cache, storage, item, statement, updates=Fals
     if not latest_record_id:
         #print(record_type, transform.item_closed(item, record_type))
         #if transform.identify_item(item) in ("relationship", "exception"):
+        if closed and reason == "deletion":
+            return None, None, None
         if record_type == "relationship":
             relationship_id = transform.relationship_id(item)
             latest_id, latest_record_id = await latest_lookup(cache, relationship_id, updates=updates)
