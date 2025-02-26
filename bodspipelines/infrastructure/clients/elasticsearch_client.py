@@ -218,7 +218,8 @@ class ElasticsearchClient:
         #await async_bulk(client=self.client,
         #                 actions=self._generate_actions(index_name, action_type, items))
         async for ok, result in async_streaming_bulk(client=self.client,
-                         actions=self._generate_actions(index_name, action_type, items)):
+                         actions=self._generate_actions(index_name, action_type, items),
+                         raise_on_error=False):
             if not ok:
                 print("Failed:", result)
 
