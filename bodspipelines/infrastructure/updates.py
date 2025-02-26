@@ -115,7 +115,7 @@ async def record_status(transform, cache, storage, item, statement, updates=Fals
     statement_date = statement["statementDate"]
     latest_record_id, latest_record_status = await record_lookup(cache, record_id, updates=updates)
     #print("record_status:", record_id, latest_statement_id, latest_record_status, cache.cache)
-    if not latest_record_id and '-RR-' in record_id:
+    if not latest_record_id and '-RR-' in record_id and not (closed and reason == "deletion"):
         #print("New relationship")
         #latest_statement_id, latest_record_status = await record_lookup(cache,
         #                                                                record_id.replace('-RR-', '-RE-'),
