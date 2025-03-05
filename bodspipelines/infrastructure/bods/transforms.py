@@ -305,6 +305,9 @@ def build_interests(source, data, data_type):
                 "startDate": source.interest_start_date(data),
                 "details": source.interest_details(data)
                 }
+            end_date = source.interest_ends(data)
+            if end_date:
+                interest["endDate"] = end_date
             if any([interest_data[interest_type][val_name] for val_name in interest_data[interest_type]]):
                 interest["share"] = {}
             for val_name in interest_data[interest_type]:
